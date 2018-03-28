@@ -1,0 +1,44 @@
+{% extends 'shop_template.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<form action="{% url 'test' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Test">
+</form>
+
+
+<a href="{% url 'downloadOneProductInformation' %}">Загрузить информацию артикула по номеру</a>
+
+
+{% for message in messages %}
+    <h3 style="background-color: red; padding:5px; color: white ">{{ message }}</h3>
+{% endfor %}
+
+<form action="{% url 'delete_categories' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Удалить все категории, подкатегории, артикулы">
+</form>
+
+<form action="{% url 'delete_products' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Удалить все артикулы">
+</form>
+
+<form action="{% url 'delete_images' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Удалить все изображения">
+</form>
+
+<p>
+<form action="{% url 'parse_categories' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="1. Парсинг категорий, подкатегорий">
+</form>
+
+<form action="{% url 'parse_products_articles' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="2. Парсинг артикулов">
+</form>
+
+<form action="{% url 'parse_products_information' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="3. Парсинг изображений и информации к артикулам">
+</form>
+</p>
+
+{% endblock %}

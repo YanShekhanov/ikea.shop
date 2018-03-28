@@ -1,0 +1,9 @@
+{% extends 'shop_template.html' %}
+
+{% block content %}
+    <form action="{% url 'downloadOneProductInformation' %}" method="POST">{% csrf_token %}
+        <label for="id_article_number">Номер артикула</label>
+        {{ form.article_number }}
+        <input type="submit" value="Загрузить">
+    </form>
+{% endblock %}

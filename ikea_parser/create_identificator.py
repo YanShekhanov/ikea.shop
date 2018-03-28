@@ -1,0 +1,11 @@
+import string
+import random
+#Создание идентификатора по длинне
+def create_identificator(len):
+    identificator_join = ''
+    identificator_dict = []
+    for sym in range(len):
+        identificator_sym = random.choice(string.ascii_letters + string.ascii_lowercase + string.ascii_uppercase)
+        identificator_dict.append(identificator_sym)
+    identificator = identificator_join.join(identificator_dict)
+    return identificator

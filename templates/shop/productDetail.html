@@ -1,0 +1,67 @@
+{% extends 'shop_template.html' %}
+
+{% block content %}
+    {% for i in test %}
+        {{ i }}
+    {% endfor %}
+
+    <h3>{{ product.title }}<br>{{ product.article_number }}<br>{{ product.description }}</h3>
+    <span>Цена: <b>{{ product.price }} PLN</b></span><br>
+    <span>Доступность в магазине: <b>{{ product.available }} шт.</b></span>
+
+    {% for image in productsImages %}
+        <p><img src="{{ image.image.url }}" alt="{{ image.title }}" style="margin: 5px; border: 2px solid black; "></p>
+    {% endfor %}
+
+
+    <p>
+        <h3>Цвета</h3>
+        {% for color in colorOptions %}
+           <a href="https://www.ikea.com/pl/pl/catalog/products/{{ color }}/">{{ color }}</a>
+        {% endfor %}
+    </p>
+
+    <p>
+        <h3>Описание</h3>
+        <span>{{ product.key_feautures }}</span>
+    </p>
+
+    <p>
+        <h3>Полезно знать</h3>
+        <span>{{ product.good_to_know }}</span>
+    </p>
+
+    <p>
+        <h3>Инострукция по уходу</h3>
+        <span>{{ product.care_instructions }}</span>
+    </p>
+
+    <p>
+        <h3>Материалы</h3>
+        <span>{{ product.materials_info }}</span>
+    </p>
+
+    <p>
+        <h3>Размеры</h3>
+        <span>{{ product.dimensions }}</span>
+    </p>
+
+    {% if complementaryProducts is not None %}
+    <p>
+        <h3>Дополняющие продукты</h3>
+        {% for complementary_product in complementaryProducts %}
+            <p>
+                <a href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.article_number }}</a>
+                {% for complementary_image in complementaryProductsImages %}
+                    {% if complementary_image.product == complementary_product %}
+                        <img src="{{ complementary_image.image.url }}" alt="{{ complementary_product.article_number }}" height="50px" width="50px">
+                    {% endif %}
+                {% endfor %}
+            </p>
+        {% endfor %}
+    </p>
+    {% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{% static 'css3-mediaqueries.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/ikea.css' %}">
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+</head>
+<!--Top menu-->
+<div class="container-fluid" id="top-strip">
+    <div class="row">
+        <div class="grid">
+            <p style="float: left; text-align: left;"><a href="#">Контакты</a> | <a href="#">Доставка</a></p>
+            <p style="float: right; text-align: right;">Связь | +380996823781</p>
+        </div>
+    </div>
+</div>
+<!--Content-->
+<div class="content">
+<!--Logo/Shoping Cart/Price/Search-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="grid">
+            <!-- <img class="logo" src="{% static 'images/ikea-logo.png' %}"> -->
+            <div class="price-search">
+				<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                <img class="money-icon" src="{% static 'icons/uah-cash-icon.png' %}">
+				<h6 class="price"> 999.99</h6>
+                <input class="search-form" placeholder="Поиск..." />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Menu-->
+<nav class="navbar navbar-expand-sm navbar-light grid" id="menu-button">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
+        <a class="nav-link" id="menu-button" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="menu-button" href="#">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" href="#">Акции</a>
+    </div>
+</nav>
+
+<!--Dropdown-->
+<div class="grid">
+<div id="dropdown-products">
+	<!--Product List-->
+	<ul id="product-list">
+            {% for category in Categories %}
+                <li onclick="open_subcategory({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
+            {% endfor %}
+    </ul>
+    <!--Kategories-->
+    <ul id="product-categories">
+        {% for category in Categories %}
+            {% for subcategory in SubCategories %}
+                {% if subcategory.category == category %}
+                    <li data-category_id="{{ category.id }}"><btn onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</btn></li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+<!--Kategories And Sort-->
+<div class="grid">
+    <div class="kat-sort">
+        <!--Kategories-->
+        {% if category %}
+        <p id="kat" style="float: left; text-align: left;">{{ category.category.title }}<b> / </b><a href="{% url 'getOneCategoryProducts' category.unique_identificator %}">{{ category.title }}</a></p>
+        {% endif %}
+        <!--Sort-->
+        <div class="btn-group" id="sort" style="float: right;">
+        <p>от дешевых к дорогим</p>
+        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" style="margin: 0; padding: 0;">от дешевых к дорогим</a>
+            <a class="dropdown-item" href="#" style="margin: 0; padding: 0;">от дорогих к дешевым</a>
+            <a class="dropdown-item" href="#" style="margin: 0; padding: 0;">по имени</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% block content %}{% endblock %}
+</div>
+<footer id="myFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 myCols">
+                <h5>Информация</h5>
+                <ul>
+                    <li><a href="#">Policy Privacy</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 myCols">
+                <h5>О нас</h5>
+                <ul>
+                    <li><a href="#">Информация о компании</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 myCols">
+                <h5>Обслуживание Клиентов</h5>
+                <ul>
+                    <li><a href="#">Тел: +380-93-251-02-13</a></li>
+                    <li><a href="#">Email: info@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="social-networks">
+        <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" class="vk"><i class="fa fa-vk"></i></a>
+    </div>
+    <div class="footer-copyright">
+        <p>© Inter IKEA Systems B.V. 1999 — 2017 | Юридическая информация | Положение об обработке и защите персональных данных | Информация для потребителей о мебельной продукции</p>
+    </div>
+</footer>
+
+{% block js %}{% endblock %}
+
+<script>
+    $('#dropdown-products').hide();
+    $('#product-categories').find('li').hide();
+    $('#product-categories').hide();
+
+    function open_categories() {
+        $('#dropdown-products').toggle();
+    }
+    function open_subcategory(category_id){
+        $('#product-categories').find('li').hide();
+        $('#product-categories').show();
+        $('li[data-category_id="' + category_id + '"]').show()
+    }
+</script>
+</body>
+</html>
