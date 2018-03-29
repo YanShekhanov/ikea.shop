@@ -732,7 +732,14 @@ body{
 	left: 79.2vw;
 	font-size: 3vw;
 	color: #ff6c00;
-	opacity: .7;
+	opacity: .6;
+}
+.close-icon:hover{
+	opacity: .9;
+}
+.close-icon:active{
+	left: 79.5vw;
+	top: 0.5vw;
 }
 
 /*Pagination*/
