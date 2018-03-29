@@ -19,6 +19,10 @@ from .create_identificator import create_identificator
 
 import re
 
+from app.settings import BASE_DIR
+create_media_dirs = os.path.join(BASE_DIR, 'media/products/')
+pathlib.Path(create_media_dirs + '250px').mkdir(parents=True, exist_ok=True)
+pathlib.Path(create_media_dirs + '500px').mkdir(parents=True, exist_ok=True)
 
 #images product url http://www.ikea.com/pl/pl/catalog/products/40316408?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes
 
