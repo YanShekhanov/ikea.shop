@@ -12,6 +12,7 @@ from django.utils.timezone import datetime
 
 #selenium
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException, WebDriverException
 
@@ -232,6 +233,10 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
 #парсинг изображений, основной информации к артикулу
 def parse_one_product_information_(product_query, browser_driver):
+    create_media_dirs = os.path.join(BASE_DIR, 'media/products/')
+    pathlib.Path(create_media_dirs + '250px').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(create_media_dirs + '500px').mkdir(parents=True, exist_ok=True)
+
     time_start = time.time()
     product_to_save = Product.objects.get(id=product_query.id)
     product_url = product_query.url_ikea
@@ -413,159 +418,163 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             print('НЕ найдено дополняющего в базе ( %s )' % complementary_product)
             complementary_products_articles_not_existed.append(complementary_product)
     print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
-    driver = webdriver.Chrome()
-    for complementary_product in complementary_products_articles_not_existed:
-        product_article = complementary_product
+    if len(complementary_products_articles_not_existed) != 0:
+        options = Options()
+        options.add_argument('--headless')
 
-        # available in Lublin
-        product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
-            product_article)
-        product_request = requests.get(product_available_url).text
-        product_page = BeautifulSoup(product_request, 'xml')
-        try:
-            available = product_page.find('localStore', buCode='311').find('availableStock').get_text()
-            if int(available) != 0:
-                # web driver
-                product_url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product_article
-                driver.get(product_url)
-                html = driver.page_source
-                product_soup = BeautifulSoup(html, 'lxml')
+        driver = webdriver.Firefox(firefox_options=options)
+        for complementary_product in complementary_products_articles_not_existed:
+            product_article = complementary_product
 
-                product_title = product_soup.find('span', id='name').text.strip()  # название
-                product_description = product_soup.find('span', id='type').text.strip()  # разшифровка
-                product_color = product_description.split(',')[1]
-                product_price = product_soup.find('span', class_='packagePrice').text.split()[:2]
-                if product_price[1] == 'PLN':
-                    product_price = product_price[0]
-                product_price = ''.join(product_price)
-                for symbol in product_price:
-                    if symbol == ' ':
-                        product_price = ''.join(product_price.split(' '))
-                for symbol in product_price:
-                    if symbol == ',':
-                        product_price = '.'.join(product_price.split(','))
-                product_unit = product_soup.find('span', class_='unit')  # /шт.
-                if product_unit is not None:
-                    product_unit = product_unit.text.strip()
-                else:
-                    product_unit = ''
+            # available in Lublin
+            product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
+                product_article)
+            product_request = requests.get(product_available_url).text
+            product_page = BeautifulSoup(product_request, 'xml')
+            try:
+                available = product_page.find('localStore', buCode='311').find('availableStock').get_text()
+                if int(available) != 0:
+                    # web driver
+                    product_url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product_article
+                    driver.get(product_url)
+                    html = driver.page_source
+                    product_soup = BeautifulSoup(html, 'lxml')
 
-                # technical information - основная информация
-                key_feautures = product_soup.find('div', id='custBenefit').text
-                good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
-                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div',
-                                                                                             id='careInst').text
+                    product_title = product_soup.find('span', id='name').text.strip()  # название
+                    product_description = product_soup.find('span', id='type').text.strip()  # разшифровка
+                    product_color = product_description.split(',')[1]
+                    product_price = product_soup.find('span', class_='packagePrice').text.split()[:2]
+                    if product_price[1] == 'PLN':
+                        product_price = product_price[0]
+                    product_price = ''.join(product_price)
+                    for symbol in product_price:
+                        if symbol == ' ':
+                            product_price = ''.join(product_price.split(' '))
+                    for symbol in product_price:
+                        if symbol == ',':
+                            product_price = '.'.join(product_price.split(','))
+                    product_unit = product_soup.find('span', class_='unit')  # /шт.
+                    if product_unit is not None:
+                        product_unit = product_unit.text.strip()
+                    else:
+                        product_unit = ''
 
-                # габариты
-                dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div',
-                                                                                                   id='metric').contents
-                dimensions = []
+                    # technical information - основная информация
+                    key_feautures = product_soup.find('div', id='custBenefit').text
+                    good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+                    care_instructions = product_soup.find('div', id='careInstructionsPart').find('div',
+                                                                                                 id='careInst').text
 
-                # вариации цвета
-                # проверка на наличие блока с цветами
-                parse_colors = True
-                color_articles_list = []
-                existed_colors_on_page = []
-                colors = []
+                    # габариты
+                    dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div',
+                                                                                                       id='metric').contents
+                    dimensions = []
 
-                # bs4
-                try:
-                    colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
-                    print('ЕСТЬ ЦВЕТА')
-                except:
-                    print('НЕТУ ЦВЕТОВ')
-                    parse_colors = False
-                if parse_colors:
+                    # вариации цвета
+                    # проверка на наличие блока с цветами
+                    parse_colors = True
+                    color_articles_list = []
+                    existed_colors_on_page = []
+                    colors = []
+
+                    # bs4
                     try:
-                        existed_colors_on_page = []  # уже найденные цвета
-                        for color in colors:
-                            color_identificator = color.get('data-value')
-                            if color_identificator not in existed_colors_on_page:
-                                existed_colors_on_page.append(color_identificator)
+                        colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
+                        print('ЕСТЬ ЦВЕТА')
+                    except:
+                        print('НЕТУ ЦВЕТОВ')
+                        parse_colors = False
+                    if parse_colors:
+                        try:
+                            existed_colors_on_page = []  # уже найденные цвета
+                            for color in colors:
+                                color_identificator = color.get('data-value')
+                                if color_identificator not in existed_colors_on_page:
+                                    existed_colors_on_page.append(color_identificator)
 
-                        for color_identificator_for_parse in existed_colors_on_page:
-                            button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')
-                            button_for_open_colors_options.click()
-                            one_color_button = driver.find_element_by_xpath(
-                                '//li[@data-value="' + color_identificator_for_parse + '"]')
-                            one_color_button.click()
-                            one_color_url = driver.current_url.split('#')[1][1:]
-                            color_articles_list.append(one_color_url)
-                        color_options = '#'.join(color_articles_list)
-                    except WebDriverException:
-                        parseComplementaryProducts(*complementary_products_list)
+                            for color_identificator_for_parse in existed_colors_on_page:
+                                button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')
+                                button_for_open_colors_options.click()
+                                one_color_button = driver.find_element_by_xpath(
+                                    '//li[@data-value="' + color_identificator_for_parse + '"]')
+                                one_color_button.click()
+                                one_color_url = driver.current_url.split('#')[1][1:]
+                                color_articles_list.append(one_color_url)
+                            color_options = '#'.join(color_articles_list)
+                        except WebDriverException:
+                            parseComplementaryProducts(*complementary_products_list)
 
-                # complamantary products - дополняющие продукты
-                complementary_products_list = []
-                complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
-                complementary_products = complementary_products_block.find_all('li')
-                for complementary_product in complementary_products:
-                    complementary_product_article = complementary_product.get('id').split('_')[1]
-                    complementary_products_list.append(complementary_product_article)
-                complementary_products_to_save = '#'.join(complementary_products_list)
+                    # complamantary products - дополняющие продукты
+                    complementary_products_list = []
+                    complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
+                    complementary_products = complementary_products_block.find_all('li')
+                    for complementary_product in complementary_products:
+                        complementary_product_article = complementary_product.get('id').split('_')[1]
+                        complementary_products_list.append(complementary_product_article)
+                    complementary_products_to_save = '#'.join(complementary_products_list)
 
-                # environment materials - материалы
-                environment_button = driver.find_element_by_id('envAndMatTab')
-                environment_button.click()
-                html = driver.page_source
-                product_soup = BeautifulSoup(html, 'lxml')
-                materials = product_soup.find('div', id='custMaterials').text.strip()
+                    # environment materials - материалы
+                    environment_button = driver.find_element_by_id('envAndMatTab')
+                    environment_button.click()
+                    html = driver.page_source
+                    product_soup = BeautifulSoup(html, 'lxml')
+                    materials = product_soup.find('div', id='custMaterials').text.strip()
 
-                # saving product
-                created_product = Product.objects.create(article_number=product_article,
-                                                         title=product_title,
-                                                         description=product_description,
-                                                         price=product_price,
-                                                         url_ikea=product_url,
-                                                         available=available,
-                                                         key_feautures=key_feautures,
-                                                         good_to_know=good_to_know,
-                                                         care_instructions=care_instructions,
-                                                         materials_info=materials,
-                                                         complementary_products=complementary_products_to_save,
-                                                         color=product_color,
-                                                         is_parsed=False)
-                print('Артикул %s был успешно сохранен в БД под id = %i' % (
-                created_product.article_number, created_product.id))
+                    # saving product
+                    created_product = Product.objects.create(article_number=product_article,
+                                                             title=product_title,
+                                                             description=product_description,
+                                                             price=product_price,
+                                                             url_ikea=product_url,
+                                                             available=available,
+                                                             key_feautures=key_feautures,
+                                                             good_to_know=good_to_know,
+                                                             care_instructions=care_instructions,
+                                                             materials_info=materials,
+                                                             complementary_products=complementary_products_to_save,
+                                                             color=product_color,
+                                                             is_parsed=False)
+                    print('Артикул %s был успешно сохранен в БД под id = %i' % (
+                    created_product.article_number, created_product.id))
 
-                # images 500*500px
-                xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + created_product.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
-                xml_request = requests.get(xml_product_url).text
-                xml_soup = BeautifulSoup(xml_request, 'xml')
-                images_500 = xml_soup.find('large').find_all('image')
-                prefix_for_500px = '500px'
-                for image in images_500:
-                    start_download = True
-                    ikea_image_prefix = image.text.split('_')[2]  # префикс номера изображения в икеа
+                    # images 500*500px
+                    xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + created_product.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
+                    xml_request = requests.get(xml_product_url).text
+                    xml_soup = BeautifulSoup(xml_request, 'xml')
+                    images_500 = xml_soup.find('large').find_all('image')
+                    prefix_for_500px = '500px'
+                    for image in images_500:
+                        start_download = True
+                        ikea_image_prefix = image.text.split('_')[2]  # префикс номера изображения в икеа
 
-                    # проверка на наличие изображения в базе данных
-                    existed_images = ProductImage.objects.all()
-                    for existed_image in existed_images:
-                        if existed_image.title.split('_')[1] == ikea_image_prefix \
-                                and existed_image.title.split('_')[0] == created_product.article_number \
-                                and created_product.id == existed_image.product.id:
-                            existed_image.product.add(created_product)
-                            start_download = False
-                            print(
-                                'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                existed_image.title, created_product.article_number))
-                    # ---------------------------------------------
-                    if start_download:
-                        image_request = requests.get(image.text).content
-                        image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
-                        image_url_to_save = MEDIA_ROOT + 'products/500px/' + created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
-                        with open(image_url_to_save, 'wb') as image_file:
-                            image_file.write(image_request)
-                            image_file.close()
-                            ProductImage.objects.update_or_create(product=created_product,
-                                                                  image='products/500px/' + image_title, title=image_title)
-                driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'T', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'W')
-            else:
-                return FileExistsError
-        except:
-            print('Информация по наличию артикула %s не найдена' % product_article)
-    print('-----------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ ЗАВЕРШЕН')
-    driver.close()
+                        # проверка на наличие изображения в базе данных
+                        existed_images = ProductImage.objects.all()
+                        for existed_image in existed_images:
+                            if existed_image.title.split('_')[1] == ikea_image_prefix \
+                                    and existed_image.title.split('_')[0] == created_product.article_number \
+                                    and created_product.id == existed_image.product.id:
+                                existed_image.product.add(created_product)
+                                start_download = False
+                                print(
+                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                    existed_image.title, created_product.article_number))
+                        # ---------------------------------------------
+                        if start_download:
+                            image_request = requests.get(image.text).content
+                            image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
+                            image_url_to_save = MEDIA_ROOT + 'products/500px/' + created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
+                            with open(image_url_to_save, 'wb') as image_file:
+                                image_file.write(image_request)
+                                image_file.close()
+                                ProductImage.objects.update_or_create(product=created_product,
+                                                                      image='products/500px/' + image_title, title=image_title)
+                    driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'T', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'W')
+                else:
+                    return FileExistsError
+            except:
+                print('Информация по наличию артикула %s не найдена' % product_article)
+        print('-----------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ ЗАВЕРШЕН')
+        driver.close()
 
     end_parse = time.time()
     print(start_parse - end_parse)

@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, FormView, ListView
 from .models import *
 
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 
 # Create your views here.
@@ -36,7 +37,10 @@ def parse_products_information(request):
     except Product.DoesNotExist:
         return HttpResponse(status=404)
 
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+
+    driver = webdriver.Firefox(firefox_options=options)
     for product in products:
         parse_one_product_information_(product, driver)
         body = driver.find_element_by_tag_name('body')
