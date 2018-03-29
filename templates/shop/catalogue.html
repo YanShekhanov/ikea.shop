@@ -16,7 +16,6 @@
                             {% for product_query in image.product.all %}
                                 {% if product_query == product %}
                                     <div class="carousel-item">
-					<img class="all-images-icon" src="{% static 'icons/all-images.png' %}" alt="#">
                                         <img src="{{ image.image.url }}" alt="First slide">
                                     </div>
                                 {% endif %}
@@ -33,7 +32,7 @@
                     <p class="card-text">{{ product.description }}<br><p class="card-price">{{ product.price }} PLN</p></p>
 					<div class="card-btns">
                         <form class="get_all_product_images" data-unique_identificator="{{ product.unique_identificator }}">{% csrf_token %}
-                            <input type="submit" value="I">
+                            <img class="all-images-icon" type="submit" src="{% static 'icons/all-images.png' %}" alt="#">
                         </form>
                     <div class="btn-group">
         				<button type="button" class="btn btn-buy">Купить</button>
