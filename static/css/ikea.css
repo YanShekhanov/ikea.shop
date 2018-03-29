@@ -63,7 +63,8 @@ body{
     float: right;
     width: 17.8vw;
     height: 6.3vw;
-    margin-top: 0.5vw
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
 }
 .fa-shopping-basket{
 	margin: 0;
