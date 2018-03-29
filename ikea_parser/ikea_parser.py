@@ -233,9 +233,11 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
 #парсинг изображений, основной информации к артикулу
 def parse_one_product_information_(product_query, browser_driver):
-    create_media_dirs = os.path.join(BASE_DIR, 'media/products/')
-    pathlib.Path(create_media_dirs + '250px').mkdir(parents=True, exist_ok=True)
-    pathlib.Path(create_media_dirs + '500px').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(').mkdir(parents=True, exist_ok=True)
+    create_media_dirs = os.path.join(BASE_DIR)
+    pathlib.Path(create_media_dirs + 'products/').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(create_media_dirs + 'products/' + '250px').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(create_media_dirs + 'products/' + '500px').mkdir(parents=True, exist_ok=True)
 
     time_start = time.time()
     product_to_save = Product.objects.get(id=product_query.id)
