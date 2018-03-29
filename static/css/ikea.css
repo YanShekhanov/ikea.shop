@@ -63,7 +63,8 @@ body{
     float: right;
     width: 17.8vw;
     height: 6.3vw;
-    margin-top: 0.5vw
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
 }
 .fa-shopping-basket{
 	margin: 0;
@@ -158,11 +159,11 @@ body{
     width: 100%;
     background-color: #f5f5f5;
     color: #515050;
-    height: 489%;
     border-radius: 0;
     margin: 0;
     border: 0.2vw solid #e3e3e3;
     padding: 0vw;
+	height: auto;
 }
 #dropdown-products btn:hover{
     background-color: #e4e4e4;
@@ -178,9 +179,10 @@ body{
     color: #ff6c00;
 }
 #dropdown-products i{
-    float: right;
+	position: absolute;
     font-size: 1.3vw;
-    margin-top: 0.4vw;
+    margin-top: 0.2vw;
+	left: 41.8vw;
 }
 #dropdown-products i:hover{
     color: #ff6c00;
@@ -215,10 +217,10 @@ body{
 	font-style: italic;
     text-align: left;
 	text-decoration: none;
-    padding-top: 0.4vw;
+    padding-top: 0.5vw;
     padding-left: 1.3vw;
     padding-right: 0.5vw;
-    padding-bottom: 0;
+    padding-bottom: 0.6vw;
     margin: 0;
     height: 100%;
     width: 100%;
@@ -248,10 +250,10 @@ body{
 	font-style: italic;
     text-align: left;
 	text-decoration: none;
-    padding-top: 0.4vw;
+    padding-top: 0.5vw;
     padding-left: 1.3vw;
     padding-right: 0.5vw;
-    padding-bottom: 0;
+    padding-bottom: 0.5vw;
     margin: 0;
     height: 100%;
     width: 100%;
@@ -686,35 +688,58 @@ body{
 	margin-top: 0vw;
 	font-size: 1.5vw;
 }
+#product-cards .all-images-icon{
+	position: absolute;
+	height: 3.5vw;
+	width: 3.5vw;
+	left: 78%;
+	bottom: 79%;
+}
+
 
 /*Big Images*/
 .img-block{
 	position: fixed;
 	z-index: 1;
-	top: 3vw;
+	top: 0.5vw;
 	left: 17.8vw;
 	background-color: white;
 	border: 0.18vw solid #e3e3e3;
-	height: 52.4vw;
-	width: 64.3vw;
+	height: 56.5vw;
+	width: 64.5vw;
+	text-align: center;
 }
 .mini-img-list{
-	float: left;
-	display: inline-block;
-	height: 100%;
-	width: 13vw;
+	text-align: center;
+	height: 10vw;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+	border-top: 0;
 }
 .mini-img{
-	display: table-row;
-	width: 13vw;
-	height: 13vw;
-
+	width: 10vw;
+	height: 10vw;
+	margin: 0;
 }
 .big-img-item{
-	float: right;
-	display: inline-block;
-	height: 100%;
-	width: 79%;
+	height: 45vw;
+	width: 45vw;
+	margin: 0;
+}
+.close-icon{
+	position: fixed;
+	left: 79.2vw;
+	font-size: 3vw;
+	color: #ff6c00;
+	opacity: .6;
+}
+.close-icon:hover{
+	opacity: .9;
+}
+.close-icon:active{
+	left: 79.5vw;
+	top: 0.5vw;
 }
 
 /*Pagination*/
