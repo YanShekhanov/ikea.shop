@@ -15,7 +15,8 @@
                             {% for product_query in image.product.all %}
                                 {% if product_query == product %}
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 sale-banner-item" src="{{ image.image.url }}" alt="First slide">
+					<img class="all-images-icon" src="{% static 'icons/all-images.png' %}" alt="#">
+                                        <img src="{{ image.image.url }}" alt="First slide">
                                     </div>
                                 {% endif %}
                             {% endfor %}
