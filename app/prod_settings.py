@@ -1,0 +1,2 @@
+ALLOWED_HOSTS = ['http://167.99.193.117']
+DEBUG = False
