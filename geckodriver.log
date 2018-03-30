@@ -1,0 +1,287 @@
+1522403680335	geckodriver	INFO	geckodriver 0.20.0
+1522403680350	geckodriver	INFO	Listening on 127.0.0.1:43965
+1522403681382	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.wnCzXaapKp3K"
+*** You are running in headless mode.
+1522403688498	Marionette	INFO	Enabled via --marionette
+1522403695982	Marionette	INFO	Listening on port 44277
+1522403696170	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+1522404273524	geckodriver	INFO	geckodriver 0.20.0
+1522404273544	geckodriver	INFO	Listening on 127.0.0.1:41829
+1522404274506	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.5ZbNgLO1Vjw3"
+*** You are running in headless mode.
+1522404280488	Marionette	INFO	Enabled via --marionette
+1522404287484	Marionette	INFO	Listening on port 41191
+1522404288172	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+1522404481072	geckodriver	INFO	geckodriver 0.20.0
+1522404481092	geckodriver	INFO	Listening on 127.0.0.1:45401
+1522404482080	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.ZFZ9JYlAc5wU"
+*** You are running in headless mode.
+1522404484106	Marionette	INFO	Enabled via --marionette
+1522404488934	Marionette	INFO	Listening on port 43969
+1522404488990	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3071, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 3043, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3393, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522404633741	geckodriver	INFO	geckodriver 0.20.0
+1522404633754	geckodriver	INFO	Listening on 127.0.0.1:60729
+1522404634756	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.TcbSLWQSA6Bd"
+*** You are running in headless mode.
+1522404636854	Marionette	INFO	Enabled via --marionette
+1522404641428	Marionette	INFO	Listening on port 38127
+1522404641474	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3648, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522404794381	geckodriver	INFO	geckodriver 0.20.0
+1522404794405	geckodriver	INFO	Listening on 127.0.0.1:57767
+1522404795390	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.3mg74MgX5SBf"
+*** You are running in headless mode.
+1522404798310	Marionette	INFO	Enabled via --marionette
+1522404803958	Marionette	INFO	Listening on port 33597
+1522404804872	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3894, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3866, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522405276541	geckodriver	INFO	geckodriver 0.20.0
+1522405276551	geckodriver	INFO	Listening on 127.0.0.1:42761
+1522405277550	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.1kvbNAmMSqgf"
+*** You are running in headless mode.
+1522405279316	Marionette	INFO	Enabled via --marionette
+1522405283924	Marionette	INFO	Listening on port 36179
+1522405284006	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+1522405376235	geckodriver	INFO	geckodriver 0.20.0
+1522405376249	geckodriver	INFO	Listening on 127.0.0.1:50757
+1522405377244	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.73XwXIVwcf4R"
+*** You are running in headless mode.
+1522405379520	Marionette	INFO	Enabled via --marionette
+1522405384284	Marionette	INFO	Listening on port 36085
+1522405385070	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4362, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4558, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522406073664	geckodriver	INFO	geckodriver 0.20.0
+1522406073673	geckodriver	INFO	Listening on 127.0.0.1:39009
+1522406074677	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.LqiRATJutJlS"
+*** You are running in headless mode.
+1522406076572	Marionette	INFO	Enabled via --marionette
+1522406081562	Marionette	INFO	Listening on port 41715
+1522406082330	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: TypeError: elm.up is not a function
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 5111, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522406274026	geckodriver	INFO	geckodriver 0.20.0
+1522406274038	geckodriver	INFO	Listening on 127.0.0.1:56611
+1522406275035	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.tEGWf28eznst"
+*** You are running in headless mode.
+1522406276940	Marionette	INFO	Enabled via --marionette
+1522406281400	Marionette	INFO	Listening on port 33471
+1522406281440	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 5368, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522406393718	geckodriver	INFO	geckodriver 0.20.0
+1522406393730	geckodriver	INFO	Listening on 127.0.0.1:39797
+1522406394732	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.FVez7tkLpyFf"
+*** You are running in headless mode.
+1522406396606	Marionette	INFO	Enabled via --marionette
+1522406401612	Marionette	INFO	Listening on port 46063
+1522406401738	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 5650, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 5617, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522406520148	geckodriver	INFO	geckodriver 0.20.0
+1522406520162	geckodriver	INFO	Listening on 127.0.0.1:38147
+1522406521160	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.blA517uvXq8C"
+*** You are running in headless mode.
+1522406523268	Marionette	INFO	Enabled via --marionette
+1522406527938	Marionette	INFO	Listening on port 38873
+1522406528806	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: TypeError: elm.up is not a function
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1522406567364	geckodriver::marionette	ERROR	Failed to stop browser process
+1522406645883	geckodriver	INFO	geckodriver 0.20.0
+1522406645894	geckodriver	INFO	Listening on 127.0.0.1:47935
+1522406646895	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.RoQrSf75Gozo"
+*** You are running in headless mode.
+1522406648920	Marionette	INFO	Enabled via --marionette
+1522406653844	Marionette	INFO	Listening on port 33563
+1522406653910	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: TypeError: elm.up is not a function
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+1522406936496	geckodriver	INFO	geckodriver 0.20.0
+1522406936505	geckodriver	INFO	Listening on 127.0.0.1:37303
+1522406937506	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.x8RsOenzgeU9"
+*** You are running in headless mode.
+1522406939438	Marionette	INFO	Enabled via --marionette
+1522406943966	Marionette	INFO	Listening on port 36115
+1522406944792	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: TypeError: elm.up is not a function
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+1522407723831	geckodriver	INFO	geckodriver 0.20.0
+1522407723846	geckodriver	INFO	Listening on 127.0.0.1:45637
+1522407724841	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-profile" "/tmp/rust_mozprofile.sDuRWmK2HphH"
+*** You are running in headless mode.
+1522407726824	Marionette	INFO	Enabled via --marionette
+1522407731582	Marionette	INFO	Listening on port 45447
+1522407732442	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 30: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/js_main.js, line 46: unreachable code after return statement
+JavaScript warning: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line 69: unreachable code after return statement
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/prodInfo_v6_4_5.js, line 2: TypeError: elm.up is not a function
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: document.getElementById(...) is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 6119, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 6078, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
