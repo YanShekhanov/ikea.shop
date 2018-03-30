@@ -33,7 +33,7 @@ DOMAIN = 'http://www.ikea.com'
 
 #парсинг категорий, подкатегорий
 def parse_categories_():
-    main_page = 'http://www.ikea.com/pl/pl/catalog/allproducts/'
+    main_page = 'http://www.ikea.com/pl/pl/'
     domain = 'http://www.ikea.com'
     categories_dict = {}
 
@@ -45,8 +45,8 @@ def parse_categories_():
     # основнов парсер
     html = requests.get(main_page).text
     soup_main_object = BeautifulSoup(html, 'lxml')
-    categories = soup_main_object.find_all('li', class_='header-nav-sublist-title')
-    print(categories)
+    categories = soup_main_object.find('ul', class_='header-nav-sublist').find_all('li',
+                                                                                   class_='header-nav-sublist-title')
     for category in categories:
         subcategories_list = []
         category_title = re.sub('\s+', ' ', category.find('a').text.strip())
