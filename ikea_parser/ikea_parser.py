@@ -47,6 +47,7 @@ def parse_categories_():
     soup_main_object = BeautifulSoup(html, 'lxml')
     categories = soup_main_object.find('ul', class_='header-nav-sublist').find_all('li',
                                                                                    class_='header-nav-sublist-title')
+    print(categories)
     for category in categories:
         subcategories_list = []
         category_title = re.sub('\s+', ' ', category.find('a').text.strip())
