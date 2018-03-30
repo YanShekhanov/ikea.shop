@@ -363,6 +363,7 @@ def parse_one_product_information_(product_query, browser_driver):
         color_options = '#'.join(color_articles_list)
 
     # complamantary products - дополняющие продукты
+    go_to_element = driver.find_element_by_xpath('//div[@id=complementaryProductContainer]')
     complementary_products_list = []
     complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
     complementary_products = complementary_products_block.find_all('li')
