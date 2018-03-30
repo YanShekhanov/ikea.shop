@@ -3,6 +3,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 import os
+from app.settings import BASE_DIR
 # Create your models here.
 
 class Category(models.Model):
@@ -81,24 +82,19 @@ class Product(models.Model):
     def __str__(self):
         return self.article_number
 
-#НЕ РАБОТАЕТ
+#при удалении записи продукта ищем связанные с ним изображения и удаляем. Если у изображения 2 или больше связанных продуктов,
+#то удаляем из reletedField только удаляемый продукт
 @receiver(post_delete, sender=Product)
 def delete_images_for_product(sender, instance, **kwargs):
-    existed_images = None
-    try:
-        existed_images = ProductImage.objects.filter(product=instance)
-        for existed_image in existed_images:
-            if len(existed_image.product.all()) > 1:
-                existed_image.product.remove(instance)
-            else:
-                existed_image.delete()
-                try:
-                    os.remove(existed_image.image.url)
-                except FileNotFoundError:
-                    pass
-    except existed_images.DoesNotExist:
-        pass
-
+    existed_images = ProductImage.objects.filter(product=instance)
+    for image in existed_images:
+        releted_nmb = len(image.product.all())
+        if releted_nmb == 1:
+            image.delele()
+        if releted_nmb > 1:
+            for releted_product in image.product.all():
+                if releted_product == instance:
+                    image.product.remove(releted_product)
 
 
 class ProductImage(models.Model):
@@ -109,8 +105,10 @@ class ProductImage(models.Model):
 
 @receiver(post_delete, sender=ProductImage)
 def delete_images(sender, instance, **kwargs):
-    os.remove(os.path.join(MEDIA_ROOT, instance))
-
+    try:
+        os.remove(BASE_DIR + instance.image.url)
+    except FileNotFoundError:
+        pass
 
 
 
