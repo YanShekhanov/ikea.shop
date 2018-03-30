@@ -19,7 +19,7 @@ from .create_identificator import create_identificator
 
 import re
 
-from app.settings import BASE_DIR, MEDIA_ROOT
+from app.settings import MEDIA_ROOT, BASE_DIR
 
 
 #main url http://www.ikea.com/pl/pl/catalog/allproducts/
@@ -350,7 +350,6 @@ def parse_one_product_information_(product_query, browser_driver):
         color_options = '#'.join(color_articles_list)
 
     # complamantary products - дополняющие продукты
-    go_to_element = driver.find_element_by_xpath('//div[@id="complementaryProductContainer"]')
     complementary_products_list = []
     complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
     complementary_products = complementary_products_block.find_all('li')
@@ -410,7 +409,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
         options = Options()
         options.add_argument('--headless')
 
-        driver = webdriver.Firefox()
+        driver = webdriver.Chrome(chrome_options=options)
         for complementary_product in complementary_products_articles_not_existed:
             product_article = complementary_product
 
