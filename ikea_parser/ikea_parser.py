@@ -19,12 +19,7 @@ from .create_identificator import create_identificator
 
 import re
 
-from app.settings import BASE_DIR
-create_media_dirs = os.path.join(BASE_DIR, 'media/products/')
-pathlib.Path(create_media_dirs + '250px').mkdir(parents=True, exist_ok=True)
-pathlib.Path(create_media_dirs + '500px').mkdir(parents=True, exist_ok=True)
-
-#images product url http://www.ikea.com/pl/pl/catalog/products/40316408?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes
+from app.settings import BASE_DIR, MEDIA_ROOT
 
 
 #main url http://www.ikea.com/pl/pl/catalog/allproducts/
@@ -33,10 +28,6 @@ pathlib.Path(create_media_dirs + '500px').mkdir(parents=True, exist_ok=True)
 #   'category_title': [ [sub_category_title, sub_category_url], [sub_category_title, sub_category_url] ],
 #   'category_title': [ [sub_category_title, sub_category_url], [sub_category_title, sub_category_url] ],
 # }
-
-#pathlib.Path(BASE_DIR).mkdir(parents=True, exist_ok=True)
-#pathlib.Path(BASE_DIR_FOR_ARTICLES).mkdir(parents=True, exist_ok=True)
-
 
 DOMAIN = 'http://www.ikea.com'
 
@@ -359,7 +350,7 @@ def parse_one_product_information_(product_query, browser_driver):
         color_options = '#'.join(color_articles_list)
 
     # complamantary products - дополняющие продукты
-    go_to_element = driver.find_element_by_xpath('//div[@id=complementaryProductContainer]')
+    go_to_element = driver.find_element_by_xpath('//div[@id="complementaryProductContainer"]')
     complementary_products_list = []
     complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
     complementary_products = complementary_products_block.find_all('li')
@@ -419,7 +410,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
         options = Options()
         options.add_argument('--headless')
 
-        driver = webdriver.Firefox(firefox_options=options)
+        driver = webdriver.Firefox()
         for complementary_product in complementary_products_articles_not_existed:
             product_article = complementary_product
 

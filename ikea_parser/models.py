@@ -107,6 +107,10 @@ class ProductImage(models.Model):
     title = models.CharField(max_length=16, blank=False, null=False, default='', verbose_name='Название')
     size = models.SmallIntegerField(blank=False, null=False, default=0, verbose_name='Размер, px')
 
+@receiver(post_delete, sender=ProductImage)
+def delete_images(sender, instance, **kwargs):
+    os.remove(os.path.join(MEDIA_ROOT, instance))
+
 
 
 

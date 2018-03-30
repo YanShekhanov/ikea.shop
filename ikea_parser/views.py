@@ -8,7 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from app.settings import MEDIA_ROOT
-
 # Create your views here.
 
 #--------------------
@@ -44,7 +43,7 @@ def parse_products_information(request):
     options = Options()
     options.add_argument('--headless')
 
-    driver = webdriver.Firefox(firefox_options=options)
+    driver = webdriver.Firefox()
     for product in products:
         parse_one_product_information_(product, driver)
         body = driver.find_element_by_tag_name('body')
