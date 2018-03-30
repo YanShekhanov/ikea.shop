@@ -7,6 +7,7 @@ from .models import *
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
+from app.settings import MEDIA_ROOT
 
 # Create your views here.
 
@@ -32,6 +33,9 @@ def parse_products_articles(request):
     return redirect(reverse('home'))
 
 def parse_products_information(request):
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '250px/').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '500px/').mkdir(parents=True, exist_ok=True)
+
     try:
         products = Product.objects.filter(is_parsed=False)
     except Product.DoesNotExist:

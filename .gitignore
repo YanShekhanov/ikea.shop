@@ -1,0 +1,10 @@
+.idea
+*.sqlite3
+*.pyc
+__pycache__
+*.txt
+ikea_parser/parsed_data
+250px/
+500px/
+
+
