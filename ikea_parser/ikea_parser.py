@@ -233,8 +233,6 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
 #парсинг изображений, основной информации к артикулу
 def parse_one_product_information_(product_query, browser_driver):
-    pathlib.Path(').mkdir(parents=True, exist_ok=True)
-    create_media_dirs = os.path.join(BASE_DIR)
     pathlib.Path(create_media_dirs + 'products/').mkdir(parents=True, exist_ok=True)
     pathlib.Path(create_media_dirs + 'products/' + '250px').mkdir(parents=True, exist_ok=True)
     pathlib.Path(create_media_dirs + 'products/' + '500px').mkdir(parents=True, exist_ok=True)
@@ -627,16 +625,6 @@ def change_colors():
             pass
     #browser.close()
 
-def test_():
-    product1 = ProductT.objects.create(article_number='(1) 110.237.23')
-    product2 = ProductT.objects.create(article_number='(2) 110.237.23')
-
-    image1 = ImageT.objects.create(title='110.237.23_500px.jpg')
-    image1.product.add(product1)
-    image1.product.add(product2)
-
-    print(product1.article_number + ' : ' + ImageT.objects.get(product=product1).title)
-    print(product2.article_number + ' : ' + ImageT.objects.get(product=product2).title)
 
 
 
