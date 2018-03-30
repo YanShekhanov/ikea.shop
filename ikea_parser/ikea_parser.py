@@ -45,8 +45,7 @@ def parse_categories_():
     # основнов парсер
     html = requests.get(main_page).text
     soup_main_object = BeautifulSoup(html, 'lxml')
-    categories = soup_main_object.find('ul', class_='header-nav-sublist')#.find_all('li',
-                                                                          #         class_='header-nav-sublist-title')
+    categories = soup_main_object.find_all('li', class_='header-nav-sublist-title')
     print(categories)
     for category in categories:
         subcategories_list = []
