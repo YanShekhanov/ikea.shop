@@ -285,3 +285,7 @@ JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: doc
 [Child 6119, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 [Child 6078, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1522408552729	geckodriver	INFO	geckodriver 0.20.0
+1522408552736	geckodriver	INFO	Listening on 127.0.0.1:42531
+1522408553738	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.Ke3khDRsU7mH"
+Error: no DISPLAY environment variable specified
