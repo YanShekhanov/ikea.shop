@@ -42,7 +42,9 @@ def parse_products_information(request):
         return HttpResponse(status=404)
 
     options = Options()
-    options.add_argument('--headless')
+    options.add_argument("--headless")
+    options.add_argument("window-size=1024,768")
+    options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(chrome_options=options)
     for product in products:
