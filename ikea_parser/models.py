@@ -73,11 +73,13 @@ class Product(models.Model):
     dimensions = models.CharField(max_length=128, blank=True, null=False, default='', verbose_name='Габариты')
     designed_by = models.CharField(max_length=32, blank=True, null=False, default='', verbose_name='Создатель')
     complementary_products = models.CharField(max_length=512, blank=True, default='', null=False, verbose_name='Дополняющие продукты')
+    additional_models = models.CharField(max_length=512, blank=True, null=False, default='', verbose_name='Модели')
     color_options = models.CharField(max_length=512, blank=True, null=True, default='', verbose_name='Другие цвета')
     color = models.CharField(max_length=32, blank=True, default='', null=True, verbose_name='Цвет')
     is_translated = models.BooleanField(default=False, blank=True, null=False, verbose_name='Перевод')
     is_parsed = models.BooleanField(default=False, blank=False, null=False, verbose_name='Скачанно')
     unique_identificator = models.CharField(max_length=8, blank=False, null=False, default='', verbose_name='Идентификатор')
+    parse_later = models.BooleanField(blank=True, null=False, default=False, verbose_name='Парсить позже')
 
     def __str__(self):
         return self.article_number
