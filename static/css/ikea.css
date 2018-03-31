@@ -690,10 +690,10 @@ body{
 }
 #product-cards .all-images-icon{
 	position: absolute;
-	height: 15px;
-	width: 15px;
-	right: 3%;
-	top: 3%;
+	height: 2.5vw;
+	width: 2.5vw;
+	right: 1%;
+	top: 0%;
 }
 
 
