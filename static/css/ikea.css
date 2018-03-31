@@ -690,8 +690,8 @@ body{
 }
 #product-cards .all-images-icon{
 	position: absolute;
-	height: 100px;
-	width: 100px;
+	height: 15px;
+	width: 15px;
 	right: 3%;
 	top: 3%;
 }
