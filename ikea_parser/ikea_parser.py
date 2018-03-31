@@ -633,8 +633,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.update_or_create(product=created_product,
-                                                              image='products/500px/' + image_title, title=image_title)
+                        ProductImage.objects.create(product=created_product,
+                                                    image='products/500px/' + image_title, title=image_title).product.add(created_product)
 
                 # -----------------------------------------------------#
                 # images 250*250px
