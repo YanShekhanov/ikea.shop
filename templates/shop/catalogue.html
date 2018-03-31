@@ -32,7 +32,7 @@
                     <p class="card-text">{{ product.description }}<br><p class="card-price">{{ product.price }} PLN</p></p>
 					<div class="card-btns">
                         <form class="get_all_product_images" data-unique_identificator="{{ product.unique_identificator }}">{% csrf_token %}
-                            <img class="all-images-icon" type="submit" src="{% static 'icons/all-images.png' %}" alt="#">
+                            <img class="all-images-icon" src="{% static 'icons/all-images.png' %}" alt="#">
                         </form>
                     <div class="btn-group">
         				<button type="button" class="btn btn-buy">Купить</button>
@@ -42,7 +42,7 @@
         				<button type="button" class="btn btn-info" onclick="window.location.href='{% url 'productDetail' product.article_number %}'">Информация</button>
         				<button type="button" class="btn btn-icon-info" onclick="window.location.href='{% url 'productDetail' product.article_number %}'"><i class="fa fa-info" aria-hidden="true"></i></button>
                 	</div>
-івф					</div>
+				</div>
             	</div>
 			</div>
         {% endfor %}
