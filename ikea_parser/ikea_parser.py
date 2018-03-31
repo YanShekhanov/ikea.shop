@@ -288,6 +288,7 @@ def parse_one_product_information_(product_query, browser_driver):
     # -----------------------------------------------------#
     # complamantary products - дополняющие продукты
     complementary_products_list = []
+    complementary_product_to_save = ''
     complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
     complementary_products = complementary_products_block.find_all('li')
     for complementary_product in complementary_products:
@@ -302,6 +303,8 @@ def parse_one_product_information_(product_query, browser_driver):
     #more models - модели
     parse_models = True
     models_articles_list = []
+    models_to_save = ''
+    models = None
     try:
         models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
         print('ЕСТЬ МОДЕЛИ')
@@ -501,6 +504,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 color_articles_list = []
                 existed_colors_on_page = []
                 colors = []
+                color_options_to_save = ''
 
                 # bs4
                 try:
@@ -540,6 +544,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 # more models - модели
                 parse_models = True
                 models_articles_list = []
+                models = None
+                models_to_save = ''
                 try:
                     models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
                     print('ЕСТЬ МОДЕЛИ')
