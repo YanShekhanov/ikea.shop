@@ -1344,6 +1344,9 @@ body{
 	margin-top: 0vw;
 	font-size: 1.9vw;
 }
+#product-cards .all-images-icon{
+	display: none;
+	}
 
 /*Big Images*/
 .img-block{
