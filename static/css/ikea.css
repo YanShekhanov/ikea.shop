@@ -533,6 +533,7 @@ body{
     padding: 0;
 }
 #product-cards .carusel-item{
+    position: relative;
     height: 100%;
     width: 100%;
 }
@@ -690,10 +691,10 @@ body{
 }
 #product-cards .all-images-icon{
 	position: absolute;
-	height: 2.5vw;
-	width: 2.5vw;
-	left: 12.9vw;
-	bottom: 24.9vw;
+	height: 10px;
+	width: 10px;
+	right: 3%;
+	top: 3%;
 }
 
 
@@ -1344,6 +1345,9 @@ body{
 	margin-top: 0vw;
 	font-size: 1.9vw;
 }
+#product-cards .all-images-icon{
+	display: none;
+	}
 
 /*Big Images*/
 .img-block{
