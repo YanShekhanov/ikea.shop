@@ -10,8 +10,6 @@ import time
 from django.utils.timezone import datetime
 
 #selenium
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException, WebDriverException
 
