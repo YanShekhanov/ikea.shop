@@ -262,9 +262,7 @@ def parse_one_product_information_(product_query, browser_driver):
     # bs4
     try:
         colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
-        print('ЕСТЬ ЦВЕТА')
     except:
-        print('НЕТУ ЦВЕТОВ')
         parse_colors = False
     if parse_colors:
         existed_colors_on_page = []  # уже найденные цвета
@@ -284,6 +282,25 @@ def parse_one_product_information_(product_query, browser_driver):
         color_options = '#'.join(color_articles_list)
 
     # -----------------------------------------------------#
+    # more models - модели
+    parse_models = True
+    models_articles_list = []
+    models_to_save = ''
+    models = None
+    try:
+        models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+    except:
+        parse_models = False
+
+    if parse_models:
+        for model in models:
+            models_article = model.get('data-url').strip().split('/')[-1]
+            models_articles_list.append(models_article)
+        if len(models_articles_list) != 0:
+            models_to_save = '#'.join(models_articles_list)
+            parseComplementaryProducts(product_query, *models_articles_list)
+
+    # -----------------------------------------------------#
     # complamantary products - дополняющие продукты
     complementary_products_list = []
     complementary_product_to_save = ''
@@ -296,27 +313,6 @@ def parse_one_product_information_(product_query, browser_driver):
     if len(complementary_products_list) != 0:
         complementary_product_to_save = '#'.join(complementary_products_list)
         parseComplementaryProducts(product_query, *complementary_products_list)
-
-    # -----------------------------------------------------#
-    #more models - модели
-    parse_models = True
-    models_articles_list = []
-    models_to_save = ''
-    models = None
-    try:
-        models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print('ЕСТЬ МОДЕЛИ')
-    except:
-        parse_models = False
-        print('НЕТУ МОДЕЛЕЙ')
-
-    if parse_models:
-        for model in models:
-            models_article = model.get('data-url').strip().split('/')[-1]
-            models_articles_list.append(models_article)
-        if len(models_articles_list) != 0:
-            models_to_save = '#'.join(models_articles_list)
-            parseComplementaryProducts(product_query, *models_articles_list)
 
     # -----------------------------------------------------#
     # environment materials - материалы
@@ -413,7 +409,22 @@ def parse_one_product_information_(product_query, browser_driver):
 
     time_end = time.time()
     delta = time_end - time_start
-    print(product_to_save.article_number + ' : ' + str(delta))
+
+    product_dict = {
+        'article_number':product_to_save.article_number,
+        'unique_identificator':product_to_save.unique_identificator,
+        'subcategory':product_to_save.subcategory,
+        'sub_subcategory':product_to_save.sub_subcategory,
+        'url_ikea':product_to_save.url_ikea,
+        'complementary_products':product_to_save.complementary_products,
+        'additional_models':product_to_save.additional_models,
+        'color_options':product_to_save.color_options,
+        'is_parsed':product_to_save.is_parsed,
+        'parse_later':product_to_save.parse_later,
+        'parsed_time':delta,
+    }
+
+    print(product_dict)
     return product_to_save
 
 
@@ -436,7 +447,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
         except Product.DoesNotExist:
             try:
                 Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
-            except:
+            except Product.DoesNotExist:
                 print('НЕ найдено дополняющего в базе ( %s )' % complementary_product)
                 complementary_products_articles_not_existed.append(complementary_product)
     print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
