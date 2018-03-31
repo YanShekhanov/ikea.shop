@@ -430,6 +430,13 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     create_product = True
     available = 0
 
+    # обязательные настройки для запуска хрома без экрана
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("window-size=1024,768")
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(chrome_options=options)
+
     #удаляем из списка эллементы которые уже существуют в БД
     complementary_products_articles_not_existed = []
     for complementary_product in complementary_products_list:
@@ -443,12 +450,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 complementary_products_articles_not_existed.append(complementary_product)
     print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
     if len(complementary_products_articles_not_existed) != 0:
-        #обязательные настройки для запуска хрома без экрана
-        options = Options()
-        options.add_argument("--headless")
-        options.add_argument("window-size=1024,768")
-        options.add_argument("--no-sandbox")
-        driver = webdriver.Chrome(chrome_options=options)
 
         for complementary_product in complementary_products_articles_not_existed:
             product_article = complementary_product
