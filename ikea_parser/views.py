@@ -5,7 +5,6 @@ from django.views.generic import TemplateView, FormView, ListView
 from .models import *
 
 from selenium import webdriver
-#from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from app.settings import MEDIA_ROOT
