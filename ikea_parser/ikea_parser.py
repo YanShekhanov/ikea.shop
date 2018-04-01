@@ -330,11 +330,15 @@ def parse_one_product_information_(product_query, browser_driver):
 
     # -----------------------------------------------------#
     # environment materials - материалы
-    environment_button = driver.find_element_by_id('envAndMatTab')
-    environment_button.click()
-    html = driver.page_source
-    product_soup = BeautifulSoup(html, 'lxml')
-    materials = product_soup.find('div', id='custMaterials').text.strip()
+    materials = None
+    try:
+        environment_button = driver.find_element_by_id('envAndMatTab')
+        environment_button.click()
+        html = driver.page_source
+        product_soup = BeautifulSoup(html, 'lxml')
+        materials = product_soup.find('div', id='custMaterials').text.strip()
+    except NoSuchElementException:
+        pass
 
     # -----------------------------------------------------#
     #saving product
