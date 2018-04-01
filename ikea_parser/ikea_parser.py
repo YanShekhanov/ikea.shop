@@ -165,7 +165,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 existed_product = Product.objects.get(article_number=product_article)
                 existed_product.subcategory.add(foreign_key_query.subcategory)
                 existed_product.sub_subcategory.add(foreign_key_query)
-                created_product = False
+                create_product = False
                 print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
             except Product.DoesNotExist:
                 pass
