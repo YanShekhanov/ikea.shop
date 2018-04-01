@@ -269,9 +269,11 @@ def parse_one_product_information_(product_query, browser_driver):
     # bs4
     try:
         colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
+        print('ЕСТЬ ЦВЕТА')
         if len(colors) <= 1:
             parse_colors = False
     except:
+        print('НЕТУ ЦВЕТОВ')
         parse_colors = False
     if parse_colors:
         existed_colors_on_page = []  # уже найденные цвета
@@ -305,7 +307,7 @@ def parse_one_product_information_(product_query, browser_driver):
 
     if parse_models:
         for model in models:
-            models_article = model.get('data-url').strip().split('/')[-1]
+            models_article = model['data-url'].strip().split('/')[-1]
             print(models_article)
             models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
