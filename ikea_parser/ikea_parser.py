@@ -497,7 +497,11 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             product_title = product_soup.find('span', id='name').text.strip()  # название
             product_description = product_soup.find('span', id='type').text.strip()  # разшифровка
-            product_color = product_description.split(',')[1]
+            product_color = ''
+            try:
+                product_color = product_description.split(',')[1]
+            except IndexError:
+                pass
             product_price = product_soup.find('span', class_='packagePrice').text.split()[:2]
             if product_price[1] == 'PLN':
                 product_price = product_price[0]

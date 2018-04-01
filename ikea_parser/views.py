@@ -34,6 +34,9 @@ def parse_products_articles(request):
 def parse_products_information(request):
     pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '250px/').mkdir(parents=True, exist_ok=True)
     pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '500px/').mkdir(parents=True, exist_ok=True)
+    print('Общее количество продуктов в БД = %i' % len(Product.objects.all()))
+    print('Количество готовых продуктов = %i' % len(Product.objects.filter(is_parsed=True)))
+    print('Количество продуктов к парсингу = %i' % len(Product.objects.exclude(is_parsed=True)))
 
     try:
         products = Product.objects.filter(is_parsed=False)
