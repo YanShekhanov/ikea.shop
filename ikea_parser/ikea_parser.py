@@ -262,6 +262,7 @@ def parse_one_product_information_(product_query, browser_driver):
     # bs4
     try:
         colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
+        print(colors)
     except:
         parse_colors = False
     if parse_colors:
