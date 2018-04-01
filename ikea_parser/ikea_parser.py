@@ -11,7 +11,7 @@ from django.utils.timezone import datetime
 
 #selenium
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import StaleElementReferenceException, WebDriverException
+from selenium.common.exceptions import StaleElementReferenceException, WebDriverException, NoSuchElementException
 
 from .create_identificator import create_identificator
 
@@ -603,11 +603,15 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             # -----------------------------------------------------#
             # environment materials - материалы
-            environment_button = driver.find_element_by_id('envAndMatTab')
-            environment_button.click()
-            html = driver.page_source
-            product_soup = BeautifulSoup(html, 'lxml')
-            materials = product_soup.find('div', id='custMaterials').text.strip()
+            materials = None
+            try:
+                environment_button = driver.find_element_by_id('envAndMatTab')
+                environment_button.click()
+                html = driver.page_source
+                product_soup = BeautifulSoup(html, 'lxml')
+                materials = product_soup.find('div', id='custMaterials').text.strip()
+            except NoSuchElementException:
+                pass
 
             # -----------------------------------------------------#
             # saving product
