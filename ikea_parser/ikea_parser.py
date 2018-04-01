@@ -545,9 +545,13 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for color_identificator_for_parse in existed_colors_on_page:
                     button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')
                     button_for_open_colors_options.click()
-                    one_color_button = driver.find_element_by_xpath(
-                        '//li[@data-value="' + color_identificator_for_parse + '"]')
-                    one_color_button.click()
+                    try:
+                        one_color_button = driver.find_element_by_xpath(
+                            '//li[@data-value="' + color_identificator_for_parse + '"]')
+                        one_color_button.click()
+                    except WebDriverException:
+                        #если эллемент не может быть нажат
+                        pass
                     one_color_url = driver.current_url.split('#')[1][1:]
                     color_articles_list.append(one_color_url)
                 color_options_to_save = '#'.join(color_articles_list)
