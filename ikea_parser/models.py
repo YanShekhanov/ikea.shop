@@ -57,8 +57,10 @@ class SubSubCategory(models.Model):
         ordering = ['-created']
 
 class Product(models.Model):
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, verbose_name='Подкатегория, id')
-    sub_subcategory = models.ForeignKey(SubSubCategory, on_delete=models.CASCADE, null=True, verbose_name='Под подкатегория, id')
+    #subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, verbose_name='Подкатегория, id')
+    #sub_subcategory = models.ForeignKey(SubSubCategory, on_delete=models.CASCADE, null=True, verbose_name='Под подкатегория, id')
+    subcategory = models.ManyToManyField(SubCategory, verbose_name='Подкатегория, id')
+    sub_subcategory = models.ManyToManyField(SubSubCategory, verbose_name='Под подкатегория, id')
     article_number = models.CharField(max_length=9, blank=False, default='', null=False, verbose_name='Артикул')
     title = models.CharField(max_length=32, blank=False, null=False, default='', verbose_name='Название')
     description = models.CharField(max_length=64, blank=False, null=False, default='', verbose_name='Короткое описание')

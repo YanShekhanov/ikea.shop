@@ -141,6 +141,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     iter_category_products_number = 0
     foreign_key_query = query
     create_product = True
+    existed_product = None
 
 
     parsed_url = requests.get(foreign_key_query.url_ikea).text
@@ -153,14 +154,17 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
         #проверка на наличие в БД запрашуемого артикула
         if subcategory_status:
             try:
-                Product.objects.get(subcategory=query, article_number=product_article)
+                existed_product = Product.objects.get(subcategory=query, article_number=product_article)
+                existed_product.subcategory.add(foreign_key_query)
                 create_product = False
                 print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
             except Product.DoesNotExist:
                 pass
         if sub_subcategory_status:
             try:
-                Product.objects.get(sub_subcategory=query, article_number=product_article)
+                existed_product = Product.objects.get(sub_subcategory=query, article_number=product_article)
+                existed_product.subcategory.add(foreign_key_query.subcategory)
+                existed_product.sub_subcategory.add(foreign_key_query)
                 created_product = False
                 print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
             except Product.DoesNotExist:
@@ -203,8 +207,9 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
             if subcategory_status:
                 created_product = Product.objects.create(article_number=product_article, title=product_title,
                                        description=product_description, price=float(product_price),
-                                       subcategory=foreign_key_query, url_ikea=product_url, available=available,
+                                       url_ikea=product_url, available=available,
                                        unique_identificator=create_identificator(8))
+                created_product.subcategory.add(foreign_key_query)
                 iter_category_products_number+=1
             #если продукт находится в под подкатегории
             elif sub_subcategory_status:
@@ -212,7 +217,10 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 created_product = Product.objects.create(article_number=product_article, title=product_title,
                                        description=product_description, price=float(product_price),
                                        subcategory=subcategory, sub_subcategory=foreign_key_query,
-                                       url_ikea=product_url, available=available, unique_identificator=create_identificator(8))
+                                       url_ikea=product_url, available=available,
+                                       unique_identificator=create_identificator(8))
+                created_product.subcategory.add(subcategory)
+                created_product.sub_subcategory.add(foreign_key_query)
                 iter_category_products_number += 1
             created_products_list.append(created_product)
 
@@ -445,16 +453,10 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     complementary_products_articles_not_existed = []
     for complementary_product in complementary_products_list:
         if complementary_product != '':
-            try:
-                Product.objects.get(article_number=complementary_product, is_parsed=True)
-            except Product.DoesNotExist:
-                try:
-                    Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False)
-                except Product.DoesNotExist:
-                    try:
-                        Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
-                    except Product.DoesNotExist:
-                        complementary_products_articles_not_existed.append(complementary_product)
+            if Product.objects.get(article_number=complementary_product, is_parsed=True) == Product.DoesNotExist\
+                    and Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False) == Product.DoesNotExist\
+                    and Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True) == Product.DoesNotExist:
+                complementary_products_articles_not_existed.append(complementary_product)
         else:
             pass
 
