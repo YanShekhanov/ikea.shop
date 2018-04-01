@@ -593,6 +593,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             if parse_models:
                 for model in models:
                     models_article = model.get('data-url').strip().split('/')[-1]
+                    print(models_article)
                     models_articles_list.append(models_article)
                 if len(models_articles_list) != 0:
                     models_to_save = '#'.join(models_articles_list)
