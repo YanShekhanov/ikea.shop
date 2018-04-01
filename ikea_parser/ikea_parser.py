@@ -624,7 +624,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for existed_image in existed_images:
                     if existed_image.title.split('_')[1] == ikea_image_prefix \
                             and existed_image.title.split('_')[0] == created_product.article_number \
-                            and created_product.id == existed_image.product.id:
+                            and created_product == existed_image.product:
                         existed_image.product.add(created_product)
                         start_download = False
                         print(
