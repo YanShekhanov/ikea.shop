@@ -216,7 +216,6 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 subcategory = foreign_key_query.subcategory
                 created_product = Product.objects.create(article_number=product_article, title=product_title,
                                        description=product_description, price=float(product_price),
-                                       subcategory=subcategory, sub_subcategory=foreign_key_query,
                                        url_ikea=product_url, available=available,
                                        unique_identificator=create_identificator(8))
                 created_product.subcategory.add(subcategory)
