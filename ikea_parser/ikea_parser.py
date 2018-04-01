@@ -444,16 +444,19 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     #удаляем из списка эллементы которые уже существуют в БД
     complementary_products_articles_not_existed = []
     for complementary_product in complementary_products_list:
-        try:
-            Product.objects.get(article_number=complementary_product, is_parsed=True)
-        except Product.DoesNotExist:
+        if complementary_product != '':
             try:
-                Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False)
+                Product.objects.get(article_number=complementary_product, is_parsed=True)
             except Product.DoesNotExist:
                 try:
-                    Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
+                    Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False)
                 except Product.DoesNotExist:
-                    complementary_products_articles_not_existed.append(complementary_product)
+                    try:
+                        Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
+                    except Product.DoesNotExist:
+                        complementary_products_articles_not_existed.append(complementary_product)
+        else:
+            pass
 
     print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
     if len(complementary_products_articles_not_existed) != 0:
