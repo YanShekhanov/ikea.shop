@@ -452,10 +452,16 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     complementary_products_articles_not_existed = []
     for complementary_product in complementary_products_list:
         if complementary_product != '':
-            if Product.objects.get(article_number=complementary_product, is_parsed=True) == Product.DoesNotExist\
-                    and Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False) == Product.DoesNotExist\
-                    and Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True) == Product.DoesNotExist:
-                complementary_products_articles_not_existed.append(complementary_product)
+            try:
+                Product.objects.get(article_number=complementary_product, is_parsed=True)
+            except Product.DoesNotExist:
+                try:
+                    Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False)
+                except Product.DoesNotExist:
+                    try:
+                        Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
+                    except Product.DoesNotExist:
+                        complementary_products_articles_not_existed.append(complementary_product)
         else:
             pass
 
