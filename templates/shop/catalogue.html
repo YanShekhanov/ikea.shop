@@ -17,9 +17,9 @@
                             {% for product_query in image.product.all %}
                                 {% if product_query == product %}
                                     <div class="carousel-item">
-					                <img class="all-images-icon get-all-images" src="{% static 'icons/all-images.png' %}"
-                                    data-unique_identificator="{{ product.unique_identificator }}">
-                                        <img src="{{ image.image.url }}">
+                                        <img class="all-images-icon get-all-images" src="{% static 'icons/all-images.png' %}"
+                                        data-unique_identificator="{{ product.unique_identificator }}">
+                                        <img src="{{ image.image.url }}" class="productImage">
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -63,6 +63,14 @@
 {% block js %}
     <script>
         $('.img-block').hide();
+        $('.get-all-images').hide();
+
+        //наведение на карточку
+        $('.card').hover(function () {
+            $(this).find('.get-all-images').show();
+        }, function () {
+            $(this).find('.get-all-images').hide();
+        });
 
         //ajax загрузка изображений артикула
         $('body').on('click', '.get-all-images', function (){

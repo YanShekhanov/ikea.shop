@@ -41,10 +41,10 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     def get_queryset(self):
         try:
             query = SubCategory.objects.get(unique_identificator=self.kwargs.get('category_identificator'))
-        except query.DoesNotExist:
+        except SubCategory.DoesNotExist:
             try:
                 query = SubSubCategory.objects.get(unique_identificator=self.kwargs.get('category_identificator'))
-            except query.DoesNotExist:
+            except SubSubCategory.DoesNotExist:
                 return Http404
         self.queryset = query
         return self.queryset
@@ -64,7 +64,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
         return context
 
 #страница одного товара
-class ProductDetail(DetailView, TemplateView):
+class ProductDetail(MainInfo, DetailView, TemplateView):
     template_name = 'shop/productDetail.html'
     model = Product
     slug_url_kwarg = 'article_number'
