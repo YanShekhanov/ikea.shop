@@ -83,7 +83,7 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    url = 'https://www.ikea.com/pl/pl/catalog/products/90345564/'
+    '''url = 'https://www.ikea.com/pl/pl/catalog/products/90345564/'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -94,7 +94,7 @@ def test(request):
     driver.get(url)
     html = driver.page_source
     bs = BeautifulSoup(html, 'lxml')
-    print(bs.find('div', id='itemNumber').text)
+    print(bs.find('div', id='itemNumber').text)'''
 
 
     '''models = bs.find('div', id='selectMoremodelsWrapper').find_all('li')
