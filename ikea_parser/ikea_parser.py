@@ -611,7 +611,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             models_to_save = ''
             try:
                 models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-                print(models)
                 print('ЕСТЬ МОДЕЛИ')
             except:
                 parse_models = False
@@ -699,8 +698,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 added_images_prefixes = []
                 for image in images_250:
                     start_download = True
-                    ikea_image_prefix = image.text.split('/')[-1].split('_')[
-                        0]  # префикс номера изображения в икеа
+                    ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
                     if ikea_image_prefix not in added_images_prefixes:
                         # проверка на наличие изображения в базе данных
                         existed_images = ProductImage.objects.all()
@@ -710,8 +708,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     and created_product == existed_image.product:
                                 existed_image.product.add(created_product)
                                 start_download = False
-                                print(
-                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
                                         existed_image.title, created_product.article_number))
 
                         if start_download:
