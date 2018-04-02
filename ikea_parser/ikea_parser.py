@@ -306,12 +306,12 @@ def parse_one_product_information_(product_query, browser_driver):
     models_articles_list = []
     models_to_save = ''
     models = None
-    try:
-        models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print('ЕСТЬ МОДЕЛИ')
-    except:
-        print('НЕТУ МОДЕЛЕЙ')
-        parse_models = False
+    #try:
+    models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+    print('ЕСТЬ МОДЕЛИ')
+    #except:
+    #    print('НЕТУ МОДЕЛЕЙ')
+    #    parse_models = False
 
     if parse_models:
         for model in models:
