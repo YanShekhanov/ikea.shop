@@ -3,9 +3,10 @@ def json_serializer(queryset):
     for object in queryset:
         one_object_dict = {}
         for field in object._meta.get_fields():
+            print(type(field.name))
             try:
-                if field.many_to_many:
-                    one_object_dict[field.name] = json_serializer(getattr(object, field.name).all())
+                if field.name == 'subcategory' or field.name == 'sub_subcategory':
+                    continue
                 one_object_dict[field.name] = getattr(object, field.name)
             except AttributeError:
                 pass
