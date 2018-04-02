@@ -72,10 +72,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
     context_object_name = 'product'
 
     def get_context_data(self, **kwargs):
-        try:
-            self.object = self.get_object()
-        except self.model.MultipleObjectsReturned:
-            self.object = Product.objects.filter(article_number=self.kwargs.get('article_number')).last()
+        self.object = self.get_object()
         context = super().get_context_data(**kwargs)
 
         #Изображения
