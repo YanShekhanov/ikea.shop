@@ -270,11 +270,13 @@ def parse_one_product_information_(product_query, browser_driver):
     try:
         colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
         print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
+        button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1') #кнопка для открытия select с цветами
         if len(colors) <= 1:
             parse_colors = False
     except:
         try:
             colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
+            button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv2') #кнопка для открытия select с цветами
             print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
             if len(colors) <= 1:
                 parse_colors = False
@@ -290,7 +292,6 @@ def parse_one_product_information_(product_query, browser_driver):
                 existed_colors_on_page.append(color_identificator)
 
         for color_identificator_for_parse in existed_colors_on_page:
-            button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')
             button_for_open_colors_options.click()
             one_color_button = driver.find_element_by_xpath(
                 '//li[@data-value="' + color_identificator_for_parse + '"]')
@@ -558,12 +559,14 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             try:
                 colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
                 print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
+                button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')  # кнопка для открытия select с цветами
                 if len(colors) <= 1:
                     parse_colors = False
             except:
                 try:
                     colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
                     print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
+                    button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv2')  # кнопка для открытия select с цветами
                     if len(colors) <= 1:
                         parse_colors = False
                 except:
@@ -578,7 +581,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                         existed_colors_on_page.append(color_identificator)
 
                 for color_identificator_for_parse in existed_colors_on_page:
-                    button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')
                     button_for_open_colors_options.click()
                     try:
                         one_color_button = driver.find_element_by_xpath(
