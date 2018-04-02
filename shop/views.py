@@ -159,11 +159,13 @@ def get_sort_query(request):
                 query = SubSubCategory.objects.get(unique_identificator=unique_identificator)
             except SubSubCategory.DoesNotExist:
                 return redirect(reverse('home'))
+
+        from ikea_parser.json_serializer import json_serializer
         response_json_dict = {
-            'data': serializers.serialize('json', Product.objects.filter(subcategory=query).order_by(sort_by))
+            'data': json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
         }
-        print(type(response_json_dict))
-        return JsonResponse(response_json_dict, safe=False)
+        print(response_json_dict)
+        return JsonResponse(response_json_dict)
 
 
 
