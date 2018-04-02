@@ -301,7 +301,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     one_color_article_number = driver.current_url.split('#')[1][1:]
                     color_articles_list.append(one_color_article_number)
                 except IndexError: #если ссылка не меняется, тогда берем номер артикула с страницы продукта
-                    one_color_article_number = ''.join(product_soup.find('div', id='itemNumber').split('.'))
+                    one_color_article_number = ''.join(product_soup.find('div', id='itemNumber').text.split('.'))
                     color_articles_list.append(one_color_article_number)
             except WebDriverException:
                 pass
@@ -593,10 +593,14 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                         one_color_button = driver.find_element_by_xpath(
                             '//li[@data-value="' + color_identificator_for_parse + '"]')
                         one_color_button.click()
-                        one_color_url = driver.current_url.split('#')[1][1:]
-                        color_articles_list.append(one_color_url)
-                    except WebDriverException:
-                        #если эллемент не может быть нажат
+                        try:
+                            one_color_article_number = driver.current_url.split('#')[1][1:]
+                            color_articles_list.append(one_color_article_number)
+                        except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
+                            one_color_article_number = ''.join(
+                                product_soup.find('div', id='itemNumber').text.split('.'))
+                            color_articles_list.append(one_color_article_number)
+                    except WebDriverException: #если эллемент не может быть нажат
                         pass
                 color_options_to_save = '#'.join(color_articles_list)
 
