@@ -293,11 +293,14 @@ def parse_one_product_information_(product_query, browser_driver):
 
         for color_identificator_for_parse in existed_colors_on_page:
             button_for_open_colors_options.click()
-            one_color_button = driver.find_element_by_xpath(
-                '//li[@data-value="' + color_identificator_for_parse + '"]')
-            one_color_button.click()
-            one_color_url = driver.current_url.split('#')[1][1:]
-            color_articles_list.append(one_color_url)
+            try:
+                one_color_button = driver.find_element_by_xpath(
+                    '//li[@data-value="' + color_identificator_for_parse + '"]')
+                one_color_button.click()
+                one_color_url = driver.current_url.split('#')[1][1:]
+                color_articles_list.append(one_color_url)
+            except WebDriverException:
+                pass
         color_options = '#'.join(color_articles_list)
 
     # -----------------------------------------------------#
@@ -586,11 +589,11 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                         one_color_button = driver.find_element_by_xpath(
                             '//li[@data-value="' + color_identificator_for_parse + '"]')
                         one_color_button.click()
+                        one_color_url = driver.current_url.split('#')[1][1:]
+                        color_articles_list.append(one_color_url)
                     except WebDriverException:
                         #если эллемент не может быть нажат
                         pass
-                    one_color_url = driver.current_url.split('#')[1][1:]
-                    color_articles_list.append(one_color_url)
                 color_options_to_save = '#'.join(color_articles_list)
 
             # -----------------------------------------------------#
