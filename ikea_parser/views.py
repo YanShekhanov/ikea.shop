@@ -83,16 +83,35 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    categories = Category.objects.all()
+    url = 'https://www.ikea.com/pl/pl/catalog/products/20187860/'
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("window-size=1024,768")
+    options.add_argument("--no-sandbox")
+
+    driver = webdriver.Chrome(chrome_options=options)
+    driver.get(url)
+    html = driver.page_source
+    bs = BeautifulSoup(html, 'lxml')
+    models = bs.find('div', id='selectMoremodelsWrapper').find_all('li')
+    for model in models:
+        print(model.get('data-url').split('/')[-2])
+
+    return redirect(reverse('home'))
+
+
+
+
+    '''categories = Category.objects.all()
     id='id'
     for category in categories:
         print(category.id)
         fields = category._meta.fields
         for field in fields:
             print(category._meta.get_field(field.name))
-    '''subcategories = SubCategory.objects.all()
+    subcategories = SubCategory.objects.all()
     for subcategory in subcategories:
-        translate(subcategory)'''
-    return redirect(reverse('home'))
+        translate(subcategory)
+    return redirect(reverse('home'))'''
 
 
