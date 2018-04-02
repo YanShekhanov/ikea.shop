@@ -107,7 +107,8 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
                 pass
         context['complementaryProducts'] = complementary_products_query
         context['complementaryProductsImages'] = complementary_products_images_query
-        context['category'] = self.object.subcategory
+        context['Categories'] = Category.objects.exclude(title='Panele słoneczne')
+        context['SubCategories'] = SubCategory.objects.all()
 
         #Цвета
         color_options_list = self.object.color_options.split('#')
