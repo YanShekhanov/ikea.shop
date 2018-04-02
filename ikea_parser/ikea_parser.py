@@ -301,8 +301,10 @@ def parse_one_product_information_(product_query, browser_driver):
                     one_color_article_number = driver.current_url.split('#')[1][1:]
                     color_articles_list.append(one_color_article_number)
                 except IndexError: #если ссылка не меняется, тогда берем номер артикула с страницы продукта
-                    one_color_article_number = ''.join(product_soup.find('div', id='itemNumber').text.split('.'))
+                    new_product_soup = driver.page_source
+                    one_color_article_number = ''.join(new_product_soup.find('div', id='itemNumber').text.split('.'))
                     color_articles_list.append(one_color_article_number)
+                    new_product_soup = None
             except WebDriverException:
                 pass
         color_options = '#'.join(color_articles_list)
