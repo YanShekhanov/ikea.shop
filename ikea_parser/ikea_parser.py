@@ -268,13 +268,20 @@ def parse_one_product_information_(product_query, browser_driver):
 
     # bs4
     try:
-        colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
-        print('ЕСТЬ ЦВЕТА')
+        colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
+        print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
         if len(colors) <= 1:
             parse_colors = False
     except:
-        print('НЕТУ ЦВЕТОВ')
-        parse_colors = False
+        try:
+            colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
+            print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
+            if len(colors) <= 1:
+                parse_colors = False
+        except:
+            print('НЕТУ ЦВЕТОВ')
+            parse_colors = False
+
     if parse_colors:
         existed_colors_on_page = []  # уже найденные цвета
         for color in colors:
@@ -300,7 +307,6 @@ def parse_one_product_information_(product_query, browser_driver):
     models = None
     try:
         models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print(models)
         print('ЕСТЬ МОДЕЛИ')
     except:
         print('НЕТУ МОДЕЛЕЙ')
@@ -308,7 +314,7 @@ def parse_one_product_information_(product_query, browser_driver):
 
     if parse_models:
         for model in models:
-            models_article = model['data-url'].strip().split('/')[-1]
+            models_article = model.get('data-url').split('/')[-2]
             models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
             models_to_save = '#'.join(models_articles_list)
@@ -550,12 +556,16 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             # bs4
             try:
-                colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li') #первый блок вариантов продукта
+                colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
                 print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
+                if len(colors) <= 1:
+                    parse_colors = False
             except:
                 try:
-                    colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li') #второй блок вариантов продукта
+                    colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
                     print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
+                    if len(colors) <= 1:
+                        parse_colors = False
                 except:
                     print('НЕТУ ЦВЕТОВ')
                     parse_colors = False
@@ -607,7 +617,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             if parse_models:
                 for model in models:
-                    models_article = model.get('data-url').strip().split('/')[-2]
+                    models_article = model.get('data-url').split('/')[-2]
                     models_articles_list.append(models_article)
                 if len(models_articles_list) != 0:
                     models_to_save = '#'.join(models_articles_list)
