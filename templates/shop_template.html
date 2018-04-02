@@ -83,6 +83,13 @@
         <p id="kat" style="float: left; text-align: left;">{{ category.category.title }}<b> / </b><a href="{% url 'getOneCategoryProducts' category.unique_identificator %}">{{ category.title }}</a></p>
         {% endif %}
         <!--Sort-->
+        <select id="get_sort">
+            <option>Выбор сортировки</option>
+            <option value="increase">От дешевых к дорогим</option>
+            <option value="decline">От дорогих к дешевым</option>
+            <option value="from_A_to_Z">От A до Z</option>
+            <option value="from_Z_to_A">От Z до А</option>
+        </select>
         <div class="btn-group" id="sort" style="float: right;">
         <p>от дешевых к дорогим</p>
         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -138,18 +145,20 @@
 {% block js %}{% endblock %}
 
 <script>
+
     $('#dropdown-products').hide();
     $('#product-categories').find('li').hide();
     $('#product-categories').hide();
 
     function open_categories() {
         $('#dropdown-products').toggle();
-    }
+    };
     function open_subcategory(category_id){
         $('#product-categories').find('li').hide();
         $('#product-categories').show();
         $('li[data-category_id="' + category_id + '"]').show()
-    }
+    };
+
 </script>
 </body>
 </html>

@@ -22,6 +22,13 @@
     </p>
 
     <p>
+        <h3>Модели</h3>
+        {% for model in models %}
+           <a href="https://www.ikea.com/pl/pl/catalog/products/{{ color }}/">{{ color }}</a>
+        {% endfor %}
+    </p>
+
+    <p>
         <h3>Описание</h3>
         <span>{{ product.key_feautures }}</span>
     </p>

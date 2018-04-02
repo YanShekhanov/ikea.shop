@@ -111,5 +111,31 @@
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
         });
+
+    //*сортировка*//
+    $('body').on('change', '#get_sort', function () {
+        var sort_by = $(this).find('option:selected').val();
+        var token = $('input[name="csrfmiddlewaretoken"]').val();
+        var unique_identificator = '{{ category.unique_identificator }}';
+        $.ajax({
+            url: '{% url 'getSortQuery' %}',
+            method: 'POST',
+            data:{
+                'csrfmiddlewaretoken':token,
+                'sort_by':sort_by,
+                'unique_identificator':unique_identificator,
+            },
+            success:function (data) {
+                console.log(JSON.stringify(data.data));
+                $.each(data.data, function (idx, product) {
+                    console.log(idx);
+                })
+                /*for(i=0; i<data.data.length; i++){
+                console.log(data.data)
+                }*/
+            },
+            error:console.log('error')
+        })
+    });
     </script>
 {% endblock %}

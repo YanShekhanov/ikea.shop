@@ -113,6 +113,10 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         #Цвета
         color_options_list = self.object.color_options.split('#')
         context['colorOptions'] = color_options_list
+
+        #Модели
+        additionals_models_list = self.object.additional_models.split('#')
+        context['models'] = additionals_models_list
         return context
 
 #парсинг артикула по номеру артикула
@@ -131,6 +135,40 @@ class DownloadOneProductInformation(FormView):
             error(self.request, 'Артикул не доступен в Люблине')
             return redirect(reverse('home'))
         return self.get_success_url()
+
+
+def get_sort_query(request):
+    from django.core import serializers
+    sort_by_dict = {
+        'increase':'price',
+        'decline':'-price',
+        'from_A_to_Z':'title',
+        'from_Z_to_A':'-title'
+    }
+    if request.method == 'POST' and request.is_ajax():
+        sort_by_from_post = request.POST['sort_by']
+        unique_identificator = request.POST['unique_identificator']
+        query = None
+
+        try:
+            sort_by = sort_by_dict.get(sort_by_from_post)
+        except:
+            return Http404
+
+        try:
+            query = SubCategory.objects.get(unique_identificator=unique_identificator)
+        except SubCategory.DoesNotExist:
+            try:
+                query = SubSubCategory.objects.get(unique_identificator=unique_identificator)
+            except SubSubCategory.DoesNotExist:
+                return redirect(reverse('home'))
+        response_json_dict = {
+            'data': serializers.serialize('json', Product.objects.filter(subcategory=query).order_by(sort_by))
+        }
+        print(type(response_json_dict))
+        return JsonResponse(response_json_dict, safe=False)
+
+
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
 def get_all_product_images(request):
