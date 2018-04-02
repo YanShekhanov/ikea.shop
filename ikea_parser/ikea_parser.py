@@ -550,11 +550,16 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             # bs4
             try:
-                colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')
-                print('ЕСТЬ ЦВЕТА')
+                colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li') #первый блок вариантов продукта
+                print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
             except:
-                print('НЕТУ ЦВЕТОВ')
-                parse_colors = False
+                try:
+                    colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li') #второй блок вариантов продукта
+                    print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
+                except:
+                    print('НЕТУ ЦВЕТОВ')
+                    parse_colors = False
+
             if parse_colors:
                 existed_colors_on_page = []  # уже найденные цвета
                 for color in colors:
@@ -602,7 +607,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             if parse_models:
                 for model in models:
-                    models_article = model.get('data-url').strip().split('/')[-1]
+                    models_article = model.get('data-url').strip().split('/')[-2]
                     models_articles_list.append(models_article)
                 if len(models_articles_list) != 0:
                     models_to_save = '#'.join(models_articles_list)
