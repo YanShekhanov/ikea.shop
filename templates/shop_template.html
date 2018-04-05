@@ -13,6 +13,7 @@
     <script src="{% static 'css3-mediaqueries.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/ikea.css' %}">
     <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script>
 </head>
 <!--Top menu-->
 <div class="container-fluid" id="top-strip">
@@ -35,6 +36,9 @@
                 <img class="money-icon" src="{% static 'icons/uah-cash-icon.png' %}">
 				<h6 class="price"> 999.99</h6>
                 <input class="search-form" placeholder="Поиск..." />
+                <!--ясику задание-->
+                <ul id="searched_query" style="z-index: 9999; position: absolute; margin-top: 50px; background-color: #373a48; color: white" ></ul>
+
             </div>
         </div>
     </div>
