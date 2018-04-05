@@ -52,7 +52,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_queryset()
         context = super(GetOneCategoryProducts, self).get_context_data(**kwargs)
-        context['products'] = Product.objects.filter(subcategory=self.object).sort_by('-created')
+        context['products'] = Product.objects.filter(subcategory=self.object)
         products_images = []
         for product in context.get('products'):
             first_image = ProductImage.objects.filter(product=product)

@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 import os
 from app.settings import BASE_DIR
+from django.utils.timezone import now
 # Create your models here.
 
 class Category(models.Model):
@@ -82,6 +83,8 @@ class Product(models.Model):
     is_parsed = models.BooleanField(default=False, blank=False, null=False, verbose_name='Скачанно')
     unique_identificator = models.CharField(max_length=8, blank=False, null=False, default='', verbose_name='Идентификатор')
     parse_later = models.BooleanField(blank=True, null=False, default=False, verbose_name='Парсить позже')
+    #created = models.DateTimeField(blank=False, null=False, auto_now_add=True, verbose_name='Создано')
+    #updated = models.DateTimeField(blank=False, null=False, auto_now=True, verbose_name='Обновлено')
 
     def __str__(self):
         return self.article_number
