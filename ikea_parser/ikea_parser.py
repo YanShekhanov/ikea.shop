@@ -240,9 +240,20 @@ def parse_one_product_information_(product_query, browser_driver):
 
     # -----------------------------------------------------#
     # technical information - основная информация
-    key_feautures = product_soup.find('div', id='custBenefit').text
-    good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
-    care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+    try:
+        key_feautures = product_soup.find('div', id='custBenefit').text
+    except AttributeError:
+        key_feautures = None
+
+    try:
+        good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+    except AttributeError:
+        good_to_know = None
+
+    try:
+        care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+    except AttributeError:
+        care_instructions = None
 
     # -----------------------------------------------------#
     # габариты
@@ -543,17 +554,36 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             else:
                 product_unit = ''
 
-            #-----------------------------------------------------#
+            # -----------------------------------------------------#
             # technical information - основная информация
-            key_feautures = product_soup.find('div', id='custBenefit').text
-            good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
-            care_instructions = product_soup.find('div', id='careInstructionsPart').find('div',
-                                                                                         id='careInst').text
-            #-----------------------------------------------------#
+            try:
+                key_feautures = product_soup.find('div', id='custBenefit').text
+            except AttributeError:
+                key_feautures = None
+
+            try:
+                good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+            except AttributeError:
+                good_to_know = None
+
+            try:
+                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+            except AttributeError:
+                care_instructions = None
+
+            # -----------------------------------------------------#
             # габариты
-            dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div',
-                                                                                               id='metric').contents
-            dimensions = []
+            dimension_to_save = ''
+            try:
+                dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div',
+                                                                                                   id='metric').contents
+                dimensions_list = []
+                for string in dimensions_parsed:
+                    if isinstance(string, str):
+                        dimensions_list.append(string)
+                dimension_to_save = '.'.join(dimensions_list)
+            except TypeError or AttributeError:
+                pass
 
             # -----------------------------------------------------#
             # вариации цвета
@@ -659,6 +689,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                                      key_feautures=key_feautures,
                                                      good_to_know=good_to_know,
                                                      care_instructions=care_instructions,
+                                                     dimensions=dimension_to_save,
                                                      materials_info=materials,
                                                      complementary_products=complementary_products_to_save,
                                                      color=product_color,
