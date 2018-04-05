@@ -133,7 +133,7 @@ class DownloadOneProductInformation(FormView):
             return redirect(reverse('home'))
         return self.get_success_url()
 
-
+#ajax сортировка
 def get_sort_query(request):
     from django.core import serializers
     sort_by_dict = {
@@ -166,6 +166,18 @@ def get_sort_query(request):
         }
         return JsonResponse(response_json_dict)
 
+#ajax поиск
+from django.db.models import Q
+def search(request):
+    if request.method =='POST' and request.is_ajax():
+        searched_text = request.POST['searched_text']
+        products = Product.objects.filter(
+            Q(article_number__icontains=searched_text) |
+            Q(title__icontains=searched_text)
+        )
+        from ikea_parser.json_serializer import json_serializer
+        json_response_dict = json_serializer(products)
+        return JsonResponse(data={'products': json_response_dict})
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
