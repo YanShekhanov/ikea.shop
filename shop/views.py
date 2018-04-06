@@ -52,6 +52,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_queryset()
         context = super(GetOneCategoryProducts, self).get_context_data(**kwargs)
+        context['is_filtered'] = True
         context['products'] = Product.objects.filter(subcategory=self.object)
         products_images = []
         for product in context.get('products'):
