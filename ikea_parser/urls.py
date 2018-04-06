@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
 
-    url(r'^', HomePage.as_view(), name='home'),
+    url(r'^$', HomePage.as_view(), name='home'),
     url(r'^delete_images/$', delete_images, name='delete_images'), #удаление изображений
     url(r'^delete_categories/$', delete_categories, name='delete_categories'), #удаление продуктов
     url(r'^delete_products/$', delete_products, name='delete_products'), #удаление продуктов
