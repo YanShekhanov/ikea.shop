@@ -39,8 +39,8 @@
         				<button type="button" class="btn btn-icon-buy"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
                 	</div>
 					<div class="btn-group">
-        				<button type="button" class="btn btn-info" onclick="window.location.href='{% url 'productDetail' product.article_number %}'">Информация</button>
-        				<button type="button" class="btn btn-icon-info" onclick="window.location.href='{% url 'productDetail' product.article_number %}'"><i class="fa fa-info" aria-hidden="true"></i></button>
+        				<button type="button" class="btn btn-info" onclick="window.location='{% url 'productDetail' product.article_number %}'">Информация</button>
+        				<button type="button" class="btn btn-icon-info" onclick="window.location='{% url 'productDetail' product.article_number %}'"><i class="fa fa-info" aria-hidden="true"></i></button>
                 	</div>
 				</div>
             	</div>
@@ -66,8 +66,10 @@
 
         //ajax search
         $('.search-form').keyup(function () {
-           var token = $('input[name="csrfmiddlewaretoken"]').val();
-           search($(this).val(), token);
+           if ($(this).val().length>=3){
+               var token = $('input[name="csrfmiddlewaretoken"]').val();
+               search($(this).val(), token);
+           }
         });
 
         //ajax загрузка изображений артикула
@@ -143,7 +145,7 @@
         $this_card.find('.card-text').text(product_query.description);
         $this_card.find('.card-price').text(product_query.price + ' PLN');
         $this_card.find('.get-all-images').attr('data-unique_identificator', product_query.unique_identificator);
-        $this_card.find('.btn-info').attr('onclick', 'window.location.href=' + "'/shop/product_detail/product=" + product_query.unique_identificator + "'")
+        $this_card.find('.btn-info').attr('onclick', 'window.location.href=' + "'/shop/product_detail/product=" + product_query.article_number + "'");
         $this_card.find('.productImage').attr('src', product_query.image);
     }
 
