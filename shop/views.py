@@ -173,7 +173,8 @@ def search(request):
         searched_text = request.POST['searched_text']
         products = Product.objects.filter(
             Q(article_number__icontains=searched_text) |
-            Q(title__icontains=searched_text)
+            Q(title__icontains=searched_text) |
+            Q(description__icontains=searched_text)
         )
         from ikea_parser.json_serializer import json_serializer
         json_response_dict = json_serializer(products)
