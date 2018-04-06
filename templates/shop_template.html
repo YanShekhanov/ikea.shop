@@ -112,6 +112,7 @@
     </div>
 </div>
 
+{% block csrf %}{% csrf_token %}{% endblock %}
 {% block content %}{% endblock %}
 </div>
 <footer id="myFooter">
@@ -150,8 +151,6 @@
     </div>
 </footer>
 
-{% block js %}{% endblock %}
-
 <script>
 
     $('#dropdown-products').hide();
@@ -167,6 +166,16 @@
         $('li[data-category_id="' + category_id + '"]').show()
     };
 
+    //ajax search
+        $('.search-form').keyup(function () {
+           if ($(this).val().length>=3){
+               var token = $('input[name="csrfmiddlewaretoken"]').val();
+               search($(this).val(), token);
+           }
+        });
+
 </script>
+
+{% block js %}{% endblock %}
 </body>
 </html>

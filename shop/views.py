@@ -8,8 +8,13 @@ from django.shortcuts import Http404
 from django.http import JsonResponse
 
 from ikea_parser.parseWithArticleNumber import parseOneProductInformationWithArticleNumber
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+def redirect_to_home(request):
+    home_page = 'catalogue'
+    return redirect(reverse(home_page))
 
 class MainInfo(TemplateView):
     template_name = 'shop_template.html'
