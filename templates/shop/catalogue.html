@@ -31,7 +31,8 @@
                 </div>
                 <!--Product Info-->
                 <div class="card-body">
-                    <a class="card-title">{{ product.title }}</a>
+                    <a class="card-title" href="{% url 'productDetail' product.article_number %}">{{ product.title }}</a>
+                    <span>{{ product.article_number }}</span>
                     <p class="card-text">{{ product.description }}<br><p class="card-price">{{ product.price }} PLN</p></p>
 					<div class="card-btns">
                     <div class="btn-group">

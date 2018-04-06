@@ -265,7 +265,7 @@ def parse_one_product_information_(product_query, browser_driver):
             if isinstance(string, str):
                 dimensions_list.append(string)
         dimension_to_save = '.'.join(dimensions_list)
-    except TypeError or AttributeError:
+    except AttributeError:
         pass
 
     # -----------------------------------------------------#
