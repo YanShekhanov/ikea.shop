@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url, static
 from django.conf import settings
 from django.urls import include
+from shop.views import MainInfo
 
 
 urlpatterns = [
