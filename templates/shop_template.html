@@ -35,7 +35,7 @@
 				<i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <img class="money-icon" src="{% static 'icons/uah-cash-icon.png' %}">
 				<h6 class="price"> 999.99</h6>
-                {% if is_filtered %}{{ is_filtered }}<input class="search-form" placeholder="Поиск..." />{% endif %}
+                <input class="search-form" placeholder="Поиск..." />
                 <!--ясику задание-->
                 <ul id="searched_query" style="z-index: 9999; position: absolute; margin-top: 50px; background-color: #373a48; color: white" ></ul>
 
@@ -87,6 +87,8 @@
         <p id="kat" style="float: left; text-align: left;">{{ category.category.title }}<b> / </b><a href="{% url 'getOneCategoryProducts' category.unique_identificator %}">{{ category.title }}</a></p>
         {% endif %}
         <!--Sort-->
+        <!--jasik zadanie-->
+    {% if is_filtered %}
         <select id="get_sort">
             <option>Выбор сортировки</option>
             <option value="increase">От дешевых к дорогим</option>
@@ -94,6 +96,8 @@
             <option value="from_A_to_Z">От A до Z</option>
             <option value="from_Z_to_A">От Z до А</option>
         </select>
+    {% endif %}
+
         <div class="btn-group" id="sort" style="float: right;">
         <p>от дешевых к дорогим</p>
         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
