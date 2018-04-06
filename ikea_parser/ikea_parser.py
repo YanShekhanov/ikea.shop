@@ -339,6 +339,7 @@ def parse_one_product_information_(product_query, browser_driver):
             models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
             models_to_save = '#'.join(models_articles_list)
+            print('Количество моделей продукта %i' % len(models_articles_list))
             parseComplementaryProducts(product_query, *models_articles_list)
 
     # -----------------------------------------------------#
@@ -656,6 +657,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 complementary_products_to_save = '#'.join(complementary_products_list)
             except AttributeError:
                 complementary_products_to_save = None
+                pass
             # -----------------------------------------------------#
             # more models - модели
             parse_models = True
