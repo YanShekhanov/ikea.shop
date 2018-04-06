@@ -345,16 +345,18 @@ def parse_one_product_information_(product_query, browser_driver):
     # complamantary products - дополняющие продукты
     complementary_products_list = []
     complementary_product_to_save = ''
-    complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
-    complementary_products = complementary_products_block.find_all('li')
-    for complementary_product in complementary_products:
-        complementary_product_article = complementary_product.get('id').split('_')[1]
-        complementary_products_list.append(complementary_product_article)
-    print('Количество дополняющих продуктов %i' % len(complementary_products_list))
-    if len(complementary_products_list) != 0:
-        complementary_product_to_save = '#'.join(complementary_products_list)
-        parseComplementaryProducts(product_query, *complementary_products_list)
-
+    try:
+        complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
+        complementary_products = complementary_products_block.find_all('li')
+        for complementary_product in complementary_products:
+            complementary_product_article = complementary_product.get('id').split('_')[1]
+            complementary_products_list.append(complementary_product_article)
+        print('Количество дополняющих продуктов %i' % len(complementary_products_list))
+        if len(complementary_products_list) != 0:
+            complementary_product_to_save = '#'.join(complementary_products_list)
+            parseComplementaryProducts(product_query, *complementary_products_list)
+    except AttributeError:
+        complementary_product_to_save = None
     # -----------------------------------------------------#
     # environment materials - материалы
     materials = None
@@ -640,12 +642,14 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             # complamantary products - дополняющие продукты
             complementary_products_list = []
             complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
-            complementary_products = complementary_products_block.find_all('li')
-            for complementary_product in complementary_products:
-                complementary_product_article = complementary_product.get('id').split('_')[1]
-                complementary_products_list.append(complementary_product_article)
-            complementary_products_to_save = '#'.join(complementary_products_list)
-
+            try:
+                complementary_products = complementary_products_block.find_all('li')
+                for complementary_product in complementary_products:
+                    complementary_product_article = complementary_product.get('id').split('_')[1]
+                    complementary_products_list.append(complementary_product_article)
+                complementary_products_to_save = '#'.join(complementary_products_list)
+            except AttributeError:
+                complementary_products_to_save = None
             # -----------------------------------------------------#
             # more models - модели
             parse_models = True
