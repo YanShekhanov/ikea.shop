@@ -320,6 +320,7 @@ def parse_one_product_information_(product_query, browser_driver):
                 if len(options_articles_list) != 0:
                     if parse_colors:
                         color_options = '#'.join(options_articles_list)
+                        print(color_options)
                         print('Количество цветов артикула %i' % len(options_articles_list))
                     if parse_sizes:
                         size_options = '#'.join(options_articles_list)
@@ -594,8 +595,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             # габариты
             dimension_to_save = ''
             try:
-                dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div',
-                                                                                                   id='metric').contents
+                dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div', id='metric').contents
                 dimensions_list = []
                 for string in dimensions_parsed:
                     if isinstance(string, str):
