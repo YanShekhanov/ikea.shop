@@ -83,43 +83,59 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Изображения
         try:
-            context['productsImages'] = ProductImage.objects.filter(product=self.object, size=500)
+            context['productImages'] = ProductImage.objects.filter(product=self.object, size=500)
         except ProductImage.DoesNotExist:
             pass
 
-        #Дополняющие продукты
-        complementary_products_list = self.object.complementary_products.split('#')
-        if complementary_products_list == []:
-            complementary_products_list = None #если None, то не отображается блок "Дополняющие продукты" на странице
-
-        complementary_products_query = []
-        complementary_products_images_query = []
-        for complementary_product in complementary_products_list:
-            try:
-                #дополняющие товары
-                complementary_one_product_query = Product.objects.get(article_number=complementary_product)
-                complementary_products_query.append(complementary_one_product_query)
-                #изображения дополняющих товаров
-                try:
-                    complementary_one_product_images_query = ProductImage.objects.filter(product=Product.objects.get(article_number=complementary_product))
-                    for image in complementary_one_product_images_query:
-                        complementary_products_images_query.append(image)
-                except ProductImage.DoesNotExist:
-                    print('Не найдены изображения к артикулу %s' % complementary_product)
-            except Product.DoesNotExist:
-                pass
-        context['complementaryProducts'] = complementary_products_query
-        context['complementaryProductsImages'] = complementary_products_images_query
-        context['Categories'] = Category.objects.exclude(title='Panele słoneczne')
-        context['SubCategories'] = SubCategory.objects.all()
+        complementary_images_list = [] # все дополняющие артикулы
+        complementary_images = [] #все изображения к дополняющим артикулам
 
         #Цвета
-        color_options_list = self.object.color_options.split('#')
-        context['colorOptions'] = color_options_list
+        color_options_list = []
+        if self.object.color_options is not None:
+            color_options = self.object.color_options.split('#')
+            for color in color_options:
+                color_query = Product.objects.get(article_number=color)
+                color_options_list.append(color_query)
+                complementary_images_list.append(color_query)
+            context['colorOptions'] = color_options_list
+
+        #Размеры
+        size_options_list = []
+        if self.object.size_options is not None:
+            size_options = self.object.size_options.split('#')
+            for size in size_options:
+                size_query = Product.objects.get(article_number=size)
+                size_options_list.append(size_query)
+                complementary_images_list.append(size_query)
+            context['sizeOptions'] = size_options_list
 
         #Модели
-        additionals_models_list = self.object.additional_models.split('#')
-        context['models'] = additionals_models_list
+        additional_models_list = []
+        if self.object.additional_models is not None:
+            additionals_models = self.object.additional_models.split('#')
+            for model in additionals_models:
+                model_query = Product.objects.get(article_number=model)
+                additional_models_list.append(model_query)
+                complementary_images_list.append(model_query)
+            context['modelOptions'] = additional_models_list
+
+        #Дополняющие
+        complementary_products_list = []
+        if self.object.complementary_products is not None:
+            complementary_products = self.object.complementary_products.split('#')
+            for product in complementary_products:
+                product = Product.objects.get(article_number=product)
+                complementary_products_list.append(product)
+                complementary_images_list.append(product)
+            context['complementaryProducts'] = complementary_products_list
+
+        #изображения к дополняющим артикулам
+        for product in complementary_images_list:
+            image = ProductImage.objects.filter(product=product).first()
+            if image not in complementary_images:
+                complementary_images.append(image)
+        context['complementaryImages'] = complementary_images
         return context
 
 #парсинг артикула по номеру артикула
