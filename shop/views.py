@@ -136,6 +136,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
             if image not in complementary_images:
                 complementary_images.append(image)
         context['complementaryImages'] = complementary_images
+        print(context['complementaryImages'])
         return context
 
 #парсинг артикула по номеру артикула
