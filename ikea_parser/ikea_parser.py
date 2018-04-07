@@ -480,6 +480,7 @@ def parse_one_product_information_(product_query, browser_driver):
         'complementary_products':product_to_save.complementary_products,
         'additional_models':product_to_save.additional_models,
         'color_options':product_to_save.color_options,
+        'size_options':product_to_save.size_options,
         'is_parsed':product_to_save.is_parsed,
         'parse_later':product_to_save.parse_later,
         'parsed_time':delta,
@@ -611,9 +612,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             for block in blocks:
                 try:
                     options = product_soup.find('div', id=block).find_all('li')
-                    block_label = re.sub(':', '', product_soup.find('div', id=block).find('span',
-                                                                                          class_='categoryNameLbl').text.strip())
-                    print('ЕСТЬ "%s", блок "%s"' % (block_label, block))
+                    block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
                     button_for_open_options = driver.find_element_by_id(
                         block)  # кнопка для открытия select с цветами
                     if block_label == 'kolor':  # если блок называется 'kolor'
