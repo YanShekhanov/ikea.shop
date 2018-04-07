@@ -83,6 +83,25 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
+    url = 'https://www.ikea.com/pl/pl/catalog/products/10365928/?query=10365928'
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("window-size=1024,768")
+    options.add_argument("--no-sandbox")
+
+    browser = webdriver.Chrome(chrome_options=options)
+    browser.get(url)
+    html = browser.page_source
+    bs = BeautifulSoup(html, 'lxml')
+    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+    for block in blocks:
+        print(re.sub(':', '', bs.find('div', id=block).find('span', class_='categoryNameLbl').text.strip()))
+    browser.close()
+    return redirect(reverse('home'))
+
+
+
+
     '''url = 'https://www.ikea.com/pl/pl/catalog/products/90345564/'
     options = Options()
     options.add_argument("--headless")

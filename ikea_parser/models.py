@@ -78,6 +78,7 @@ class Product(models.Model):
     complementary_products = models.CharField(max_length=512, blank=True, default='', null=True, verbose_name='Дополняющие продукты')
     additional_models = models.CharField(max_length=512, blank=True, null=True, default='', verbose_name='Модели')
     color_options = models.CharField(max_length=512, blank=True, null=True, default='', verbose_name='Другие цвета')
+    size_options = models.CharField(max_length=512, blank=True, null=True, default=None, verbose_name='Другие размеры' )
     color = models.CharField(max_length=32, blank=True, default='', null=True, verbose_name='Цвет')
     is_translated = models.BooleanField(default=False, blank=True, null=False, verbose_name='Перевод')
     is_parsed = models.BooleanField(default=False, blank=False, null=False, verbose_name='Скачанно')

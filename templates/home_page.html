@@ -3,6 +3,10 @@
 
 {% block content %}
 
+    <form action="{% url 'test' %}" method="post">{% csrf_token %}
+        <input type="submit" value="test">
+    </form>
+
 
 <a href="{% url 'downloadOneProductInformation' %}">Загрузить информацию артикула по номеру</a>
 
