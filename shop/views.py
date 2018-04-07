@@ -83,7 +83,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Изображения
         try:
-            context['productImages'] = ProductImage.objects.filter(product=self.object, size=500)
+            context['productImages'] = ProductImage.objects.filter(product=self.object, size=250)
         except ProductImage.DoesNotExist:
             pass
 
