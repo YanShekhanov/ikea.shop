@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^parse_categories/$', parse_categories, name='parse_categories'), #парсинг категорий, подкатегорий
     url(r'^parse_products_articles/$', parse_products_articles, name='parse_products_articles'), #парсинг артикулов
     url(r'^parse_products_information/$', parse_products_information, name='parse_products_information'), #парсинг изображений и информации артикула
+
+    url(r'^test/$', test, name='test'),
 ]

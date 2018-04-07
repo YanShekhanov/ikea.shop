@@ -268,60 +268,63 @@ def parse_one_product_information_(product_query, browser_driver):
     except AttributeError:
         pass
 
-    # -----------------------------------------------------#
-    # вариации цвета
-    # проверка на наличие блока с цветами
-    parse_colors = True
-    color_articles_list = []
-    existed_colors_on_page = []
-    colors = []
-    color_options = ''
-
-    # bs4
-    try:
-        colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
-        print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
-        button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1') #кнопка для открытия select с цветами
-        if len(colors) <= 1:
-            parse_colors = False
-    except:
+    #------------------------------------------------------#
+    #доп. цвета, доп. размеры
+    color_options = None
+    size_options = None
+    parse_colors = False
+    parse_sizes = False
+    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+    for block in blocks:
         try:
-            colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
-            button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv2') #кнопка для открытия select с цветами
-            print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
-            if len(colors) <= 1:
-                parse_colors = False
+            options = product_soup.find('div', id=block).find_all('li')
+            block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
+            print('ЕСТЬ "%s", блок "%s"' % (block_label, block))
+            button_for_open_options = driver.find_element_by_id(block) # кнопка для открытия select с цветами
+            if block_label == 'kolor': # если блок называется 'kolor'
+                parse_colors = True
+                if len(options) <= 1:
+                    parse_colors = False
+
+            if block_label == 'rozmiar': # если блок называется 'rozmiar'
+                parse_sizes = True
+                if len(options) <= 1:
+                    parse_sizes = False
+
+            if parse_colors or parse_sizes:
+                options_articles_list = []
+                existed_options_on_page = []  # уже найденные опции
+                for option in options:
+                    option_identificator = option.get('data-value')
+                    if option_identificator not in existed_options_on_page:
+                        existed_options_on_page.append(option_identificator)
+
+                for option_identificator_for_parse in existed_options_on_page:
+                    button_for_open_options.click()
+                    try:
+                        one_option_button = driver.find_element_by_xpath(
+                            '//li[@data-value="' + option_identificator_for_parse + '"]')
+                        one_option_button.click()
+                        try:
+                            one_option_article_number = driver.current_url.split('#')[1][1:]
+                            options_articles_list.append(one_option_article_number)
+                        except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
+                            new_product_soup = driver.page_source
+                            one_option_article_number = ''.join(
+                                new_product_soup.find('div', id='itemNumber').text.split('.'))
+                            options_articles_list.append(one_option_article_number)
+                    except WebDriverException:
+                        pass
+                if len(options_articles_list) != 0:
+                    if parse_colors:
+                        color_options = '#'.join(options_articles_list)
+                        print('Количество цветов артикула %i' % len(options_articles_list))
+                    if parse_sizes:
+                        size_options = '#'.join(options_articles_list)
+                        print('Количество размеров артикула %i' % len(options_articles_list))
+                    parseComplementaryProducts(product_to_save, *options_articles_list)
         except:
-            print('НЕТУ ЦВЕТОВ')
-            parse_colors = False
-
-    if parse_colors:
-        existed_colors_on_page = []  # уже найденные цвета
-        for color in colors:
-            color_identificator = color.get('data-value')
-            if color_identificator not in existed_colors_on_page:
-                existed_colors_on_page.append(color_identificator)
-
-        for color_identificator_for_parse in existed_colors_on_page:
-            button_for_open_colors_options.click()
-            try:
-                one_color_button = driver.find_element_by_xpath(
-                    '//li[@data-value="' + color_identificator_for_parse + '"]')
-                one_color_button.click()
-                try:
-                    one_color_article_number = driver.current_url.split('#')[1][1:]
-                    color_articles_list.append(one_color_article_number)
-                except IndexError: #если ссылка не меняется, тогда берем номер артикула с страницы продукта
-                    new_product_soup = driver.page_source
-                    one_color_article_number = ''.join(new_product_soup.find('div', id='itemNumber').text.split('.'))
-                    color_articles_list.append(one_color_article_number)
-                    new_product_soup = None
-            except WebDriverException:
-                pass
-        if len(color_articles_list) != 0:
-            color_options = '#'.join(color_articles_list)
-            print('Количество цветов артикула %i' % len(color_articles_list))
-            parseComplementaryProducts(product_to_save, *color_articles_list)
+            pass
 
     # -----------------------------------------------------#
     # more models - модели
@@ -381,6 +384,7 @@ def parse_one_product_information_(product_query, browser_driver):
     product_to_save.materials_info = materials
     product_to_save.complementary_products = complementary_product_to_save
     product_to_save.color_options = color_options
+    product_to_save.size_options = size_options
     product_to_save.additional_models = models_to_save
     product_to_save.dimensions = dimension_to_save
     product_to_save.is_parsed = True
@@ -597,57 +601,64 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             except TypeError or AttributeError:
                 pass
 
-            # -----------------------------------------------------#
-            # вариации цвета
-            # проверка на наличие блока с цветами
-            parse_colors = True
-            color_articles_list = []
-            existed_colors_on_page = []
-            colors = []
-            color_options_to_save = ''
-
-            # bs4
-            try:
-                colors = product_soup.find('div', id='selectionDropDownDiv1').find_all('li')  # первый блок вариантов продукта
-                print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv1 "')
-                button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv1')  # кнопка для открытия select с цветами
-                if len(colors) <= 1:
-                    parse_colors = False
-            except:
+            # ------------------------------------------------------#
+            # доп. цвета, доп. размеры
+            color_options = None
+            size_options = None
+            parse_colors = False
+            parse_sizes = False
+            blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+            for block in blocks:
                 try:
-                    colors = product_soup.find('div', id='selectionDropDownDiv2').find_all('li')  # второй блок вариантов продукта
-                    print('ЕСТЬ ЦВЕТА, блок " selectionsDropDownDiv2 "')
-                    button_for_open_colors_options = driver.find_element_by_id('selectionDropDownDiv2')  # кнопка для открытия select с цветами
-                    if len(colors) <= 1:
-                        parse_colors = False
+                    options = product_soup.find('div', id=block).find_all('li')
+                    block_label = re.sub(':', '', product_soup.find('div', id=block).find('span',
+                                                                                          class_='categoryNameLbl').text.strip())
+                    print('ЕСТЬ "%s", блок "%s"' % (block_label, block))
+                    button_for_open_options = driver.find_element_by_id(
+                        block)  # кнопка для открытия select с цветами
+                    if block_label == 'kolor':  # если блок называется 'kolor'
+                        parse_colors = True
+                        if len(options) <= 1:
+                            parse_colors = False
+
+                    if block_label == 'rozmiar':  # если блок называется 'rozmiar'
+                        parse_sizes = True
+                        if len(options) <= 1:
+                            parse_sizes = False
+
+                    if parse_colors or parse_sizes:
+                        options_articles_list = []
+                        existed_options_on_page = []  # уже найденные опции
+                        for option in options:
+                            option_identificator = option.get('data-value')
+                            if option_identificator not in existed_options_on_page:
+                                existed_options_on_page.append(option_identificator)
+
+                        for option_identificator_for_parse in existed_options_on_page:
+                            button_for_open_options.click()
+                            try:
+                                one_option_button = driver.find_element_by_xpath(
+                                    '//li[@data-value="' + option_identificator_for_parse + '"]')
+                                one_option_button.click()
+                                try:
+                                    one_option_article_number = driver.current_url.split('#')[1][1:]
+                                    options_articles_list.append(one_option_article_number)
+                                except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
+                                    new_product_soup = driver.page_source
+                                    one_option_article_number = ''.join(
+                                        new_product_soup.find('div', id='itemNumber').text.split('.'))
+                                    options_articles_list.append(one_option_article_number)
+                            except WebDriverException:
+                                pass
+                        if len(options_articles_list) != 0:
+                            if parse_colors:
+                                color_options = '#'.join(options_articles_list)
+                                print('Количество цветов артикула %i' % len(options_articles_list))
+                            if parse_sizes:
+                                size_options = '#'.join(options_articles_list)
+                                print('Количество размеров артикула %i' % len(options_articles_list))
                 except:
-                    print('НЕТУ ЦВЕТОВ')
-                    parse_colors = False
-
-            if parse_colors:
-                existed_colors_on_page = []  # уже найденные цвета
-                for color in colors:
-                    color_identificator = color.get('data-value')
-                    if color_identificator not in existed_colors_on_page:
-                        existed_colors_on_page.append(color_identificator)
-
-                for color_identificator_for_parse in existed_colors_on_page:
-                    button_for_open_colors_options.click()
-                    try:
-                        one_color_button = driver.find_element_by_xpath(
-                            '//li[@data-value="' + color_identificator_for_parse + '"]')
-                        one_color_button.click()
-                        try:
-                            one_color_article_number = driver.current_url.split('#')[1][1:]
-                            color_articles_list.append(one_color_article_number)
-                        except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
-                            one_color_article_number = ''.join(
-                                product_soup.find('div', id='itemNumber').text.split('.'))
-                            color_articles_list.append(one_color_article_number)
-                    except WebDriverException: #если эллемент не может быть нажат
-                        pass
-                if len(color_articles_list) != 0:
-                    color_options_to_save = '#'.join(color_articles_list)
+                    pass
 
             # -----------------------------------------------------#
             # complamantary products - дополняющие продукты
@@ -709,7 +720,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                                      materials_info=materials,
                                                      complementary_products=complementary_products_to_save,
                                                      color=product_color,
-                                                     color_options=color_options_to_save,
+                                                     color_options=color_options,
+                                                     size_options=size_options,
                                                      additional_models=models_to_save,
                                                      is_parsed=False,
                                                      parse_later=True)
