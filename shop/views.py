@@ -93,6 +93,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         #Цвета
         color_options_list = []
         if self.object.color_options is not None and self.object.color_options != '':
+            print(self.object.color_options)
             color_options = self.object.color_options.split('#')
             for color in color_options:
                 try:
