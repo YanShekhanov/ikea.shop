@@ -19,11 +19,11 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if color == product %}
-                            <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
-               <a href="{% url 'productDetail' color %}">{{ color }}</a>
+                <a href="{% url 'productDetail' color %}">{{ color }}</a></p>
             {% endfor %}
         </p>
     {% endif %}
@@ -35,29 +35,27 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if size == product %}
-                            <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
-               <a href="{% url 'productDetail' size %}">{{ size }}</a>
+               <a href="{% url 'productDetail' size %}">{{ size }}</a></p>
             {% endfor %}
         </p>
     {% endif %}
 
     {% if modelOptions %}
-        <p>
             <h3>Модели</h3>
             {% for model in modelOptions %}
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if model == product %}
-                            <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
-               <a href="{% url 'productDetail' model %}">{{ model }}</a>
+               <a href="{% url 'productDetail' model %}">{{ model }}</a></p>
             {% endfor %}
-        </p>
     {% endif %}
 
     <p>
