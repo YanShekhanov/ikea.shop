@@ -19,7 +19,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if color == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -35,7 +35,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if size == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -50,7 +50,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if model == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}

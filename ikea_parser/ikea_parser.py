@@ -270,12 +270,14 @@ def parse_one_product_information_(product_query, browser_driver):
 
     #------------------------------------------------------#
     #доп. цвета, доп. размеры
+    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
     color_options = None
     size_options = None
-    parse_colors = False
-    parse_sizes = False
-    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
     for block in blocks:
+        color_options = None
+        size_options = None
+        parse_colors = False
+        parse_sizes = False
         try:
             options = product_soup.find('div', id=block).find_all('li')
             block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
@@ -605,6 +607,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             # ------------------------------------------------------#
             # доп. цвета, доп. размеры
             blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+            color_options = None
+            size_options = None
             for block in blocks:
                 parse_colors = False
                 parse_sizes = False
