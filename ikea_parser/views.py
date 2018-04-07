@@ -83,7 +83,11 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    url = 'https://www.ikea.com/pl/pl/catalog/products/10365928/?query=10365928'
+
+    product = Product.objects.get(article_number='60291510')
+    product.is_parsed = False
+    product.save()
+    '''url = 'https://www.ikea.com/pl/pl/catalog/products/10365928/?query=10365928'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -96,7 +100,7 @@ def test(request):
     blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
     for block in blocks:
         print(re.sub(':', '', bs.find('div', id=block).find('span', class_='categoryNameLbl').text.strip()))
-    browser.close()
+    browser.close()'''
     return redirect(reverse('home'))
 
 
