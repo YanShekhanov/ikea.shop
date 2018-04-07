@@ -274,8 +274,6 @@ def parse_one_product_information_(product_query, browser_driver):
     color_options = None
     size_options = None
     for block in blocks:
-        color_options = None
-        size_options = None
         parse_colors = False
         parse_sizes = False
         try:
@@ -319,7 +317,7 @@ def parse_one_product_information_(product_query, browser_driver):
                         pass
                 if len(options_articles_list) != 0:
                     if parse_colors:
-                        color_options += '#'.join(options_articles_list)
+                        color_options = '#'.join(options_articles_list)
                         print('Количество цветов артикула %i' % len(options_articles_list))
                     if parse_sizes:
                         size_options = '#'.join(options_articles_list)
@@ -611,8 +609,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             for block in blocks:
                 parse_colors = False
                 parse_sizes = False
-                color_options = None
-                size_options = None
                 try:
                     options = product_soup.find('div', id=block).find_all('li')
                     block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
