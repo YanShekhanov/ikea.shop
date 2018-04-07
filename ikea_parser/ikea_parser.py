@@ -737,7 +737,9 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 prefix_for_500px = '500px'
                 for image in images_500:
                     start_download = True
-                    ikea_image_prefix = image.text.split('_')[2]  # префикс номера изображения в икеа
+                    ikea_image_prefix = image.text.split('_')[2] # префикс номера изображения в икеа
+                    print(image.text.split('_'))
+                    print(ikea_image_prefix)
 
                     # проверка на наличие изображения в базе данных
                     existed_images = ProductImage.objects.all()
@@ -801,7 +803,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                 ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                             # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
-                print('Ошибка загрузки изображения 500px')
+                print('Ошибка загрузки изображения 250px')
                 pass
 
             #закрываем старую вкладку и открываем новую
