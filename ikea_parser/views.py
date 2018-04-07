@@ -83,9 +83,9 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    delete_list = ['00358612', '60291510', '60358614', '90306789']
+    '''delete_list = ['00358612', '60291510', '60358614', '90306789']
     for prod in delete_list:
-        Product.objects.get(article_number=prod).delete()
+        Product.objects.get(article_number=prod).delete()'''
     product = Product.objects.get(article_number='60291510')
     product.is_parsed = False
     product.save()
