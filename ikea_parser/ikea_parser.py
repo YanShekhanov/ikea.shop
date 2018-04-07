@@ -318,7 +318,10 @@ def parse_one_product_information_(product_query, browser_driver):
                     new_product_soup = None
             except WebDriverException:
                 pass
-        color_options = '#'.join(color_articles_list)
+        if len(color_articles_list) != 0:
+            color_options = '#'.join(color_articles_list)
+            print('Количество цветов артикула %i' % len(color_articles_list))
+            parseComplementaryProducts(product_to_save, *color_articles_list)
 
     # -----------------------------------------------------#
     # more models - модели
@@ -643,7 +646,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             color_articles_list.append(one_color_article_number)
                     except WebDriverException: #если эллемент не может быть нажат
                         pass
-                color_options_to_save = '#'.join(color_articles_list)
+                if len(color_articles_list) != 0:
+                    color_options_to_save = '#'.join(color_articles_list)
 
             # -----------------------------------------------------#
             # complamantary products - дополняющие продукты
@@ -745,6 +749,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             image_file.close()
                             ProductImage.objects.create(image='products/500px/' + image_title, title=image_title).product.add(created_product)
             except AttributeError:
+                print('Ошибка загрузки изображения 500px')
                 pass
 
             # -----------------------------------------------------#
@@ -785,6 +790,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                 ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                             # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
+                print('Ошибка загрузки изображения 500px')
                 pass
 
             #закрываем старую вкладку и открываем новую
