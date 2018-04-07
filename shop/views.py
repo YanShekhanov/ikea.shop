@@ -83,7 +83,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Изображения
         try:
-            context['productImages'] = ProductImage.objects.filter(product=self.object, size=500)
+            context['productImages'] = ProductImage.objects.filter(product=self.object, size=250)
         except ProductImage.DoesNotExist:
             pass
 
@@ -95,9 +95,12 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         if self.object.color_options is not None and self.object.color_options != '':
             color_options = self.object.color_options.split('#')
             for color in color_options:
-                color_query = Product.objects.get(article_number=color)
-                color_options_list.append(color_query)
-                complementary_images_list.append(color_query)
+                try:
+                    color_query = Product.objects.get(article_number=color)
+                    color_options_list.append(color_query)
+                    complementary_images_list.append(color_query)
+                except Product.DoesNotExist:
+                    pass
             context['colorOptions'] = color_options_list
 
         #Размеры
@@ -105,9 +108,12 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         if self.object.size_options is not None and self.object.size_options != '':
             size_options = self.object.size_options.split('#')
             for size in size_options:
-                size_query = Product.objects.get(article_number=size)
-                size_options_list.append(size_query)
-                complementary_images_list.append(size_query)
+                try:
+                    size_query = Product.objects.get(article_number=size)
+                    size_options_list.append(size_query)
+                    complementary_images_list.append(size_query)
+                except Product.DoesNotExist:
+                    pass
             context['sizeOptions'] = size_options_list
 
         #Модели
@@ -115,9 +121,12 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         if self.object.additional_models is not None and self.object.additional_models != '':
             additionals_models = self.object.additional_models.split('#')
             for model in additionals_models:
-                model_query = Product.objects.get(article_number=model)
-                additional_models_list.append(model_query)
-                complementary_images_list.append(model_query)
+                try:
+                    model_query = Product.objects.get(article_number=model)
+                    additional_models_list.append(model_query)
+                    complementary_images_list.append(model_query)
+                except Product.DoesNotExist:
+                    pass
             context['modelOptions'] = additional_models_list
 
         #Дополняющие
@@ -125,9 +134,12 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         if self.object.complementary_products is not None and self.object.complementary_products != '':
             complementary_products = self.object.complementary_products.split('#')
             for product in complementary_products:
-                product = Product.objects.get(article_number=product)
-                complementary_products_list.append(product)
-                complementary_images_list.append(product)
+                try:
+                    product = Product.objects.get(article_number=product)
+                    complementary_products_list.append(product)
+                    complementary_images_list.append(product)
+                except Product.DoesNotExist:
+                    pass
             context['complementaryProducts'] = complementary_products_list
 
         #изображения к дополняющим артикулам

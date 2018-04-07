@@ -331,7 +331,7 @@ def parse_one_product_information_(product_query, browser_driver):
     parse_models = True
     models_articles_list = []
     models = None
-    models_to_save = ''
+    models_to_save = None
     try:
         models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
         print('ЕСТЬ МОДЕЛИ')
@@ -735,33 +735,32 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             try:
                 images_500 = xml_soup.find('large').find_all('image')
                 prefix_for_500px = '500px'
+                added_images_prefixes = []
                 for image in images_500:
                     start_download = True
                     ikea_image_prefix = image.text.split('_')[2] # префикс номера изображения в икеа
-                    print(image.text.split('_'))
-                    print(ikea_image_prefix)
-
-                    # проверка на наличие изображения в базе данных
-                    existed_images = ProductImage.objects.all()
-                    for existed_image in existed_images:
-                        if existed_image.title.split('_')[1] == ikea_image_prefix \
-                                and existed_image.title.split('_')[0] == created_product.article_number \
-                                and created_product == existed_image.product:
-                            existed_image.product.add(created_product)
-                            start_download = False
-                            print(
-                                'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                existed_image.title, created_product.article_number))
-                    # ---------------------------------------------
-                    if start_download:
-                        image_request = requests.get(image.text).content
-                        image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
-                        image_url_to_save = MEDIA_ROOT + 'products/500px/' + created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
-                        with open(image_url_to_save, 'wb') as image_file:
-                            image_file.write(image_request)
-                            image_file.close()
-                            ProductImage.objects.create(image='products/500px/' + image_title, title=image_title).product.add(created_product)
-            except AttributeError:
+                    if ikea_image_prefix not in added_images_prefixes:
+                        # проверка на наличие изображения в базе данных
+                        existed_images = ProductImage.objects.all()
+                        for existed_image in existed_images:
+                            if existed_image.title.split('_')[1] == ikea_image_prefix \
+                                    and existed_image.title.split('_')[0] == created_product.article_number \
+                                    and created_product == existed_image.product:
+                                existed_image.product.add(created_product)
+                                start_download = False
+                                print(
+                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                    existed_image.title, created_product.article_number))
+                        # ---------------------------------------------
+                        if start_download:
+                            image_request = requests.get(image.text).content
+                            image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
+                            image_url_to_save = MEDIA_ROOT + 'products/500px/' + image_title
+                            with open(image_url_to_save, 'wb') as image_file:
+                                image_file.write(image_request)
+                                image_file.close()
+                                ProductImage.objects.create(image='products/500px/' + image_title, title=image_title).product.add(created_product)
+            except:
                 print('Ошибка загрузки изображения 500px')
                 pass
 
