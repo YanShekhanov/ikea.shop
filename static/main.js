@@ -28,11 +28,13 @@
                 to_paste.find('li').remove();
                 to_paste.hide();
                 for (product=0; product<data.products.length; product++){
-                    to_paste.append('<li><a href="/shop/product_detail/product=' + data.products[product].article_number + '">"' + data.products[product].title + ' ' + data.products[product].article_number +  '</a></li>')
+                    to_paste.append('<li>' + '<img src="{% image.image.url %}">' +
+                        '<a href="/shop/product_detail/product=' + data.products[product].article_number + '">' + data.products[product].title + ' ' + data.products[product].article_number +  '</a></li>')
                 };
                 to_paste.show();
             },
             error:console.log('error')
         })
     }
+
 
