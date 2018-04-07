@@ -18,6 +18,7 @@
             {% for color in colorOptions %}
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
+                        <h2>{{ product }}</h2>
                         {% if color == product %}
                             <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
                         {% endif %}
