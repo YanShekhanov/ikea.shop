@@ -319,8 +319,7 @@ def parse_one_product_information_(product_query, browser_driver):
                         pass
                 if len(options_articles_list) != 0:
                     if parse_colors:
-                        color_options = '#'.join(options_articles_list)
-                        print(color_options)
+                        color_options += '#'.join(options_articles_list)
                         print('Количество цветов артикула %i' % len(options_articles_list))
                     if parse_sizes:
                         size_options = '#'.join(options_articles_list)
