@@ -18,7 +18,6 @@
             {% for color in colorOptions %}
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
-                        <h2>{{ product }}</h2>
                         {% if color == product %}
                             <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
                         {% endif %}
@@ -34,9 +33,11 @@
             <h3>Размеры</h3>
             {% for size in ziseOptions %}
                 {% for image in complementaryImages %}
-                    {% if image.product == size %}
-                        <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
-                    {% endif %}
+                    {% for product in image.product.all %}
+                        {% if size == product %}
+                            <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
                <a href="{% url 'productDetail' size %}">{{ size }}</a>
             {% endfor %}
@@ -45,12 +46,14 @@
 
     {% if modelOptions %}
         <p>
-            <h3>Цвета</h3>
+            <h3>Модели</h3>
             {% for model in modelOptions %}
                 {% for image in complementaryImages %}
-                    {% if image.product == model %}
-                        <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
-                    {% endif %}
+                    {% for product in image.product.all %}
+                        {% if model == product %}
+                            <img src="{{ image.image.url }}" height="50px" width="50px" style="float: left;">
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
                <a href="{% url 'productDetail' model %}">{{ model }}</a>
             {% endfor %}
