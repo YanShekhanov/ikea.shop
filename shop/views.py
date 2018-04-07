@@ -92,7 +92,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Цвета
         color_options_list = []
-        if self.object.color_options is not None:
+        if self.object.color_options is not None and self.object.color_options != '':
             color_options = self.object.color_options.split('#')
             for color in color_options:
                 color_query = Product.objects.get(article_number=color)
@@ -102,7 +102,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Размеры
         size_options_list = []
-        if self.object.size_options is not None:
+        if self.object.size_options is not None and self.object.size_options != '':
             size_options = self.object.size_options.split('#')
             for size in size_options:
                 size_query = Product.objects.get(article_number=size)
@@ -112,7 +112,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Модели
         additional_models_list = []
-        if self.object.additional_models is not None:
+        if self.object.additional_models is not None and self.object.additional_models != '':
             additionals_models = self.object.additional_models.split('#')
             for model in additionals_models:
                 model_query = Product.objects.get(article_number=model)
@@ -122,7 +122,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Дополняющие
         complementary_products_list = []
-        if self.object.complementary_products is not None:
+        if self.object.complementary_products is not None and self.object.complementary_products != '':
             complementary_products = self.object.complementary_products.split('#')
             for product in complementary_products:
                 product = Product.objects.get(article_number=product)
