@@ -1,16 +1,37 @@
 
+    //*loader
+    $(window).ready(function () {
+        $('#load').fadeOut(600);
+    });
+
+    function loader_hide(){
+        $('#load').fadeOut(300);
+    };
+
+    function loader_show() {
+        $('#load').fadeIn(300);
+    };
+
+    //*скрыть объекты
     function hide_tags(tags_list){
         for (itter=0; itter<tags_list.length; itter++){
             $(tags_list[itter]).hide();
         };
     };
 
+    //*удалить объекты
+    function remove_tags(tags_list){
+        for (itter=0; itter<tags_list.length; itter++){
+            $(tags_list[itter]).remove();
+        };
+    }
+
     //наведение на карточку и появление иконки открытия дополнительных иображений
     function hover_product_card() {
         $('.card').hover(function () {
-            $(this).find('.get-all-images').show();
+            $(this).find('.get-all-images').fadeIn(300);
         }, function () {
-            $(this).find('.get-all-images').hide();
+            $(this).find('.get-all-images').fadeOut(300);
         });
     };
 
@@ -32,7 +53,9 @@
                 };
                 to_paste.show();
             },
-            error:console.log('error')
+            error:function () {
+                console.log('error')
+            },
         })
     };
 
@@ -48,15 +71,18 @@
                 'unique_identificator':unique_identificator,
             },
             success:function (data) {
-                hide_tags(['.card']);
                 for (one_product=0; one_product<data.data.length; one_product++){
-                    $one_product_card = $('#product-cards').append($('#hidden-template').html());
-                    generate_one_product_card(data.data[one_product]);
+                    $one_product_card = $('#product-cards').append($('#product-card').html());
+                    generate_one_product_card(data.data[one_product]); //*генерируем карточки продуктов
                 };
-                hide_tags(tags_list);
-                hover_product_card();
+                hide_tags(tags_list); //*скрываем стандартно скрытые блоки
+                hover_product_card(); //*при наведении появляется иконка просмотра изображений
+                $('#product-cards').fadeIn(300); //*делаем видимыми карточки продуктов
+                loader_hide(); //*убераем лоадер
             },
-            error:console.log('error')
+            error:function () {
+                console.log('error')
+            },
         })
     };
 

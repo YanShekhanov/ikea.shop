@@ -1682,3 +1682,11 @@ body{
 			font-style: normal;
 			font-weight: normal;
 	}
+
+
+#load{
+    position: absolute;
+    z-index: 100;
+    top: 45%;
+    left: 45%;
+}

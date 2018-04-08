@@ -30,10 +30,13 @@
 
         //*сортировка*//
         $('body').on('change', '#get_sort', function () {
+            hide_tags(['#product-cards']); //*скрываем контент с карточками
+            remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
+            loader_show(); //*показываем лоадер
             var sort_by = $(this).find('option:selected').val();
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
-            get_sort(sort_by, unique_identificator, token);
+            get_sort(sort_by, unique_identificator, token); //*получаем список отсортированных и генерируем контент
 
         });
 
@@ -78,7 +81,7 @@
     </script>
 
     <!-- шаблон карточки продукта-->
-    <script id="hidden-template" type="text/x-custom-template">
+    <script id="product-card" type="text/x-custom-template">
         <div class="card" id="">
                 <!--Product Images-->
                 <div class="carousel slide product-image" data-interval="false">
