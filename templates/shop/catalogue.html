@@ -6,46 +6,6 @@
 <!--Product Cards-->
 <div class="container-fluid">
         <div class="grid-prod" id="product-cards">
-
-        {% for product in products %}
-        <div class="card" id="{{ product.article_number }}">
-                <!--Product Images-->
-                <div class="carousel slide product-image" data-interval="false">
-                    <div class="carousel-inner">
-                        {% for image in productsImages %}
-                            {% for product_query in image.product.all %}
-                                {% if product_query == product %}
-                                    <div class="carousel-item">
-                                        <img class="all-images-icon get-all-images" src="{% static 'icons/all-images.png' %}"
-                                        data-unique_identificator="{{ product.unique_identificator }}">
-                                        <img src="{{ image.image.url }}" class="productImage">
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                        <script>
-                            $('.card[id="{{ product.article_number }}"]').find('.carousel-item').first().addClass('active');
-                        </script>
-                    </div>
-                </div>
-                <!--Product Info-->
-                <div class="card-body">
-                    <a class="card-title" href="{% url 'productDetail' product.article_number %}">{{ product.title }}</a>
-                    <span>{{ product.article_number }}</span>
-                    <p class="card-text">{{ product.description }}<br><p class="card-price">{{ product.price }} PLN</p></p>
-					<div class="card-btns">
-                    <div class="btn-group">
-        				<button type="button" class="btn btn-buy">Купить</button>
-        				<button type="button" class="btn btn-icon-buy"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
-                	</div>
-					<div class="btn-group">
-        				<button type="button" class="btn btn-info" onclick="window.location='{% url 'productDetail' product.article_number %}'">Информация</button>
-        				<button type="button" class="btn btn-icon-info" onclick="window.location='{% url 'productDetail' product.article_number %}'"><i class="fa fa-info" aria-hidden="true"></i></button>
-                	</div>
-				</div>
-            	</div>
-			</div>
-        {% endfor %}
         </div>
 </div>
 
@@ -63,6 +23,19 @@
         tags_list = ['.img-block', '.get-all-images'];
         hide_tags(tags_list);
         hover_product_card();
+
+        var token = $('input[name="csrfmiddlewaretoken"]').val();
+        var unique_identificator = '{{ category.unique_identificator }}';
+        get_sort('from_A_to_Z', unique_identificator, token);
+
+        //*сортировка*//
+        $('body').on('change', '#get_sort', function () {
+            var sort_by = $(this).find('option:selected').val();
+            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            var unique_identificator = '{{ category.unique_identificator }}';
+            get_sort(sort_by, unique_identificator, token);
+
+        });
 
         //ajax загрузка изображений артикула
         $('body').on('click', '.get-all-images', function (){
@@ -101,45 +74,6 @@
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
         });
-
-    //*сортировка*//
-    $('body').on('change', '#get_sort', function () {
-        var sort_by = $(this).find('option:selected').val();
-        var token = $('input[name="csrfmiddlewaretoken"]').val();
-        var unique_identificator = '{{ category.unique_identificator }}';
-        $.ajax({
-            url: '{% url 'getSortQuery' %}',
-            method: 'POST',
-            data:{
-                'csrfmiddlewaretoken':token,
-                'sort_by':sort_by,
-                'unique_identificator':unique_identificator,
-            },
-            success:function (data) {
-                hide_tags(['.card']);
-                for (one_product=0; one_product<data.data.length; one_product++){
-                    $one_product_card = $('#product-cards').append($('#hidden-template').html());
-                    generate_one_product_card(data.data[one_product]);
-                };
-                hide_tags(tags_list);
-                hover_product_card();
-            },
-            error:console.log('error')
-        })
-    });
-
-    //*генерация карточки*//
-    function generate_one_product_card(product_query) {
-        console.log(product_query);
-        $this_card = $('.card').last();
-        $this_card.attr('id', product_query.article_number);
-        $this_card.find('.card-title').text(product_query.title);
-        $this_card.find('.card-text').text(product_query.description);
-        $this_card.find('.card-price').text(product_query.price + ' PLN');
-        $this_card.find('.get-all-images').attr('data-unique_identificator', product_query.unique_identificator);
-        $this_card.find('.btn-info').attr('onclick', 'window.location.href=' + "'/shop/product_detail/product=" + product_query.article_number + "'");
-        $this_card.find('.productImage').attr('src', product_query.image);
-    }
 
     </script>
 
