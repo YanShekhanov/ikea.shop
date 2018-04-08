@@ -21,8 +21,8 @@ class MainInfo(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MainInfo, self).get_context_data(**kwargs)
-        context['Categories'] = Category.objects.exclude(title='Panele słoneczne')
-        context['SubCategories'] = SubCategory.objects.all()
+        context['Categories'] = Category.objects.exclude(title='Panele słoneczne').order_by('created')
+        context['SubCategories'] = SubCategory.objects.all().order_by('created')
         return context
 
 #главная страница
