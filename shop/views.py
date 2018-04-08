@@ -172,6 +172,7 @@ class DownloadOneProductInformation(FormView):
 def get_sort_query(request):
     from django.core import serializers
     sort_by_dict = {
+        'normal':'-created',
         'increase':'price',
         'decline':'-price',
         'from_A_to_Z':'title',
