@@ -5,7 +5,7 @@
     });
 
     function loader_hide(){
-        $('#load').fadeOut(300);
+        $('#load').fadeOut(600);
     };
 
     function loader_show() {
@@ -77,7 +77,7 @@
                 };
                 hide_tags(tags_list); //*скрываем стандартно скрытые блоки
                 hover_product_card(); //*при наведении появляется иконка просмотра изображений
-                $('#product-cards').fadeIn(300); //*делаем видимыми карточки продуктов
+                $('#product-cards').fadeIn(1800); //*делаем видимыми карточки продуктов
                 loader_hide(); //*убераем лоадер
             },
             error:function () {

@@ -24,6 +24,10 @@
         hide_tags(tags_list);
         hover_product_card();
 
+        //*начальный контент без сортировки
+        hide_tags(['#product-cards']); //*скрываем контент с карточками
+        remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
+        loader_show(); //*показываем лоадер
         var token = $('input[name="csrfmiddlewaretoken"]').val();
         var unique_identificator = '{{ category.unique_identificator }}';
         get_sort('normal', unique_identificator, token);
