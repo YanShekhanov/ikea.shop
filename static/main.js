@@ -99,5 +99,24 @@
         }
 
 
+    function check_availability(article_number){
+            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            $.ajax({
+                url:'{% url "checkAvailability" %}',
+                method:'POST',
+                data:{
+                    'csrfmiddlewaretoken':token,
+                    'article_number':article_number,
+                },
+                success: function (data) {
+                    console.log(data.availability);
+                },
+                error: function () {
+                    console.log('error')
+                },
+            })
+    }
+
+
 
 

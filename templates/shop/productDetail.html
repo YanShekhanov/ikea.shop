@@ -5,7 +5,8 @@
 
     <h3>{{ product.title }}<br>{{ product.article_number }}<br>{{ product.description }}</h3>
     <span>Цена: <b>{{ product.price }} PLN</b></span><br>
-    <span>Доступность в магазине: <b>{{ product.available }} шт.</b></span>
+
+    <span id="availability">Наличие: <b><button id="check_availabiliti_button" onclick="check_availability({{ product.article_number }})">Узнать наличие в Польше</button></b></span>
 
     {% for image in productImages %}
         <p><img src="{{ image.image.url }}" alt="{{ image.title }}" style="margin: 5px; border: 2px solid black; display: inline-block;"
@@ -101,4 +102,27 @@
 
 
 
+{% endblock %}
+
+{% block js %}
+    <script>
+        function check_availability(article_number){
+            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            $.ajax({
+                url:'{% url "checkAvailability" %}',
+                method:'POST',
+                data:{
+                    'csrfmiddlewaretoken':token,
+                    'article_number':article_number
+                },
+                success: function (data) {
+                    $('#check_availabiliti_button').hide();
+                    $('#availability').find('b').text(data.availability);
+                },
+                error: function () {
+                    $('#availability').text('Возникла ошибка, попробуйте позже');
+                }
+            });
+        }
+    </script>
 {% endblock %}

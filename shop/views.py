@@ -227,6 +227,16 @@ def get_all_product_images(request):
     json_response = {'images':all_images_list}
     return JsonResponse(data=json_response)
 
+#ajax проверка наличия
+def check_availability(request):
+    if request.method == 'POST' and request.is_ajax():
+        url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (request.POST['article_number'])
+        import requests
+        from bs4 import BeautifulSoup
+        request = requests.get(url).text
+        product_soup = BeautifulSoup(request, 'xml')
+        availability = product_soup.find('localStore', buCode='311').find('availableStock').text
+        return JsonResponse({'availability':availability})
 
 
 
