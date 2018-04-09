@@ -109,6 +109,9 @@
                     'article_number':article_number,
                 },
                 success: function (data) {
+                    if (data.availability){
+
+                    }
                     console.log(data.availability);
                 },
                 error: function () {

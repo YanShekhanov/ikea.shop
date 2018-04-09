@@ -144,11 +144,10 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #изображения к дополняющим артикулам
         for product in complementary_images_list:
-            image = ProductImage.objects.filter(product=product, size=250).first()
+            image = ProductImage.objects.get(product=product, is_icon=True)
             if image not in complementary_images:
                 complementary_images.append(image)
         context['complementaryImages'] = complementary_images
-        print(context['complementaryImages'])
         return context
 
 #парсинг артикула по номеру артикула
@@ -229,14 +228,22 @@ def get_all_product_images(request):
 
 #ajax проверка наличия
 def check_availability(request):
+    response_dict = {}
     if request.method == 'POST' and request.is_ajax():
         url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (request.POST['article_number'])
         import requests
         from bs4 import BeautifulSoup
         request = requests.get(url).text
         product_soup = BeautifulSoup(request, 'xml')
-        availability = product_soup.find('localStore', buCode='311').find('availableStock').text
-        return JsonResponse({'availability':availability})
+        try:
+            availability = product_soup.find('localStore', buCode='311').find('availableStock').text
+            if int(availability) == 0:
+                response_dict['successMessage'] = 'К сожалению этот продукт не доступен'
+            else:
+                response_dict['availability'] = availability
+        except AttributeError:
+            response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
+        return JsonResponse(response_dict)
 
 
 
