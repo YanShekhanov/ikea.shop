@@ -397,7 +397,7 @@ def parse_one_product_information_(product_query, browser_driver):
     #saving product
     product_to_save.key_feautures = key_feautures
     product_to_save.good_to_know = good_to_know
-    product_to_save.care_instructions = care_instructions
+    product_to_save.care_instructions = care_instruction_to_save
     product_to_save.materials_info = materials_to_save
     product_to_save.complementary_products = complementary_product_to_save
     product_to_save.color_options = color_options
