@@ -88,7 +88,8 @@ def test(request):
     articles = Product.objects.filter(article_number='20309258')
     for article in articles:
         article.delete()
-   ''' url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
+
+    '''url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
