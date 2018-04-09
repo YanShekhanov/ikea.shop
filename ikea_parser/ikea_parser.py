@@ -315,12 +315,13 @@ def parse_one_product_information_(product_query, browser_driver):
                         one_option_button.click()
                         try:
                             one_option_article_number = driver.current_url.split('#')[1][1:]
-                            options_articles_list.append(one_option_article_number)
+                            if one_option_article_number not in options_articles_list:
+                                options_articles_list.append(one_option_article_number)
                         except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
                             new_product_soup = driver.page_source
-                            one_option_article_number = ''.join(
-                                new_product_soup.find('div', id='itemNumber').text.split('.'))
-                            options_articles_list.append(one_option_article_number)
+                            one_option_article_number = ''.join(new_product_soup.find('div', id='itemNumber').text.split('.'))
+                            if one_option_article_number not in options_articles_list:
+                                options_articles_list.append(one_option_article_number)
                     except WebDriverException:
                         pass
                 if len(options_articles_list) != 0:
@@ -350,7 +351,8 @@ def parse_one_product_information_(product_query, browser_driver):
     if parse_models:
         for model in models:
             models_article = model.get('data-url').split('/')[-2]
-            models_articles_list.append(models_article)
+            if models_article not in models_articles_list:
+                models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
             models_to_save = '#'.join(models_articles_list)
             print('Количество моделей продукта %i' % len(models_articles_list))
@@ -365,7 +367,8 @@ def parse_one_product_information_(product_query, browser_driver):
         complementary_products = complementary_products_block.find_all('li')
         for complementary_product in complementary_products:
             complementary_product_article = complementary_product.get('id').split('_')[1]
-            complementary_products_list.append(complementary_product_article)
+            if complementary_product_article not in complementary_products_list:
+                complementary_products_list.append(complementary_product_article)
         print('Количество дополняющих продуктов %i' % len(complementary_products_list))
         if len(complementary_products_list) != 0:
             complementary_product_to_save = '#'.join(complementary_products_list)
