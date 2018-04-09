@@ -240,18 +240,26 @@ def parse_one_product_information_(product_query, browser_driver):
 
     # -----------------------------------------------------#
     # technical information - основная информация
+    key_feautures = None
     try:
         key_feautures = product_soup.find('div', id='custBenefit').text
     except AttributeError:
         key_feautures = None
 
+    good_to_know = None
     try:
         good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
     except AttributeError:
         good_to_know = None
 
+    care_instruction_to_save = None
     try:
-        care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+        care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').contents
+        care_instructions_list = []
+        for instruction in care_instructions:
+            if isinstance(instruction, str):
+                care_instructions_list.append(instruction)
+        care_instruction_to_save = '.'.join(care_instructions_list)
     except AttributeError:
         care_instructions = None
 
@@ -364,15 +372,21 @@ def parse_one_product_information_(product_query, browser_driver):
             parseComplementaryProducts(product_query, *complementary_products_list)
     except AttributeError:
         complementary_product_to_save = None
+
     # -----------------------------------------------------#
     # environment materials - материалы
-    materials = None
+    materials_to_save = None
     try:
         environment_button = driver.find_element_by_id('envAndMatTab')
         environment_button.click()
         html = driver.page_source
         product_soup = BeautifulSoup(html, 'lxml')
-        materials = product_soup.find('div', id='custMaterials').text.strip()
+        materials = product_soup.find('div', id='custMaterials').contents
+        materials_list = []
+        for material in materials:
+            if isinstance(material, str):
+                materials_list.append(material)
+        materials_to_save = ' '.join(materials_list)
     except NoSuchElementException:
         pass
 
@@ -381,7 +395,7 @@ def parse_one_product_information_(product_query, browser_driver):
     product_to_save.key_feautures = key_feautures
     product_to_save.good_to_know = good_to_know
     product_to_save.care_instructions = care_instructions
-    product_to_save.materials_info = materials
+    product_to_save.materials_info = materials_to_save
     product_to_save.complementary_products = complementary_product_to_save
     product_to_save.color_options = color_options
     product_to_save.size_options = size_options
@@ -427,6 +441,7 @@ def parse_one_product_information_(product_query, browser_driver):
                             ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
+        print('Ошибка загрузки изображения 500px')
         pass
 
     # -----------------------------------------------------#
@@ -466,6 +481,90 @@ def parse_one_product_information_(product_query, browser_driver):
                         ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                     # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
+        print('Ошибка загрузки изображения 250px')
+        pass
+
+    # -----------------------------------------------------#
+    # images 2000*2000px
+    xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + product_query.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
+    xml_request = requests.get(xml_product_url).text
+    xml_soup = BeautifulSoup(xml_request, 'xml')
+    try:
+        images_2000 = xml_soup.find('zoom').find_all('image')
+        prefix_for_2000px = '2000px'
+        added_images_prefixes = [] #изображения в xml могут повторятся и таким образом отслеживаем какие уже добавлены
+        for image in images_2000:
+            start_download = True
+            ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+            if ikea_image_prefix not in added_images_prefixes:
+                # проверка на наличие изображения в базе данных
+                existed_images = ProductImage.objects.all()
+                for existed_image in existed_images:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix \
+                            and existed_image.title.split('_')[0] == product_to_save.article_number \
+                            and existed_image.title.split('_')[2] == ikea_image_prefix \
+                            and product_to_save == existed_image.product:
+                        existed_image.product.add(product_to_save)
+                        start_download = False
+                        print(
+                            'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                existed_image.title, product_to_save.article_number))
+
+                if start_download:
+                    image_request = requests.get(image.text).content
+                    image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_2000px + '.jpg'
+                    image_url_to_save = MEDIA_ROOT + 'products/2000px/' + image_title
+                    with open(image_url_to_save, 'wb') as image_file:
+                        image_file.write(image_request)
+                        image_file.close()
+                        ProductImage.objects.create(image=image_title, title=image_title,
+                                                    size=2000).product.add(product_to_save)
+                        added_images_prefixes.append(
+                            ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                        # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
+    except AttributeError:
+        print('Ошибка загрузки изображения 2000px')
+        pass
+
+    # -----------------------------------------------------#
+    # icon
+    xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + product_query.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
+    xml_request = requests.get(xml_product_url).text
+    xml_soup = BeautifulSoup(xml_request, 'xml')
+    try:
+        images_icon = xml_soup.find('small').find_all('image')
+        prefix_for_icon = 'icon'
+        added_images_prefixes = []
+        for image in images_icon:
+            start_download = True
+            ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+            if ikea_image_prefix not in added_images_prefixes:
+                # проверка на наличие изображения в базе данных
+                existed_images = ProductImage.objects.all()
+                for existed_image in existed_images:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix \
+                            and existed_image.title.split('_')[0] == product_to_save.article_number \
+                            and product_to_save == existed_image.product:
+                        existed_image.product.add(product_to_save)
+                        start_download = False
+                        print(
+                            'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                existed_image.title, product_to_save.article_number))
+
+                if start_download:
+                    image_request = requests.get(image.text).content
+                    image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_icon + '.jpg'
+                    image_url_to_save = MEDIA_ROOT + 'products/icons/' + image_title
+                    with open(image_url_to_save, 'wb') as image_file:
+                        image_file.write(image_request)
+                        image_file.close()
+                        ProductImage.objects.create(image=image_title, title=image_title,
+                                                    size=40, is_icon=True).product.add(product_to_save)
+                        added_images_prefixes.append(
+                            ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                        # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
+    except AttributeError:
+        print('Ошибка загрузки иконки')
         pass
 
     time_end = time.time()
@@ -498,7 +597,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     # 1
     start_parse = time.time()
     created_product = None
-    create_product = True
     available = 0
 
     #удаляем из списка эллементы которые уже существуют в БД
@@ -506,20 +604,12 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     for complementary_product in complementary_products_list:
         if complementary_product != '':
             try:
-                Product.objects.get(article_number=complementary_product, is_parsed=True)
+                Product.objects.get(article_number=complementary_product)
             except Product.DoesNotExist:
-                try:
-                    Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=False)
-                except Product.DoesNotExist:
-                    try:
-                        Product.objects.get(article_number=complementary_product, is_parsed=False, parse_later=True)
-                    except Product.DoesNotExist:
-                        complementary_products_articles_not_existed.append(complementary_product)
-        else:
-            pass
+                complementary_products_articles_not_existed.append(complementary_product)
 
-    print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
     if len(complementary_products_articles_not_existed) != 0:
+        print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
 
         from selenium.webdriver.chrome.options import Options
         from selenium import webdriver
@@ -534,8 +624,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             product_article = complementary_product
 
             # available in Lublin - наличие в Люблине
-            product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
-                product_article)
+            product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (product_article)
             product_request = requests.get(product_available_url).text
             product_page = BeautifulSoup(product_request, 'xml')
             try:
@@ -737,7 +826,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 added_images_prefixes = []
                 for image in images_500:
                     start_download = True
-                    ikea_image_prefix = image.text.split('_')[2] # префикс номера изображения в икеа
+                    ikea_image_prefix = image.text.split('_')[2]  # префикс номера изображения в икеа
                     if ikea_image_prefix not in added_images_prefixes:
                         # проверка на наличие изображения в базе данных
                         existed_images = ProductImage.objects.all()
@@ -749,8 +838,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                 start_download = False
                                 print(
                                     'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                    existed_image.title, created_product.article_number))
-                        # ---------------------------------------------
+                                        existed_image.title, created_product.article_number))
+
                         if start_download:
                             image_request = requests.get(image.text).content
                             image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
@@ -758,8 +847,12 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image='products/500px/' + image_title, title=image_title).product.add(created_product)
-            except:
+                                ProductImage.objects.create(image='products/500px/' + image_title, title=image_title,
+                                                            size=500).product.add(created_product)
+                                added_images_prefixes.append(
+                                    ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                                # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
+            except AttributeError:
                 print('Ошибка загрузки изображения 500px')
                 pass
 
@@ -802,6 +895,89 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
                 print('Ошибка загрузки изображения 250px')
+                pass
+
+            # -----------------------------------------------------#
+            # images 2000*2000px
+            xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + created_product.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
+            xml_request = requests.get(xml_product_url).text
+            xml_soup = BeautifulSoup(xml_request, 'xml')
+            try:
+                images_2000 = xml_soup.find('zoom').find_all('image')
+                prefix_for_2000px = '2000px'
+                added_images_prefixes = []  # изображения в xml могут повторятся и таким образом отслеживаем какие уже добавлены
+                for image in images_2000:
+                    start_download = True
+                    ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+                    if ikea_image_prefix not in added_images_prefixes:
+                        # проверка на наличие изображения в базе данных
+                        existed_images = ProductImage.objects.all()
+                        for existed_image in existed_images:
+                            if existed_image.title.split('_')[1] == ikea_image_prefix \
+                                    and existed_image.title.split('_')[0] == created_product.article_number \
+                                    and existed_image.title.split('_')[2] == ikea_image_prefix \
+                                    and created_product == existed_image.product:
+                                existed_image.product.add(created_product)
+                                start_download = False
+                                print(
+                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                        existed_image.title, created_product.article_number))
+
+                        if start_download:
+                            image_request = requests.get(image.text).content
+                            image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_2000px + '.jpg'
+                            image_url_to_save = MEDIA_ROOT + 'products/2000px/' + image_title
+                            with open(image_url_to_save, 'wb') as image_file:
+                                image_file.write(image_request)
+                                image_file.close()
+                                ProductImage.objects.create(image=image_title, title=image_title,
+                                                            size=2000).product.add(created_product)
+                                added_images_prefixes.append(
+                                    ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                                # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
+            except AttributeError:
+                print('Ошибка загрузки изображения 2000px')
+                pass
+
+            # -----------------------------------------------------#
+            # icon
+            xml_product_url = 'http://www.ikea.com/pl/pl/catalog/products/' + created_product.article_number + '?type=xml&dataset=normal%2Cprices%2Callimages%2CparentCategories%2Cattributes'
+            xml_request = requests.get(xml_product_url).text
+            xml_soup = BeautifulSoup(xml_request, 'xml')
+            try:
+                images_icon = xml_soup.find('small').find_all('image')
+                prefix_for_icon = 'icon'
+                added_images_prefixes = []
+                for image in images_icon:
+                    start_download = True
+                    ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+                    if ikea_image_prefix not in added_images_prefixes:
+                        # проверка на наличие изображения в базе данных
+                        existed_images = ProductImage.objects.all()
+                        for existed_image in existed_images:
+                            if existed_image.title.split('_')[1] == ikea_image_prefix \
+                                    and existed_image.title.split('_')[0] == created_product.article_number \
+                                    and created_product == existed_image.product:
+                                existed_image.product.add(created_product)
+                                start_download = False
+                                print(
+                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
+                                        existed_image.title, created_product.article_number))
+
+                        if start_download:
+                            image_request = requests.get(image.text).content
+                            image_title = created_product.article_number + '_' + ikea_image_prefix + '_' + prefix_for_icon + '.jpg'
+                            image_url_to_save = MEDIA_ROOT + 'products/icons/' + image_title
+                            with open(image_url_to_save, 'wb') as image_file:
+                                image_file.write(image_request)
+                                image_file.close()
+                                ProductImage.objects.create(image=image_title, title=image_title,
+                                                            size=40, is_icon=True).product.add(created_product)
+                                added_images_prefixes.append(
+                                    ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                                # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
+            except AttributeError:
+                print('Ошибка загрузки иконки')
                 pass
 
             #закрываем старую вкладку и открываем новую

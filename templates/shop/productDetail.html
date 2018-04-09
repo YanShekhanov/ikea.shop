@@ -16,16 +16,17 @@
     {% if colorOptions %}
         <p>
             <h3>Цвета</h3>
-            {% for color in colorOptions %}
-                {% for image in complementaryImages %}
-                    {% for product in image.product.all %}
-                        {% if color == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
-                        {% endif %}
+            <select>
+                {% for color in colorOptions %}
+                    {% for image in complementaryImages %}
+                        {% for product in image.product.all %}
+                            {% if color == product %}
+                                <option><img src="{{ image.image.url }}"><a href="{% url 'productDetail' color %}">{{ color }}</a></option>
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 {% endfor %}
-                <a href="{% url 'productDetail' color %}">{{ color }}</a></p>
-            {% endfor %}
+            </select>
         </p>
     {% endif %}
 
@@ -36,7 +37,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if size == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
+                            <p><img src="{{ image.image.url }}">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -51,7 +52,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if model == product %}
-                            <p><img src="{{ image.image.url }}" height="50px" width="50px">
+                            <p><img src="{{ image.image.url }}">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -116,8 +117,16 @@
                     'article_number':article_number
                 },
                 success: function (data) {
-                    $('#check_availabiliti_button').hide();
-                    $('#availability').find('b').text(data.availability);
+                    if (data.availability){
+                        $('#check_availabiliti_button').hide();
+                        $('#availability').find('b').text(data.availability);
+                    } else if (data.successMessage){
+                        $('#check_availabiliti_button').hide();
+                        $('#availability').find('b').text(data.successMessage);
+                    } else if (data.errorMessage){
+                        $('#check_availabiliti_button').hide();
+                        $('#availability').find('b').text(data.errorMessage);
+                    }
                 },
                 error: function () {
                     $('#availability').text('Возникла ошибка, попробуйте позже');

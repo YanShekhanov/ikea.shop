@@ -34,6 +34,8 @@ def parse_products_articles(request):
 def parse_products_information(request):
     pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '250px/').mkdir(parents=True, exist_ok=True)
     pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '500px/').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '2000px/').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + 'icons/').mkdir(parents=True, exist_ok=True)
     print('Общее количество продуктов в БД = %i' % len(Product.objects.all()))
     print('Количество готовых продуктов = %i' % len(Product.objects.filter(is_parsed=True)))
     print('Количество продуктов к парсингу = %i' % len(Product.objects.exclude(is_parsed=True)))
@@ -83,13 +85,7 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    '''delete_list = ['00358612', '60291510', '60358614', '90306789']
-    for prod in delete_list:
-        Product.objects.get(article_number=prod).delete()'''
-    product = Product.objects.get(article_number='60291510')
-    product.is_parsed = False
-    product.save()
-    '''url = 'https://www.ikea.com/pl/pl/catalog/products/10365928/?query=10365928'
+    url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -98,49 +94,42 @@ def test(request):
     browser = webdriver.Chrome(chrome_options=options)
     browser.get(url)
     html = browser.page_source
-    bs = BeautifulSoup(html, 'lxml')
-    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
-    for block in blocks:
-        print(re.sub(':', '', bs.find('div', id=block).find('span', class_='categoryNameLbl').text.strip()))
-    browser.close()'''
+    product_soup = BeautifulSoup(html, 'lxml')
+
+    key_feautures = None
+    try:
+        key_feautures = product_soup.find('div', id='custBenefit').text
+    except AttributeError:
+        key_feautures = None
+
+    try:
+        care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+    except AttributeError:
+        care_instructions = None
+
+    # -----------------------------------------------------#
+    # environment materials - материалы
+    materials = None
+    try:
+        environment_button = browser.find_element_by_id('envAndMatTab')
+        environment_button.click()
+        html = browser.page_source
+        product_soup = BeautifulSoup(html, 'lxml')
+        materials = product_soup.find('div', id='custMaterials').contents
+        materials_list = []
+        for material in materials:
+            if isinstance(material, str):
+                materials_list.append(material)
+    except NoSuchElementException:
+        pass
+
+    good_to_know = None
+    try:
+        good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+    except AttributeError:
+        good_to_know = None
+
+    print(good_to_know)
     return redirect(reverse('home'))
-
-
-
-
-    '''url = 'https://www.ikea.com/pl/pl/catalog/products/90345564/'
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("window-size=1024,768")
-    options.add_argument("--no-sandbox")
-
-
-    driver = webdriver.Chrome(chrome_options=options)
-    driver.get(url)
-    html = driver.page_source
-    bs = BeautifulSoup(html, 'lxml')
-    print(bs.find('div', id='itemNumber').text)'''
-
-
-    '''models = bs.find('div', id='selectMoremodelsWrapper').find_all('li')
-    for model in models:
-        print(model.get('data-url').split('/')[-2])'''
-
-    return redirect(reverse('home'))
-
-
-
-
-    '''categories = Category.objects.all()
-    id='id'
-    for category in categories:
-        print(category.id)
-        fields = category._meta.fields
-        for field in fields:
-            print(category._meta.get_field(field.name))
-    subcategories = SubCategory.objects.all()
-    for subcategory in subcategories:
-        translate(subcategory)
-    return redirect(reverse('home'))'''
 
 

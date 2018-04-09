@@ -110,6 +110,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='products/', default='', verbose_name='Изображение')
     title = models.CharField(max_length=16, blank=False, null=False, default='', verbose_name='Название')
     size = models.SmallIntegerField(blank=False, null=False, default=0, verbose_name='Размер, px')
+    is_icon = models.BooleanField(blank=True, default=False, verbose_name='Иконка')
 
 @receiver(post_delete, sender=ProductImage)
 def delete_images(sender, instance, **kwargs):
