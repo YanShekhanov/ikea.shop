@@ -16,17 +16,15 @@
     {% if colorOptions %}
         <p>
             <h3>Цвета</h3>
-            <select>
                 {% for color in colorOptions %}
                     {% for image in complementaryImages %}
                         {% for product in image.product.all %}
                             {% if color == product %}
-                                <option><img src="{{ image.image.url }}"><a href="{% url 'productDetail' color %}">{{ color }}</a></option>
+                                <img src="{{ image.image.url }}"><a href="{% url 'productDetail' color %}">{{ color }}</a>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
-            </select>
         </p>
     {% endif %}
 
