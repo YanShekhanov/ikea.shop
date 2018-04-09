@@ -144,7 +144,10 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #изображения к дополняющим артикулам
         for product in complementary_images_list:
-            image = ProductImage.objects.get(product=product, is_icon=True)
+            try:
+                image = ProductImage.objects.get(product=product, is_icon=True)
+            except Product.DoesNotExist:
+                image = ProductImage.objects.get(product=product, size=250)
             if image not in complementary_images:
                 complementary_images.append(image)
         context['complementaryImages'] = complementary_images
