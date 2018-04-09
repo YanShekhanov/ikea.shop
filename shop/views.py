@@ -146,7 +146,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         for product in complementary_images_list:
             try:
                 image = ProductImage.objects.get(product=product, is_icon=True)
-            except Product.DoesNotExist:
+            except ProductImage.DoesNotExist:
                 image = ProductImage.objects.get(product=product, size=250)
             if image not in complementary_images:
                 complementary_images.append(image)
