@@ -85,7 +85,10 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
+    articles = Product.objects.filter(article_number='20309258')
+    for article in articles:
+        article.delete()
+   ''' url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -129,7 +132,7 @@ def test(request):
     except AttributeError:
         good_to_know = None
 
-    print(good_to_know)
+    print(good_to_know)'''
     return redirect(reverse('home'))
 
 
