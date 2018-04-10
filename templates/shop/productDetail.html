@@ -20,7 +20,7 @@
                     {% for image in complementaryImages %}
                         {% for product in image.product.all %}
                             {% if color == product %}
-                                <img src="{{ image.image.url }}"><a href="{% url 'productDetail' color %}">{{ color }}</a>
+                                <img src="{{ image.image.url }}" class="icon-image"><a href="{% url 'productDetail' color %}">{{ color }}</a>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
@@ -35,7 +35,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if size == product %}
-                            <p><img src="{{ image.image.url }}">
+                            <p><img src="{{ image.image.url }}" class="icon-image">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -50,7 +50,7 @@
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if model == product %}
-                            <p><img src="{{ image.image.url }}">
+                            <p><img src="{{ image.image.url }}" class="icon-image">
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
