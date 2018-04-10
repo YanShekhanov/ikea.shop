@@ -431,6 +431,20 @@ margin-top: 0.2vw;
 /*!Producrs Page!*/
 
 /*Kategories And Sort*/
+#get_sort{
+	float: right;
+    cursor: pointer;
+    height: 2.1vw;
+    padding: 0.3vw;
+    padding-top: 0.45vw;
+    margin: 0;
+    margin-top: 0.5vw;
+    border: 0.12vw solid #e3e3e3;
+    border-radius: 0;
+    font: normal 1.1vw/normal Arial, Helvetica, sans-serif;
+    color: #515050;
+    background-color: white;
+}
 .kat-sort{
     width: 100%;
     height: 2.6vw;
@@ -439,7 +453,7 @@ margin-top: 0.2vw;
     padding-right: 0.35vw;
 }
 #kat{
-    padding-top: 1.4vw;
+    padding-top: 1.2vw;
     font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
     margin: 0;
     color: #515050;
@@ -450,52 +464,6 @@ margin-top: 0.2vw;
     color: #515050;
 }
 #kat a:hover{
-    color: #ff6c00;
-}
-#sort p{
-    display: inline-block;
-    float: right;
-    cursor: text;
-    height: 2.1vw;
-    padding: 0.3vw;
-    margin: 0;
-    margin-top: 0.5vw;
-    border: 0.15vw solid #e3e3e3;
-    border-right: 0;
-    font: normal 1.1vw/normal Arial, Helvetica, sans-serif;
-    color: #515050;
-    background-color: white;
-}
-#sort button{
-    display: inline-block;
-    float: right;
-    cursor: pointer;
-    height: 2.1vw;
-    padding: 0.3vw;
-    padding-top: 0.45vw;
-    margin: 0;
-    margin-top: 0.5vw;
-    border: 0.15vw solid #e3e3e3;
-    border-radius: 0;
-    font: normal 1.1vw/normal Arial, Helvetica, sans-serif;
-    color: #515050;
-    background-color: #f5f5f5;
-}
-#sort button:hover{
-    color: #ff6c00;
-}
-#sort .dropdown-menu{
-    margin: 0;
-    cursor: pointer;
-    font: normal 1.1vw/normal Arial, Helvetica, sans-serif;
-    border: 0.15vw solid #e3e3e3;
-    border-radius: 0;
-    padding: 0;
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
-    
-}
-#sort a:hover{
     color: #ff6c00;
 }
 
