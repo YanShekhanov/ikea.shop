@@ -73,7 +73,7 @@
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
-                    <li data-category_id="{{ category.id }}"><btn onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</btn></li>
+                    <li data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
                 {% endif %}
             {% endfor %}
         {% endfor %}
