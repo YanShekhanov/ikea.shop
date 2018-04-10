@@ -261,11 +261,11 @@ def parse_one_product_information_(product_query, browser_driver):
                 care_instructions_list.append(instruction)
         care_instruction_to_save = '.'.join(care_instructions_list)
     except AttributeError:
-        care_instructions = None
+        pass
 
     # -----------------------------------------------------#
     # габариты
-    dimension_to_save = ''
+    dimension_to_save = None
     try:
         dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div', id='metric').contents
         dimensions_list = []
@@ -397,7 +397,7 @@ def parse_one_product_information_(product_query, browser_driver):
     #saving product
     product_to_save.key_feautures = key_feautures
     product_to_save.good_to_know = good_to_know
-    product_to_save.care_instructions = care_instructions
+    product_to_save.care_instructions = care_instruction_to_save
     product_to_save.materials_info = materials_to_save
     product_to_save.complementary_products = complementary_product_to_save
     product_to_save.color_options = color_options
@@ -665,24 +665,33 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             # -----------------------------------------------------#
             # technical information - основная информация
+            key_feautures = None
             try:
                 key_feautures = product_soup.find('div', id='custBenefit').text
             except AttributeError:
                 key_feautures = None
 
+            good_to_know = None
             try:
                 good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
             except AttributeError:
                 good_to_know = None
 
+            care_instruction_to_save = None
             try:
-                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
+                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div',
+                                                                                             id='careInst').contents
+                care_instructions_list = []
+                for instruction in care_instructions:
+                    if isinstance(instruction, str):
+                        care_instructions_list.append(instruction)
+                care_instruction_to_save = '.'.join(care_instructions_list)
             except AttributeError:
-                care_instructions = None
+                pass
 
             # -----------------------------------------------------#
             # габариты
-            dimension_to_save = ''
+            dimension_to_save = None
             try:
                 dimensions_parsed = product_soup.find('div', id='productDimensionsContainer').find('div', id='metric').contents
                 dimensions_list = []
@@ -785,13 +794,18 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             # -----------------------------------------------------#
             # environment materials - материалы
-            materials = None
+            materials_to_save = None
             try:
                 environment_button = driver.find_element_by_id('envAndMatTab')
                 environment_button.click()
                 html = driver.page_source
                 product_soup = BeautifulSoup(html, 'lxml')
-                materials = product_soup.find('div', id='custMaterials').text.strip()
+                materials = product_soup.find('div', id='custMaterials').contents
+                materials_list = []
+                for material in materials:
+                    if isinstance(material, str):
+                        materials_list.append(material)
+                materials_to_save = ' '.join(materials_list)
             except NoSuchElementException:
                 pass
 
@@ -805,9 +819,9 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                                      available=available,
                                                      key_feautures=key_feautures,
                                                      good_to_know=good_to_know,
-                                                     care_instructions=care_instructions,
+                                                     care_instructions=care_instruction_to_save,
                                                      dimensions=dimension_to_save,
-                                                     materials_info=materials,
+                                                     materials_info=materials_to_save,
                                                      complementary_products=complementary_products_to_save,
                                                      color=product_color,
                                                      color_options=color_options,

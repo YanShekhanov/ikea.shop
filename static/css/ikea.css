@@ -1688,3 +1688,8 @@ body{
     top: 45%;
     left: 45%;
 }
+
+.icon-image{
+    height: 40px;
+    width: 40px;
+}
