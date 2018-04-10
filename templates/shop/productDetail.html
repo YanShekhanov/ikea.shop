@@ -83,18 +83,18 @@
         <span>{{ product.dimensions }}</span>
     </p>
 
-    {% if complementaryProducts is not None %}
+    {% if complementaryProducts%}
     <p>
         <h3>Дополняющие продукты</h3>
         {% for complementary_product in complementaryProducts %}
-            <p>
-                <a href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.article_number }}</a>
-                {% for complementary_image in complementaryProductsImages %}
-                    {% if complementary_image.product == complementary_product %}
-                        <img src="{{ complementary_image.image.url }}" alt="{{ complementary_product.article_number }}" height="50px" width="50px">
+            {% for image in complementaryImages %}
+                {% for product in image.pruduct.all %}
+                    {% if complementary_product == product %}
+                        <img src="{{ image.image.url }}" alt="{{ complementary_product.article_number }}" class="icon-image">
                     {% endif %}
                 {% endfor %}
-            </p>
+            {% endfor %}
+            <a href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.article_number }}</a>
         {% endfor %}
     </p>
     {% endif %}
