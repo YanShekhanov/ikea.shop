@@ -1,3 +1,4 @@
+from .settings import *
 
 DATABASES = {
     'default': {
