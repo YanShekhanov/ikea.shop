@@ -9,4 +9,4 @@ ikea_parser/parsed_data
 2000px/
 icons/
 */migrations/*
-settings.py 
+app/settings.py 

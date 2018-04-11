@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yasezp)*11n!g%suhihp_q8o5-k#izyexbp$0bz!^^1q=+=wfw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['167.99.193.117']
 
 
 # Application definition
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'ikea_db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shop',
+        'USER': 'admin-shop',
+        'PASSWORD': 'admin-shop.ikea.shop.2018',
+        'HOST': 'localhost',
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
