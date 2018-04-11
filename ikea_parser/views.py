@@ -85,11 +85,8 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    articles = Product.objects.filter(article_number='20309258')
-    for article in articles:
-        article.delete()
-
-    '''url = 'https://www.ikea.com/pl/pl/catalog/products/S79248041/?query=S79248041'
+    url = 'https://www.ikea.com/pl/pl/catalog/products/10192824/'
+    #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -100,40 +97,30 @@ def test(request):
     html = browser.page_source
     product_soup = BeautifulSoup(html, 'lxml')
 
-    key_feautures = None
-    try:
-        key_feautures = product_soup.find('div', id='custBenefit').text
-    except AttributeError:
-        key_feautures = None
-
-    try:
-        care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').text
-    except AttributeError:
-        care_instructions = None
-
     # -----------------------------------------------------#
-    # environment materials - материалы
-    materials = None
-    try:
-        environment_button = browser.find_element_by_id('envAndMatTab')
-        environment_button.click()
-        html = browser.page_source
-        product_soup = BeautifulSoup(html, 'lxml')
-        materials = product_soup.find('div', id='custMaterials').contents
-        materials_list = []
-        for material in materials:
-            if isinstance(material, str):
-                materials_list.append(material)
-    except NoSuchElementException:
-        pass
+    # more models - модели
+    parse_models = True
+    models_articles_list = []
+    #models = None
+    models_ = None
+    models_to_save = None
 
-    good_to_know = None
     try:
-        good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
-    except AttributeError:
-        good_to_know = None
+        models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+        print('ЕСТЬ МОДЕЛИ')
+    except:
+        parse_models = False
+        print('НЕТУ МОДЕЛЕЙ')
 
-    print(good_to_know)'''
+    if parse_models:
+        for model in models_:
+            models_article = model.get('data-url').split('/')[-2]
+            if models_article not in models_articles_list:
+                models_articles_list.append(models_article)
+        if len(models_articles_list) != 0:
+            models_to_save = '#'.join(models_articles_list)
+            print('Количество моделей продукта %i' % len(models_articles_list))
+
     return redirect(reverse('home'))
 
 

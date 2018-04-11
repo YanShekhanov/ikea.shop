@@ -110,6 +110,10 @@ body{
 }
 
 /*Navigation Menu*/
+.sticky-menu{
+	position: fixed;
+	top: 0;
+}
 .navbar-light{
     background-color: #f5f5f5;
     min-height: 3.7vw;
