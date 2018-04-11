@@ -339,17 +339,17 @@ def parse_one_product_information_(product_query, browser_driver):
     # more models - модели
     parse_models = True
     models_articles_list = []
-    models = None
+    models_ = None
     models_to_save = None
     try:
-        models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+        models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
         print('ЕСТЬ МОДЕЛИ')
     except:
         parse_models = False
         print('НЕТУ МОДЕЛЕЙ')
 
     if parse_models:
-        for model in models:
+        for model in models_:
             models_article = model.get('data-url').split('/')[-2]
             if models_article not in models_articles_list:
                 models_articles_list.append(models_article)
@@ -679,8 +679,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
 
             care_instruction_to_save = None
             try:
-                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div',
-                                                                                             id='careInst').contents
+                care_instructions = product_soup.find('div', id='careInstructionsPart').find('div', id='careInst').contents
                 care_instructions_list = []
                 for instruction in care_instructions:
                     if isinstance(instruction, str):
@@ -772,21 +771,22 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             except AttributeError:
                 complementary_products_to_save = None
                 pass
+
             # -----------------------------------------------------#
             # more models - модели
             parse_models = True
             models_articles_list = []
-            models = None
+            models_ = None
             models_to_save = ''
             try:
-                models = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+                models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
                 print('ЕСТЬ МОДЕЛИ')
             except:
                 parse_models = False
                 print('НЕТУ МОДЕЛЕЙ')
 
             if parse_models:
-                for model in models:
+                for model in models_:
                     models_article = model.get('data-url').split('/')[-2]
                     models_articles_list.append(models_article)
                 if len(models_articles_list) != 0:

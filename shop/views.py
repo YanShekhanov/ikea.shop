@@ -249,6 +249,21 @@ def check_availability(request):
             response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
         return JsonResponse(response_dict)
 
+#translate query
+def translate_query(request):
+    product = Product.objects.all().first()
+    product_fields = product._meta.get_fields()
+    for field in product_fields:
+        if field.many_to_many:
+            pass
+        try:
+            attr = getattr(product, field.name)
+            print(field.name)
+            print(attr)
+        except AttributeError:
+            pass
+    return redirect(reverse('home'))
+
 
 
 
