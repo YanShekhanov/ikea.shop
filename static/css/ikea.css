@@ -1281,16 +1281,47 @@ margin-top: 0.2vw;
 
 /*Big Images*/
 .img-block{
-	display: none;
+	position: fixed;
+	z-index: 1;
+	background-color: white;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
 }
 .mini-img-list{
-	display: none;
+	text-align: center;
+	height: 10vw;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+	border-top: 0;
 }
 .mini-img{
-	display: none;
+	width: 10vw;
+	height: 10vw;
+	margin: 0;
 }
 .big-img-item{
-	display: none;
+	display: inline-block;
+	height: 45vw;
+	width: 45vw;
+	margin: 0;
+}
+.close-icon{
+	position: fixed;
+	top: 0.5vw;
+	right: 1vw;
+	font-size: 3vw;
+	color: #ff6c00;
+	opacity: .6;
+}
+.close-icon:hover{
+	opacity: .9;
+}
+.close-icon:active{
+	left: 79.5vw;
+	top: 0.5vw;
 }
 	
 }
