@@ -472,7 +472,7 @@ margin-top: 0.2vw;
 /*Product Cards*/
 #product-cards .card{
     display: inline-block;
-	height: 28vw;
+	height: 29vw;
     width: 24.4%;
     float: left;
     margin: 0;
@@ -505,6 +505,7 @@ margin-top: 0.2vw;
     padding: 0;
 }
 #product-cards .carusel-item{
+	position: relative;
     height: 100%;
     width: 100%;
 }
@@ -572,11 +573,14 @@ margin-top: 0.2vw;
 	margin-bottom: 0.5%
 }
 #product-cards .btn-group{
-	height: 100%;
-	width: 48%;
+	height: 2.3vw;
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-top: 0.3vw;
+
 }
 #product-cards .btn-buy{
-    float: left;
     cursor: pointer;
 	width: 75%;
     height: 100%;
@@ -585,24 +589,7 @@ margin-top: 0.2vw;
     border: 0.15vw solid #e3e3e3;
     border-right: 0;
 	border-radius: 0;
-    font: bold 0.9vw/normal Arial, Helvetica, sans-serif;
-	text-align: center;
-    color: #ff6c00;
-    background-color: white;
-}
-#product-cards .btn-info{
-    float: right;
-    cursor: pointer;
-    height: 100%;
-	width: 75%;
-    padding: 0;
-	padding-left: 2%;
-	padding-right: 2%;
-    margin: 0;
-    border: 0.15vw solid #e3e3e3;
-    border-right: 0;
-	border-radius: 0;
-    font: bold 0.8vw/normal Arial, Helvetica, sans-serif;
+    font: bold 0.95vw/normal Arial, Helvetica, sans-serif;
 	text-align: center;
     color: #ff6c00;
     background-color: white;
@@ -611,23 +598,10 @@ margin-top: 0.2vw;
     float: left;
     cursor: pointer;
     height: 100%;
-    width: 25%;
+    width: 24%;
 	padding: 0;
     padding-top: 0;
     margin: 0;
-    border: 0.15vw solid #e3e3e3;
-    background-color: white;
-	border-radius: 0;
-}
-#product-cards .btn-icon-info{
-    float: right;
-    cursor: pointer;
-    height: 100%;
-    width: 25%;
-	padding: 0;
-    padding-top: 0;
-    margin: 0;
-    margin-right: 0.1vw;
     border: 0.15vw solid #e3e3e3;
     background-color: white;
 	border-radius: 0;
@@ -636,36 +610,22 @@ margin-top: 0.2vw;
     color: #ff6c00;
 	background-color: #f5f5f5;
 }
-#product-cards .btn-icon-info:hover{
-    color: #ff6c00;
-	background-color: #f5f5f5;
-}
 #product-cards .btn-buy:hover{
-	background-color: #f5f5f5;
-}
-#product-cards .btn-info:hover{
 	background-color: #f5f5f5;
 }
 #product-cards .fa-shopping-basket{
 	position: absolute;
-	left: 8%;
-	top: 20%;
+	left: 23%;
+	top: 18%;
 	margin-top: 0vw;
-	font-size: 1.2vw;
+	font-size: 1.4vw;
 }
-#product-cards .fa-info{
+#product-cards .fa-search-plus{
 	position: absolute;
-	left: 35%;
-	top: 15%;
-	margin-top: 0vw;
-	font-size: 1.5vw;
-}
-#product-cards .all-images-icon{
-	position: absolute;
-	height: 2.5vw;
-	width: 2.5vw;
-	right: 1%;
-	top: 0%;
+	font-size: 1.7vw;
+	opacity: .5;
+	right: 1.5%;
+	top: 1%;
 }
 
 
