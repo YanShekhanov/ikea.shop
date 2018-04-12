@@ -472,7 +472,7 @@ margin-top: 0.2vw;
 /*Product Cards*/
 #product-cards .card{
     display: inline-block;
-	height: 29vw;
+	height: 30vw;
     width: 24.4%;
     float: left;
     margin: 0;
@@ -493,7 +493,7 @@ margin-top: 0.2vw;
     height: 50%;
 }
 #product-cards .card-body{
-	height: 45%;
+	height: 47%;
 	width: 100%;
 	position: relative;
     border-top: 0.15vw solid #e3e3e3;
@@ -517,7 +517,7 @@ margin-top: 0.2vw;
 }
 #product-cards .card-title{
 	position: absolute;
-	top: 5%;
+	top: 10.5%;
 	left: 0;
 	width: 100%;
 	height: 2vw;
@@ -533,11 +533,10 @@ margin-top: 0.2vw;
 }
 #product-cards .card-text{
 	position: absolute;
-	top: 20%;
+	top: 25.5%;
 	color: #515050;
-	font-family: "MyriadProBold";
+	font-family: "MyriadProRegular";
     font-size: 1vw;
-    font-style: italic;
 	margin: 0;
 	margin-top: 1vw;
 	margin-left: 1%;
@@ -547,7 +546,7 @@ margin-top: 0.2vw;
 }
 #product-cards .card-price{
 	position: absolute;
-	bottom: 19%;
+	bottom: 16.5%;
 	width: 100%;
     font-family: "MyriadProBold";
     font-size: 1.7vw;
@@ -627,18 +626,19 @@ margin-top: 0.2vw;
 	right: 1.5%;
 	top: 1%;
 }
-
-
+#product-cards .ind-code{
+    color: #ff6c00;
+	font-family: "MyriadProRegular";
+    font-size: 1.1vw;
+}
 /*Big Images*/
 .img-block{
 	position: fixed;
 	z-index: 1;
-	top: 0.5vw;
-	left: 17.8vw;
 	background-color: white;
-	border: 0.18vw solid #e3e3e3;
-	height: 56.5vw;
-	width: 64.5vw;
+	top: 0;
+	height: 100%;
+	width: 100%;
 	text-align: center;
 }
 .mini-img-list{
@@ -655,13 +655,15 @@ margin-top: 0.2vw;
 	margin: 0;
 }
 .big-img-item{
+	display: inline-block;
 	height: 45vw;
 	width: 45vw;
 	margin: 0;
 }
 .close-icon{
 	position: fixed;
-	left: 79.2vw;
+	top: 0.5vw;
+	right: 1vw;
 	font-size: 3vw;
 	color: #ff6c00;
 	opacity: .6;
@@ -670,7 +672,7 @@ margin-top: 0.2vw;
 	opacity: .9;
 }
 .close-icon:active{
-	left: 79.5vw;
+	right: 1.1vw;
 	top: 0.5vw;
 }
 
