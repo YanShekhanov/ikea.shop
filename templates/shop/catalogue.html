@@ -5,10 +5,9 @@
 
 <!--Product Cards-->
 {% if displayProducts %}
-    <div class="container-fluid">
+    <div class="container-fluid" onload="start_sort()">
         <div class="grid-prod" id="product-cards"></div>
     </div>
-    <script>start_sort()</script>
 {% endif  %}
 
 {% if displayCategories %}
