@@ -66,21 +66,9 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                 sub_subcategories = SubSubCategory.objects.filter(subcategory=self.object)
                 context['subSubCategories'] = sub_subcategories
                 return context
-        '''if self.is_subcategory or self.is_sub_subcategory:
+        if self.is_subcategory or self.is_sub_subcategory:
             context['is_filtered'] = True
-            if self.is_subcategory:
-                context['products'] = Product.objects.filter(subcategory=self.object)
-            if self.is_sub_subcategory:
-                context['products'] = Product.objects.filter(sub_subcategory=self.object)
-            products_images = []
-            for product in context.get('products'):
-                first_image = ProductImage.objects.filter(product=product)
-                if len(first_image) > 1: #если больше одной картинке к одному артикулу, тогда отдаем только первую
-                    products_images.append(first_image[0])
-                elif len(first_image) == 1: #если только одна картинка к артикулу, отдаем ее
-                    products_images.append(first_image)
-            context['productsImages'] = products_images'''
-            
+
         #отображение списка следования
         if self.is_subcategory:
             context['is_subcategory'] = True
