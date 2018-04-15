@@ -186,7 +186,6 @@ class DownloadOneProductInformation(FormView):
 
 #ajax сортировка
 def get_sort_query(request):
-    from django.core import serializers
     sort_by_dict = {
         'normal':'-created',
         'increase':'price',
@@ -194,28 +193,28 @@ def get_sort_query(request):
         'from_A_to_Z':'title',
         'from_Z_to_A':'-title'
     }
+    response_json_dict = {}
+
     if request.method == 'POST' and request.is_ajax():
         sort_by_from_post = request.POST['sort_by']
         unique_identificator = request.POST['unique_identificator']
         query = None
-
         try:
             sort_by = sort_by_dict.get(sort_by_from_post)
         except:
             return Http404
 
+        from ikea_parser.json_serializer import json_serializer
         try:
             query = SubCategory.objects.get(unique_identificator=unique_identificator)
+            response_json_dict['data'] = json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
         except SubCategory.DoesNotExist:
             try:
                 query = SubSubCategory.objects.get(unique_identificator=unique_identificator)
+                response_json_dict['data'] = json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
             except SubSubCategory.DoesNotExist:
                 return redirect(reverse('home'))
 
-        from ikea_parser.json_serializer import json_serializer
-        response_json_dict = {
-            'data': json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
-        }
         return JsonResponse(response_json_dict)
 
 #ajax поиск
