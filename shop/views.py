@@ -246,9 +246,7 @@ def get_all_product_images(request):
         all_images_list.append(image.image.url)
     json_response = {
         'images':all_images_list,
-        'productPrice':product.price,
-        'productDescription':product.description,
-        'productDimensions':product.dimensions,
+        'product':json_serializer(product),
         'moreModels':json_serializer(models_products),
         'colors':json_serializer(colors)}
     return JsonResponse(data=json_response)
