@@ -230,9 +230,8 @@ def search(request):
 #AJAX LOAD ALL IMAGES FOR ARTICLE
 def get_all_product_images(request):
     from ikea_parser.json_serializer import json_serializer
-    unique_identificator = request.POST['unique_identificator']
-    print(unique_identificator)
-    product = Product.objects.get(unique_identificator=unique_identificator)
+    identificator = request.POST['unique_identificator']
+    product = Product.objects.get(unique_identificator=identificator)
     #more models
     if product.additional_models is not None:
         models_products = Product.objects.filter(article_number=product.additional_models.split('#'))
@@ -241,7 +240,7 @@ def get_all_product_images(request):
     if product.color_options is not None:
         colors = Product.objects.filter(article_number=product.color_options.split('#'))
 
-    all_images = ProductImage.objects.filter(product=Product.objects.get(unique_identificator=unique_identificator), size=500)
+    all_images = ProductImage.objects.filter(product=product, size=500)
     all_images_list = []
     for image in all_images:
         all_images_list.append(image.image.url)
