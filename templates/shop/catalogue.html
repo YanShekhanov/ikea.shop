@@ -4,9 +4,11 @@
 {% block content %}
 
 <!--Product Cards-->
+{% if displayProducts %}
     <div class="container-fluid">
         <div class="grid-prod" id="product-cards"></div>
     </div>
+{% endif  %}
 
 {% if displayCategories %}
     {% for sub_subcategory in subSubCategories %}
@@ -30,7 +32,7 @@
         hover_product_card();
 
         //*начальный контент без сортировки
-        if (!{{ displayCategories }}){
+        if ({{ displayProducts }}){
             hide_tags(['#product-cards']); //*скрываем контент с карточками
             remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
             loader_show(); //*показываем лоадер
