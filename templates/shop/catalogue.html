@@ -8,7 +8,7 @@
         <div class="grid-prod" id="product-cards"></div>
     </div>
 
-{% if subSubCategories %}
+{% if displayCategories %}
     {% for sub_subcategory in subSubCategories %}
         <p><a href="{% url 'getOneCategoryProducts' sub_subcategory.unique_identificator %}">{{ sub_subcategory.title }}</a></p>
     {% endfor %}
@@ -30,13 +30,15 @@
         hover_product_card();
 
         //*начальный контент без сортировки
-        hide_tags(['#product-cards']); //*скрываем контент с карточками
-        remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
-        loader_show(); //*показываем лоадер
-        var token = $('input[name="csrfmiddlewaretoken"]').val();
-        var unique_identificator = '{{ category.unique_identificator }}';
-        console.log('identificator: ', unique_identificator);
-        get_sort('normal', unique_identificator, token);
+        if (!{{ displayCategories }}){
+            hide_tags(['#product-cards']); //*скрываем контент с карточками
+            remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
+            loader_show(); //*показываем лоадер
+            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            var unique_identificator = '{{ category.unique_identificator }}';
+            console.log('identificator: ', unique_identificator);
+            get_sort('normal', unique_identificator, token);
+        };
 
         //*сортировка*//
         $('body').on('change', '#get_sort', function () {
