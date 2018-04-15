@@ -67,6 +67,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                 context['subSubCategories'] = sub_subcategories
                 context['displayCategories'] = True
                 return context
+        context['displayProducts'] = True
         context['is_filtered'] = True
 
         #отображение списка следования
