@@ -71,7 +71,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
             if self.is_subcategory:
                 context['products'] = Product.objects.filter(subcategory=self.object)
             if self.is_sub_subcategory:
-                context['products'] = Product.objects.gilter(sub_subcategory=self.object)
+                context['products'] = Product.objects.filter(sub_subcategory=self.object)
             products_images = []
             for product in context.get('products'):
                 first_image = ProductImage.objects.filter(product=product)
