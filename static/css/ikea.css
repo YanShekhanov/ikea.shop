@@ -110,14 +110,15 @@ body{
 }
 
 /*Navigation Menu*/
-.sticky-menu{
-	position: fixed;
-	top: 0;
-}
 .navbar-light{
-    background-color: #f5f5f5;
+	background-color: #f5f5f5;
     min-height: 3.7vw;
     padding: 0;
+	/*При прижатии меню к верху*/
+	/*
+		position: fixed;
+	top: 0;
+	z-index: 3; */
 }
 .navbar-toggler{
     margin: 0.5vw;
@@ -131,6 +132,7 @@ body{
 	font-family: Verdana;
 	font-size: 1.2vw;
 	font-weight: bold;
+	font-style: italic;
     text-align: center;
 	text-decoration: none;
     padding: 0;
@@ -158,7 +160,7 @@ body{
 }
 
 /*Dropdown Products*/
-#dropdown-products{
+#dropdown-products{	
     width: 100%;
     background-color: #f5f5f5;
     color: #515050;
@@ -167,12 +169,21 @@ body{
     border: 0.2vw solid #e3e3e3;
     padding: 0vw;
 	height: auto;
-}
+	/*При прижатии меню к верху*/
+	/*
+	position: fixed;
+	z-index: 3;
+	top: 3.7vw;
+	width: 66vw; */
+ }
 #dropdown-products i{
 position: absolute;
    	font-size: 0.8vw;
 margin-top: 0.2vw;
 	left: 41.8vw;
+	/*При прижатии меню к верху*/
+	/*
+	left: 25vw; */
 }
 #dropdown-products i:hover{
     color: #ff6c00;
@@ -472,7 +483,7 @@ margin-top: 0.2vw;
 /*Product Cards*/
 #product-cards .card{
     display: inline-block;
-	height: 28vw;
+	height: 30vw;
     width: 24.4%;
     float: left;
     margin: 0;
@@ -493,7 +504,7 @@ margin-top: 0.2vw;
     height: 50%;
 }
 #product-cards .card-body{
-	height: 45%;
+	height: 47%;
 	width: 100%;
 	position: relative;
     border-top: 0.15vw solid #e3e3e3;
@@ -505,6 +516,7 @@ margin-top: 0.2vw;
     padding: 0;
 }
 #product-cards .carusel-item{
+	position: relative;
     height: 100%;
     width: 100%;
 }
@@ -516,7 +528,7 @@ margin-top: 0.2vw;
 }
 #product-cards .card-title{
 	position: absolute;
-	top: 5%;
+	top: 10.5%;
 	left: 0;
 	width: 100%;
 	height: 2vw;
@@ -532,11 +544,10 @@ margin-top: 0.2vw;
 }
 #product-cards .card-text{
 	position: absolute;
-	top: 20%;
+	top: 25.5%;
 	color: #515050;
-	font-family: "MyriadProBold";
+	font-family: "MyriadProRegular";
     font-size: 1vw;
-    font-style: italic;
 	margin: 0;
 	margin-top: 1vw;
 	margin-left: 1%;
@@ -546,7 +557,7 @@ margin-top: 0.2vw;
 }
 #product-cards .card-price{
 	position: absolute;
-	bottom: 19%;
+	bottom: 16.5%;
 	width: 100%;
     font-family: "MyriadProBold";
     font-size: 1.7vw;
@@ -572,11 +583,14 @@ margin-top: 0.2vw;
 	margin-bottom: 0.5%
 }
 #product-cards .btn-group{
-	height: 100%;
-	width: 48%;
+	height: 2.3vw;
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-top: 0.3vw;
+
 }
 #product-cards .btn-buy{
-    float: left;
     cursor: pointer;
 	width: 75%;
     height: 100%;
@@ -585,24 +599,7 @@ margin-top: 0.2vw;
     border: 0.15vw solid #e3e3e3;
     border-right: 0;
 	border-radius: 0;
-    font: bold 0.9vw/normal Arial, Helvetica, sans-serif;
-	text-align: center;
-    color: #ff6c00;
-    background-color: white;
-}
-#product-cards .btn-info{
-    float: right;
-    cursor: pointer;
-    height: 100%;
-	width: 75%;
-    padding: 0;
-	padding-left: 2%;
-	padding-right: 2%;
-    margin: 0;
-    border: 0.15vw solid #e3e3e3;
-    border-right: 0;
-	border-radius: 0;
-    font: bold 0.8vw/normal Arial, Helvetica, sans-serif;
+    font: bold 0.95vw/normal Arial, Helvetica, sans-serif;
 	text-align: center;
     color: #ff6c00;
     background-color: white;
@@ -611,23 +608,10 @@ margin-top: 0.2vw;
     float: left;
     cursor: pointer;
     height: 100%;
-    width: 25%;
+    width: 24%;
 	padding: 0;
     padding-top: 0;
     margin: 0;
-    border: 0.15vw solid #e3e3e3;
-    background-color: white;
-	border-radius: 0;
-}
-#product-cards .btn-icon-info{
-    float: right;
-    cursor: pointer;
-    height: 100%;
-    width: 25%;
-	padding: 0;
-    padding-top: 0;
-    margin: 0;
-    margin-right: 0.1vw;
     border: 0.15vw solid #e3e3e3;
     background-color: white;
 	border-radius: 0;
@@ -636,49 +620,36 @@ margin-top: 0.2vw;
     color: #ff6c00;
 	background-color: #f5f5f5;
 }
-#product-cards .btn-icon-info:hover{
-    color: #ff6c00;
-	background-color: #f5f5f5;
-}
 #product-cards .btn-buy:hover{
-	background-color: #f5f5f5;
-}
-#product-cards .btn-info:hover{
 	background-color: #f5f5f5;
 }
 #product-cards .fa-shopping-basket{
 	position: absolute;
-	left: 8%;
-	top: 20%;
+	left: 23%;
+	top: 18%;
 	margin-top: 0vw;
-	font-size: 1.2vw;
+	font-size: 1.4vw;
 }
-#product-cards .fa-info{
+#product-cards .fa-search-plus{
 	position: absolute;
-	left: 35%;
-	top: 15%;
-	margin-top: 0vw;
-	font-size: 1.5vw;
+	font-size: 1.7vw;
+	opacity: .5;
+	right: 1.5%;
+	top: 1%;
 }
-#product-cards .all-images-icon{
-	position: absolute;
-	height: 2.5vw;
-	width: 2.5vw;
-	right: 1%;
-	top: 0%;
+#product-cards .ind-code{
+    color: #ff6c00;
+	font-family: "MyriadProRegular";
+    font-size: 1.1vw;
 }
-
-
 /*Big Images*/
 .img-block{
 	position: fixed;
 	z-index: 1;
-	top: 0.5vw;
-	left: 17.8vw;
 	background-color: white;
-	border: 0.18vw solid #e3e3e3;
-	height: 56.5vw;
-	width: 64.5vw;
+	top: 0;
+	height: 100%;
+	width: 100%;
 	text-align: center;
 }
 .mini-img-list{
@@ -695,13 +666,15 @@ margin-top: 0.2vw;
 	margin: 0;
 }
 .big-img-item{
+	display: inline-block;
 	height: 45vw;
 	width: 45vw;
 	margin: 0;
 }
 .close-icon{
 	position: fixed;
-	left: 79.2vw;
+	top: 0.5vw;
+	right: 1vw;
 	font-size: 3vw;
 	color: #ff6c00;
 	opacity: .6;
@@ -710,7 +683,7 @@ margin-top: 0.2vw;
 	opacity: .9;
 }
 .close-icon:active{
-	left: 79.5vw;
+	right: 1.1vw;
 	top: 0.5vw;
 }
 
@@ -1321,16 +1294,47 @@ margin-top: 0.2vw;
 
 /*Big Images*/
 .img-block{
-	display: none;
+	position: fixed;
+	z-index: 1;
+	background-color: white;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
 }
 .mini-img-list{
-	display: none;
+	text-align: center;
+	height: 10vw;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+	border-top: 0;
 }
 .mini-img{
-	display: none;
+	width: 10vw;
+	height: 10vw;
+	margin: 0;
 }
 .big-img-item{
-	display: none;
+	display: inline-block;
+	height: 45vw;
+	width: 45vw;
+	margin: 0;
+}
+.close-icon{
+	position: fixed;
+	top: 0.5vw;
+	right: 1vw;
+	font-size: 3vw;
+	color: #ff6c00;
+	opacity: .6;
+}
+.close-icon:hover{
+	opacity: .9;
+}
+.close-icon:active{
+	left: 79.5vw;
+	top: 0.5vw;
 }
 	
 }
