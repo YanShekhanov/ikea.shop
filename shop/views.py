@@ -211,9 +211,9 @@ def get_sort_query(request):
         except SubCategory.DoesNotExist:
             try:
                 query = SubSubCategory.objects.get(unique_identificator=unique_identificator)
-                response_json_dict['data'] = json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
+                response_json_dict['data'] = json_serializer(Product.objects.filter(sub_subcategory=query).order_by(sort_by))
             except SubSubCategory.DoesNotExist:
-                return redirect(reverse('home'))
+                return Http404
 
         return JsonResponse(response_json_dict)
 
