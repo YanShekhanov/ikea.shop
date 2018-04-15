@@ -235,7 +235,7 @@ def get_all_product_images(request):
     #more models
     if product.additional_models is not None:
         models_products = Product.objects.filter(article_number=product.additional_models.split('#'))
-    
+
     #colors
     if product.color_options is not None:
         colors = Product.objects.filter(article_number=product.color_options.split('#'))
