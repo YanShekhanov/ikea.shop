@@ -42,10 +42,8 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     template_name = 'shop/catalogue.html'
     context_object_name = 'category'
     slug_url_kwarg = 'category_identificator'
-
-    def __init__(self):
-        self.is_subcategory = None
-        self.is_sub_subcategory = None
+    is_subcategory = False
+    is_sub_subcategory = False
 
     def get_queryset(self):
         try:
@@ -70,7 +68,10 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                 return context
         if self.is_subcategory or self.is_sub_subcategory:
             context['is_filtered'] = True
-            context['products'] = Product.objects.filter(subcategory=self.object)
+            if self.is_subcategory:
+                context['products'] = Product.objects.filter(subcategory=self.object)
+            if self.is_sub_subcategory:
+                context['products'] = Product.objects.gilter(sub_subcategory=self.object)
             products_images = []
             for product in context.get('products'):
                 first_image = ProductImage.objects.filter(product=product)
