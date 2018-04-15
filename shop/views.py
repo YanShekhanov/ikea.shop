@@ -66,8 +66,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                 sub_subcategories = SubSubCategory.objects.filter(subcategory=self.object)
                 context['subSubCategories'] = sub_subcategories
                 return context
-        if self.is_subcategory or self.is_sub_subcategory:
-            context['is_filtered'] = True
+        context['is_filtered'] = True
 
         #отображение списка следования
         if self.is_subcategory:
