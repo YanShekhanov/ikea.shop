@@ -21,6 +21,8 @@
 	<div class="img-block">
         <i class="fa fa-times close-icon" id="close_images_block" aria-hidden="true"></i>
         <div class="mini-img-list"></div>
+        <div id="price">
+        <div id="description"></div>
     </div>
 
 </div>
@@ -105,6 +107,7 @@
                     for (i=0; i<data.images.length; i++){
                         $block_to_paste_images.find('.mini-img-list').append('<img class="mini-img" src="' + data.images[i] + '"></a>');
                      }
+                    $block_to_paste_images.find('#price').text(data.productPrice);
 
                     });
                 }
