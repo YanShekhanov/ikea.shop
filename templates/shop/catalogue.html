@@ -8,6 +8,7 @@
     <div class="container-fluid">
         <div class="grid-prod" id="product-cards"></div>
     </div>
+    <script>start_sort()</script>
 {% endif  %}
 
 {% if displayCategories %}
@@ -32,9 +33,7 @@
         hover_product_card();
 
         //*начальный контент без сортировки
-        if ({{ displayProducts }}){
-            hide_tags(['#product-cards']); //*скрываем контент с карточками
-            remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
+        function start_sort(){
             loader_show(); //*показываем лоадер
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
