@@ -46,9 +46,11 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     def get_queryset(self):
         try:
             query = SubCategory.objects.get(unique_identificator=self.kwargs.get('category_identificator'))
+            self.is_subcategory = True
         except SubCategory.DoesNotExist:
             try:
                 query = SubSubCategory.objects.get(unique_identificator=self.kwargs.get('category_identificator'))
+                self.is_sub_subcategory = True
             except SubSubCategory.DoesNotExist:
                 return Http404
         self.queryset = query
@@ -57,11 +59,12 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_queryset()
         context = super(GetOneCategoryProducts, self).get_context_data(**kwargs)
-        if self.object.have_sub_subcategory:
-            sub_subcategories = SubSubCategory.objects.filter(subcategory=self.object)
-            context['subSubCategories'] = sub_subcategories
-        elif self.object.have_sub_subcategory == False or AttributeError: #если подкатегория не имеет под подкатегорий или модель не имеет поля
-                                                                          #have_sub_subcategory (в случае если пытаемся получить продукты с под подкатегории)
+        if self.is_subcategory:
+            if self.object.have_sub_subcategory:
+                sub_subcategories = SubSubCategory.objects.filter(subcategory=self.object)
+                context['subSubCategories'] = sub_subcategories
+                return context
+        if self.is_subcategory or self.is_sub_subcategory:
             context['is_filtered'] = True
             context['products'] = Product.objects.filter(subcategory=self.object)
             products_images = []
@@ -73,11 +76,6 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                     products_images.append(first_image)
             context['productsImages'] = products_images
         return context
-
-class GetOneSSCategoryProducts(MainInfo, DetailView):
-
-    def get_queryset(self):
-        self.queryset = self.kwargs.get('query')
 
 #страница одного товара
 class ProductDetail(MainInfo, DetailView, TemplateView):
