@@ -4,9 +4,17 @@
 {% block content %}
 
 <!--Product Cards-->
-<div class="container-fluid">
-    <div class="grid-prod" id="product-cards"></div>
-</div>
+{% if products %}
+    <div class="container-fluid">
+        <div class="grid-prod" id="product-cards"></div>
+    </div>
+{% endif %}
+
+{% if subSubCategories %}
+    {% for sub_subcategory in subSubCategories %}
+        <p><a href="{% url 'getOneCategoryProducts' sub_subcategory.unique_identificator %}">{{ sub_subcategory.title }}</a></p>
+    {% endfor %}
+{% endif %}
 
 <!--Big Images-->
 	<div class="img-block">
