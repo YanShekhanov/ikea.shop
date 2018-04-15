@@ -38,6 +38,42 @@
             get_sort('normal', unique_identificator, token);
         };
 
+    </script>
+
+    <!-- шаблон карточки продукта-->
+    <script id="product-card" type="text/x-custom-template">
+        <div class="card" id="">
+                <!--Product Images-->
+                <div class="carousel slide product-image" data-interval="false">
+                    <div class="carousel-inner">
+                                    <div class="carousel-item active">
+					<i class="fa fa-search-plus get-all-images hidden" aria-hidden="true" data-unique_identificator=""></i>
+                                        <img src="" class="productImage">
+                                    </div>
+                    </div>
+                </div>
+                <!--Product Info-->
+                <div class="card-body">
+		    <p class="ind-code"></p>
+                    <a class="card-title"></a>
+                    <p class="card-text"><br><p class="card-price"></p></p>
+					<div class="card-btns">
+                    <div class="btn-group">
+        				<button type="button" class="btn btn-buy">Добавить в корзину</button>
+        				<button type="button" class="btn btn-icon-buy"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+                	</div>
+				</div>
+            	</div>
+			</div>
+    </script>
+{% endblock %}
+
+{% block onload_js %}
+    <script>
+        tags_list = ['.img-block', '.get-all-images'];
+        hide_tags(tags_list);
+        hover_product_card();
+
         //*сортировка*//
         $('body').on('change', '#get_sort', function () {
             hide_tags(['#product-cards']); //*скрываем контент с карточками
@@ -87,41 +123,5 @@
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
         });
-
-    </script>
-
-    <!-- шаблон карточки продукта-->
-    <script id="product-card" type="text/x-custom-template">
-        <div class="card" id="">
-                <!--Product Images-->
-                <div class="carousel slide product-image" data-interval="false">
-                    <div class="carousel-inner">
-                                    <div class="carousel-item active">
-					<i class="fa fa-search-plus get-all-images hidden" aria-hidden="true" data-unique_identificator=""></i>
-                                        <img src="" class="productImage">
-                                    </div>
-                    </div>
-                </div>
-                <!--Product Info-->
-                <div class="card-body">
-		    <p class="ind-code"></p>
-                    <a class="card-title"></a>
-                    <p class="card-text"><br><p class="card-price"></p></p>
-					<div class="card-btns">
-                    <div class="btn-group">
-        				<button type="button" class="btn btn-buy">Добавить в корзину</button>
-        				<button type="button" class="btn btn-icon-buy"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
-                	</div>
-				</div>
-            	</div>
-			</div>
-    </script>
-{% endblock %}
-
-{% block onload_js %}
-    <script>
-        tags_list = ['.img-block', '.get-all-images'];
-        hide_tags(tags_list);
-        hover_product_card();
     </script>
 {% endblock %}
