@@ -231,6 +231,7 @@ def search(request):
 def get_all_product_images(request):
     from ikea_parser.json_serializer import json_serializer
     unique_identificator = request.POST['unique_identificator']
+    print(unique_identificator)
     product = Product.objects.get(unique_identificator=unique_identificator)
     #more models
     if product.additional_models is not None:
