@@ -43,6 +43,10 @@ class GetOneCategoryProducts(MainInfo, DetailView):
     context_object_name = 'category'
     slug_url_kwarg = 'category_identificator'
 
+    def __init__(self):
+        self.is_subcategory = None
+        self.is_sub_subcategory = None
+
     def get_queryset(self):
         try:
             query = SubCategory.objects.get(unique_identificator=self.kwargs.get('category_identificator'))
