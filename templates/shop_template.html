@@ -102,7 +102,6 @@
 </div>
 
 {% block csrf %}{% csrf_token %}{% endblock %}
-{% block js %}{% endblock %}
 {% block content %}{% endblock %}
 </div>
 <footer id="myFooter">
@@ -165,6 +164,8 @@
         });
 
 </script>
+
+{% block js %}{% endblock %}
 
 </body>
 </html>
