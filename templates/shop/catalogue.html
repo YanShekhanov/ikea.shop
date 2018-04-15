@@ -92,6 +92,7 @@
         $('body').on('click', '.get-all-images', function (){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = $(this).data('unique_identificator');
+            console.log(unique_identificator);
 
             $.ajax({
                 url: "{% url 'get_all_product_images' %}",
