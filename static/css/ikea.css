@@ -642,7 +642,132 @@ margin-top: 0.2vw;
 	font-family: "MyriadProRegular";
     font-size: 1.1vw;
 }
-https://getbootstrap.com/docs/4.1/components/tooltips/
+
+/*Big Images*/
+.img-block{
+	position: fixed;
+	z-index: 1;
+	background-color: white;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+.mini-img-list{
+	text-align: center;
+	height: 10vw;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+	border-top: 0;
+}
+.mini-img{
+	width: 10vw;
+	height: 10vw;
+	margin: 0;
+}
+.big-img-item{
+	display: inline-block;
+	height: 45vw;
+	width: 45vw;
+	margin: 0;
+	margin-top: 1vw;
+}
+.close-icon{
+	position: fixed;
+	top: 0.5vw;
+	right: 1vw;
+	font-size: 3vw;
+	color: #ff6c00;
+	opacity: .6;
+}
+.close-icon:hover{
+	opacity: .9;
+	color: #4B4A4A;
+}
+.close-icon:active{
+	color: #4B4A4A;
+	right: 1.5vw;
+	top: 0.3vw;
+}
+.btns-all-images{
+	display: inline-block;
+	float: right;
+	text-align: center;
+	width: 50vw;
+	margin-right: 5vw;
+	margin-top: 1vw;
+	height: 44vw;
+	padding-left: 9vw;
+	padding-top: 5vw;
+}
+#big-img .name{
+	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
+	color: #4B4A4A;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 4vw;
+	margin-top: 5vw;
+	margin-bottom: 0;
+}
+#big-img .price{
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 3vw;
+	color: #ff6c00;
+	height: 4vw;
+}
+#big-img a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  font-size: 1.8vw;
+}
+.button-item {
+  margin-top: 9vw;
+  padding-bottom: 3vw;
+}
+.btn-1 {
+  padding: 1em 3em;
+  border: 3px solid #ff6c00;
+  transition: all 300ms ease;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.2);
+  color: #ff6c00;
+}
+.btn-1:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transition: all 0ms ease;
+}
+.btn-1:hover {
+  color: white;
+  border: 3px solid #ADA6A6;
+  box-shadow: none;
+}
+.btn-1:hover:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+  transition: all 300ms ease;
+}
 
 /*Pagination*/
 #pagination{
