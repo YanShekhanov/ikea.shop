@@ -3,6 +3,7 @@
 *.pyc
 __pycache__
 *.txt
+!requirements.txt
 ikea_parser/parsed_data
 250px/
 500px/
