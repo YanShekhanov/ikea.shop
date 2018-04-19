@@ -617,9 +617,10 @@ margin-top: 0.2vw;
 	top: 1%;
 }
 #product-cards .ind-code{
-    color: #ff6c00;
+    color: #515050;
 	font-family: "MyriadProRegular";
     font-size: 1.1vw;
+	margin-bottom: 0.5vw;
 }
 #product-cards a {
   text-decoration: none;
