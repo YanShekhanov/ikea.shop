@@ -1,5 +1,7 @@
 
-    //*loader
+    $.views.settings.delimiters('<%', '%>');
+
+//*loader
     $(window).ready(function () {
         $('#load').fadeOut(600);
     });
