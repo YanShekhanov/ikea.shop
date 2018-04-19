@@ -158,6 +158,13 @@
     //ajax search
         $('.search-form').keyup(function () {
            if ($(this).val().length>=3){
+
+               //
+               var markup = $('#searchTemplate').innerHTML;
+               data = {'test':'test'};
+               var html = Mustache.render(markup, data);
+               console.log(html);
+
                var token = $('input[name="csrfmiddlewaretoken"]').val();
                search($(this).val(), token);
            }
