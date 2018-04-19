@@ -133,6 +133,8 @@ body{
 }
 #searched_query img{
 	float: left;
+	max-width: 50px;
+	max-height: 50px;
 }
 #searched_query p{
 	text-align: center;
@@ -522,6 +524,11 @@ margin-top: 0.2vw;
     background-color: #f5f5f5;
     color: #515050;
 }
+#product-cards .card:hover{
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.2);
+	margin-top: 0;
+}
+
 #product-cards .card:nth-child(4n){
     margin-right: 0;
 }
@@ -617,9 +624,10 @@ margin-top: 0.2vw;
 	top: 1%;
 }
 #product-cards .ind-code{
-    color: #ff6c00;
+    color: #515050;
 	font-family: "MyriadProRegular";
     font-size: 1.1vw;
+	margin-bottom: 0.5vw;
 }
 #product-cards a {
   text-decoration: none;
