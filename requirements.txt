@@ -6,7 +6,7 @@ beautifulsoup4==4.6.0
 certifi==2018.1.18
 chardet==3.0.4
 Django==2.0.3
-django-admin==1.2.1
+django-admin==1.2.4
 django-excel-response2==2.0.8
 django-six==1.0.4
 googletrans==2.2.0
