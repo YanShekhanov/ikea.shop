@@ -133,6 +133,8 @@ body{
 }
 #searched_query img{
 	float: left;
+	max-width: 50px;
+	max-height: 50px;
 }
 #searched_query p{
 	text-align: center;
