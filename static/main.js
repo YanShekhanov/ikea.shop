@@ -1,7 +1,7 @@
 
     //jsonrender class
     var jsrender = window.jsrender;
-    $.views.settings.delimiters('<%', '%>');
+    jsrender.settings.delimiters('<%', '%>');
 
 //*loader
     $(window).ready(function () {
