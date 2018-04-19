@@ -49,7 +49,8 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                var template = jsrender.templates('#searchTemplate');
+                var markup = $('#searchTemplate'),
+                    template = jsrender.templates(markup);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
