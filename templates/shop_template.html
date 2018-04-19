@@ -161,6 +161,7 @@
 
                //
                var markup = $('#searchTemplate').innerHTML;
+               console.log('markup' , markup );
                data = {'test':'test'};
                var html = Mustache.render(markup, data);
                console.log(html);
