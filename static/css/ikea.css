@@ -525,7 +525,7 @@ margin-top: 0.2vw;
     color: #515050;
 }
 #product-cards .card:hover{
-	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
 	margin-top: 0;
 }
 
