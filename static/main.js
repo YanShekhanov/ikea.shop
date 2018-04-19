@@ -1,5 +1,4 @@
     var castom_tags = ['<%', '%>'];
-    Mustache.tags(castom_tags);
 
 //*loader
     $(window).ready(function () {
@@ -47,14 +46,14 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                var markup = $('#searchTemplate'),
-                    template = Mustache.parse(markup);
+                var markup = $('#searchTemplate');
+                Mustache.parse(markup);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
                 for (product=0; product<data.products.length; product++){
                     render_template = {'image_url':'', 'product_title':data.products[product].title, 'article_number':data.products[product].article_number};
-                    var html = template.render(render_template);
+                    var html = Mustache.render(render_template, castom_tags);
                     console.log(html);
                 };
                 to_paste.show();
