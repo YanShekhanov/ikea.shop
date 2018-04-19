@@ -1,7 +1,5 @@
-
-    //jsonrender class
-    var jsrender = window.jsrender;
-    jsrender.settings.delimiters('<%', '%>');
+    var castom_tags = ['<%', '%>'];
+    Mustache.tags(castom_tags);
 
 //*loader
     $(window).ready(function () {
@@ -50,7 +48,7 @@
             },
             success:function (data) {
                 var markup = $('#searchTemplate'),
-                    template = jsrender.templates(markup);
+                    template = Mustache.parse(markup);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
