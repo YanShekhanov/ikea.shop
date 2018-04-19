@@ -1,4 +1,6 @@
 
+    //jsonrender class
+    var jsrender = window.jsrender;
     $.views.settings.delimiters('<%', '%>');
 
 //*loader
@@ -47,7 +49,7 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                var template = $.templates('#searchTemplate');
+                var template = jsrender.templates('#searchTemplate');
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
