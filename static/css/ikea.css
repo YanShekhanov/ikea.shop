@@ -670,6 +670,7 @@ margin-top: 0.2vw;
 	display: inline-block;
 	height: 30vw;
 	width: 30vw;
+	max-width: 500px;
 	margin: 0;
 }
 .close-icon{
