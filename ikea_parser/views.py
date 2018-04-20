@@ -118,15 +118,13 @@ def test(request):
             sub_subcategories_container = None
 
         if sub_subcategories_container is not None:
-            print('найдено')
+            print('existed')
             sub_subcategories = sub_subcategories_container.find_all(tag, class_=find)
-            print(sub_subcategories)
             if code == 1:
                 print('code = 1')
                 if sub_subcategories == []:
                     sub_subcategories = None
                 if sub_subcategories is not None:
-                    print(sub_subcategories)
                     print('YES " %s " ' % subcategory_url)
                     subcategory_created.have_sub_subcategory = True
                     subcategory_created.save()
@@ -138,32 +136,7 @@ def test(request):
                 for category in sub_subcategories:
                     url = category.get('href')
                     title = category.text
-                    print(url, title)
-
-
-    # -----------------------------------------------------#
-    '''more models - модели
-    parse_models = True
-    models_articles_list = []
-    #models = None
-    models_ = None
-    models_to_save = None
-
-    try:
-        models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print('ЕСТЬ МОДЕЛИ')
-    except:
-        parse_models = False
-        print('НЕТУ МОДЕЛЕЙ')
-
-    if parse_models:
-        for model in models_:
-            models_article = model.get('data-url').split('/')[-2]
-            if models_article not in models_articles_list:
-                models_articles_list.append(models_article)
-        if len(models_articles_list) != 0:
-            models_to_save = '#'.join(models_articles_list)
-            print('Количество моделей продукта %i' % len(models_articles_list))'''
+                    print(url)
 
     return redirect(reverse('home'))
 
