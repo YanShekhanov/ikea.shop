@@ -46,6 +46,7 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
+                console.log(data.images);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
@@ -54,8 +55,8 @@
                     rendered_data = {image_url:'', product_title:data.products[product].title, article_number:data.products[product].article_number};
                     var html = Mustache.render(template, rendered_data);
                     console.log('rendered html ', html);
+                    to_paste.prepend(html);
                 };
-                to_paste.prepend(html);
                 to_paste.show();
             },
             error:function () {
