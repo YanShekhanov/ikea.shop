@@ -46,7 +46,7 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                console.log(data.products);
+                console.log(data.products.length);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
