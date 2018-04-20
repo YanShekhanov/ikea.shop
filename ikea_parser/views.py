@@ -112,47 +112,7 @@ def test(request):
             if sub_subcategory_block is not None:
                 sub_subcategory_url = sub_subcategory_block.get('href')
                 sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
-
-
-    # проверка на наличие подподкатегории
-    '''options_dict = {'row-first row': {'tag': 'div', 'find': 'img-slot', 'code': 1},
-                    'row-second row': {'tag': 'div', 'find': 'img-slot', 'code': 1},
-                    'visualNavContainer': {'tag': 'a', 'find': 'categoryName', 'code': 2},
-                    }
-    print(options_dict.keys())
-    for key in options_dict.keys():
-        print(key)
-        option = options_dict.get(key)
-        tag = option.get('tag')
-        find = option.get('find')
-        code = option.get('code')
-
-        subcategory_request = requests.get(url).text
-        subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
-        sub_subcategories_container = subcategory_soup.find_all('div', class_=key)
-        if sub_subcategories_container == []:
-            sub_subcategories_container = None
-
-        if sub_subcategories_container is not None:
-            print('existed')
-            sub_subcategories = sub_subcategories_container.find_all(tag, class_=find)
-            if code == 1:
-                print('code = 1')
-                if sub_subcategories == []:
-                    sub_subcategories = None
-                if sub_subcategories is not None:
-                    print('YES " %s " ' % subcategory_url)
-                    subcategory_created.have_sub_subcategory = True
-                    subcategory_created.save()
-                    for sub_subcategory in sub_subcategories:
-                        sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory.find('a').text.strip())
-                        sub_subcategory_url = sub_subcategory.find('a').get('href')
-            if code == 2:
-                print('code=2')
-                for category in sub_subcategories:
-                    url_ = category.get('href')
-                    title = category.text
-                    print(url_)'''
+                print(sub_subcategory_url)
 
     return redirect(reverse('home'))
 
