@@ -52,7 +52,7 @@
                 for (product=0; product<data.products.length; product++){
                     render_template = {'image_url':'', 'product_title':data.products[product].title, 'article_number':data.products[product].article_number};
                     var html = Mustache.render(template, render_template, castom_tags);
-                    console.log(html);
+                    console.log('rendered html ', html);
                 };
                 to_paste.show();
             },
