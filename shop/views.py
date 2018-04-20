@@ -229,7 +229,7 @@ def search(request):
                 image = ProductImage.objects.filter(product=product, is_icon=True).first()
                 image_url = image.image.url
             except AttributeError:
-                image_url = None
+                image_url = ''
             one_product_dict = {
                 'product_title': product.title,
                 'product_description': product.description,
