@@ -110,8 +110,6 @@ def test(request):
             if sub_subcategory_block == []:
                 sub_subcategory_block = None
             if sub_subcategory_block is not None:
-                subcategory_created.have_sub_subcategory = True
-                subcategory_created.save()
                 sub_subcategory_url = sub_subcategory_block.get('href')
                 sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
 
