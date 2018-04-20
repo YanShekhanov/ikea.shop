@@ -158,16 +158,9 @@
     //ajax search
         $('.search-form').keyup(function () {
            if ($(this).val().length>=3){
-
-               //
-               var markup = $('#searchTemplate').innerHTML;
-               console.log('markup' , markup );
-               data = {'test':'test'};
-               var html = Mustache.render(markup, data);
-               console.log(html);
-
-               var token = $('input[name="csrfmiddlewaretoken"]').val();
-               search($(this).val(), token);
+               var token = $('input[name="csrfmiddlewaretoken"]').val(),
+                   template = $('#searchTemplate').innerHTML;
+               search($(this).val(), token, template);
            }
         });
 
@@ -179,9 +172,6 @@
 </script>
 
 {% block onload_js %}{% endblock %}
-    <!--render search-->
-    <script type="text/js-render" id="searchTemplate">
-        ﻿<li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
-    </script>
+
 </body>
 </html>
