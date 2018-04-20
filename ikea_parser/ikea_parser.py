@@ -111,9 +111,9 @@ def parse_categories_():
                             sub_subcategory_url = sub_subcategory_block.get('href')
                             sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
                             try:
-                                SubSubcategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
+                                SubSubCategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
                             except SubSubCategory.DoesNotExist:
-                                SubSubcategory.objects.created(subcategory=subcategory_created, title=sub_subcategory_title,
+                                SubSubСategory.objects.created(subcategory=subcategory_created, title=sub_subcategory_title,
                                                                url_ikea=sub_subcategory_url, unique_identificator=create_identificator(8))
 
 
