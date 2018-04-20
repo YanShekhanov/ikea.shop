@@ -49,9 +49,10 @@
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
+                Mustache.tags = ['<%', '%>'];
                 for (product=0; product<data.products.length; product++){
                     rendered_data = {image_url:'', product_title:data.products[product].title, article_number:data.products[product].article_number};
-                    var html = Mustache.render(template, {image_url:'test'});
+                    var html = Mustache.render(template, rendered_data);
                     console.log('rendered html ', html);
                 };
                 to_paste.prepend(html);
