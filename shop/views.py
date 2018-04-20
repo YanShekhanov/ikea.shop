@@ -222,7 +222,6 @@ def search(request):
             Q(title__icontains=searched_text) |
             Q(description__icontains=searched_text)
         )
-        print(products)
         products_list = []
         for product in products:
             one_product_dict = {}
@@ -232,10 +231,9 @@ def search(request):
             except ProductImage.DoesNotExist:
                 image_url = ''
             one_product_dict['product_title'] = product.title
-            one_product_dict['product_description'] = product.description
+            #one_product_dict['product_description'] = product.description
             one_product_dict['product_price'] = product.price
             one_product_dict['product_image'] = image_url
-            print(one_product_dict)
             products_list.append(one_product_dict)
 
         return JsonResponse({'products':products_list})
