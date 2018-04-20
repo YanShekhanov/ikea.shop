@@ -46,17 +46,21 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                console.log(data.images);
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
                 Mustache.tags = ['<%', '%>'];
                 for (product=0; product<data.products.length; product++){
-                    rendered_data = {image_url:'', product_title:data.products[product].title, article_number:data.products[product].article_number};
-                    var html = Mustache.render(template, rendered_data);
-                    console.log('rendered html ', html);
-                    to_paste.prepend(html);
-                };
+                    var product = data.products[product];
+                    rend_data = {image_url:product.product_image,
+                                 product_title:product.product_title,
+                                 product_description:product.product_description,
+                                 product_price:product.product_price,
+                                };
+                    var rend_html = Mustache.render(template, rend_data);
+                    console.log(rend_data);
+                    to_paste.prepend(rend_html);
+                }
                 to_paste.show();
             },
             error:function () {
