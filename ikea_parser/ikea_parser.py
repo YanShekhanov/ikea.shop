@@ -290,7 +290,7 @@ def parse_one_product_information_(product_query, browser_driver):
         try:
             options = product_soup.find('div', id=block).find_all('li')
             block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
-            print('ЕСТЬ "%s", блок "%s"' % (block_label, block))
+            #print('ЕСТЬ "%s", блок "%s"' % (block_label, block))
             button_for_open_options = driver.find_element_by_id(block) # кнопка для открытия select с цветами
             if block_label == 'kolor': # если блок называется 'kolor'
                 parse_colors = True
@@ -330,10 +330,10 @@ def parse_one_product_information_(product_query, browser_driver):
                 if len(options_articles_list) != 0:
                     if parse_colors:
                         color_options = '#'.join(options_articles_list)
-                        print('Количество цветов артикула %i' % len(options_articles_list))
+                        #print('Количество цветов артикула %i' % len(options_articles_list))
                     if parse_sizes:
                         size_options = '#'.join(options_articles_list)
-                        print('Количество размеров артикула %i' % len(options_articles_list))
+                        #print('Количество размеров артикула %i' % len(options_articles_list))
                     parseComplementaryProducts(product_to_save, *options_articles_list)
         except:
             pass
@@ -346,10 +346,10 @@ def parse_one_product_information_(product_query, browser_driver):
     models_to_save = None
     try:
         models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print('ЕСТЬ МОДЕЛИ')
+        #print('ЕСТЬ МОДЕЛИ')
     except:
         parse_models = False
-        print('НЕТУ МОДЕЛЕЙ')
+        #print('НЕТУ МОДЕЛЕЙ')
 
     if parse_models:
         for model in models_:
@@ -358,7 +358,7 @@ def parse_one_product_information_(product_query, browser_driver):
                 models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
             models_to_save = '#'.join(models_articles_list)
-            print('Количество моделей продукта %i' % len(models_articles_list))
+            #print('Количество моделей продукта %i' % len(models_articles_list))
             parseComplementaryProducts(product_query, *models_articles_list)
 
     # -----------------------------------------------------#
@@ -372,7 +372,7 @@ def parse_one_product_information_(product_query, browser_driver):
             complementary_product_article = complementary_product.get('id').split('_')[1]
             if complementary_product_article not in complementary_products_list:
                 complementary_products_list.append(complementary_product_article)
-        print('Количество дополняющих продуктов %i' % len(complementary_products_list))
+        #print('Количество дополняющих продуктов %i' % len(complementary_products_list))
         if len(complementary_products_list) != 0:
             complementary_product_to_save = '#'.join(complementary_products_list)
             parseComplementaryProducts(product_query, *complementary_products_list)
@@ -431,8 +431,7 @@ def parse_one_product_information_(product_query, browser_driver):
                             and product_to_save == existed_image.product:
                         existed_image.product.add(product_to_save)
                         start_download = False
-                        print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                        existed_image.title, product_to_save.article_number))
+                        #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, product_to_save.article_number))
 
                 if start_download:
                     image_request = requests.get(image.text).content
@@ -443,11 +442,10 @@ def parse_one_product_information_(product_query, browser_driver):
                         image_file.close()
                         ProductImage.objects.create(image='products/500px/' + image_title, title=image_title,
                                                     size=500).product.add(product_to_save)
-                        added_images_prefixes.append(
-                            ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                        added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
-        print('Ошибка загрузки изображения 500px')
+        #print('Ошибка загрузки изображения 500px')
         pass
 
     # -----------------------------------------------------#
@@ -471,8 +469,7 @@ def parse_one_product_information_(product_query, browser_driver):
                             and product_to_save == existed_image.product:
                         existed_image.product.add(product_to_save)
                         start_download = False
-                        print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                            existed_image.title, product_to_save.article_number))
+                        #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, product_to_save.article_number))
 
                 if start_download:
                     image_request = requests.get(image.text).content
@@ -483,11 +480,10 @@ def parse_one_product_information_(product_query, browser_driver):
                         image_file.close()
                         ProductImage.objects.create(image='products/250px/' + image_title, title=image_title,
                                                     size=250).product.add(product_to_save)
-                    added_images_prefixes.append(
-                        ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                    added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                     # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
-        print('Ошибка загрузки изображения 250px')
+        #print('Ошибка загрузки изображения 250px')
         pass
 
     # -----------------------------------------------------#
@@ -512,9 +508,7 @@ def parse_one_product_information_(product_query, browser_driver):
                             and product_to_save == existed_image.product:
                         existed_image.product.add(product_to_save)
                         start_download = False
-                        print(
-                            'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                existed_image.title, product_to_save.article_number))
+                        #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, product_to_save.article_number))
 
                 if start_download:
                     image_request = requests.get(image.text).content
@@ -523,13 +517,11 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image=image_title, title=image_title,
-                                                    size=2000).product.add(product_to_save)
-                        added_images_prefixes.append(
-                            ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                        ProductImage.objects.create(image=image_title, title=image_title, size=2000).product.add(product_to_save)
+                        added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
-        print('Ошибка загрузки изображения 2000px')
+        #print('Ошибка загрузки изображения 2000px')
         pass
 
     # -----------------------------------------------------#
@@ -553,9 +545,7 @@ def parse_one_product_information_(product_query, browser_driver):
                             and product_to_save == existed_image.product:
                         existed_image.product.add(product_to_save)
                         start_download = False
-                        print(
-                            'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                existed_image.title, product_to_save.article_number))
+                        #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, product_to_save.article_number))
 
                 if start_download:
                     image_request = requests.get(image.text).content
@@ -566,11 +556,10 @@ def parse_one_product_information_(product_query, browser_driver):
                         image_file.close()
                         ProductImage.objects.create(image=image_title, title=image_title,
                                                     size=40, is_icon=True).product.add(product_to_save)
-                        added_images_prefixes.append(
-                            ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                        added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
-        print('Ошибка загрузки иконки')
+        #print('Ошибка загрузки иконки')
         pass
 
     time_end = time.time()
@@ -591,7 +580,6 @@ def parse_one_product_information_(product_query, browser_driver):
         'parsed_time':delta,
     }
 
-    print(product_dict)
     return product_to_save
 
 
@@ -599,7 +587,7 @@ def parse_one_product_information_(product_query, browser_driver):
 #статус дополняющего артикула остается is_parsed=False для того, чтоб артикул в дальнейшем смог парсится в случае не достающей информации
 
 def parseComplementaryProducts(parent_product, *complementary_products_list):
-    print('---------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ К %s НАЧАЛСЯ---------' % parent_product.article_number)
+    #print('---------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ К %s НАЧАЛСЯ---------' % parent_product.article_number)
     # 1
     start_parse = time.time()
     created_product = None
@@ -615,7 +603,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 complementary_products_articles_not_existed.append(complementary_product)
 
     if len(complementary_products_articles_not_existed) != 0:
-        print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
+        #print('СПИСОК ДОПОЛНЯЮЩИХ ПРОДУКТОВ К ПАРСИНГУ ', complementary_products_articles_not_existed)
 
         from selenium.webdriver.chrome.options import Options
         from selenium import webdriver
@@ -738,8 +726,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                         for option_identificator_for_parse in existed_options_on_page:
                             button_for_open_options.click()
                             try:
-                                one_option_button = driver.find_element_by_xpath(
-                                    '//li[@data-value="' + option_identificator_for_parse + '"]')
+                                one_option_button = driver.find_element_by_xpath('//li[@data-value="' + option_identificator_for_parse + '"]')
                                 one_option_button.click()
                                 try:
                                     one_option_article_number = driver.current_url.split('#')[1][1:]
@@ -754,10 +741,10 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                         if len(options_articles_list) != 0:
                             if parse_colors:
                                 color_options = '#'.join(options_articles_list)
-                                print('Количество цветов артикула %i' % len(options_articles_list))
+                                #print('Количество цветов артикула %i' % len(options_articles_list))
                             if parse_sizes:
                                 size_options = '#'.join(options_articles_list)
-                                print('Количество размеров артикула %i' % len(options_articles_list))
+                                #print('Количество размеров артикула %i' % len(options_articles_list))
                 except:
                     pass
 
@@ -783,10 +770,10 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             models_to_save = ''
             try:
                 models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-                print('ЕСТЬ МОДЕЛИ')
+                #print('ЕСТЬ МОДЕЛИ')
             except:
                 parse_models = False
-                print('НЕТУ МОДЕЛЕЙ')
+                #print('НЕТУ МОДЕЛЕЙ')
 
             if parse_models:
                 for model in models_:
@@ -832,8 +819,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                                      additional_models=models_to_save,
                                                      is_parsed=False,
                                                      parse_later=True)
-            print('Артикул %s был успешно сохранен в БД под id = %i' % (
-            created_product.article_number, created_product.id))
+            #print('Артикул %s был успешно сохранен в БД под id = %i' % (created_product.article_number, created_product.id))
 
             # -----------------------------------------------------#
             # images 500*500px
@@ -856,9 +842,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     and created_product == existed_image.product:
                                 existed_image.product.add(created_product)
                                 start_download = False
-                                print(
-                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                        existed_image.title, created_product.article_number))
+                                #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, created_product.article_number))
 
                         if start_download:
                             image_request = requests.get(image.text).content
@@ -869,11 +853,10 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                 image_file.close()
                                 ProductImage.objects.create(image='products/500px/' + image_title, title=image_title,
                                                             size=500).product.add(created_product)
-                                added_images_prefixes.append(
-                                    ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
+                                added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
-                print('Ошибка загрузки изображения 500px')
+                #print('Ошибка загрузки изображения 500px')
                 pass
 
             # -----------------------------------------------------#
@@ -897,8 +880,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     and created_product == existed_image.product:
                                 existed_image.product.add(created_product)
                                 start_download = False
-                                print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                        existed_image.title, created_product.article_number))
+                                #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, created_product.article_number))
 
                         if start_download:
                             image_request = requests.get(image.text).content
@@ -914,7 +896,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                 ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                             # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
-                print('Ошибка загрузки изображения 250px')
+                #print('Ошибка загрузки изображения 250px')
                 pass
 
             # -----------------------------------------------------#
@@ -939,9 +921,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     and created_product == existed_image.product:
                                 existed_image.product.add(created_product)
                                 start_download = False
-                                print(
-                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                        existed_image.title, created_product.article_number))
+                                #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, created_product.article_number))
 
                         if start_download:
                             image_request = requests.get(image.text).content
@@ -956,7 +936,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
-                print('Ошибка загрузки изображения 2000px')
+                #print('Ошибка загрузки изображения 2000px')
                 pass
 
             # -----------------------------------------------------#
@@ -980,9 +960,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     and created_product == existed_image.product:
                                 existed_image.product.add(created_product)
                                 start_download = False
-                                print(
-                                    'Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (
-                                        existed_image.title, created_product.article_number))
+                                #print('Изображение с названием %s к артикулу номер %s уже найдено. БЫЛА ДОБАВЛЕННА СВЯЗЬ!' % (existed_image.title, created_product.article_number))
 
                         if start_download:
                             image_request = requests.get(image.text).content
@@ -997,12 +975,12 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
-                print('Ошибка загрузки иконки')
+                #print('Ошибка загрузки иконки')
                 pass
 
             #закрываем старую вкладку и открываем новую
             driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'T', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'W')
-        print('-----------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ ЗАВЕРШЕН')
+        #print('-----------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ ЗАВЕРШЕН')
         driver.close()
 
     end_parse = time.time()

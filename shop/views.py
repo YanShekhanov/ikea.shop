@@ -225,7 +225,7 @@ def search(request):
         for product in products:
             one_product_dict = {}
             try:
-                image = ProductImage.objects.filter(product=product, size=250).first()
+                image = ProductImage.objects.get(product=product, is_icon=True)
                 image_url = image.image.url
             except ProductImage.DoesNotExist:
                 image_url = None
