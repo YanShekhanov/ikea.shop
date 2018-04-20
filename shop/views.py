@@ -226,9 +226,9 @@ def search(request):
         products_list = []
         for product in products:
             try:
-                image = ProductImage.objects.filter(product=product, is_icon=True).first()
+                image = ProductImage.objects.get(product=product, is_icon=True)
                 image_url = image.image.url
-            except AttributeError:
+            except ProductImage.DoesNotExist:
                 image_url = ''
             one_product_dict = {
                 'product_title': product.title,
@@ -237,7 +237,6 @@ def search(request):
                 'product_image': image_url
             }
             products_list.append(one_product_dict)
-        print(products_list)
 
         return JsonResponse({'products':products_list})
 
