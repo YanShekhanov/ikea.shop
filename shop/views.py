@@ -225,14 +225,19 @@ def search(request):
 
         products_list = []
         for product in products:
-            image = ProductImage.objects.filter(product=product, is_icon=True).first()
+            try:
+                image = ProductImage.objects.filter(product=product, is_icon=True).first()
+                image_url = image.image.url
+            except ProductImage.DoesNotExist:
+                image_url = None
             one_product_dict = {
                 'product_title': product.title,
                 'product_description': product.description,
                 'product_price': product.price,
-                'product_image': image.image.url
+                'product_image': image_url
             }
             products_list.append(one_product_dict)
+
         return JsonResponse({'products':products_list})
 
 
