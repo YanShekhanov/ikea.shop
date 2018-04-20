@@ -157,7 +157,7 @@
 
 <!-- search template -->
 <script type="text/js-render" id="searchTemplate">
-    <li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
+    <li><img src="<%:image_url%>"><p><%:product_title%>, <%:article_number%></p></li>
 </script>
 
 <script>
@@ -167,7 +167,6 @@
            if ($(this).val().length>=3){
                var token = $('input[name="csrfmiddlewaretoken"]').val(),
                    template = document.getElementById('searchTemplate').innerHTML;
-               console.log(template);
                search($(this).val(), token, template);
            }
         });
