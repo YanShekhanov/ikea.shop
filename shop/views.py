@@ -228,7 +228,7 @@ def search(request):
             try:
                 image = ProductImage.objects.filter(product=product, is_icon=True).first()
                 image_url = image.image.url
-            except ProductImage.DoesNotExist:
+            except AttributeError:
                 image_url = None
             one_product_dict = {
                 'product_title': product.title,
