@@ -210,7 +210,7 @@ def get_sort_query(request):
             except SubSubCategory.DoesNotExist:
                 return Http404
 
-        return JsonResponse(response_json_dict)
+        #return JsonResponse(response_json_dict)
 
 #ajax поиск
 from django.db.models import Q
