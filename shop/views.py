@@ -237,6 +237,7 @@ def search(request):
                 'product_image': image_url
             }
             products_list.append(one_product_dict)
+        print(products_list)
 
         return JsonResponse({'products':products_list})
 
