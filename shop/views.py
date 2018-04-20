@@ -222,7 +222,7 @@ def search(request):
             Q(title__icontains=searched_text) |
             Q(description__icontains=searched_text)
         )
-
+        print(products)
         products_list = []
         for product in products:
             try:
