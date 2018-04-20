@@ -155,23 +155,25 @@
         $('li[data-category_id="' + category_id + '"]').show()
     };
 
+</script>
+
+{% block onload_js %}
+    <script type="text/js-render" id="searchTemplate">
+        <li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
+    </script>
+
+    <script>
     //ajax search
         $('.search-form').keyup(function () {
            if ($(this).val().length>=3){
                var token = $('input[name="csrfmiddlewaretoken"]').val(),
                    template = $('#searchTemplate').innerHTML;
+               console.log(template);
                search($(this).val(), token, template);
            }
         });
-
-</script>
-
-<!--render search-->
-<script type="text/js-render" id="searchTemplate">
-    ﻿<li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
-</script>
-
-{% block onload_js %}{% endblock %}
+    </script>
+{% endblock %}
 
 </body>
 </html>
