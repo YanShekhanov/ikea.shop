@@ -121,7 +121,7 @@ def test(request):
             print('existed')
             sub_subcategories = sub_subcategories_container.find_all(tag, class_=find)
             if code == 1:
-                print('code = 1')
+                '''print('code = 1')
                 if sub_subcategories == []:
                     sub_subcategories = None
                 if sub_subcategories is not None:
@@ -130,7 +130,7 @@ def test(request):
                     subcategory_created.save()
                     for sub_subcategory in sub_subcategories:
                         sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory.find('a').text.strip())
-                        sub_subcategory_url = sub_subcategory.find('a').get('href')
+                        sub_subcategory_url = sub_subcategory.find('a').get('href')'''
             if code == 2:
                 print('code=2')
                 for category in sub_subcategories:
