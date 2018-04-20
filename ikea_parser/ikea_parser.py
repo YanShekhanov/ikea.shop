@@ -113,7 +113,7 @@ def parse_categories_():
                             try:
                                 SubSubCategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
                             except SubSubCategory.DoesNotExist:
-                                SubSubСategory.objects.create(subcategory=subcategory_created, title=sub_subcategory_title,
+                                SubSubCategory.objects.create(subcategory=subcategory_created, title=sub_subcategory_title,
                                                                url_ikea=sub_subcategory_url, unique_identificator=create_identificator(8))
 
 
