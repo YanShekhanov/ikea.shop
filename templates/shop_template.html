@@ -142,9 +142,8 @@
 
 <!--основные скрипты-->
 <script>
-    $('#dropdown-products').hide();
-    $('#product-categories').find('li').hide();
-    $('#product-categories').hide();
+    tags_list = ['#dropdown-products', '#product-categories li', 'product-categories'];
+    hide_tags(tags_list);
 
     function open_categories() {
         $('#dropdown-products').toggle();
@@ -154,16 +153,16 @@
         $('#product-categories').show();
         $('li[data-category_id="' + category_id + '"]').show()
     };
-
 </script>
 
-{% block onload_js %}
-    <script type="text/js-render" id="searchTemplate">
-        <li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
-    </script>
+<!-- search template -->
+<script type="text/js-render" id="searchTemplate">
+    <li><img src="{{image_url}}mage_url%>"><p><%:product_title%>, <%:article_number%></p></li>
+</script>
 
-    <script>
-    //ajax search
+<script>
+    $(document).ready(function () {
+        //ajax search
         $('.search-form').keyup(function () {
            if ($(this).val().length>=3){
                var token = $('input[name="csrfmiddlewaretoken"]').val(),
@@ -172,8 +171,10 @@
                search($(this).val(), token, template);
            }
         });
-    </script>
-{% endblock %}
+
+        {% block onload_js %}{% endblock %}
+    })
+</script>
 
 </body>
 </html>
