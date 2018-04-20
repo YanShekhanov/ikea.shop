@@ -231,12 +231,10 @@ def search(request):
                 image_url = image.image.url
             except ProductImage.DoesNotExist:
                 image_url = ''
-            one_product_dict = {
-                'product_title': product.title,
-                'product_description': product.description,
-                'product_price': product.price,
-                'product_image': image_url
-            }
+            one_product_dict['product_title'] = product.title
+            one_product_dict['product_description'] = product.description
+            one_product_dict['product_price'] = product.price
+            one_product_dict['product_image'] = image_url
             print(one_product_dict)
             products_list.append(one_product_dict)
 
