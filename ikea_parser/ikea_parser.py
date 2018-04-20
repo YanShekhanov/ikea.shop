@@ -29,8 +29,13 @@ from app.settings import MEDIA_ROOT, BASE_DIR
 
 DOMAIN = 'http://www.ikea.com'
 
+import json
 #парсинг категорий, подкатегорий
 def parse_categories_():
+    #pathlib.Path(os.path.join(BASE_DIR, 'parsed_data') + 'categories.json').mkdir(parents=True, exist_ok=True)
+    #file = open(os.path.join(BASE_DIR, 'parsed_data') + 'categories.json')
+
+
     main_page = 'http://www.ikea.com/pl/pl/'
     domain = 'http://www.ikea.com'
     categories_dict = {}
@@ -39,7 +44,6 @@ def parse_categories_():
     #                   'category_title_1': [ ['subcategory_title_1', 'subcategory_url_1'], ['subcategory_title_2', 'subcategory_url_2'] ]
     # }
 
-    print(len(Product.objects.all()))
     # основнов парсер
     html = requests.get(main_page).text
     soup_main_object = BeautifulSoup(html, 'lxml')
@@ -102,6 +106,8 @@ def parse_categories_():
                         if sub_subcategory_block == []:
                             sub_subcategory_block = None
                         if sub_subcategory_block is not None:
+                            subcategory_created.have_sub_subcategory = True
+                            subcategory_created.save()
                             sub_subcategory_url = sub_subcategory_block.get('href')
                             sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
                             try:
@@ -116,11 +122,6 @@ def parse_categories_():
         categories_dict[category_title] = subcategories_list
     return categories_dict
 
-#парсинг артикулов (+артикул, ссылка, название, короткое описание, цена, наличие в Люблине)
-#return products_dict = {
-#                       'subcategory_title1': [product_article1, product_article2, ...],
-#                       'subcategory_title2': [product_article3, product_article4, ...]
-#                        }
 
 def get_sub_and_sub_subcategories():
     # parse products
