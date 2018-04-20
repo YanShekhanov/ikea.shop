@@ -235,7 +235,6 @@ def search(request):
             }
             products_list.append(one_product_dict)
         return JsonResponse(data={'products':products_list})
-    return redirect(reverse('home'))
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
