@@ -226,12 +226,12 @@ def search(request):
         for product in products:
             one_product_dict = {}
             try:
-                image = ProductImage.objects.get(product=product, is_icon=True)
+                image = ProductImage.objects.filter(product=product, size=250).first()
                 image_url = image.image.url
-            except ProductImage.DoesNotExist:
+            except ProductImage.DoesNotExist or AttributeError:
                 image_url = ''
             one_product_dict['product_title'] = product.title
-            #one_product_dict['product_description'] = product.description
+            one_product_dict['product_article_number'] = product.article_number
             one_product_dict['product_price'] = product.price
             one_product_dict['product_image'] = image_url
             products_list.append(one_product_dict)
