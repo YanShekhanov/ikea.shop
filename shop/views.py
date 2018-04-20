@@ -225,6 +225,7 @@ def search(request):
         print(products)
         products_list = []
         for product in products:
+            one_product_dict = {}
             try:
                 image = ProductImage.objects.get(product=product, is_icon=True)
                 image_url = image.image.url
