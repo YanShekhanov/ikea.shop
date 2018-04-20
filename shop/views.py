@@ -235,7 +235,7 @@ def search(request):
 
         serealized_products = json_serializer(products)
 
-        return JsonResponse(data={'products': serealized_products, 'images':image_dict})
+    return JsonResponse(data={'products': serealized_products, 'images':image_dict})
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
