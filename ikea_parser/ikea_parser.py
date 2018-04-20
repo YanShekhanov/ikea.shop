@@ -94,10 +94,21 @@ def parse_categories_():
 
                 #проверка на наличие подкатегорий в другом блоке
                 sub_subcategories_containers = subcategory_soup.find_all('div', class_='visualNavContainer')
-                for sub_subcategory_container in sub_subcategories_containers:
-                    sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
-                    sub_subcategory_url = sub_subcategory_block.get('href')
-                    sub_subcategory_title = sub_subcategory_block.text.strip()
+                if sub_subcategories_containers == []:
+                    sub_subcategories_containers = None
+                if sub_subcategories_containers is not None:
+                    for sub_subcategory_container in sub_subcategories_containers:
+                        sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
+                        if sub_subcategory_block == []:
+                            sub_subcategory_block = None
+                        if sub_subcategory_block is not None:
+                            sub_subcategory_url = sub_subcategory_block.get('href')
+                            sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
+                            try:
+                                SubSubcategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
+                            except SubSubCategory.DoesNotExist:
+                                SubSubcategory.objects.created(subcategory=subcategory_created, title=sub_subcategory_title,
+                                                               url_ikea=sub_subcategory_url, unique_identificator=create_identificator(8))
 
 
                 one_subcategory_list = [subcategory_title, subcategory_url]
