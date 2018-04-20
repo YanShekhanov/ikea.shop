@@ -580,6 +580,7 @@ def parse_one_product_information_(product_query, browser_driver):
         'parsed_time':delta,
     }
 
+    print(product_dict)
     return product_to_save
 
 
