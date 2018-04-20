@@ -216,7 +216,6 @@ def get_sort_query(request):
 from django.db.models import Q
 def search(request):
     if request.method =='POST' and request.is_ajax():
-        print('post')
         searched_text = request.POST['searched_text']
         products = Product.objects.filter(
             Q(article_number__icontains=searched_text) |
@@ -234,7 +233,7 @@ def search(request):
                 'product_image': image.image.url
             }
             products_list.append(one_product_dict)
-        return JsonResponse(data={'products':products_list})
+    return JsonResponse(data={'products':products_list})
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
