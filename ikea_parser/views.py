@@ -98,6 +98,8 @@ def test(request):
     html = browser.page_source
     product_soup = BeautifulSoup(html, 'lxml')'''
 
+    subcategory_request = requests.get(url).text
+    subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
     # проверка на наличие подкатегорий в другом блоке
     sub_subcategories_containers = subcategory_soup.find_all('div', class_='visualNavContainer')
     if sub_subcategories_containers == []:
