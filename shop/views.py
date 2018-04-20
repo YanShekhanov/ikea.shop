@@ -214,10 +214,8 @@ def get_sort_query(request):
 
 #ajax поиск
 from django.db.models import Q
+from ikea_parser.json_serializer import json_serializer
 def search(request):
-    from ikea_parser.json_serializer import json_serializer
-    serealized_products = None
-    image_dict = None
     if request.method =='POST' and request.is_ajax():
         searched_text = request.POST['searched_text']
         products = Product.objects.filter(
@@ -237,7 +235,8 @@ def search(request):
 
         serealized_products = json_serializer(products)
 
-    return JsonResponse(data={'products': serealized_products, 'images':image_dict})
+        return JsonResponse(data={'products': serealized_products, 'images':image_dict})
+    return redirect(reverse('home'))
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
