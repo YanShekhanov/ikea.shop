@@ -86,7 +86,7 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    url = 'https://www.ikea.com/pl/pl/catalog/categories/departments/bedroom/Mattresses/?icid=itl|pl|menu|201802131012490682_123'
+    url_ = 'https://www.ikea.com/pl/pl/catalog/categories/departments/bedroom/Mattresses/?icid=itl|pl|menu|201802131012490682_123'
     #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
     '''options = Options()
     options.add_argument("--headless")
@@ -98,7 +98,7 @@ def test(request):
     html = browser.page_source
     product_soup = BeautifulSoup(html, 'lxml')'''
 
-    subcategory_request = requests.get(url).text
+    subcategory_request = requests.get(url_).text
     subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
     # проверка на наличие подкатегорий в другом блоке
     sub_subcategories_containers = subcategory_soup.find_all('div', class_='visualNavContainer')
