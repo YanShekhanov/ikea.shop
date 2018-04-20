@@ -134,7 +134,7 @@ def test(request):
             if code == 2:
                 print('code=2')
                 for category in sub_subcategories:
-                    url = category.get('href')
+                    url_ = category.get('href')
                     title = category.text
                     print(url)
 
