@@ -216,6 +216,8 @@ def get_sort_query(request):
 from django.db.models import Q
 def search(request):
     from ikea_parser.json_serializer import json_serializer
+    serealized_products = None
+    image_dict = None
     if request.method =='POST' and request.is_ajax():
         searched_text = request.POST['searched_text']
         products = Product.objects.filter(
