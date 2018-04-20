@@ -154,7 +154,6 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         for product in complementary_images_list:
             try:
                 image = ProductImage.objects.get(product=product, is_icon=True)
-                print(image.image)
             except ProductImage.DoesNotExist:
                 image = ProductImage.objects.filter(product=product, size=250).first()
             if image not in complementary_images:
@@ -226,7 +225,7 @@ def search(request):
         for product in products:
             one_product_dict = {}
             try:
-                image = ProductImage.objects.get(product=product, is_icon=True)
+                image = ProductImage.objects.filter(product=product, size=250).first()
                 image_url = image.image.url
             except ProductImage.DoesNotExist:
                 image_url = None
