@@ -210,12 +210,12 @@ def get_sort_query(request):
             except SubSubCategory.DoesNotExist:
                 return Http404
 
-        #return JsonResponse(response_json_dict)
+        return JsonResponse(response_json_dict)
 
 #ajax поиск
 from django.db.models import Q
 def search(request):
-    if request.method =='GET' and request.is_ajax():
+    if request.method =='POST' and request.is_ajax():
         searched_text = request.POST['searched_text']
         products = Product.objects.filter(
             Q(article_number__icontains=searched_text) |
