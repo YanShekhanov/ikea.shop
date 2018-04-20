@@ -66,10 +66,6 @@ def parse_categories_():
                     subcategory_created = SubCategory.objects.create(title=subcategory_title, url_ikea=subcategory_url,
                                                                      category=category_created, unique_identificator=create_identificator(8))
                 #проверка на наличие подподкатегории
-                options_dict = {'row-first row': {'tag': 'div', 'find':'img-slot', 'code':1},
-                                'row-second row': {'tag': 'div', 'find':'img-slot', 'code':1},
-                                'visualNavContainer': {'tag': 'div', 'find':'categoryName', 'code':2},
-                                }
                 subcategory_request = requests.get(subcategory_url).text
                 subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
                 classes_to_find_sub_subcategories = ['row-first row', 'row-second row']
@@ -95,11 +91,14 @@ def parse_categories_():
                                 except:
                                     SubSubCategory.objects.create(subcategory=subcategory_created, title=sub_subcategory_title,
                                                                   url_ikea=sub_subcategory_url, unique_identificator=create_identificator(8))
-                    else:
-                        pass
-                        #print('$$$$$$$$$$$$$$$$$$$$$$$$$$')
-                        #print('Податегория " %s " не имеет под подкатегорий' % subcategory_url)
-                        #print('$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
+                #проверка на наличие подкатегорий в другом блоке
+                sub_subcategories_containers = subcategory_soup.find_all('div', class_='visualNavContainer')
+                for sub_subcategory_container in sub_subcategories_containers:
+                    sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
+                    sub_subcategory_url = sub_subcategory_block.get('href')
+                    sub_subcategory_title = sub_subcategory_block.text.strip()
+
 
                 one_subcategory_list = [subcategory_title, subcategory_url]
                 subcategories_list.append(one_subcategory_list)
