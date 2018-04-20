@@ -166,7 +166,7 @@
         $('.search-form').keyup(function () {
            if ($(this).val().length>=3){
                var token = $('input[name="csrfmiddlewaretoken"]').val(),
-                   template = document.getElementById('searchtemplate').innerHTML;
+                   template = document.getElementById('searchTemplate').innerHTML;
                console.log(template);
                search($(this).val(), token, template);
            }
