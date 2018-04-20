@@ -85,9 +85,9 @@ def delete_products(request):
     return redirect(reverse('home'))
 
 def test(request):
-    url = 'https://www.ikea.com/pl/pl/catalog/products/10192824/'
+    url = 'https://www.ikea.com/pl/pl/catalog/categories/departments/bedroom/Mattresses/?icid=itl|pl|menu|201802131012490682_123'
     #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
-    options = Options()
+    '''options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
     options.add_argument("--no-sandbox")
@@ -95,10 +95,53 @@ def test(request):
     browser = webdriver.Chrome(chrome_options=options)
     browser.get(url)
     html = browser.page_source
-    product_soup = BeautifulSoup(html, 'lxml')
+    product_soup = BeautifulSoup(html, 'lxml')'''
+
+    # проверка на наличие подподкатегории
+    options_dict = {'row-first row': {'tag': 'div', 'find': 'img-slot', 'code': 1},
+                    'row-second row': {'tag': 'div', 'find': 'img-slot', 'code': 1},
+                    'visualNavContainer': {'tag': 'a', 'find': 'categoryName', 'code': 2},
+                    }
+    print(options_dict.keys())
+    for key in options_dict.keys():
+        print(key)
+        option = options_dict.get(key)
+        tag = option.get('tag')
+        find = option.get('find')
+        code = option.get('code')
+
+        subcategory_request = requests.get(url).text
+        subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
+        sub_subcategories_container = subcategory_soup.find('div', class_=key)
+        if sub_subcategories_container == []:
+            sub_subcategories_container = None
+
+        if sub_subcategories_container is not None:
+            print('найдено')
+            sub_subcategories = sub_subcategories_container.find_all(tag, class_=find)
+            print(sub_subcategories)
+            if code == 1:
+                print('code = 1')
+                if sub_subcategories == []:
+                    sub_subcategories = None
+                if sub_subcategories is not None:
+                    print(sub_subcategories)
+                    print('YES " %s " ' % subcategory_url)
+                    subcategory_created.have_sub_subcategory = True
+                    subcategory_created.save()
+                    for sub_subcategory in sub_subcategories:
+                        sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory.find('a').text.strip())
+                        sub_subcategory_url = sub_subcategory.find('a').get('href')
+            if code == 2:
+                print('code=2')
+                for category in sub_subcategories:
+                    url = category.get('href')
+                    title = category.text
+                    print(url, title)
+
 
     # -----------------------------------------------------#
-    # more models - модели
+    '''more models - модели
     parse_models = True
     models_articles_list = []
     #models = None
@@ -119,7 +162,7 @@ def test(request):
                 models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
             models_to_save = '#'.join(models_articles_list)
-            print('Количество моделей продукта %i' % len(models_articles_list))
+            print('Количество моделей продукта %i' % len(models_articles_list))'''
 
     return redirect(reverse('home'))
 

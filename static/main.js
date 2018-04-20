@@ -36,7 +36,7 @@
         });
     };
 
-    function search(searched_text, token) {
+    function search(searched_text, token, template) {
         $.ajax({
             url:'/shop/search/',
             type:'json',
@@ -46,13 +46,12 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                var markup = $('#searchTemplate').innerHTML;
                 to_paste = $('#searched_query');
                 to_paste.find('li').remove();
                 to_paste.hide();
                 for (product=0; product<data.products.length; product++){
                     render_template = {'image_url':'', 'product_title':data.products[product].title, 'article_number':data.products[product].article_number};
-                    var html = Mustache.render(markup, render_template, castom_tags);
+                    var html = Mustache.render(template, render_template, castom_tags);
                     console.log(html);
                 };
                 to_paste.show();

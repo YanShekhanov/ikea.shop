@@ -43,8 +43,7 @@ def parse_categories_():
     # основнов парсер
     html = requests.get(main_page).text
     soup_main_object = BeautifulSoup(html, 'lxml')
-    categories = soup_main_object.find('ul', class_='header-nav-sublist').find_all('li',
-                                                                                   class_='header-nav-sublist-title')
+    categories = soup_main_object.find('ul', class_='header-nav-sublist').find_all('li', class_='header-nav-sublist-title')
     for category in categories:
         subcategories_list = []
         category_title = re.sub('\s+', ' ', category.find('a').text.strip())
@@ -67,6 +66,10 @@ def parse_categories_():
                     subcategory_created = SubCategory.objects.create(title=subcategory_title, url_ikea=subcategory_url,
                                                                      category=category_created, unique_identificator=create_identificator(8))
                 #проверка на наличие подподкатегории
+                options_dict = {'row-first row': {'tag': 'div', 'find':'img-slot', 'code':1},
+                                'row-second row': {'tag': 'div', 'find':'img-slot', 'code':1},
+                                'visualNavContainer': {'tag': 'div', 'find':'categoryName', 'code':2},
+                                }
                 subcategory_request = requests.get(subcategory_url).text
                 subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
                 classes_to_find_sub_subcategories = ['row-first row', 'row-second row']
