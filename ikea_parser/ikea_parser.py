@@ -83,8 +83,7 @@ def parse_categories_():
                         if sub_subcategories == []:
                             sub_subcategories = None
                         if sub_subcategories is not None:
-                            print(sub_subcategories)
-                            print('YES " %s " ' % subcategory_url)
+                            print('subcategory with url "%s" have sub subcategories' % subcategory_url)
                             subcategory_created.have_sub_subcategory = True
                             subcategory_created.save()
                             for sub_subcategory in sub_subcategories:
@@ -101,6 +100,7 @@ def parse_categories_():
                 if sub_subcategories_containers == []:
                     sub_subcategories_containers = None
                 if sub_subcategories_containers is not None:
+                    print('subcategory with url "%s" have sub subcategories' % subcategory_url)
                     for sub_subcategory_container in sub_subcategories_containers:
                         sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
                         if sub_subcategory_block == []:
