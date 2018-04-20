@@ -52,11 +52,10 @@
                 to_paste.hide();
                 Mustache.tags = ['<%', '%>'];
                 for (product=0; product<data.products.length; product++){
-                    var product = data.products[product];
-                    rend_data = {image_url:product.product_image,
-                                 product_title:product.product_title,
-                                 product_description:product.product_description,
-                                 product_price:product.product_price,
+                    rend_data = {image_url:data.products[product].product_image,
+                                 product_title:data.products[product].product_title,
+                                 product_description:data.products[product].product_description,
+                                 product_price:data.products[product].product_price,
                                 };
                     var rend_html = Mustache.render(template, rend_data);
                     console.log(rend_data);
