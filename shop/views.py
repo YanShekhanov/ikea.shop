@@ -224,18 +224,17 @@ def search(request):
             Q(description__icontains=searched_text)
         )
 
-        #images
-        image_dict = {}
+        products_list = []
         for product in products:
-            try:
-                image = ProductImage.objects.filter(product=product, is_icon=True).first()
-                image_dict[product.article_number] = json_serializer(image)
-            except ProductImage.DoesNotExist:
-                image = None
-
-        serealized_products = json_serializer(products)
-
-        return JsonResponse(data={'products': serealized_products, 'images':image_dict})
+            image = ProductImage.objects.filter(product=product, is_icon=True).first
+            one_product_dict = {
+                'product_title': product.title,
+                'product_description': product.description,
+                'product_price': product.price,
+                'product_image': image.image.url
+            }
+            products_list.append(one_product_dict)
+        return JsonResponse(data={'products':products_list})
     return redirect(reverse('home'))
 
 
