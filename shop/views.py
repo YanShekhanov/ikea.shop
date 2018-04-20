@@ -223,12 +223,9 @@ def search(request):
             Q(description__icontains=searched_text)
         )
 
-        return redirect(reverse('home'))
-
-'''
         products_list = []
         for product in products:
-            image = ProductImage.objects.filter(product=product, is_icon=True).first
+            image = ProductImage.objects.filter(product=product, is_icon=True).first()
             one_product_dict = {
                 'product_title': product.title,
                 'product_description': product.description,
@@ -236,7 +233,7 @@ def search(request):
                 'product_image': image.image.url
             }
             products_list.append(one_product_dict)
-        return JsonResponse({'products':products_list})'''
+        return JsonResponse({'products':products_list})
 
 
 #AJAX LOAD ALL IMAGES FOR ARTICLE
