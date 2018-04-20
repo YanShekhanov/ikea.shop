@@ -113,7 +113,7 @@ def test(request):
 
         subcategory_request = requests.get(url).text
         subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
-        sub_subcategories_container = subcategory_soup.find('div', class_=key)
+        sub_subcategories_container = subcategory_soup.find_all('div', class_=key)
         if sub_subcategories_container == []:
             sub_subcategories_container = None
 
@@ -136,7 +136,7 @@ def test(request):
                 for category in sub_subcategories:
                     url_ = category.get('href')
                     title = category.text
-                    print(url)
+                    print(url_)
 
     return redirect(reverse('home'))
 
