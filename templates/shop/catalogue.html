@@ -49,10 +49,10 @@
     <script type="text/card-template" id="cardTemplate">
         <div class="card">
             <div class="card-open">
-                <i class="fa fa-search-plus" aria-hidden="true"></i>
+                <i class="fa fa-search-plus get-all-images" data-unique_identificator=<%unique_identificator%> aria-hidden="true"></i>
                 <img src="<%image_url%>" alt=<%product_article_number%>
             <!--Product Info Open-->
-                <a class="card-title"><%product_title%></a>
+                <a class="card-title" href="/shop/product_detail/product=<%product_article_number%>"><%product_title%></a>
                 <p class="ind-code">Артикул: <%product_article_number%></p>
                 <p class="card-text"><%product_description%></p>
                 <p class="card-price"><%product_price%> грн.</p>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <!--Product Images-->
-                <i class="fa fa-search-plus" aria-hidden="true"></i>
+                <i class="fa fa-search-plus get-all-images" aria-hidden="true"></i>
                 <img src="<%image_url%>" alt="<%product_article_number%>">
             <!--Product Info-->
                 <a class="card-title"><%product_title%></a>
