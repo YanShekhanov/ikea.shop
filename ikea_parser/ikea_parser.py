@@ -1030,6 +1030,37 @@ def parse_rooms():
             image_file.write(image_page)
             image_file.close()
 
+def parse_rooms_examples(query):
+    url = query.ikea_url
+    html = BeautifulSoup(requests.get(url).text, 'lxml')
+    examples = html.find_all('div', class_='roomblock')
+    for example in examples:
+        start_load = True
+        example_url = DOMAIN + example.find('a').get('href')
+        example_image = DOMAIN + example.find('img').get('src')
+        example_title = example.find('a').text.strip()
+
+        #парсинг артикулов одной комнаты
+        example_detail_page = BeautifulSoup(requests.get(example_url).text, 'lxml')
+        products = example_detail_page.find_all('div', class_='product')
+        products_list_to_save = []
+        products_in_example_to_save = None
+        for product in products:
+            product_article_number = product.get('id').strip().split('_')[1]
+            if product not in products_list_to_save:
+                products_list_to_save.append(product_article_number)
+            products_in_example_to_save = '#'.join(products_list_to_save)
+
+        created_example = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save, image='rooms_example/' + image_title_to_save)
+
+        image_title_to_save = create_identificator(4) + '.jpg'
+        image_page = requests.get(example_image).content
+        image_file = open(MEDIA_ROOT + 'rooms_examples/' + image_title_to_save, 'wb')
+        image_file.write(image_page)
+        image_file.close()
+
+
+
 
         '''browser.get(room_url)
         room_html = browser.page_source
