@@ -27,8 +27,6 @@ h1 {
 	border-radius: 100px;
 	width: 370px;
 	font: 900 800% Baskerville, 'Palatino Linotype', Palatino, serif;
-	height: auto;
-	margin: 0 auto;
 }
 
 @keyframes loading {
