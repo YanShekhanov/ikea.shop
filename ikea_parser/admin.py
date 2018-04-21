@@ -10,5 +10,3 @@ admin.site.register(Product)
 admin.site.register(Room)
 admin.site.register(RoomPlace)
 admin.site.register(RoomExample)
-
-admin.site.register(ProductImage)
