@@ -17,11 +17,14 @@ body{
 	height: 100%;
 	background-color: #373A48;
 	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 h1 {
-	position: absolute;
+	position: fixed;
+	display: block;
 	z-index: 999;
-	text-align: center;
 	background-color: #FF6A00;
 	color: hsla(25,100%,50%,1.00);
 	border-radius: 100px;
