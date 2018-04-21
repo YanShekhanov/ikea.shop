@@ -108,6 +108,7 @@
                 image_url:product_query.image,
             };
             var rendered_html = Mustache.render(template, rendered_data);
+            console.log(rendered_html);
             $('#product_cards').append(rendered_html);
             /*$this_card = $('.card').last();
             $this_card.attr('id', product_query.article_number);
