@@ -999,6 +999,30 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     print(start_parse - end_parse)
     return created_product
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+def parse_rooms():
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("window-size=1024,768")
+    options.add_argument("--no-sandbox")
+
+    browser = webdriver.Chrome(chrome_options=options)
+    url = 'https://www.ikea.com/pl/pl/'
+    browser.get(url)
+    rooms_button = browser.find_element_by_xpath('//li[@class="menu-rooms"]')
+    rooms_button.click()
+    html = browser.page_source
+    page = BeautifulSoup(html, 'lxml')
+    rooms = page.find('div', class_='menu-rooms').find_all('li')
+    for room in rooms:
+        room_url = room.get('href')
+        room_title = re.sub('"', '', room.text.strip())
+        print('room "%s" with url "%s" is parsed' % (room_title, room_url))
+
+
+
 
 def translate(category=None, subcategory=None, product=None):
     parsed_domain = 'https://ikea-club.com.ua/ua/'
