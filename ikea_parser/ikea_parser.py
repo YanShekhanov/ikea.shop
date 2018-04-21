@@ -1028,7 +1028,7 @@ def parse_rooms():
         categories_list = []
         for itter in range(room_places_length):
             room_place_title = room_page.find('ul', class_='tabs-categories').find('a', href='#tab-' + str(itter)).text.strip()
-            room_places_url = room_page.find('div', id='tab-' + str(itter)).find_all('a', class_='btn btn-gray')[:1].get('href')
+            room_places_url = room_page.find('div', id='tab-' + str(itter)).find_all('a', class_='btn btn-gray')[-1].get('href')
             categories_list.append(room_places_url)
         one_room_dict['room_url'] = room_url
         one_room_dict['categories_urls'] = categories_list
