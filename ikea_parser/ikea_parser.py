@@ -1025,7 +1025,7 @@ def parse_rooms():
             Room.objects.get(title=room_title)
         except Room.DoesNotExist:
             image_title = create_identificator(4) + '.jpg'
-            Room.objects.create(title=room_title, image='/rooms/' + image_title, ikea_url=room_url)
+            Room.objects.create(title=room_title, image='rooms/' + image_title, ikea_url=room_url)
             image_page = requests.get(image_url).content
             image_file = open(MEDIA_ROOT + 'rooms/' + image_title, 'wb')
             image_file.write(image_page)
