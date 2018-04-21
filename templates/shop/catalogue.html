@@ -52,8 +52,8 @@
             loader_show(); //*показываем лоадер
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
-            console.log('identificator: ', unique_identificator);
-            get_sort('normal', unique_identificator, token);
+            var template = document.getElementById('cardTemplate');
+            get_sort('normal', unique_identificator, token, template);
         };
 
     </script>
