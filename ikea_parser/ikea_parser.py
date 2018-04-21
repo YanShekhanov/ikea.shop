@@ -1017,7 +1017,7 @@ def parse_rooms():
     for room in rooms:
         one_room_dict = {}
 
-        room_url = room.find('a').get('href')
+        room_url = room.find('a').get('href')[2:]
         image_url = room.find('img').get('src')
         room_title = re.sub('"', '', room.find('a').text.strip())
         browser.get(room_url)
