@@ -1011,8 +1011,6 @@ def parse_rooms():
     browser = webdriver.Chrome(chrome_options=options)
     url = 'https://www.ikea.com/pl/pl/'
     browser.get(url)
-    rooms_button = browser.find_element_by_xpath('//li[@class="menu-rooms"]')
-    rooms_button.click()
     html = browser.page_source
     page = BeautifulSoup(html, 'lxml')
     rooms = page.find('div', class_='menu-rooms').find_all('li')
