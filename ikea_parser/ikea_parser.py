@@ -528,7 +528,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image=image_title, title=image_title, size=2000).product.add(product_to_save)
+                        ProductImage.objects.create(image='products/2000px/', title=image_title, size=2000).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
@@ -565,7 +565,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image=image_title, title=image_title,
+                        ProductImage.objects.create(image='products/icons/', title=image_title,
                                                     size=40, is_icon=True).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
@@ -942,7 +942,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image=image_title, title=image_title,
+                                ProductImage.objects.create(image='products/2000px/', title=image_title,
                                                             size=2000).product.add(created_product)
                                 added_images_prefixes.append(
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
@@ -981,7 +981,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image=image_title, title=image_title,
+                                ProductImage.objects.create(image='products/icons/', title=image_title,
                                                             size=40, is_icon=True).product.add(created_product)
                                 added_images_prefixes.append(
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
@@ -1003,6 +1003,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 def parse_rooms():
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'rooms/')).mkdir(parents=True, exist_ok=True)
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
@@ -1018,9 +1019,19 @@ def parse_rooms():
         one_room_dict = {}
 
         room_url = 'https:' + room.find('a').get('href')
-        image_url = room.find('img').get('src')
+        image_url = 'https:' + room.find('img').get('src')
         room_title = re.sub('"', '', room.find('a').text.strip())
-        browser.get(room_url)
+        try:
+            Room.objects.get(title=room_title)
+        except Room.DoesNotExist:
+            Room.objects.created(title=room_title, image='/rooms/', ikea_url=room_url)
+            image_page = requests.get(image_url).content
+            image_file = open(MEDIA_ROOT + 'rooms/' + room_title + '.jpg', 'w')
+            image_file.write(image_page)
+            image_file.close()
+
+
+        '''browser.get(room_url)
         room_html = browser.page_source
         room_page = BeautifulSoup(room_html, 'lxml')
         room_places = room_page.find('ul', class_='tabs-categories').find_all('li')
@@ -1032,7 +1043,7 @@ def parse_rooms():
             categories_list.append(room_places_url)
         one_room_dict['room_url'] = room_url
         one_room_dict['categories_urls'] = categories_list
-        print(one_room_dict)
+        print(one_room_dict)'''
 
 
 def translate(category=None, subcategory=None, product=None):
