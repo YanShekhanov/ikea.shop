@@ -98,6 +98,7 @@
 
     //*генерация карточки*//
         function generate_one_product_card(product_query, template) {
+            console.log(template);
             Mustache.tags = ['<%', '%>'];
             rendered_data = {
                 product_article_number:product_query.article_number,
