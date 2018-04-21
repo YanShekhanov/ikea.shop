@@ -52,7 +52,7 @@
             loader_show(); //*показываем лоадер
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
-            var template = document.getElementById('cardTemplate');
+            var template = document.getElementById('cardTemplate').innerHTML;
             get_sort('normal', unique_identificator, token, template);
         };
 
