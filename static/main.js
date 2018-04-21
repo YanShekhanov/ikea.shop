@@ -98,7 +98,6 @@
 
     //*генерация карточки*//
         function generate_one_product_card(product_query, template) {
-            console.log(template);
             Mustache.tags = ['<%', '%>'];
             rendered_data = {
                 product_article_number:product_query.article_number,
@@ -109,7 +108,7 @@
             };
             var rendered_html = Mustache.render(template, rendered_data);
             console.log(rendered_html);
-            $('#product_cards').append(rendered_html);
+            document.getElementById('products_cards').append(rendered_html);
             /*$this_card = $('.card').last();
             $this_card.attr('id', product_query.article_number);
             $this_card.find('.card-title').text(product_query.title);
