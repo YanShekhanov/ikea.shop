@@ -97,22 +97,7 @@ def test(request):
     browser.get(url)
     html = browser.page_source
     product_soup = BeautifulSoup(html, 'lxml')'''
-
-    subcategory_request = requests.get(url_).text
-    subcategory_soup = BeautifulSoup(subcategory_request, 'lxml')
-    # проверка на наличие подкатегорий в другом блоке
-    sub_subcategories_containers = subcategory_soup.find_all('div', class_='visualNavContainer')
-    if sub_subcategories_containers == []:
-        sub_subcategories_containers = None
-    if sub_subcategories_containers is not None:
-        for sub_subcategory_container in sub_subcategories_containers:
-            sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
-            if sub_subcategory_block == []:
-                sub_subcategory_block = None
-            if sub_subcategory_block is not None:
-                sub_subcategory_url = sub_subcategory_block.get('href')
-                sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
-                print(sub_subcategory_url)
+    parse_rooms()
 
     return redirect(reverse('home'))
 

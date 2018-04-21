@@ -117,5 +117,22 @@ def delete_images(sender, instance, **kwargs):
     except FileNotFoundError:
         pass
 
+class Room(models.Model):
+    title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название комнаты')
+    ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
+
+class RoomPlace(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name='комната')
+    title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название части')
+    ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
+
+class RoomExample(models.Model):
+    room_place = models.ForeingKey(RoomPlace, on_delete=models.CASCADE, verbose_name='часть комнаты')
+    title = models.CharField(max_length=32, null=True, default=None, blank=False, verbose_name='название')
+    products = models.CharField(max_length=1024, null=True, default=None, blank=True, verbose_name='продукты')
+
+
+
+
 
 
