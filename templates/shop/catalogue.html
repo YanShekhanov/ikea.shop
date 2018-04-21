@@ -57,32 +57,6 @@
         };
 
     </script>
-
-    <!-- шаблон карточки продукта-->
-    <script id="product-card" type="text/x-custom-template">
-        <div class="card" id="">
-                <!--Product Images-->
-                <div class="carousel slide product-image" data-interval="false">
-                    <div class="carousel-inner">
-                                    <div class="carousel-item active">
-					<i class="fa fa-search-plus get-all-images hidden" aria-hidden="true" data-unique_identificator=""></i>
-                                        <img src="" class="productImage">
-                                    </div>
-                    </div>
-                </div>
-                <!--Product Info-->
-                <div class="card-body">
-		    <p class="ind-code"></p>
-                    <a class="card-title"></a>
-                    <p class="card-text"><br><p class="card-price"></p></p>
-					<div class="card-btns">
-                    <div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
-    				</div>
-				</div>
-            	</div>
-			</div>
-    </script>
 {% endblock %}
 
 {% block onload_js %}
@@ -99,7 +73,8 @@
             var sort_by = $(this).find('option:selected').val();
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
-            get_sort(sort_by, unique_identificator, token); //*получаем список отсортированных и генерируем контент
+            var template = document.getelementById('cardTemplate');
+            get_sort(sort_by, unique_identificator, token, template); //*получаем список отсортированных и генерируем контент
 
         });
 
@@ -142,4 +117,30 @@
             $('.img-block').slideUp();
         });
     </script>
+
+    <!-- card template -->
+<script type="text/card-template" id="cardTemplate">
+    <div class="card">
+        <div class="card-open">
+        <!--Product Images Open-->
+            <i class="fa fa-search-plus" on-aria-hidden="true"></i>
+            <img src="<%image_url%>" alt=<%product_article_number%>
+        <!--Product Info Open-->
+            <a class="card-title"><%product_title%></a>
+            <p class="ind-code">Артикул: <%product_article_number%></p>
+            <p class="card-text"><%product_description%></p>
+            <p class="card-price"><%product_price%> грн.</p>
+            <div class="button-item">
+                <a href="" class="btn-1">Добавить в корзину</a>
+            </div>
+        </div>
+        <!--Product Images-->
+            <i class="fa fa-search-plus" onaria-hidden="true"></i>
+            <img src="<%image_url%>" alt="<%product_article_number%>">
+        <!--Product Info-->
+            <a class="card-title"><%product_title%></a>
+            <p class="ind-code">Артикул: <%product_article_number%></p>
+                <p class="card-price"><%product_price%> грн.</p>
+    </div>
+</script>
 {% endblock %}

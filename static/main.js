@@ -71,7 +71,7 @@
 
 
     //*сортировка*//
-    function get_sort(sort_by, unique_identificator , token){
+    function get_sort(sort_by, unique_identificator , token, template){
         $.ajax({
             url: '/shop/getSortQuery/',
             method: 'POST',
@@ -82,8 +82,7 @@
             },
             success:function (data) {
                 for (one_product=0; one_product<data.data.length; one_product++){
-                    $one_product_card = $('#product-cards').append($('#product-card').html());
-                    generate_one_product_card(data.data[one_product]); //*генерируем карточки продуктов
+                    generate_one_product_card(data.data[one_product], template); //*генерируем карточки продуктов
                 };
                 hide_tags(tags_list); //*скрываем стандартно скрытые блоки
                 hover_product_card(); //*при наведении появляется иконка просмотра изображений
@@ -97,8 +96,18 @@
     };
 
     //*генерация карточки*//
-        function generate_one_product_card(product_query) {
-            $this_card = $('.card').last();
+        function generate_one_product_card(product_query, template) {
+            Mustache.tags = ['<%', '%>'];
+            rendered_data = {
+                product_article_number:product_query.article_number,
+                product_title:product_query.title,
+                product_price:product_query.price,
+                product_description:product_query.product,
+                image_url:product_query.image,
+            };
+            var rendered_html = Mustache.render(template, rendered_data);
+            $('#product_cards').append(rendered_html);
+            /*$this_card = $('.card').last();
             $this_card.attr('id', product_query.article_number);
             $this_card.find('.card-title').text(product_query.title);
             $this_card.find('.card-title').attr('href', '/shop/product_detail/product=' + product_query.article_number);
@@ -107,7 +116,7 @@
             $this_card.find('.get-all-images').attr('data-unique_identificator', product_query.unique_identificator);
             $this_card.find('.btn-info').attr('onclick', 'window.location.href=' + "'/shop/product_detail/product=" + product_query.article_number + "'");
             $this_card.find('.productImage').attr('src', product_query.image);
-            $this_card.find('.ind-code').text(product_query.article_number);
+            $this_card.find('.ind-code').text(product_query.article_number);*/
         }
 
 
