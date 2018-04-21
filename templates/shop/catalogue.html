@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="grid-prod" id="product-cards"></div>
     </div>
-    <script>start_sort()</script>
+    <script>start_sort()</script> <!--начальная сортировка-->
 {% endif  %}
 
 {% if displayCategories %}
@@ -122,7 +122,6 @@
 <script type="text/card-template" id="cardTemplate">
     <div class="card">
         <div class="card-open">
-        <!--Product Images Open-->
             <i class="fa fa-search-plus" on-aria-hidden="true"></i>
             <img src="<%image_url%>" alt=<%product_article_number%>
         <!--Product Info Open-->
