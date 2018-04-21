@@ -109,16 +109,6 @@
             };
             var rendered_html = Mustache.render(template, rendered_data);
             $('#product-cards').append(rendered_html);
-            /*$this_card = $('.card').last();
-            $this_card.attr('id', product_query.article_number);
-            $this_card.find('.card-title').text(product_query.title);
-            $this_card.find('.card-title').attr('href', '/shop/product_detail/product=' + product_query.article_number);
-            $this_card.find('.card-text').text(product_query.description);
-            $this_card.find('.card-price').text(product_query.price + ' PLN');
-            $this_card.find('.get-all-images').attr('data-unique_identificator', product_query.unique_identificator);
-            $this_card.find('.btn-info').attr('onclick', 'window.location.href=' + "'/shop/product_detail/product=" + product_query.article_number + "'");
-            $this_card.find('.productImage').attr('src', product_query.image);
-            $this_card.find('.ind-code').text(product_query.article_number);*/
         }
 
 
