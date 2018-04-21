@@ -131,6 +131,9 @@ class RoomPlace(models.Model):
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
     image = models.ImageField(upload_to='room_places/', default=None, null=True, blank=True)
 
+    def __str__(self):
+        return ('%s, %s' %(self.room.title, self.title))
+
 class RoomExample(models.Model):
     room_place = models.ForeignKey(RoomPlace, on_delete=models.CASCADE, verbose_name='часть комнаты')
     title = models.CharField(max_length=32, null=True, default=None, blank=False, verbose_name='название')
