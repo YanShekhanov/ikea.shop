@@ -120,16 +120,19 @@ def delete_images(sender, instance, **kwargs):
 class Room(models.Model):
     title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название комнаты')
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
+    image = models.ImageField(upload_to='rooms/', default=None, null=True, blank=True)
 
 class RoomPlace(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name='комната')
     title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название части')
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
+    image = models.ImageField(upload_to='room_places/', default=None, null=True, blank=True)
 
 class RoomExample(models.Model):
     room_place = models.ForeignKey(RoomPlace, on_delete=models.CASCADE, verbose_name='часть комнаты')
     title = models.CharField(max_length=32, null=True, default=None, blank=False, verbose_name='название')
     products = models.CharField(max_length=1024, null=True, default=None, blank=True, verbose_name='продукты')
+    image = models.ImageField(upload_to='rooms_examples/', default=None, null=True, blank=True)
 
 
 
