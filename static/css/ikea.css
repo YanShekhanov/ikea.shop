@@ -7,6 +7,31 @@ body{
     height: 100%;
 }
 
+/*Loader*/
+h1 {
+	position: absolute;
+	left: 50%;
+	margin-left: -1.9em;
+	background-color: black;
+	color: hsla(25,100%,50%,1.00);
+	border-radius: 100px;
+	width: 460px;
+	font: 900 800% Baskerville, 'Palatino Linotype', Palatino, serif;	
+}
+
+@keyframes loading {
+	from { max-width: 0; }
+}
+
+h1:before {
+	content: attr(data-content);
+	position: absolute;
+	overflow: hidden;
+	max-width: 4em;
+	color: white;
+	animation: loading 10s linear;
+}
+
 /*Common*/
 .content{
 	flex: 1 0 auto;
