@@ -1003,6 +1003,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 def parse_rooms():
+    pathlib.Path(os.path.join(MEDIA_ROOT, 'rooms/')).mkdir(parents=True, exist_ok=True)
     options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
