@@ -13,5 +13,8 @@ ikea_parser/parsed_data
 500px/
 2000px/
 icons/
+rooms/
+rooms_places/
+rooms_examples/
 */migrations/*
 app/settings.py 
