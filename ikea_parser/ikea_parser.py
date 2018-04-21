@@ -1015,11 +1015,24 @@ def parse_rooms():
     page = BeautifulSoup(html, 'lxml')
     rooms = page.find('li', class_='menu-rooms').find_all('li')
     for room in rooms:
+        one_room_dict = {}
+
         room_url = room.find('a').get('href')
+        image_url = room.find('img').get('src')
         room_title = re.sub('"', '', room.find('a').text.strip())
-        print('room with url "%s" is parsed' % room_url)
-
-
+        browser.get(room_url)
+        room_html = browser.page_source
+        room_page = BeautifulSoup(room_html, 'lxml')
+        room_places = room_page.find('ul', class_='tabs-categories').find_all('li')
+        room_places_length = len(room_places)
+        categories_list = []
+        for itter in range(room_places_length):
+            room_place_title = room_page.find('ul', class_='tabs-categories').find('a', href='#tab-' + str(itter)).text.strip()
+            room_places_url = room_page.find('div', id='tab-' + str(itter)).find_all('a', class_='btn btn-gray')[:1].get('href')
+            categories_list.append(room_places_url)
+        one_room_dict['room_url'] = room_url
+        one_room_dict['categories_urls'] = categories_list
+        print(one_room_dict)
 
 
 def translate(category=None, subcategory=None, product=None):
