@@ -10,12 +10,13 @@ body{
 /*Loader*/
 h1 {
 	position: absolute;
-	left: 50%;
-	margin-left: -1.9em;
-	background-color: black;
+	z-index: 10;
+	text-align: center;
+	left: 33.5%;
+	background-color: darkblue;
 	color: hsla(25,100%,50%,1.00);
 	border-radius: 100px;
-	width: 460px;
+	width: 360px;
 	font: 900 800% Baskerville, 'Palatino Linotype', Palatino, serif;	
 }
 
@@ -29,7 +30,7 @@ h1:before {
 	overflow: hidden;
 	max-width: 4em;
 	color: white;
-	animation: loading 10s linear;
+	animation: loading 2s linear;
 }
 
 /*Common*/
