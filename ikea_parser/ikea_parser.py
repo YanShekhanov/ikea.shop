@@ -1015,9 +1015,9 @@ def parse_rooms():
     page = BeautifulSoup(html, 'lxml')
     rooms = page.find('li', class_='menu-rooms').find_all('li')
     for room in rooms:
-        room_url = room.get('href')
-        room_title = re.sub('"', '', room.text.strip())
-        print('room "%s" with url "%s" is parsed' % (room_title, room_url))
+        room_url = room.find('a').get('href')
+        room_title = re.sub('"', '', room.find('a').text.strip())
+        print('room with url "%s" is parsed' % room_url)
 
 
 
