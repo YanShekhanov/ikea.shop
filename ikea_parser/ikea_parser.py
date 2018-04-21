@@ -1013,7 +1013,7 @@ def parse_rooms():
     browser.get(url)
     html = browser.page_source
     page = BeautifulSoup(html, 'lxml')
-    rooms = page.find('div', class_='menu-rooms').find_all('li')
+    rooms = page.find('li', class_='menu-rooms').find_all('li')
     for room in rooms:
         room_url = room.get('href')
         room_title = re.sub('"', '', room.text.strip())
