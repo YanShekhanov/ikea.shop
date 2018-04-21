@@ -528,7 +528,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image='products/2000px/', title=image_title, size=2000).product.add(product_to_save)
+                        ProductImage.objects.create(image='products/2000px/' + image_title, title=image_title, size=2000).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
@@ -565,7 +565,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image='products/icons/', title=image_title,
+                        ProductImage.objects.create(image='products/icons/' + image_title, title=image_title,
                                                     size=40, is_icon=True).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
@@ -981,8 +981,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image='products/icons/' + image_title, title=image_title,
-                                                            size=40, is_icon=True).product.add(created_product)
+                                ProductImage.objects.create(image='products/icons/' + image_title, title=image_title, size=40, is_icon=True).product.add(created_product)
                                 added_images_prefixes.append(
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
@@ -1025,7 +1024,7 @@ def parse_rooms():
             Room.objects.get(title=room_title)
         except Room.DoesNotExist:
             image_title = create_identificator(4) + '.jpg'
-            Room.objects.create(title=room_title, image='rooms/' + image_title, ikea_url=room_url)
+            Room.objects.create(image='rooms/' + image_title, title=room_title, ikea_url=room_url)
             image_page = requests.get(image_url).content
             image_file = open(MEDIA_ROOT + 'rooms/' + image_title, 'wb')
             image_file.write(image_page)
