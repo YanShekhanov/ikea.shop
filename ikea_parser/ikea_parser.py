@@ -154,7 +154,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     foreign_key_query = query
     create_product = True
     existed_product = None
-    with open('data/first_products.json', 'wb', 'utf-8') as data_file:
+    with open('data/first_products.json', 'wb') as data_file:
         parsed_url = requests.get(foreign_key_query.url_ikea).text
         soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
         products = soup_subcategory.find_all('div', class_='product')
@@ -235,15 +235,15 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
                 #создание словаря одного продукта
                 one_product_dict = {
-                    'title':product_title.decode('utf-8'),
+                    'title':product_title.encode('utf-8'),
                     'article_number':product_article,
                     'product_availability': available,
                     'product_price':product_price,
-                    'product_description':product_description.decode('utf-8'),
+                    'product_description':product_description.encode('utf-8'),
                     'product_url':product_url,
                     'subcategory':subcategory_status,
                     'sub_subcategory':sub_subcategory_status,
-                    'subcategory_title':foreign_key_query.title.decode('utf-8'),
+                    'subcategory_title':foreign_key_query.title.encode('utf-8'),
                     'subcategory_url':foreign_key_query.url_ikea,
                 }
                 json.dump(one_product_dict, data_file, ensure_ascii=False) #запись в файл словаря одного продукта
