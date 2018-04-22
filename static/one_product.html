@@ -1,9 +1,59 @@
-{% extends 'shop_template.html' %}
-
-{% block content %}
-
-
-    <!--One Product-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>IKEA</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <link rel="stylesheet" href="css/ikea.css">
+</head>
+<body>
+<!--Top menu-->
+<div class="container-fluid" id="top-strip">
+    <div class="row">
+        <div class="grid">
+            <p style="float: left; text-align: left;"><a href="#">Контакты</a> | <a href="#">Доставка</a></p>
+            <p style="float: right; text-align: right;">Связь | +380996823781</p>
+        </div>
+    </div>
+</div>
+<!--Content-->
+<div class="content">
+<!--Logo/Shoping Cart/Price/Search-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="grid">
+            <img class="logo" src="images/ikea-logo.png" alt="#">
+            <div class="price-search">
+				<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                <img class="money-icon" src="images/icons/uah-cash-icon.png" alt="#">
+				<h6 class="price"> 999.99</h6>
+                <input class="search-form" placeholder="Поиск..." />
+            </div>
+        </div>  
+    </div>
+</div>
+<!--Menu-->
+<nav class="navbar navbar-expand-sm navbar-light grid" id="menu-button">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="nav-link" href="#">Главная</a>
+        <a class="nav-link" href="#">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" href="#">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" href="#">Акции</a>
+    </div>
+</nav>
+<!--One Product-->
 	<!--Images-->
 	<div class="grid" style="margin-top: 0.5vw">
 		<!--Small Images-->
@@ -54,14 +104,14 @@
   </section>
   <section id="content2">
     <p>
-      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст 
     </p>
   </section>
   <section id="content3">
     <p>
-      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст 
     </p>
-  </section>
+  </section> 
   <section id="content4">
     		<!--Card-1-->
             <div class="card">
@@ -86,7 +136,7 @@
 					<p class="ind-code">Артикул: 595969</p>
 					<p class="card-price">2999 грн.</p>
             	</div>
-
+	  
 	  		<!--Card-2-->
             <div class="card">
 				<div class="card-open">
@@ -110,7 +160,7 @@
 					<p class="ind-code">Артикул: 595969</p>
 					<p class="card-price">2999 грн.</p>
             	</div>
-
+	  
 	  		<!--Card-3-->
             <div class="card">
 				<div class="card-open">
@@ -134,7 +184,7 @@
 					<p class="ind-code">Артикул: 595969</p>
 					<p class="card-price">2999 грн.</p>
             	</div>
-
+	  
 	  		<!--Card-4-->
             <div class="card">
 				<div class="card-open">
@@ -158,138 +208,47 @@
 					<p class="ind-code">Артикул: 595969</p>
 					<p class="card-price">2999 грн.</p>
             	</div>
-
+	  
   </section>
 </main>
-
-
-    <h3>{{ product.title }}<br>{{ product.article_number }}<br>{{ product.description }}</h3>
-    <span>Цена: <b>{{ product.price }} PLN</b></span><br>
-
-    <span id="availability">Наличие: <b><button id="check_availabiliti_button" onclick="check_availability({{ product.article_number }})">Узнать наличие в Польше</button></b></span>
-
-    {% for image in productImages %}
-        <p><img src="{{ image.image.url }}" alt="{{ image.title }}" style="margin: 5px; border: 2px solid black; display: inline-block;"
-            height="200px" width="200px"></p>
-    {% endfor %}
-
-    {% if colorOptions %}
-        <p>
-            <h3>Цвета</h3>
-                    {% for color in colorOptions %}
-                        {% for image in complementaryImages %}
-                            {% for product in image.product.all %}
-                                {% if color == product %}
-                                    <img src="{{ image.image.url }}" class="icon-image"><a href="{% url 'productDetail' color %}">{{ color }}</a>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                    {% endfor %}
-        </p>
-    {% endif %}
-
-    {% if sizeOptions %}
-        <p>
-            <h3>Размеры</h3>
-            {% for size in ziseOptions %}
-                {% for image in complementaryImages %}
-                    {% for product in image.product.all %}
-                        {% if size == product %}
-                            <p><img src="{{ image.image.url }}" class="icon-image">
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-               <a href="{% url 'productDetail' size %}">{{ size }}</a></p>
-            {% endfor %}
-        </p>
-    {% endif %}
-
-    {% if modelOptions %}
-            <h3>Модели</h3>
-            {% for model in modelOptions %}
-                {% for image in complementaryImages %}
-                    {% for product in image.product.all %}
-                        {% if model == product %}
-                            <p><img src="{{ image.image.url }}" class="icon-image">
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-               <a href="{% url 'productDetail' model %}">{{ model }}</a></p>
-            {% endfor %}
-    {% endif %}
-
-    <p>
-        <h3>Описание</h3>
-        <span>{{ product.key_feautures }}</span>
-    </p>
-
-    <p>
-        <h3>Полезно знать</h3>
-        <span>{{ product.good_to_know }}</span>
-    </p>
-
-    <p>
-        <h3>Инострукция по уходу</h3>
-        <span>{{ product.care_instructions }}</span>
-    </p>
-
-    <p>
-        <h3>Материалы</h3>
-        <span>{{ product.materials_info }}</span>
-    </p>
-
-    <p>
-        <h3>Размеры</h3>
-        <span>{{ product.dimensions }}</span>
-    </p>
-
-    {% if complementaryProducts%}
-    <p>
-        <h3>Дополняющие продукты</h3>
-        {% for complementary_product in complementaryProducts %}
-            {% for image in complementaryImages %}
-                {% for product in image.pruduct.all %}
-                    {% if complementary_product == product %}
-                        <img src="{{ image.image.url }}" alt="{{ complementary_product.article_number }}" class="icon-image">
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-            <a href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.article_number }}</a>
-        {% endfor %}
-    </p>
-    {% endif %}
-
-
-
-{% endblock %}
-
-{% block js %}
-    <script>
-        function check_availability(article_number){
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
-            $.ajax({
-                url:'{% url "checkAvailability" %}',
-                method:'POST',
-                data:{
-                    'csrfmiddlewaretoken':token,
-                    'article_number':article_number
-                },
-                success: function (data) {
-                    if (data.availability){
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.availability);
-                    } else if (data.successMessage){
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.successMessage);
-                    } else if (data.errorMessage){
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.errorMessage);
-                    }
-                },
-                error: function () {
-                    $('#availability').text('Возникла ошибка, попробуйте позже');
-                }
-            });
-        }
-    </script>
-{% endblock %}
+	
+<!--Content-->
+</div>
+<!--Footer-->
+<footer id="myFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 myCols">
+                <h5>Информация</h5>
+                <ul>
+                    <li><a href="#">Policy Privacy</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 myCols">
+                <h5>О нас</h5>
+                <ul>
+                    <li><a href="#">Информация о компании</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 myCols">
+                <h5>Обслуживание Клиентов</h5>
+                <ul>
+                    <li><a href="#">Тел: +380-93-251-02-13</a></li>
+                    <li><a href="#">Email: info@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="social-networks">
+        <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" class="vk"><i class="fa fa-vk"></i></a>
+    </div>
+    <div class="footer-copyright">
+        <p>© Inter IKEA Systems B.V. 1999 — 2017 | Юридическая информация | Положение об обработке и защите персональных данных | Информация для потребителей о мебельной продукции</p>
+    </div>
+</footer>
+</body>  
+</html>
