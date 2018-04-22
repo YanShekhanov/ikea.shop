@@ -163,7 +163,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
 class RoomDetail(MainInfo, DetailView):
     template_name = 'shop/rooms.html'
-    model = RoomExample
+    model = Room
     context_object_name = 'room'
     slug_url_kwarg = 'room_title'
     slug_field = 'title'
