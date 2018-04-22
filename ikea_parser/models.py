@@ -121,6 +121,7 @@ class Room(models.Model):
     title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название комнаты')
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
     image = models.ImageField(upload_to='rooms/', default='', verbose_name='Изображение')
+    unique_identificator = models.CharField(max_length=4, default=None, null=True, blank=True, verbose_name='identificator')
 
     def __str__(self):
         return self.title
@@ -130,6 +131,7 @@ class RoomPlace(models.Model):
     title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название части')
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
     image = models.ImageField(upload_to='room_places/', default=None, null=True, blank=True)
+    unique_identificator = models.CharField(max_length=8, default=None, null=True, blank=True, verbose_name='identificator')
 
     def __str__(self):
         return ('%s, %s' %(self.room.title, self.title))

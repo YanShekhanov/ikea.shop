@@ -161,6 +161,25 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         context['complementaryImages'] = complementary_images
         return context
 
+class RoomDetail(MainInfo, DetailView):
+    template_name = 'shop/rooms.html'
+    model = RoomExample
+    context_object_name = 'room'
+    slug_url_kwarg = 'room_title'
+    slug_field = 'title'
+
+    def get_context_data(self, **kwargs):
+        self.object = self.get_object()
+        room_places = RoomPlace.objects.filter(room=self.object)
+        rooms_examples = RoomExample.objects.filter(room_place=room_places)
+        images = ExampleImage.objects.filter(example=rooms_examples, is_presentation=True)
+        context = super(RoomDetail, self).get_context_data(**kwargs)
+        context['room_places'] = room_places
+        context['rooms_examples'] = rooms_examples
+        context['images'] = rooms_examples
+        return context
+
+#!!!!!!!!!!!!!!!!!!!!!!
 #парсинг артикула по номеру артикула
 class DownloadOneProductInformation(FormView):
     template_name = 'shop/downloadOneProductInformation.html'
