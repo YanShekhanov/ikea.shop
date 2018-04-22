@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^product_detail/product=(?P<article_number>\w+)/$', ProductDetail.as_view(), name='productDetail'),
     url(r'^query=(?P<category_identificator>\w+)/$', GetOneCategoryProducts.as_view(), name='getOneCategoryProducts'),
     url(r'^translate/$', translate_query, name='translate'),
-    url(r'rooms/room=(?P<room_title>\w+)/$', RoomDetail.as_view(), name='roomDetail'),
+    url(r'rooms/room=(?P<unique_identificator>\w+)/$', RoomDetail.as_view(), name='roomDetail'),
 
     #ajax
     url(r'^getAllProductImages/$', get_all_product_images, name='get_all_product_images'),

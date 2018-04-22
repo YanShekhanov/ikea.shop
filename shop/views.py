@@ -165,8 +165,8 @@ class RoomDetail(MainInfo, DetailView):
     template_name = 'shop/room.html'
     model = Room
     context_object_name = 'room'
-    slug_url_kwarg = 'room_title'
-    slug_field = 'title'
+    slug_url_kwarg = 'unique_identificator'
+    slug_field = 'unique_identificator'
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
