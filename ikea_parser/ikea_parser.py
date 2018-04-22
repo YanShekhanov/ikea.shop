@@ -148,7 +148,9 @@ def get_sub_and_sub_subcategories():
 
 #парсинг артикулов и основной информации к ним (название, краткое описание, цена)
 def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
-    print(u'начало парсинга')
+    str_ = 'начало парсинга'
+    print(str_.encode('utf-8'))
+
     created_products_list = []
     iter_category_products_number = 0
     foreign_key_query = query
