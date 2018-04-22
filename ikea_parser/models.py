@@ -142,7 +142,7 @@ class RoomExample(models.Model):
 class ExampleImage(models.Model):
     example = models.ForeignKey(RoomExample, on_delete=models.CASCADE, verbose_name='комната')
     image = models.ImageField(upload_to='rooms_examples/', default='', verbose_name='Изображение')
-    title = models.CharField(max_length=4, default=None, null=True, blank=True, verbose_name='название')
+    title = models.CharField(max_length=512, default=None, null=True, blank=True, verbose_name='название')
     is_presentation = models.BooleanField(blank=True, default=False, verbose_name='маленькое изображение')
 
 
