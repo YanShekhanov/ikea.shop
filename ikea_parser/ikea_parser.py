@@ -115,7 +115,7 @@ def parse_categories_():
                 subcategories_list.append(one_subcategory_list)
         categories_dict[category_title] = subcategories_list
 
-        with open('data/categories.json', 'wb') as file:
+        with open('data/categories.json', 'a+') as file:
             json.dump(categories_dict, file, ensure_ascii=False)
     return categories_dict
 
@@ -153,7 +153,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     foreign_key_query = query
     create_product = True
     existed_product = None
-    with open('data/first_products.json', 'wb') as data_file:
+    with open('data/first_products.json', 'a+') as data_file:
         parsed_url = requests.get(foreign_key_query.url_ikea).text
         soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
         products = soup_subcategory.find_all('div', class_='product')
