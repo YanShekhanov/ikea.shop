@@ -1010,6 +1010,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
     print(start_parse - end_parse)
     return created_product
 
+#парсинг комнаты и изображений к ним
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
@@ -1042,18 +1043,23 @@ def parse_rooms():
             image_file.write(image_page)
             image_file.close()
 
-def parse_rooms_examples(query):
+#парсинг идей комнат и изображений к ним
+def parse_examples(query):
     url = query.ikea_url
     html = BeautifulSoup(requests.get(url).text, 'lxml')
     examples = html.find_all('div', class_='roomblock')
     for example in examples:
         start_load = True
         example_url = DOMAIN + example.find('a').get('href')
-        example_image = DOMAIN + example.find('img').get('src')
         example_title = example.find('a').text.strip()
+        example_small_image = DOMAIN + example.find('img').get('src')  # маленькое изображение
+        small_image_title = example_small_image.strip().split('_')[-1].split('.')[0] + '_small.jpg'
 
         #парсинг артикулов одной комнаты
         example_detail_page = BeautifulSoup(requests.get(example_url).text, 'lxml')
+        example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').get('src') #большое изображение
+        big_image_title = example_big_image.strip().split('_')[-1].split('.')[0] + '_big.jpg'
+
         products = example_detail_page.find_all('div', class_='product')
         products_list_to_save = []
         products_in_example_to_save = None
@@ -1062,14 +1068,32 @@ def parse_rooms_examples(query):
             if product not in products_list_to_save:
                 products_list_to_save.append(product_article_number)
             products_in_example_to_save = '#'.join(products_list_to_save)
+        continue_ = True
+        try:
+            created_room = RoomExample.objects.get(title=example_title, room_place=query)
+            continue_ = False
+        except RoomExample.DoesNotExist:
+            created_room = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save)
+        if continue_:
+            #small image
+            try:
+                ExampleImage.objects.get(title=small_image_title, example=created_room)
+            except ExampleImage.DoesNotExist:
+                image_page = requests.get(example_small_image).content
+                image_file = open('rooms_examples/' + small_image_title, 'wb')
+                image_file.write(image_page)
+                image_file.close()
+                ExampleImage.objects.create(title=small_image_title, example=created_room, is_presentation=True)
+            #big image
+            try:
+                ExampleImage.objects.get(title=big_image_title, example=created_room)
+            except ExampleImage.DoesNotExist:
+                image_page = requests.get(example_big_image).content
+                image_file = open('rooms_examples/' + big_image_title, 'wb')
+                image_file.write(image_page)
+                image_file.close()
+                ExampleImage.objects.create(title=big_image_title, example=created_room)
 
-        created_example = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save, image='rooms_example/' + image_title_to_save)
-
-        image_title_to_save = create_identificator(4) + '.jpg'
-        image_page = requests.get(example_image).content
-        image_file = open(MEDIA_ROOT + 'rooms_examples/' + image_title_to_save, 'wb')
-        image_file.write(image_page)
-        image_file.close()
 
 
 

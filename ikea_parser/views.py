@@ -27,10 +27,12 @@ def parse_categories(request):
     parse_categories_()
     return redirect(reverse('home'))
 
+#parse products with lightweight info
 def parse_products_articles(request):
     get_sub_and_sub_subcategories()
     return redirect(reverse('home'))
 
+#parse full products informations
 def parse_products_information(request):
     print('Products count = %i' % len(Product.objects.all()))
     print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
@@ -53,6 +55,17 @@ def parse_products_information(request):
         body.send_keys(Keys.CONTROL + 't', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'w') #закрітие старой вкладки и открытие новой
     driver.close()
     return redirect(reverse('home'))
+
+#parse rooms
+def parse_rooms_examples(request):
+    if request.method=='POST':
+        pass
+    if request.method=='GET':
+        rooms_places = RoomPlace.objects.all()
+        for room_place in rooms_places:
+            parse_examples(room_place)
+        return redirect(reverse('home'))
+
 
 #УДАЛЕНИЕ
 def delete_images(request):

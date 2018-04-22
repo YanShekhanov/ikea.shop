@@ -19,6 +19,7 @@
     <h3 style="background-color: red; padding:5px; color: white ">{{ message }}</h3>
 {% endfor %}
 
+<H2>CATALOGUE</H2>
 <form action="{% url 'delete_categories' %}" method="POST">{% csrf_token %}
     <input type="submit" value="Удалить все категории, подкатегории, артикулы">
 </form>
@@ -45,4 +46,12 @@
 </form>
 </p>
 
+<h2>ROOMS</h2>
+    <form actions="{% url 'parse_rooms' %}">{% csrf_token %}
+        <input type="submit" value="parse rooms">
+    </form>
+
+    <form action="{% url 'parse_rooms_examples' %}">{% csrf_token %}
+        <input type="submit" value="parse examples">
+    </form>
 {% endblock %}
