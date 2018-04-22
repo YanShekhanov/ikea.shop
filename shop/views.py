@@ -172,7 +172,7 @@ class RoomDetail(MainInfo, DetailView):
         self.object = self.get_object()
         room_places = RoomPlace.objects.filter(room=self.object)
         rooms_examples = RoomExample.objects.filter(room_place=room_places)
-        images = ExampleImage.objects.filter(example=rooms_examples, is_presentation=True)
+        images = ExampleImage.objects.filter(example=rooms_examples, is_presentation=False)
         context = super(RoomDetail, self).get_context_data(**kwargs)
         context['room_places'] = room_places
         context['rooms_examples'] = rooms_examples
