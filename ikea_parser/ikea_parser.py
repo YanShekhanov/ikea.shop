@@ -1048,17 +1048,21 @@ def parse_examples(query):
     url = query.ikea_url
     html = BeautifulSoup(requests.get(url).text, 'lxml')
     examples = html.find_all('div', class_='roomblock')
+    print(query.ikea_url)
     for example in examples:
         start_load = True
         example_url = DOMAIN + example.find('a').get('href')
         example_title = example.find('a').get('title').strip()
         example_small_image = DOMAIN + example.find('img').get('src')  # маленькое изображение
         small_image_title = example_small_image.strip().split('_')[-1].split('.')[0] + '_small.jpg'
+        print(example_url)
 
         #парсинг артикулов одной комнаты
         example_detail_page = BeautifulSoup(requests.get(example_url).text, 'lxml')
         example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').find('img').get('src') #большое изображение
         big_image_title = example_big_image.strip().split('_')[-1].split('.')[0] + '_big.jpg'
+        print('big: ', example_big_image, big_image_title)
+        print('small: ', example_small_image, small_image_title)
 
         products = example_detail_page.find_all('div', class_='product')
         products_list_to_save = []
