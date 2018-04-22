@@ -1059,45 +1059,52 @@ def parse_examples(query):
 
         #парсинг артикулов одной комнаты
         example_detail_page = BeautifulSoup(requests.get(example_url).text, 'lxml')
-        example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').find('img').get('src') #большое изображение
-        big_image_title = example_big_image.strip().split('_')[-1].split('.')[0] + '_big.jpg'
-        print('big: ', example_big_image, big_image_title)
-        print('small: ', example_small_image, small_image_title)
-
-        products = example_detail_page.find_all('div', class_='product')
-        products_list_to_save = []
-        products_in_example_to_save = None
-        for product in products:
-            product_article_number = product.get('id').strip().split('_')[1]
-            if product not in products_list_to_save:
-                products_list_to_save.append(product_article_number)
-            products_in_example_to_save = '#'.join(products_list_to_save)
-        continue_ = True
         try:
-            created_room = RoomExample.objects.get(title=example_title, room_place=query)
-            continue_ = False
-        except RoomExample.DoesNotExist:
-            created_room = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save)
-        if continue_:
-            #small image
-            try:
-                ExampleImage.objects.get(title=small_image_title, example=created_room)
-            except ExampleImage.DoesNotExist:
-                image_page = requests.get(example_small_image).content
-                image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + small_image_title), 'wb')
-                image_file.write(image_page)
-                image_file.close()
-                ExampleImage.objects.create(title=small_image_title, example=created_room, is_presentation=True)
-            #big image
-            try:
-                ExampleImage.objects.get(title=big_image_title, example=created_room)
-            except ExampleImage.DoesNotExist:
-                image_page = requests.get(example_big_image).content
-                image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + big_image_title), 'wb')
-                image_file.write(image_page)
-                image_file.close()
-                ExampleImage.objects.create(title=big_image_title, example=created_room)
+            example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').find('img').get('src') #большое изображение
+        except AttributeError:
+            start_load = False
+        if start_load:
+            big_image_title = example_big_image.strip().split('_')[-1].split('.')[0] + '_big.jpg'
+            print('big: ', example_big_image, big_image_title)
+            print('small: ', example_small_image, small_image_title)
 
+            products = example_detail_page.find_all('div', class_='product')
+            products_list_to_save = []
+            products_in_example_to_save = None
+            for product in products:
+                product_article_number = product.get('id').strip().split('_')[1]
+                if product not in products_list_to_save:
+                    products_list_to_save.append(product_article_number)
+                products_in_example_to_save = '#'.join(products_list_to_save)
+            continue_ = True
+            try:
+                created_room = RoomExample.objects.get(title=example_title, room_place=query)
+                continue_ = False
+            except RoomExample.DoesNotExist:
+                created_room = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save)
+            if continue_:
+                #small image
+                try:
+                    ExampleImage.objects.get(title=small_image_title, example=created_room)
+                except ExampleImage.DoesNotExist:
+                    image_page = requests.get(example_small_image).content
+                    image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + small_image_title), 'wb')
+                    image_file.write(image_page)
+                    image_file.close()
+                    ExampleImage.objects.create(title=small_image_title, example=created_room, is_presentation=True)
+                #big image
+                try:
+                    ExampleImage.objects.get(title=big_image_title, example=created_room)
+                except ExampleImage.DoesNotExist:
+                    image_page = requests.get(example_big_image).content
+                    image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + big_image_title), 'wb')
+                    image_file.write(image_page)
+                    image_file.close()
+                    ExampleImage.objects.create(title=big_image_title, example=created_room)
+        else:
+            print('----------------------------------')
+            print('load error on page %s' % example_url)
+            print('----------------------------------')
 
 
 
