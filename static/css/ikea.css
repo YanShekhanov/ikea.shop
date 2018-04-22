@@ -852,6 +852,398 @@ margin-top: 0.2vw;
 	margin: 0;
 }
 
+/*!One Page!*/
+
+/*Small Images*/
+.one-prod-imgs{
+	float: left;
+	display: inline-block;
+	width: 8.5vw;
+	max-height: 34vw;
+	overflow: scroll;
+}
+.small-img{	
+	background-color: #f5f5f5;
+	border: 0.2vw solid #e3e3e3;
+	border-bottom: 0;
+	padding: 5%;
+	height: 8.5vw;
+	width: 8.5vw;
+}
+.small-img:nth-child(4n){
+	border-bottom: 0.2vw solid #e3e3e3;;
+}
+.img-item{
+	width: 100%;
+	height: 100%;
+}
+/*Large Image*/
+.one-prod-img{
+	display: inline-block;
+	background-color: #f5f5f5;
+	border: 0.2vw solid #e3e3e3;
+	border-left: 0;
+	width: 34vw;
+	height: 34vw;
+	padding: 0.7%;
+}
+.large-img{
+	width: 100%;
+	height: 100%;
+}
+
+/*Info Block*/
+.info-block{
+	position: relative;
+	display: inline-block;
+	float: right;
+	background-color: #f5f5f5;
+	border: 0.2vw solid #e3e3e3;
+	border-left: 0;
+	width: 23.5vw;
+	height: 34vw;
+}
+.prod-name{
+	width: 100%;
+	max-height: 5.2vw;
+	padding-top: 2vw;
+	padding-bottom: 2%;
+	text-align: center;
+	font-family: "MyriadProBold";
+    font-size: 1.9vw;
+	line-height: 1;
+    color: #ff6c00;
+}
+.prod-info{
+	width: 100%;
+	height: 19vw;
+	padding-top: 1vw;
+	padding-bottom: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	text-align: center;
+	font-family: "MyriadProRegular";
+    font-size: 1.2vw;
+	line-height: 1.2;
+	color: #515050;
+	overflow: scroll;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.prod-price{
+	width: 100%;
+	height: 3.5vw;
+	padding-top: 4%;
+	padding-bottom: 1.5%;
+	text-align: center;
+	font-family: "MyriadProBold";
+    font-size: 1.9vw;
+	line-height: 1;
+    color: #ff6c00;
+}
+#info-block .button-item {
+  margin-top: 0vw;
+  margin-bottom: 0.5vw;
+  padding-bottom: 0vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#info-block a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  font-size: 1.3vw;
+}
+#info-block .btn-1 {
+  padding: 1em 3em;
+  border: 2px solid #ff6c00;
+  transition: all 300ms ease;
+  color: #ff6c00;
+  z-index: 1;
+}
+#info-block .btn-1:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transition: all 0ms ease;
+}
+#info-block .btn-1:hover {
+  color: white;
+  border: 2px solid #ADA6A6;
+  box-shadow: none;
+}
+#info-block .btn-1:hover:before {
+  position: absolute;
+  color: white;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+  transition: all 300ms ease;
+}
+#info-block .amount{
+	position: absolute;
+	z-index: 9;
+	bottom: 6vw;
+	display: none;
+    align-items: center;
+    justify-content: center;
+	color: #ff6c00;
+	background-color: #f5f5f5;
+	padding: 0.5vw;
+	border: 2px solid #ADA6A6;
+	width: 21.2vw;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+
+}
+#info-block .button-item:hover .amount{
+	display: flex;
+}
+#info-block span{
+	color: black;
+	padding-right: 0.5vw;
+}
+
+/*Cards On Pages Block*/
+#content4 .card{
+    display: inline-block;
+	height: 23vw;
+    width: 24.4%;
+    float: left;
+    margin: 0;
+    margin-left: auto;
+    margin-top: 0.5vw;
+    margin-right: 0.5vw;
+    padding: 0;
+    border: 0.15vw solid #e3e3e3;
+    border-radius: 0;
+    background-color: #f5f5f5;
+    color: #515050;
+	text-align: center;
+}
+#content4 .card-open{
+    display: none;
+	height: auto;
+	top: -5px;
+	left: -2px;
+    width: 16.5vw;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: 0.16vw solid #e3e3e3;
+    border-radius: 0;
+    background-color: #f5f5f5;
+    color: #515050;
+	text-align: center;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+	margin-top: 0;
+}
+#content4 .card:nth-child(4n){
+    margin-right: 0;
+}
+#content4 img{
+    width: 100%;
+    height: 15vw;
+	border-bottom: 0.15vw solid #e3e3e3;
+}
+#content4 .card-title{
+	width: 100%;
+	height: 2.8vw;
+	color: black;
+	font-family: "MyriadProBold";
+    font-size: 1.5vw;
+    font-style: italic;
+    letter-spacing: -0.1vw; 
+    line-height: 1;
+    margin: 0;
+	margin-top: 0.7vw;
+	padding: 0;
+	text-align: center;
+}
+#content4 .ind-code{
+    color: #515050;
+	font-family: "MyriadProRegular";
+	width: 100%;
+    font-size: 1.1vw;
+	margin: 0;
+}
+#content4 .card-text{
+	display: none;
+	color: #515050;
+	font-family: "MyriadProRegular";
+    font-size: 1vw;
+	margin: 0;
+	margin-top: 0.3vw;
+	margin-left: 3%;
+	margin-right: 3%;
+	width: 94%;
+}
+#content4 .card-price{
+	width: 100%;
+    font-family: "MyriadProBold";
+    font-size: 1.7vw;
+    font-style: italic;
+    color: #ff6c00;
+	margin: 0;
+}
+#content4 .fa-search-plus{
+	position: absolute;
+	font-size: 1.7vw;
+	opacity: .5;
+	right: 1.5%;
+	top: 1%;
+}
+#content4 .button-item {
+  display: none;
+  margin-top: 0vw;
+  margin-bottom: 0.5vw;
+  padding-bottom: 0vw;
+}
+#content4 a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  font-size: 0.7vw;
+}
+#content4 .btn-1 {
+  padding: 1em 3em;
+  border: 2px solid #ff6c00;
+  transition: all 300ms ease;
+  color: #ff6c00;
+  z-index: 1;
+}
+#content4 .btn-1:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transition: all 0ms ease;
+}
+#content4 .btn-1:hover {
+  color: white;
+  border: 2px solid #ADA6A6;
+  box-shadow: none;
+}
+#content4 .btn-1:hover:before {
+  position: absolute;
+  color: white;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+  transition: all 300ms ease;
+}
+#content4 .card:hover .card-open{
+	display: inline-block;
+	z-index: 10;
+	position: absolute;
+	margin: 0;
+}
+#content4 .card:hover .card-text{
+	display: block;
+}
+#content4 .card:hover .button-item{
+	display: block;
+}
+
+/*Pages Block*/
+#pages-block p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+main {
+  padding: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 auto;
+  background: #fff;
+}
+section {
+  display: none;
+  padding: 20px 0 0;
+}
+input {
+  display: none;
+}
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #515050;
+  border: 0.1vw solid transparent;
+}
+label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+label[for*='1']:before {
+  content:"\f039";
+}
+label[for*='2']:before {
+  content:"\f129";
+}
+label[for*='3']:before {
+  content: '\f047';
+}
+label[for*='4']:before {
+  content:"\f16b";
+}
+label:hover {
+  color: #888;
+  cursor: pointer;
+}
+input:checked + label {
+  color: #ff6c00;
+  border: 2px solid #ddd;
+  border-top: 3px solid #ff6c00;
+  border-bottom: 1px solid #fff;
+}
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+}
+
+@media screen and (max-width: 962px) {
+  label {
+    font-size: 0;
+  }
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  label {
+    padding: 15px;
+  }
+}
 
 /*Media Queries*/
 @media screen and (max-width: 1111px){
@@ -1055,6 +1447,8 @@ margin-top: 0.2vw;
 	font-size: 1.9vw;
 }
 }
+
+
 @media screen and (max-width: 680px){
 		    /*Product Cards*/
 #product-cards .card{
