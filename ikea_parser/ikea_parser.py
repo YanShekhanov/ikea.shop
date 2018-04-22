@@ -1080,7 +1080,7 @@ def parse_examples(query):
                 ExampleImage.objects.get(title=small_image_title, example=created_room)
             except ExampleImage.DoesNotExist:
                 image_page = requests.get(example_small_image).content
-                image_file = open('rooms_examples/' + small_image_title, 'wb')
+                image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + small_image_title), 'wb')
                 image_file.write(image_page)
                 image_file.close()
                 ExampleImage.objects.create(title=small_image_title, example=created_room, is_presentation=True)
@@ -1089,7 +1089,7 @@ def parse_examples(query):
                 ExampleImage.objects.get(title=big_image_title, example=created_room)
             except ExampleImage.DoesNotExist:
                 image_page = requests.get(example_big_image).content
-                image_file = open('rooms_examples/' + big_image_title, 'wb')
+                image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + big_image_title), 'wb')
                 image_file.write(image_page)
                 image_file.close()
                 ExampleImage.objects.create(title=big_image_title, example=created_room)
