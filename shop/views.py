@@ -171,12 +171,20 @@ class RoomDetail(MainInfo, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         room_places = RoomPlace.objects.filter(room=self.object)
-        rooms_examples = RoomExample.objects.filter(room_place=room_places)
-        images = ExampleImage.objects.filter(example=rooms_examples, is_presentation=False)
+        rooms_examples_list = []
+        for room_place in room_places:
+            room_example = RoomExample.objects.get(room_place=room_place)
+            rooms_examples_list.append(room_example)
+
+        images_list = []
+        for room_example in rooms_examples_list:
+            image = ExampleImage.objects.get(example=room_example, is_presentation=False)
+            images_list.append(image)
+
         context = super(RoomDetail, self).get_context_data(**kwargs)
         context['room_places'] = room_places
-        context['rooms_examples'] = rooms_examples
-        context['images'] = rooms_examples
+        context['rooms_examples'] = rooms_examples_list
+        context['images'] = images_list
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
