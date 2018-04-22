@@ -240,7 +240,6 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                     'product_price':product_price,
                     'product_description':product_description,
                     'product_url':product_url,
-                    'product_detail':product_detail,
                     'subcategory':subcategory_status,
                     'sub_subcategory':sub_subcategory_status,
                     'subcategory_title':foreign_key_query.title,
