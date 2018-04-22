@@ -7,5 +7,13 @@ __pycache__
 ikea_parser/parsed_data
 250px/
 500px/
+2000px/
+icons/
+rooms/
+room_places/
+rooms_examples/
+test.py
+*.json
+
 */migrations/*
 settings.py 

@@ -32,11 +32,6 @@ def parse_products_articles(request):
     return redirect(reverse('home'))
 
 def parse_products_information(request):
-    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '250px/').mkdir(parents=True, exist_ok=True)
-    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '500px/').mkdir(parents=True, exist_ok=True)
-    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + '2000px/').mkdir(parents=True, exist_ok=True)
-    pathlib.Path(os.path.join(MEDIA_ROOT, 'products/') + 'icons/').mkdir(parents=True, exist_ok=True)
-
     print('Products count = %i' % len(Product.objects.all()))
     print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
     print('products to parse = %i' % len(Product.objects.exclude(is_parsed=True)))
