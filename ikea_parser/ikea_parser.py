@@ -103,7 +103,7 @@ def parse_categories_():
                         if sub_subcategory_block is not None:
                             subcategory_created.have_sub_subcategory = True
                             subcategory_created.save()
-                            sub_subcategory_url = sub_subcategory_block.get('href')
+                            sub_subcategory_url = DOMAIN + sub_subcategory_block.get('href')
                             sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
                             try:
                                 SubSubCategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
