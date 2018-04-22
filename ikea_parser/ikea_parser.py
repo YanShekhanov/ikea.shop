@@ -1051,7 +1051,7 @@ def parse_examples(query):
     for example in examples:
         start_load = True
         example_url = DOMAIN + example.find('a').get('href')
-        example_title = example.find('a').text.strip()
+        example_title = example.find('a').get('title').strip()
         example_small_image = DOMAIN + example.find('img').get('src')  # маленькое изображение
         small_image_title = example_small_image.strip().split('_')[-1].split('.')[0] + '_small.jpg'
 
