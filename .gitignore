@@ -2,11 +2,7 @@
 *.sqlite3
 *.pyc
 __pycache__
-<<<<<<< HEAD
-*.txt 
-=======
 *.txt
->>>>>>> fd18dcd5937e8ba256d34fe014f5ecbcb2ed3064
 !requirements.txt
 ikea_parser/parsed_data
 250px/
@@ -16,5 +12,9 @@ icons/
 rooms/
 rooms_places/
 rooms_examples/
+room_places/
+rooms_examples/
+test.py
+*.json
 */migrations/*
 app/settings.py 

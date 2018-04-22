@@ -32,10 +32,6 @@ DOMAIN = 'http://www.ikea.com'
 import json
 #парсинг категорий, подкатегорий
 def parse_categories_():
-    #pathlib.Path(os.path.join(BASE_DIR, 'parsed_data') + 'categories.json').mkdir(parents=True, exist_ok=True)
-    #file = open(os.path.join(BASE_DIR, 'parsed_data') + 'categories.json')
-
-
     main_page = 'http://www.ikea.com/pl/pl/'
     domain = 'http://www.ikea.com'
     categories_dict = {}
@@ -83,7 +79,6 @@ def parse_categories_():
                         if sub_subcategories == []:
                             sub_subcategories = None
                         if sub_subcategories is not None:
-                            print('subcategory with url "%s" have sub subcategories' % subcategory_url)
                             subcategory_created.have_sub_subcategory = True
                             subcategory_created.save()
                             for sub_subcategory in sub_subcategories:
@@ -100,7 +95,6 @@ def parse_categories_():
                 if sub_subcategories_containers == []:
                     sub_subcategories_containers = None
                 if sub_subcategories_containers is not None:
-                    print('subcategory with url "%s" have sub subcategories' % subcategory_url)
                     for sub_subcategory_container in sub_subcategories_containers:
                         sub_subcategory_block = sub_subcategory_container.find('a', class_='categoryName')
                         if sub_subcategory_block == []:
@@ -120,6 +114,9 @@ def parse_categories_():
                 one_subcategory_list = [subcategory_title, subcategory_url]
                 subcategories_list.append(one_subcategory_list)
         categories_dict[category_title] = subcategories_list
+
+        with open('data/categories.json', 'wb') as file:
+            json.dump(categories_dict, file, ensure_ascii=False)
     return categories_dict
 
 
@@ -130,27 +127,29 @@ def get_sub_and_sub_subcategories():
     except SubCategory.DoesNotExist:
         return FileExistsError
 
-    for subcategory in subcategories:
-        url_for_parse = ''
-        if subcategory.have_sub_subcategory:
-            sub_subcategories = SubSubCategory.objects.filter(subcategory=subcategory)
-            for sub_subcategory in sub_subcategories:
-                sub_subcategory_url = sub_subcategory.url_ikea
-                sub_subcategory_title = sub_subcategory.title
-                url_for_parse = sub_subcategory_url
-                subcategory_status = False
-                sub_subcategory_status = True
-                parse_products_articles_(sub_subcategory, subcategory_status, sub_subcategory_status)
-        else:
-            subcategory_url = subcategory.url_ikea
-            subcategory_title = subcategory.title
-            url_for_parse = subcategory_url
-            subcategory_status = True
-            sub_subcategory_status = False
-            parse_products_articles_(subcategory, subcategory_status, sub_subcategory_status)
+    with open('data/first_products.json', 'wb') as file:
+        for subcategory in subcategories:
+            url_for_parse = ''
+            if subcategory.have_sub_subcategory:
+                sub_subcategories = SubSubCategory.objects.filter(subcategory=subcategory)
+                for sub_subcategory in sub_subcategories:
+                    sub_subcategory_url = sub_subcategory.url_ikea
+                    sub_subcategory_title = sub_subcategory.title
+                    url_for_parse = sub_subcategory_url
+                    subcategory_status = False
+                    sub_subcategory_status = True
+                    parse_products_articles_(sub_subcategory, subcategory_status, sub_subcategory_status, file)
+            else:
+                subcategory_url = subcategory.url_ikea
+                subcategory_title = subcategory.title
+                url_for_parse = subcategory_url
+                subcategory_status = True
+                sub_subcategory_status = False
+                parse_products_articles_(subcategory, subcategory_status, sub_subcategory_status, file)
+        file.close()
 
 #парсинг артикулов и основной информации к ним (название, краткое описание, цена)
-def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
+def parse_products_articles_(query, subcategory_status, sub_subcategory_status, file):
     created_products_list = []
     iter_category_products_number = 0
     foreign_key_query = query
@@ -162,6 +161,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
     products = soup_subcategory.find_all('div', class_='product')
     for product in products:
+        one_product_dict = {}
         create_product = True
         product_article = product.get('id').split('_')[1]
 
@@ -171,7 +171,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 existed_product = Product.objects.get(article_number=product_article)
                 existed_product.subcategory.add(foreign_key_query)
                 create_product = False
-                print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
+                #print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
             except Product.DoesNotExist:
                 pass
         if sub_subcategory_status:
@@ -180,7 +180,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 existed_product.subcategory.add(foreign_key_query.subcategory)
                 existed_product.sub_subcategory.add(foreign_key_query)
                 create_product = False
-                print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
+                #print('Артикула под номером %s был найден в БД и не будет перезаписываться' % product_article)
             except Product.DoesNotExist:
                 pass
 
@@ -198,8 +198,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
             product_detail = product.find('div', class_='productDetails')
             product_url = DOMAIN + product_detail.find('a').get('href')
             product_title = product_detail.find('span', class_='productTitle').text.strip()  # название
-            product_description = product_detail.find('span',
-                                                      class_='productDesp').text.strip()  # разшифровка
+            product_description = product_detail.find('span', class_='productDesp').text.strip()  # разшифровка
             product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
             if product_price[1] == 'PLN':
                 product_price = product_price[0]
@@ -235,9 +234,25 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 created_product.subcategory.add(subcategory)
                 created_product.sub_subcategory.add(foreign_key_query)
                 iter_category_products_number += 1
-            created_products_list.append(created_product)
 
-    print('В подкатегории/под подкатегории "%s"найдено и загруженно %i уртикулов' % (foreign_key_query.title, iter_category_products_number))
+            #создание словаря одного продукта
+            one_product_dict = {
+                'title':product_title,
+                'article_number':product_article,
+                'product_availability': available,
+                'product_price':product_price,
+                'product_description':product_description,
+                'product_url':product_url,
+                'product_detail':product_detail,
+                'subcategory':subcategory_status,
+                'sub_subcategory':sub_subcategory_status,
+                'subcategory_title':foreign_key_query.title,
+                'subcategory_url':foreign_key_query.url_ikea,
+            }
+            json.dump(one_product_dict, file, ensure_ascii=False) #запись в файл словаря одного продукта
+            created_products_list.append(one_product_dict)
+
+    #print('В подкатегории/под подкатегории "%s"найдено и загруженно %i уртикулов' % (foreign_key_query.title, iter_category_products_number))
     return created_products_list
 
 #парсинг изображений, основной информации к артикулу
