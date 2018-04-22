@@ -153,7 +153,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     foreign_key_query = query
     create_product = True
     existed_product = None
-    with open('data/first_products.json', 'wb') as file:
+    with open('data/first_products.json', 'wb') as data_file:
         parsed_url = requests.get(foreign_key_query.url_ikea).text
         soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
         products = soup_subcategory.find_all('div', class_='product')
@@ -245,9 +245,9 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                     'subcategory_title':foreign_key_query.title,
                     'subcategory_url':foreign_key_query.url_ikea,
                 }
-                json.dump(one_product_dict, file, ensure_ascii=False) #запись в файл словаря одного продукта
+                json.dump(one_product_dict, data_file, ensure_ascii=False) #запись в файл словаря одного продукта
                 created_products_list.append(one_product_dict)
-        file.close()
+        data_file.close()
 
     #print('В подкатегории/под подкатегории "%s"найдено и загруженно %i уртикулов' % (foreign_key_query.title, iter_category_products_number))
     return created_products_list
