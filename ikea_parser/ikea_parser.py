@@ -84,7 +84,7 @@ def parse_categories_():
                             subcategory_created.save()
                             for sub_subcategory in sub_subcategories:
                                 sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory.find('a').text.strip())
-                                sub_subcategory_url = DOMAIN + sub_subcategory.find('a').get('href')
+                                sub_subcategory_url = sub_subcategory.find('a').get('href')
                                 try:
                                     SubSubCategory.objects.get(title=sub_subcategory_title, subcategory=subcategory_created)
                                 except:
