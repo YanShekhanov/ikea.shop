@@ -154,7 +154,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     foreign_key_query = query
     create_product = True
     existed_product = None
-    with open('data/first_products.json', 'a+', 'utf-8') as data_file:
+    with open('data/first_products.json', 'wb', 'utf-8') as data_file:
         parsed_url = requests.get(foreign_key_query.url_ikea).text
         soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
         products = soup_subcategory.find_all('div', class_='product')
