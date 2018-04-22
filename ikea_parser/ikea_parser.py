@@ -59,6 +59,7 @@ def parse_categories_():
             for subcategory in subcategories:
                 subcategory_title = re.sub('\s+', ' ', subcategory.find('a').text.strip())
                 subcategory_url = 'http://' + subcategory.find('a').get('href')[2:]
+                print(subcategory_url)
                 # создание подкатегории если не найдена
                 try:
                     subcategory_created = SubCategory.objects.get(title=subcategory_title, category=category_created)
