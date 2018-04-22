@@ -112,12 +112,12 @@ def parse_categories_():
                                                                url_ikea=sub_subcategory_url, unique_identificator=create_identificator(8))
 
 
-                one_subcategory_list = [subcategory_title, subcategory_url]
+                one_subcategory_list = [subcategory_title.encode('utf-8'), subcategory_url]
                 subcategories_list.append(one_subcategory_list)
-        categories_dict[category_title] = subcategories_list
+        categories_dict[category_title.encode('utf-8')] = subcategories_list
 
-        with open('data/categories.json', 'a+w') as file:
-            json.dump(categories_dict, file, ensure_ascii=False)
+        with open('data/categories.json', 'w') as file:
+            json.dumps(categories_dict, file, ensure_ascii=False)
     return categories_dict
 
 
