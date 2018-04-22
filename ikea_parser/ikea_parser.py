@@ -84,7 +84,7 @@ def parse_categories_():
                             subcategory_created.save()
                             for sub_subcategory in sub_subcategories:
                                 sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory.find('a').text.strip())
-                                sub_subcategory_url = sub_subcategory.find('a').get('href')
+                                sub_subcategory_url = DOMAIN + sub_subcategory.find('a').get('href')
                                 try:
                                     SubSubCategory.objects.get(title=sub_subcategory_title, subcategory=subcategory_created)
                                 except:
@@ -103,7 +103,7 @@ def parse_categories_():
                         if sub_subcategory_block is not None:
                             subcategory_created.have_sub_subcategory = True
                             subcategory_created.save()
-                            sub_subcategory_url = sub_subcategory_block.get('href')
+                            sub_subcategory_url = DOMAIN + sub_subcategory_block.get('href')
                             sub_subcategory_title = re.sub('\s+', ' ', sub_subcategory_block.text.strip())
                             try:
                                 SubSubCategory.objects.get(subcategory=subcategory_created, title=sub_subcategory_title)
