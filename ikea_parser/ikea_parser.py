@@ -148,15 +148,13 @@ def get_sub_and_sub_subcategories():
 
 #парсинг артикулов и основной информации к ним (название, краткое описание, цена)
 def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
-    str_ = 'начало парсинга'
-    print(str_.encode('utf-8').decode('utf-8'))
 
     created_products_list = []
     iter_category_products_number = 0
     foreign_key_query = query
     create_product = True
     existed_product = None
-    with open('data/first_products.json', 'a+') as data_file:
+    with open('data/first_products.json', 'a+', 'utf-8') as data_file:
         parsed_url = requests.get(foreign_key_query.url_ikea).text
         soup_subcategory = BeautifulSoup(parsed_url, 'lxml')
         products = soup_subcategory.find_all('div', class_='product')
