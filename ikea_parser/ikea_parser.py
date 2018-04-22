@@ -115,7 +115,7 @@ def parse_categories_():
                 subcategories_list.append(one_subcategory_list)
         categories_dict[category_title] = subcategories_list
 
-        with open('data/categories.json', 'a+') as file:
+        with open('data/categories.json', 'a+w') as file:
             json.dump(categories_dict, file, ensure_ascii=False)
     return categories_dict
 
@@ -234,15 +234,15 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
                 #создание словаря одного продукта
                 one_product_dict = {
-                    'title':product_title,
+                    'title':product_title.encode('utf8'),
                     'article_number':product_article,
                     'product_availability': available,
                     'product_price':product_price,
-                    'product_description':product_description,
+                    'product_description':product_description.encode('utf8'),
                     'product_url':product_url,
                     'subcategory':subcategory_status,
                     'sub_subcategory':sub_subcategory_status,
-                    'subcategory_title':foreign_key_query.title,
+                    'subcategory_title':foreign_key_query.title.encode('utf8'),
                     'subcategory_url':foreign_key_query.url_ikea,
                 }
                 json.dump(one_product_dict, data_file, ensure_ascii=False) #запись в файл словаря одного продукта
