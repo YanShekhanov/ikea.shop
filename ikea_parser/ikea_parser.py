@@ -235,15 +235,15 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 
                 #создание словаря одного продукта
                 one_product_dict = {
-                    'title':product_title.encode('utf-8'),
+                    'title':str(product_title.encode('utf-8')),
                     'article_number':product_article,
                     'product_availability': available,
                     'product_price':product_price,
-                    'product_description':product_description.encode('utf-8'),
+                    'product_description':str(product_description.encode('utf-8')),
                     'product_url':product_url,
                     'subcategory':subcategory_status,
                     'sub_subcategory':sub_subcategory_status,
-                    'subcategory_title':foreign_key_query.title.encode('utf-8'),
+                    'subcategory_title':str(foreign_key_query.title.encode('utf-8')),
                     'subcategory_url':foreign_key_query.url_ikea,
                 }
                 json.dump(one_product_dict, data_file, ensure_ascii=False) #запись в файл словаря одного продукта
