@@ -162,7 +162,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         return context
 
 class RoomDetail(MainInfo, DetailView):
-    template_name = 'shop/rooms.html'
+    template_name = 'shop/room.html'
     model = Room
     context_object_name = 'room'
     slug_url_kwarg = 'room_title'
