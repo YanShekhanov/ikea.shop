@@ -1057,7 +1057,7 @@ def parse_examples(query):
 
         #парсинг артикулов одной комнаты
         example_detail_page = BeautifulSoup(requests.get(example_url).text, 'lxml')
-        example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').get('src') #большое изображение
+        example_big_image = DOMAIN + example_detail_page.find('div', class_='component-main-image').find('img').get('src') #большое изображение
         big_image_title = example_big_image.strip().split('_')[-1].split('.')[0] + '_big.jpg'
 
         products = example_detail_page.find_all('div', class_='product')
