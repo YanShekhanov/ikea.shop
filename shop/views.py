@@ -173,11 +173,8 @@ class RoomDetail(MainInfo, DetailView):
         room_places = RoomPlace.objects.filter(room=self.object)
         rooms_examples_list = []
         for room_place in room_places:
-            try:
-                room_example = RoomExample.objects.get(room_place=room_place)
-                rooms_examples_list.append(room_example)
-            except:
-                pass
+            room_example = RoomExample.objects.get(room_place=room_place)
+            rooms_examples_list.append(room_example)
 
         images_list = []
         for room_example in rooms_examples_list:
