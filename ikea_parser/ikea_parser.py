@@ -1091,7 +1091,7 @@ def parse_examples(query):
                     image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + small_image_title), 'wb')
                     image_file.write(image_page)
                     image_file.close()
-                    ExampleImage.objects.create(title=small_image_title, example=created_room, is_presentation=True)
+                    ExampleImage.objects.create(image='rooms_examples/' + small_image_title, title=small_image_title, example=created_room, is_presentation=True)
                 #big image
                 try:
                     ExampleImage.objects.get(title=big_image_title, example=created_room)
@@ -1100,28 +1100,11 @@ def parse_examples(query):
                     image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + big_image_title), 'wb')
                     image_file.write(image_page)
                     image_file.close()
-                    ExampleImage.objects.create(title=big_image_title, example=created_room)
+                    ExampleImage.objects.create(image='rooms_examples/' + big_image_title,title=big_image_title, example=created_room)
         else:
             print('----------------------------------')
             print('load error on page %s' % example_url)
             print('----------------------------------')
-
-
-
-
-        '''browser.get(room_url)
-        room_html = browser.page_source
-        room_page = BeautifulSoup(room_html, 'lxml')
-        room_places = room_page.find('ul', class_='tabs-categories').find_all('li')
-        room_places_length = len(room_places)
-        categories_list = []
-        for itter in range(room_places_length):
-            room_place_title = room_page.find('ul', class_='tabs-categories').find('a', href='#tab-' + str(itter)).text.strip()
-            room_places_url = room_page.find('div', id='tab-' + str(itter)).find_all('a', class_='btn btn-gray')[-1].get('href')
-            categories_list.append(room_places_url)
-        one_room_dict['room_url'] = room_url
-        one_room_dict['categories_urls'] = categories_list
-        print(one_room_dict)'''
 
 
 def translate(category=None, subcategory=None, product=None):
