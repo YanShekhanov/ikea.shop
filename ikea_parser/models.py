@@ -106,7 +106,7 @@ def delete_images_for_product(sender, instance, **kwargs):
 class ProductImage(models.Model):
     product = models.ManyToManyField(Product, verbose_name='Продукт, id')
     image = models.ImageField(upload_to='products/', default='', verbose_name='Изображение')
-    title = models.CharField(max_length=16, blank=False, null=False, default='', verbose_name='Название')
+    title = models.CharField(max_length=32, blank=False, null=False, default='', verbose_name='Название')
     size = models.SmallIntegerField(blank=False, null=False, default=0, verbose_name='Размер, px')
     is_icon = models.BooleanField(blank=True, default=False, verbose_name='Иконка')
 
