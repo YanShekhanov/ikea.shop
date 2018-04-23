@@ -463,8 +463,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image='products/500px/' + image_title, title=image_title,
-                                                    size=500).product.add(product_to_save)
+                        ProductImage.objects.create(image='products/500px/' + image_title, title=image_title, size=500).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
@@ -501,8 +500,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image='products/250px/' + image_title, title=image_title,
-                                                    size=250).product.add(product_to_save)
+                        ProductImage.objects.create(image='products/250px/' + image_title, title=image_title, size=250).product.add(product_to_save)
                     added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                     # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
@@ -577,8 +575,7 @@ def parse_one_product_information_(product_query, browser_driver):
                     with open(image_url_to_save, 'wb') as image_file:
                         image_file.write(image_request)
                         image_file.close()
-                        ProductImage.objects.create(image='products/icons/' + image_title, title=image_title,
-                                                    size=40, is_icon=True).product.add(product_to_save)
+                        ProductImage.objects.create(image='products/icons/' + image_title, title=image_title, size=40, is_icon=True).product.add(product_to_save)
                         added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                         # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
     except AttributeError:
@@ -603,7 +600,7 @@ def parse_one_product_information_(product_query, browser_driver):
         'parsed_time':delta,
     }
 
-    print(product_dict)
+    print(product_to_save.article_number)
     return product_to_save
 
 
@@ -875,8 +872,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image='products/500px/' + image_title, title=image_title,
-                                                            size=500).product.add(created_product)
+                                ProductImage.objects.create(image='products/500px/' + image_title, title=image_title, size=500).product.add(created_product)
                                 added_images_prefixes.append(ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
             except AttributeError:
@@ -913,9 +909,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image='products/250px/' + image_title,
-                                                            title=image_title,
-                                                            size=250).product.add(created_product)
+                                ProductImage.objects.create(image='products/250px/' + image_title, title=image_title, size=250).product.add(created_product)
                             added_images_prefixes.append(
                                 ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                             # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
@@ -954,8 +948,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                             with open(image_url_to_save, 'wb') as image_file:
                                 image_file.write(image_request)
                                 image_file.close()
-                                ProductImage.objects.create(image='products/2000px/' + image_title, title=image_title,
-                                                            size=2000).product.add(created_product)
+                                ProductImage.objects.create(image='products/2000px/' + image_title, title=image_title, size=2000).product.add(created_product)
                                 added_images_prefixes.append(
                                     ikea_image_prefix)  # в ИКЕА изображения повторяются, по єтому при каждой иттерации в список
                                 # добавленного добавлям уникальный префикс с изображения икеа дабы избежать повторного сохранения изображений
