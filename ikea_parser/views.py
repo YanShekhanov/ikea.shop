@@ -93,20 +93,42 @@ def delete_products(request):
         return HttpResponse(status=404)
     return redirect(reverse('home'))
 
+from bs4 import BeautifulSoup
+import requests
 def test(request):
-    url_ = 'https://www.ikea.com/pl/pl/catalog/categories/departments/bedroom/Mattresses/?icid=itl|pl|menu|201802131012490682_123'
+    url_ = 'https://www.ikea.com/pl/pl/catalog/products/S59208673/#/S89196678'
     #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
-    '''options = Options()
+    options = Options()
     options.add_argument("--headless")
     options.add_argument("window-size=1024,768")
     options.add_argument("--no-sandbox")
 
     browser = webdriver.Chrome(chrome_options=options)
-    browser.get(url)
+    browser.get(url_)
     html = browser.page_source
-    product_soup = BeautifulSoup(html, 'lxml')'''
-    parse_rooms()
+    html = requests.get(url_).text
+    product_soup = BeautifulSoup(html, 'lxml')
 
+    # -----------------------------------------------------#
+    # more models - модели
+    parse_models = True
+    models_articles_list = []
+    models_ = None
+    models_to_save = None
+    try:
+        models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
+        print(models_)
+        print('have models')
+    except AttributeError:
+        parse_models = False
+        print('not exist')
+
+    if parse_models:
+        for model in models_:
+            models_article = model.get('data-url').split('/')[-2]
+            models_articles_list.append(models_article)
+        if len(models_articles_list) != 0:
+            models_to_save = '#'.join(models_articles_list)
     return redirect(reverse('home'))
 
 

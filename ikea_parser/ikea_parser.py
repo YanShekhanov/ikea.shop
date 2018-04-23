@@ -588,8 +588,8 @@ def parse_one_product_information_(product_query, browser_driver):
     product_dict = {
         'article_number':product_to_save.article_number,
         'unique_identificator':product_to_save.unique_identificator,
-        'subcategory':product_to_save.subcategory,
-        'sub_subcategory':product_to_save.sub_subcategory,
+        'subcategory':product_to_save.subcategory.url_ikea,
+        'sub_subcategory':product_to_save.sub_subcategory.url_ikea,
         'url_ikea':product_to_save.url_ikea,
         'complementary_products':product_to_save.complementary_products,
         'additional_models':product_to_save.additional_models,
@@ -600,7 +600,10 @@ def parse_one_product_information_(product_query, browser_driver):
         'parsed_time':delta,
     }
 
-    print(product_to_save.article_number)
+    file_to_write = open(os.path.join(BASE_DIR, 'data/products.json'), 'a+')
+    json.dumps(product_dict, file_to_write, ensure_ascii=False)
+
+    print(product_dict)
     return product_to_save
 
 
@@ -696,7 +699,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for instruction in care_instructions:
                     if isinstance(instruction, str):
                         care_instructions_list.append(instruction)
-                care_instruction_to_save = '.'.join(care_instructions_list)
+                care_instruction_to_save = '. '.join(care_instructions_list)
             except AttributeError:
                 pass
 
@@ -709,13 +712,13 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for string in dimensions_parsed:
                     if isinstance(string, str):
                         dimensions_list.append(string)
-                dimension_to_save = '.'.join(dimensions_list)
+                dimension_to_save = '. '.join(dimensions_list)
             except TypeError or AttributeError:
                 pass
 
             # ------------------------------------------------------#
             # доп. цвета, доп. размеры
-            blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+            blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2', 'selectionDropDownDiv3']
             color_options = None
             size_options = None
             for block in blocks:
@@ -724,8 +727,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 try:
                     options = product_soup.find('div', id=block).find_all('li')
                     block_label = re.sub(':', '', product_soup.find('div', id=block).find('span', class_='categoryNameLbl').text.strip())
-                    button_for_open_options = driver.find_element_by_id(
-                        block)  # кнопка для открытия select с цветами
+                    button_for_open_options = driver.find_element_by_id(block)  # кнопка для открытия select с цветами
                     if block_label == 'kolor':  # если блок называется 'kolor'
                         parse_colors = True
                         if len(options) <= 1:
@@ -754,8 +756,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                     options_articles_list.append(one_option_article_number)
                                 except IndexError:  # если ссылка не меняется, тогда берем номер артикула с страницы продукта
                                     new_product_soup = driver.page_source
-                                    one_option_article_number = ''.join(
-                                        new_product_soup.find('div', id='itemNumber').text.split('.'))
+                                    one_option_article_number = ''.join(new_product_soup.find('div', id='itemNumber').text.split('.'))
                                     options_articles_list.append(one_option_article_number)
                             except WebDriverException:
                                 pass
@@ -788,10 +789,9 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             parse_models = True
             models_articles_list = []
             models_ = None
-            models_to_save = ''
+            models_to_save = None
             try:
                 models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-                #print('ЕСТЬ МОДЕЛИ')
             except:
                 parse_models = False
                 #print('НЕТУ МОДЕЛЕЙ')
@@ -816,7 +816,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for material in materials:
                     if isinstance(material, str):
                         materials_list.append(material)
-                materials_to_save = ' '.join(materials_list)
+                materials_to_save = '. '.join(materials_list)
             except NoSuchElementException:
                 pass
 
