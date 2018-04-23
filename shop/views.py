@@ -175,7 +175,8 @@ class RoomDetail(MainInfo, DetailView):
         rooms_examples_list = []
         for room_place in room_places:
             room_example = RoomExample.objects.filter(room_place=room_place)
-            rooms_examples_list.append(room_example)
+            for example in room_example:
+                rooms_examples_list.append(example)
 
         print(rooms_examples_list)
 
