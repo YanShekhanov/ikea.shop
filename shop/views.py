@@ -191,7 +191,7 @@ class RoomDetail(MainInfo, DetailView):
             try:
                 print(image.image.url)
             except ValueError:
-                print(image.image.url)
+                pass
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
