@@ -140,16 +140,20 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
         #Дополняющие
         complementary_products_list = []
+        complementary_products_images = []
         if self.object.complementary_products is not None and self.object.complementary_products != '':
             complementary_products = self.object.complementary_products.split('#')
             for product in complementary_products:
                 try:
                     product = Product.objects.get(article_number=product)
                     complementary_products_list.append(product)
-                    complementary_images_list.append(product)
+                    #изображения
+                    image = ProductImage.objects.filter(product=product, size=250).first()
+                    complementary_products_images.append(image)
                 except Product.DoesNotExist:
                     pass
             context['complementaryProducts'] = complementary_products_list
+            context['complementaryProductsImages'] = complementary_products_images
 
         #изображения к дополняющим артикулам
         for product in complementary_images_list:
