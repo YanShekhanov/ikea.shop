@@ -14,7 +14,7 @@
 		</div>
 		<!--Large Image-->
 		<div class="one-prod-img">
-			<div class="large-img"><img class="img-item" src="{{ productImages|first }}" alt="{{ productImages|first.title }}"></div>
+			<div class="large-img"><img class="img-item" src="{{ productImageLarge.image.url }}" alt="{{ productImageLarge.title }}"></div>
 		</div>
 		<!--Info Block-->
 		<div class="info-block" id="info-block">
@@ -65,7 +65,7 @@
         <span>{{ product.materials_info }}</span>
     </p>
   </section>
-        
+
   <section id="content3">
     <p>
         <h3>Размеры</h3>

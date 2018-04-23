@@ -92,6 +92,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         #Изображения
         try:
             context['productImages'] = ProductImage.objects.filter(product=self.object, size=500)
+            context['productImageLarge'] = context.get('productImages').first()
         except ProductImage.DoesNotExist:
             pass
 
