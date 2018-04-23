@@ -188,7 +188,10 @@ class RoomDetail(MainInfo, DetailView):
         context['rooms_examples'] = rooms_examples_list
         context['images'] = images_list
         for image in images_list:
-            print(image.image.url)
+            try:
+                print(image.image.url)
+            except ValueError:
+                print(image.image.url)
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
