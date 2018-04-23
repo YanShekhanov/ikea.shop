@@ -585,7 +585,7 @@ def parse_one_product_information_(product_query, browser_driver):
     time_end = time.time()
     delta = time_end - time_start
 
-    product_dict = {
+    '''product_dict = {
         'article_number':product_to_save.article_number,
         'unique_identificator':product_to_save.unique_identificator,
         'subcategory':product_to_save.subcategory.url_ikea,
@@ -603,7 +603,8 @@ def parse_one_product_information_(product_query, browser_driver):
     file_to_write = open(os.path.join(BASE_DIR, 'data/products.json'), 'a+')
     json.dumps(product_dict, file_to_write, ensure_ascii=False)
 
-    print(product_dict)
+    print(product_dict)'''
+    print(product_to_save.article_number)
     return product_to_save
 
 
