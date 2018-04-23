@@ -299,6 +299,10 @@
 
 {% block js %}
     <script>
+        $('.amoun').hover(function () {
+            check_availability({{ product.article_number }});
+        });
+
         function check_availability(article_number){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             $.ajax({
@@ -310,6 +314,8 @@
                 },
                 success: function (data) {
                     if (data.availability){
+                        $('.amount span').text(data.availability);
+
                         $('#check_availabiliti_button').hide();
                         $('#availability').find('b').text(data.availability);
                     } else if (data.successMessage){
@@ -325,5 +331,15 @@
                 }
             });
         }
+    </script>
+{% endblock %}
+
+{% block onload_js %}
+    <script>
+        $('body').on('click', $('.small-img img.img-item'), function (e) {
+            e.preventDefault();
+            var image_to_open = $(this).attr('src');
+            $('.large-img img.img-item').attr('src', image_to_open);
+        })
     </script>
 {% endblock %}
