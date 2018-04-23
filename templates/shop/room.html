@@ -4,16 +4,14 @@
     {% for room_place in room_places %}
         <h2>{{ room_place.title }}</h2>
         {% for room_example in rooms_examples %}
-            {% for example in room_example %}
-                {% if room_place == example.room_place %}
-                    <p>{{ example.title }}</p>
+                {% if room_place == room_example.room_place %}
+                    <p>{{ room_example.title }}</p>
                     {% for image in images %}
-                        {% if image.example == example %}
+                        {% if image.example == room_example %}
                             <img src="{{ image.image.url }}">
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-            {% endfor %}
         {% endfor %}
     {% endfor %}
 {% endblock %}
