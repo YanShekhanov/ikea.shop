@@ -180,7 +180,7 @@ class RoomDetail(MainInfo, DetailView):
 
         images_list = []
         for room_example in rooms_examples_list:
-            image = ExampleImage.objects.get(example=room_example, is_presentation=False)
+            image = ExampleImage.objects.get(example=room_example, is_presentation=True)
             images_list.append(image)
 
         context = super(RoomDetail, self).get_context_data(**kwargs)

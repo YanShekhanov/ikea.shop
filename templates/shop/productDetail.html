@@ -8,26 +8,21 @@
 	<div class="grid" style="margin-top: 0.5vw">
 		<!--Small Images-->
 		<div class="one-prod-imgs">
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-4-3.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-4-2.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-2-3.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-3-3.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-3-3.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-3-3.JPG" alt="#"></div>
-			<div class="small-img"><img class="img-item" src="images/product-cards/product-3-3.JPG" alt="#"></div>
+            {% for image in productImages %}
+                <div class="small-img"><img class="img-item" src="{{ image.image.url }}" alt="{{ image.title }}"></div>
+            {% endfor %}
 		</div>
 		<!--Large Image-->
 		<div class="one-prod-img">
-			<div class="large-img"><img class="img-item" src="images/product-cards/product-4-3.JPG" alt="#"></div>
+			<div class="large-img"><img class="img-item" src="{{ productImages|first }}" alt="{{ productImages|first.title }}"></div>
 		</div>
 		<!--Info Block-->
 		<div class="info-block" id="info-block">
 			<!--Name-->
-			<div class="prod-name">АСКВОЛЬ КОМОД ЗЕЛЕНЫЙ ДЕРЕВО</div>
+			<div class="prod-name">{{ product.title }}</div>
 			<!--Info-->
-			<div class="prod-info"> Хиллтоп приезжают неожиданные гости. Они подталкивают расколовшуюся общину к активным действиям. В результате, часть группы решает выступить против заклятого врага. Это оборачивается совершенно неожиданными последствиями и душераздирающими событиями.</div>
-			<!--Price-->
-			<div class="prod-price">23899 грн.</div>
+            <div class="prod-info">{{ product.description }}</div>
+			<div class="prod-price">{{ product.price }}</div>
 			<!--Buttons-->
 			<div class="prod-btns">
                 	<div class="button-item">
@@ -46,20 +41,35 @@
   		<input id="tab3" type="radio" name="tabs">
   			<label for="tab3">Размеры</label>
   		<input id="tab4" type="radio" name="tabs">
-  			<label for="tab4">Похожие товары</label>
+  			<label for="tab4">Дополняющие товары</label>
   <section id="content1">
     <p>
-      Хиллтоп приезжают неожиданные гости. Они подталкивают расколовшуюся общину к активным действиям. В результате, часть группы решает выступить против заклятого врага. Это оборачивается совершенно неожиданными последствиями и душераздирающими событиями.
+        <h3>Описание</h3>
+        <span>{{ product.key_feautures }}</span>
     </p>
   </section>
+
   <section id="content2">
     <p>
-      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+        <h3>Полезно знать</h3>
+        <span>{{ product.good_to_know }}</span>
+    </p>
+
+    <p>
+        <h3>Инострукция по уходу</h3>
+        <span>{{ product.care_instructions }}</span>
+    </p>
+
+    <p>
+        <h3>Материалы</h3>
+        <span>{{ product.materials_info }}</span>
     </p>
   </section>
+        
   <section id="content3">
     <p>
-      Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+        <h3>Размеры</h3>
+        <span>{{ product.dimensions }}</span>
     </p>
   </section>
   <section id="content4">

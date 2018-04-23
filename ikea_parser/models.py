@@ -71,7 +71,7 @@ class Product(models.Model):
     good_to_know = models.CharField(max_length=1024, blank=True, null=True, default='', verbose_name='Полезно знать')
     care_instructions = models.CharField(max_length=1024, blank=True, null=True, default='', verbose_name='Инструкция по уходу')
     materials_info = models.CharField(max_length=1024, blank=True, null=True, default='', verbose_name='Материал')
-    dimensions = models.CharField(max_length=128, blank=True, null=True, default='', verbose_name='Габариты')
+    dimensions = models.CharField(max_length=256, blank=True, null=True, default='', verbose_name='Габариты')
     designed_by = models.CharField(max_length=32, blank=True, null=True, default='', verbose_name='Создатель')
     complementary_products = models.CharField(max_length=512, blank=True, default='', null=True, verbose_name='Дополняющие продукты')
     additional_models = models.CharField(max_length=512, blank=True, null=True, default='', verbose_name='Модели')
