@@ -122,7 +122,7 @@
             	</div>
                 <!--Product Images-->
 					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    {% for image in complementaryImages %}
+                    {% for image in complementaryProductsImages %}
                         {% for image_product in image.product.all %}
                             {% if image_product == complementary_product %}
                                 <img src="{{ image.image.url }}" alt="{{ image.title }}">
@@ -187,48 +187,6 @@
                <a href="{% url 'productDetail' model %}">{{ model }}</a></p>
             {% endfor %}
     {% endif %}
-
-    <p>
-        <h3>Описание</h3>
-        <span>{{ product.key_feautures }}</span>
-    </p>
-
-    <p>
-        <h3>Полезно знать</h3>
-        <span>{{ product.good_to_know }}</span>
-    </p>
-
-    <p>
-        <h3>Инострукция по уходу</h3>
-        <span>{{ product.care_instructions }}</span>
-    </p>
-
-    <p>
-        <h3>Материалы</h3>
-        <span>{{ product.materials_info }}</span>
-    </p>
-
-    <p>
-        <h3>Размеры</h3>
-        <span>{{ product.dimensions }}</span>
-    </p>
-
-    {% if complementaryProducts%}
-    <p>
-        <h3>Дополняющие продукты</h3>
-        {% for complementary_product in complementaryProducts %}
-            {% for image in complementaryImages %}
-                {% for product in image.pruduct.all %}
-                    {% if complementary_product == product %}
-                        <img src="{{ image.image.url }}" alt="{{ complementary_product.article_number }}" class="icon-image">
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-            <a href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.article_number }}</a>
-        {% endfor %}
-    </p>
-    {% endif %}
-
 
 
 {% endblock %}
