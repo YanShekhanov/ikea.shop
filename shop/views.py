@@ -296,13 +296,13 @@ def get_all_product_images(request):
         'productDimensions':product.dimensions,}
     return JsonResponse(data=json_response)
 
+import requests
+from bs4 import BeautifulSoup
 #ajax проверка наличия
 def check_availability(request):
     response_dict = {}
     if request.method == 'POST' and request.is_ajax():
         url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (request.POST['article_number'])
-        import requests
-        from bs4 import BeautifulSoup
         request = requests.get(url).text
         product_soup = BeautifulSoup(request, 'xml')
         try:
