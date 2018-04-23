@@ -178,8 +178,6 @@ class RoomDetail(MainInfo, DetailView):
             for example in room_example:
                 rooms_examples_list.append(example)
 
-        print(rooms_examples_list)
-
         images_list = []
         for room_example in rooms_examples_list:
             image = ExampleImage.objects.get(example=room_example, is_presentation=False)
@@ -189,9 +187,6 @@ class RoomDetail(MainInfo, DetailView):
         context['room_places'] = room_places
         context['rooms_examples'] = rooms_examples_list
         context['images'] = images_list
-        print(context['room_places'])
-        print(context['rooms_examples'])
-        print(context['images'])
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
