@@ -27,24 +27,24 @@
 			<div class="prod-btns">
                 	<div class="button-item">
      					<a href="" class="btn-1">Добавить в корзину</a>
-						<div class="amount"><span>В наличии:</span>1000 шт.</div>
+                        <div class="amount"><span>В наличии:</span><span id="product_available"></span></div>
     				</div>
 			</div>
 		</div>
 	</div>
 	<!--Pages Block-->
 	<main class="grid" id="pages-block">
-        {% if product.key_feautures != None %}
+        {% if product.key_feautures%}
   		    <input id="tab1" type="radio" name="tabs" checked>
   			<label for="tab1">Описание</label>
         {% endif %}
 
-        {% if product.goot_to_know != None or product.care_instructions != None or product.materials_info != None %}
+        {% if product.goot_to_know or product.care_instructions or product.materials_info %}
   		    <input id="tab2" type="radio" name="tabs">
   			<label for="tab2">Информация</label>
         {% endif %}
 
-        {% if product.dimensions != None %}
+        {% if product.dimensions %}
   		    <input id="tab3" type="radio" name="tabs">
   			<label for="tab3">Размеры</label>
         {% endif %}
@@ -52,7 +52,7 @@
   		<input id="tab4" type="radio" name="tabs">
         <label for="tab4">Дополняющие товары</label>
 
-  {% if product.key_feautures != None %}
+  {% if product.key_feautures %}
   <section id="content1">
     <p>
         <h3>Описание</h3>
@@ -61,23 +61,23 @@
   </section>
   {% endif %}
 
-  {% if product.goot_to_know != None or product.care_instructions != None or product.materials_info != None %}
+  {% if product.goot_to_know or product.care_instructions or product.materials_info %}
   <section id="content2">
-    {% if product.goot_to_know != None%}
+    {% if product.goot_to_know %}
     <p>
         <h3>Полезно знать</h3>
         <span>{{ product.good_to_know }}</span>
     </p>
     {% endif %}
 
-    {% if product.care_instruction != None %}
+    {% if product.care_instruction %}
     <p>
         <h3>Инострукция по уходу</h3>
         <span>{{ product.care_instructions }}</span>
     </p>
     {% endif %}
 
-    {% if product.materials_info != None %}
+    {% if product.materials_info %}
     <p>
         <h3>Материалы</h3>
         <span>{{ product.materials_info }}</span>
@@ -87,7 +87,7 @@
   </section>
   {% endif %}
 
-  {% if product.dimensions != None %}
+  {% if product.dimensions %}
   <section id="content3">
     <p>
         <h3>Размеры</h3>
@@ -97,115 +97,47 @@
   {% endif %}
 
   <section id="content4">
-    		<!--Card-1-->
-            <div class="card">
-				<div class="card-open">
-                <!--Product Images Open-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info Open-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-                    <p class="card-text">Комод с 2 ящиками, под белый дуб, белый, шикарный комод, лучший просто.</p>
-					<p class="card-price">2999 грн.</p>
-                	<div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
-    				</div>
-            	</div>
-                <!--Product Images-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-					<p class="card-price">2999 грн.</p>
-            	</div>
 
-	  		<!--Card-2-->
-            <div class="card">
+      {% if complementaryProducts %}
+          {% for complementary_product in complementaryProducts %}
+              <div class="card">
 				<div class="card-open">
                 <!--Product Images Open-->
 					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info Open-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-                    <p class="card-text">Комод с 2 ящиками, под белый дуб, белый, шикарный комод, лучший просто.</p>
-					<p class="card-price">2999 грн.</p>
+                    {% for image in complementaryImages %}
+                        {% if image.product == complementary_product %}
+                            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                        {% endif %}
+                    {% endfor %}
+                    <!--Product Info Open-->
+                    <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
+					<p class="ind-code">Артикул: {{ complementary_product.article_number }}</p>
+                    <p class="card-text">{{ complementary_product.description }}</p>
+					<p class="card-price">{{ complementary_product.price }} грн.</p>
                 	<div class="button-item">
      					<a href="" class="btn-1">Добавить в корзину</a>
     				</div>
             	</div>
                 <!--Product Images-->
 					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
+                    {% for image in complementaryImages %}
+                        {% if image.product == complementary_product %}
+                            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                        {% endif %}
+                    {% endfor %}
                 <!--Product Info-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-					<p class="card-price">2999 грн.</p>
-            	</div>
-
-	  		<!--Card-3-->
-            <div class="card">
-				<div class="card-open">
-                <!--Product Images Open-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info Open-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-                    <p class="card-text">Комод с 2 ящиками, под белый дуб, белый, шикарный комод, лучший просто.</p>
-					<p class="card-price">2999 грн.</p>
-                	<div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
-    				</div>
-            	</div>
-                <!--Product Images-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-					<p class="card-price">2999 грн.</p>
-            	</div>
-
-	  		<!--Card-4-->
-            <div class="card">
-				<div class="card-open">
-                <!--Product Images Open-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info Open-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-                    <p class="card-text">Комод с 2 ящиками, под белый дуб, белый, шикарный комод, лучший просто.</p>
-					<p class="card-price">2999 грн.</p>
-                	<div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
-    				</div>
-            	</div>
-                <!--Product Images-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-					<p class="card-price">2999 грн.</p>
-            	</div>
+                    <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
+					<p class="ind-code">Артикул: {{ complementary_product.article_number }}</p>
+					<p class="card-price">{{ complementary_product.price }} грн.</p>
+              </div>
+          {% endfor %}
+      {% endif %}
 
   </section>
 </main>
 
 
-    <h3>{{ product.title }}<br>{{ product.article_number }}<br>{{ product.description }}</h3>
-    <span>Цена: <b>{{ product.price }} PLN</b></span><br>
-
-    <span id="availability">Наличие: <b><button id="check_availabiliti_button" onclick="check_availability({{ product.article_number }})">Узнать наличие в Польше</button></b></span>
-
-    {% for image in productImages %}
-        <p><img src="{{ image.image.url }}" alt="{{ image.title }}" style="margin: 5px; border: 2px solid black; display: inline-block;"
-            height="200px" width="200px"></p>
-    {% endfor %}
+    <!--старый код-->
 
     {% if colorOptions %}
         <p>
@@ -225,7 +157,7 @@
     {% if sizeOptions %}
         <p>
             <h3>Размеры</h3>
-            {% for size in ziseOptions %}
+            {% for size in sizeOptions %}
                 {% for image in complementaryImages %}
                     {% for product in image.product.all %}
                         {% if size == product %}
@@ -299,9 +231,8 @@
 
 {% block js %}
     <script>
-        $('.amount').hover(function () {
-            check_availability({{ product.article_number }});
-        });
+        var availability = check_availability({{ product.article_number }});
+        document.getElementById('product_available').text(availability);
 
         function check_availability(article_number){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
@@ -314,20 +245,15 @@
                 },
                 success: function (data) {
                     if (data.availability){
-                        $('.amount span').text(data.availability);
-
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.availability);
+                        return data.availability;
                     } else if (data.successMessage){
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.successMessage);
+                        return data.successMessage;
                     } else if (data.errorMessage){
-                        $('#check_availabiliti_button').hide();
-                        $('#availability').find('b').text(data.errorMessage);
+                        return data.errorMessage;
                     }
                 },
                 error: function () {
-                    $('#availability').text('Возникла ошибка, попробуйте позже');
+                    return ('функция недоступна, попробуйте позже')
                 }
             });
         }
@@ -336,7 +262,7 @@
 
 {% block onload_js %}
     <script>
-        $('body').on('click', $('.small-img img.img-item'), function (e) {
+        $('.large-img').on('click', $('.img-item'), function (e) {
             e.preventDefault();
             var image_to_open = $(this).attr('src');
             $('.large-img img.img-item').attr('src', image_to_open);
