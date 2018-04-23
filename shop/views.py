@@ -161,6 +161,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         context['complementaryImages'] = complementary_images
         return context
 
+#пересмотреть
 class RoomDetail(MainInfo, DetailView):
     template_name = 'shop/room.html'
     model = Room
@@ -175,6 +176,8 @@ class RoomDetail(MainInfo, DetailView):
         for room_place in room_places:
             room_example = RoomExample.objects.filter(room_place=room_place)
             rooms_examples_list.append(room_example)
+
+        print(rooms_examples_list)
 
         images_list = []
         for room_example in rooms_examples_list:
