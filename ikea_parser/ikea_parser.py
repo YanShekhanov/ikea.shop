@@ -820,22 +820,6 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             except NoSuchElementException:
                 pass
 
-            print(len(product_title))
-            print(len(product_description))
-            print(len(product_price))
-            print(len(product_url))
-            print(len(available))
-            print(len(key_feautures))
-            print(len(good_to_know))
-            print(len(care_instruction_to_save))
-            print(len(dimension_to_save))
-            print(len(materials_to_save))
-            print(len(complementary_products_to_save))
-            print(len(product_color))
-            print(len(color_options))
-            print(len(size_options))
-            print(len(models_to_save))
-
             # -----------------------------------------------------#
             # saving product
             created_product = Product.objects.create(article_number=product_article,
