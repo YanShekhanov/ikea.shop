@@ -187,6 +187,8 @@ class RoomDetail(MainInfo, DetailView):
         context['room_places'] = room_places
         context['rooms_examples'] = rooms_examples_list
         context['images'] = images_list
+        for image in images_list:
+            print(image.image.url)
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
