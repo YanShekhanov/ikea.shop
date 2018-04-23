@@ -34,44 +34,68 @@
 	</div>
 	<!--Pages Block-->
 	<main class="grid" id="pages-block">
-  		<input id="tab1" type="radio" name="tabs" checked>
+        {% if product.key_feautures != None %}
+  		    <input id="tab1" type="radio" name="tabs" checked>
   			<label for="tab1">Описание</label>
-  		<input id="tab2" type="radio" name="tabs">
+        {% endif %}
+
+        {% if product.goot_to_know != None or product.care_instructions != None or product.materials_info != None %}
+  		    <input id="tab2" type="radio" name="tabs">
   			<label for="tab2">Информация</label>
-  		<input id="tab3" type="radio" name="tabs">
+        {% endif %}
+
+        {% if product.dimensions != None %}
+  		    <input id="tab3" type="radio" name="tabs">
   			<label for="tab3">Размеры</label>
+        {% endif %}
+
   		<input id="tab4" type="radio" name="tabs">
-  			<label for="tab4">Дополняющие товары</label>
+        <label for="tab4">Дополняющие товары</label>
+
+  {% if product.key_feautures != None %}
   <section id="content1">
     <p>
         <h3>Описание</h3>
         <span>{{ product.key_feautures }}</span>
     </p>
   </section>
+  {% endif %}
 
+  {% if product.goot_to_know != None or product.care_instructions != None or product.materials_info != None %}
   <section id="content2">
+    {% if product.goot_to_know != None%}
     <p>
         <h3>Полезно знать</h3>
         <span>{{ product.good_to_know }}</span>
     </p>
+    {% endif %}
 
+    {% if product.care_instruction != None %}
     <p>
         <h3>Инострукция по уходу</h3>
         <span>{{ product.care_instructions }}</span>
     </p>
+    {% endif %}
 
+    {% if product.materials_info != None %}
     <p>
         <h3>Материалы</h3>
         <span>{{ product.materials_info }}</span>
     </p>
-  </section>
+    {% endif %}
 
+  </section>
+  {% endif %}
+
+  {% if product.dimensions != None %}
   <section id="content3">
     <p>
         <h3>Размеры</h3>
         <span>{{ product.dimensions }}</span>
     </p>
   </section>
+  {% endif %}
+
   <section id="content4">
     		<!--Card-1-->
             <div class="card">
