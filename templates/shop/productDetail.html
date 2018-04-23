@@ -105,9 +105,11 @@
                 <!--Product Images Open-->
 					<i class="fa fa-search-plus" aria-hidden="true"></i>
                     {% for image in complementaryImages %}
-                        {% if image.product == complementary_product %}
-                            <img src="{{ image.image.url }}" alt="{{ image.title }}">
-                        {% endif %}
+                        {% for image_product in image.product.all %}
+                            {% if image_product == complementary_product %}
+                                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                     <!--Product Info Open-->
                     <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
@@ -121,9 +123,11 @@
                 <!--Product Images-->
 					<i class="fa fa-search-plus" aria-hidden="true"></i>
                     {% for image in complementaryImages %}
-                        {% if image.product == complementary_product %}
-                            <img src="{{ image.image.url }}" alt="{{ image.title }}">
-                        {% endif %}
+                        {% for image_product in image.product.all %}
+                            {% if image_product == complementary_product %}
+                                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 <!--Product Info-->
                     <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
