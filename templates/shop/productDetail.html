@@ -214,6 +214,7 @@
                     },
                     success: function (data) {
                         if (data.availability){
+                            console.log(data.availability);
                             return data.availability;
                         } else if (data.successMessage){
                             return data.successMessage;
