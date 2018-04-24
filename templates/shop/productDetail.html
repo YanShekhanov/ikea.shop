@@ -199,11 +199,6 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var f_availability = check_availability();
-            var availability = f_availability({{ product.article_number }});
-            $('#product_available').html(availability);
-            console.log(f_availability);
-
             function check_availability(article_number){
                 var token = $('input[name="csrfmiddlewaretoken"]').val();
                 $.ajax({
@@ -227,6 +222,10 @@
                     }
                 });
             }
+
+            var availability = check_availability({{ product.article_number }});
+            $('#product_available').html(availability);
+            console.log(availability);
 
             $('.large-img').on('click', $('.img-item'), function (e) {
                 e.preventDefault();
