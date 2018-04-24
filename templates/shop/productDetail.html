@@ -2,6 +2,7 @@
 
 {% block content %}
     {% csrf_token %}
+    <data data-product_article = {{ product.article_number }} id='article_number'></data>
 
     <!--One Product-->
 	<!--Images-->
@@ -199,7 +200,8 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var article_number = "'" + {{ product.article_number }} + "'"
+            var article_number = $('data#article_number').data('article_number');
+            console.log(article_number);
             check_availability(article_number);
 
             function check_availability(article_number){
