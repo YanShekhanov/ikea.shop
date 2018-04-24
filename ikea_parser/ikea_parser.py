@@ -192,7 +192,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                     available = 0
                 product_detail = product.find('div', class_='productDetails')
                 product_url = DOMAIN + product_detail.find('a').get('href')
-                product_title = translator.translate(product_detail.find('span', class_='productTitle').text.strip(), dest='uk').text  # название
+                product_title = product_detail.find('span', class_='productTitle').text.strip()  # название
                 product_description = translator.translate(product_detail.find('span', class_='productDesp').text.strip(), dest='uk').text  # разшифровка
                 product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
                 if product_price[1] == 'PLN':
@@ -657,7 +657,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             html = driver.page_source
             product_soup = BeautifulSoup(html, 'lxml')
 
-            product_title = translator.translate(product_soup.find('span', id='name').text.strip(), dest='uk').text  # название
+            product_title = product_soup.find('span', id='name').text.strip()  # название
             product_description = translator.translate(product_soup.find('span', id='type').text.strip(), dest='uk').text  # разшифровка
             product_color = None
             try:
