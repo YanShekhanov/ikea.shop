@@ -200,6 +200,7 @@
     <script>
         var availability = check_availability({{ product.article_number }});
         $('#product_available').html(availability);
+        console.log(availability);
 
         function check_availability(article_number){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
