@@ -199,9 +199,10 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var availability = check_availability({{ product.article_number }});
+            var f_availability = check_availability();
+            var availability = f_availability({{ product.article_number }});
             $('#product_available').html(availability);
-            console.log(availability);
+            console.log(f_availability);
 
             function check_availability(article_number){
                 var token = $('input[name="csrfmiddlewaretoken"]').val();
@@ -214,7 +215,6 @@
                     },
                     success: function (data) {
                         if (data.availability){
-                            console.log(data.availability);
                             return data.availability;
                         } else if (data.successMessage){
                             return data.successMessage;
