@@ -124,6 +124,7 @@
                 success: function (data) {
                     $to_paste = $('#product_available');
                     if (data.availability){
+                        console.log(data.availability);
                         return data.availability;
                     } else if (data.successMessage){
                         return data.successMessage;
