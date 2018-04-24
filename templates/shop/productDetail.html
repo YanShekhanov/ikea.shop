@@ -193,6 +193,11 @@
 
 {% block js %}
     <script>
+    </script>
+{% endblock %}
+
+{% block onload_js %}
+    <script>
         var availability = check_availability({{ product.article_number }});
         document.getElementById('product_available').text(availability);
 
@@ -219,11 +224,7 @@
                 }
             });
         }
-    </script>
-{% endblock %}
 
-{% block onload_js %}
-    <script>
         $('.large-img').on('click', $('.img-item'), function (e) {
             e.preventDefault();
             var image_to_open = $(this).attr('src');
