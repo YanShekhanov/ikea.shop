@@ -215,11 +215,11 @@
                 success: function (data) {
                     $to_paste = $('#product_available');
                     if (data.availability){
-                        $to_paste.text(data.availability).style('color', 'green');
+                        $to_paste.text(data.availability).css('color', 'green');
                     } else if (data.successMessage){
-                        $to_paste.text(data.successMessage).style('color', 'green');
+                        $to_paste.text(data.successMessage).css('color', 'green');
                     } else if (data.errorMessage){
-                        $to_paste.text(data.errorMessage).style('color', 'red');
+                        $to_paste.text(data.errorMessage).css('color', 'red');
                     }
                 },
                 error: function () {
