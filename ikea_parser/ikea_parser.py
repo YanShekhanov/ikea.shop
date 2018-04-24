@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from .models import *
 from bs4 import BeautifulSoup
-
 import requests
 import os
 import pathlib
@@ -12,11 +11,8 @@ from django.utils.timezone import datetime
 #selenium
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException, WebDriverException, NoSuchElementException
-
 from .create_identificator import create_identificator
-
 import re
-
 from app.settings import MEDIA_ROOT, BASE_DIR
 
 
@@ -145,6 +141,7 @@ def get_sub_and_sub_subcategories():
             parse_products_articles_(subcategory, subcategory_status, sub_subcategory_status)
 
 from googletrans import Translator
+from shop.models import Coef
 #парсинг артикулов и основной информации к ним (название, краткое описание, цена)
 def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
     translator = Translator()
@@ -207,6 +204,8 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 for symbol in product_price:
                     if symbol == ',':
                         product_price = '.'.join(product_price.split(','))
+                product_price = float(product_price) * Coef.objects.get(id=1).coef
+
                 product_unit = product_detail.find('span', class_='unit')  # /шт.
                 if product_unit is not None:
                     product_unit = product_unit.text.strip()
