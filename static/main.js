@@ -115,7 +115,7 @@
     function check_availability(article_number){
             console.log(article_number);
             $.ajax({
-                url:'{% url "checkAvailability" %}',
+                url:'/shop/checkAvailability/',
                 method:'POST',
                 data:{
                     'csrfmiddlewaretoken':token,
