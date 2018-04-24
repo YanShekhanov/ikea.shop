@@ -29,8 +29,9 @@
 			<!--Buttons-->
 			<div class="prod-btns">
                 	<div class="button-item">
+                        <!--jaciku zadanie -->
                         <span id="message"></span>
-                        <br><input type="number" id="product_count">
+                        <br><input type="number" id="product_count" style="width: 100px;">
      					<a href="" class="btn-1" id="add_to_basket">Добавить в корзину</a>
                         <div class="amount"><span>В наличии:</span><span id="product_available"></span></div>
     				</div>
@@ -203,37 +204,13 @@
 
 {% block onload_js %}
     <script>
+        var token = $('input[name="csrfmiddlewaretoken"]').val();
         var article_number_ = $('#article_number').data('product_article');
-        console.log(article_number_);
         var availability = check_availability(article_number_);
-        $('#product_count').show();
+        $('#product_available').text(availability);
 
-        function check_availability(article_number){
-            console.log(article_number);
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
-            $.ajax({
-                url:'{% url "checkAvailability" %}',
-                method:'POST',
-                data:{
-                    'csrfmiddlewaretoken':token,
-                    'article_number':article_number
-                },
-                success: function (data) {
-                    $to_paste = $('#product_available');
-                    if (data.availability){
-                        $to_paste.text(data.availability).css('color', 'green');
-                        return data.availability;
-                    } else if (data.successMessage){
-                        $to_paste.text(data.successMessage).css('color', 'green');
-                    } else if (data.errorMessage){
-                        $to_paste.text(data.errorMessage).css('color', 'red');
-                    }
-                },
-                error: function () {
-                    return ('функция недоступна, попробуйте позже')
-                }
-            });
-        }
+        //не отображается без этого свойства , спросить ясика
+        $('#product_count').show();
 
         $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
@@ -241,6 +218,7 @@
            $('.large-img .img-item').attr('src', image_url);
         });
 
+        //добавление товара в корзину
         $('#add_to_basket').click(function (e) {
             e.preventDefault();
             var product_count = $('#product_count').val(),
@@ -251,12 +229,29 @@
                 $to_paste.find('#added_count').text(product_count);
                 $to_paste.slideDown(function () {
                     function reset_added_product(){
+                        $to_paste.slideUp();
                         $to_paste.find('#added_article_number').text('');
                         $to_paste.find('#added_count').text('');
-                        $to_paste.slideUp();
                     };
                     setTimeout(reset_added_product, 3000);
                 });
+
+                //ajax
+                $.ajax({
+                    url: {% url 'add_product_to_basket' %},
+                    method:'POST',
+                    data:{
+                        'csrfmiddlewaretoken':token,
+                        'product_article':product_article_number,
+                        'product_count':product_count,
+                    },
+                    success: function () {
+                        return;
+                    },
+                    error: function () {
+                        return;
+                    }
+                })
 
             } else {
                 $('#message').text('Введите корректное количество')
