@@ -200,7 +200,7 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var article_number = $('data#article_number').data('article_number');
+            var article_number = $('#article_number').data('article_number');
             console.log(article_number);
             check_availability(article_number);
 
