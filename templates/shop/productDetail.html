@@ -205,6 +205,7 @@
             check_availability(article_number_);
 
             function check_availability(article_number){
+                console.log('start');
                 var token = $('input[name="csrfmiddlewaretoken"]').val();
                 $.ajax({
                     url:'{% url "checkAvailability" %}',
