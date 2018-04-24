@@ -112,7 +112,7 @@
         }
 
 
-    function check_availability(article_number){
+    function check_availability(article_number, callback){
             console.log(article_number);
             $.ajax({
                 url:'/shop/checkAvailability/',
@@ -124,7 +124,7 @@
                 success: function (data) {
                     $to_paste = $('#product_available');
                     if (data.availability){
-                        console.log(data.availability);
+                        callback(data.availability);
                         return data.availability;
                     } else if (data.successMessage){
                         return data.successMessage;
