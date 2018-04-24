@@ -228,8 +228,9 @@
             });
         }
 
-        $('.small-img.img-item').click(function () {
+        $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
+           console.log(image_url);
            var large_image = $('.large-img.img-item').attr('src', image_url);
         });
 
