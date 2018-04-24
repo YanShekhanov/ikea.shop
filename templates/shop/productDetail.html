@@ -198,37 +198,41 @@
 
 {% block onload_js %}
     <script>
-        var availability = check_availability({{ product.article_number }});
-        $('#product_available').html(availability);
+        $(document).ready(function () {
+            var availability = check_availability({{ product.article_number }});
+            $('#product_available').html(availability);
+            console.log(availability);
 
-        function check_availability(article_number){
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
-            $.ajax({
-                url:'{% url "checkAvailability" %}',
-                method:'POST',
-                data:{
-                    'csrfmiddlewaretoken':token,
-                    'article_number':article_number
-                },
-                success: function (data) {
-                    if (data.availability){
-                        return data.availability;
-                    } else if (data.successMessage){
-                        return data.successMessage;
-                    } else if (data.errorMessage){
-                        return data.errorMessage;
+            function check_availability(article_number){
+                var token = $('input[name="csrfmiddlewaretoken"]').val();
+                $.ajax({
+                    url:'{% url "checkAvailability" %}',
+                    method:'POST',
+                    data:{
+                        'csrfmiddlewaretoken':token,
+                        'article_number':article_number
+                    },
+                    success: function (data) {
+                        if (data.availability){
+                            return data.availability;
+                        } else if (data.successMessage){
+                            return data.successMessage;
+                        } else if (data.errorMessage){
+                            return data.errorMessage;
+                        }
+                    },
+                    error: function () {
+                        return ('функция недоступна, попробуйте позже')
                     }
-                },
-                error: function () {
-                    return ('функция недоступна, попробуйте позже')
-                }
-            });
-        }
+                });
+            }
 
-        $('.large-img').on('click', $('.img-item'), function (e) {
-            e.preventDefault();
-            var image_to_open = $(this).attr('src');
-            $('.large-img img.img-item').attr('src', image_to_open);
-        })
+            $('.large-img').on('click', $('.img-item'), function (e) {
+                e.preventDefault();
+                var image_to_open = $(this).attr('src');
+                $('.large-img img.img-item').attr('src', image_to_open);
+            })
+        });
+
     </script>
 {% endblock %}
