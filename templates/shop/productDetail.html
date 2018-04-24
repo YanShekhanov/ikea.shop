@@ -2,6 +2,9 @@
 
 {% block content %}
     <span data-product_article='{{ product.article_number }}' id='article_number'></span>
+    <h2 style="background-color: #4B4A4A; padding: 10px; color: white; position: absolute; display: none" id="added_product_message">Продукт с артикулом
+        <span id="added_article number" style="color:greef"></span>
+        в количестве <span id="added_count" style="color:green"></span> добавлен в корзину <a href="#">перейти в корзину</a></h2>
 
     <!--One Product-->
 	<!--Images-->
@@ -238,20 +241,14 @@
            $('.large-img .img-item').attr('src', image_url);
         });
 
-        $('#product_count').keyup(function () {
-            var max_count = availability;
-            if ($(this).val() > max_count){
-                $('#message').text('Введено количество больше доступного');
-                $(this).trigger('reset');
-            }
-
-        })
-
         $('#add_to_basket').click(function (e) {
             e.preventDefault();
             var product_count = $('#product_count').val(),
                 product_article_number = $('#article_number').data('product_article');
             if (product_count > 0){
+                $to_paste = $('#added_product_message');
+                $to_paste.find('#added_article_number').text(product_article_number);
+                $to_paste.find('#added_count').text(product_count);
                 console.log(product_article_number + ' * ' + product_count);
             } else {
                 $('#message').text('Введите корректное количество')
