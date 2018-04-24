@@ -200,9 +200,9 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var article_number = $('#article_number').data('article_number');
-            console.log(article_number);
-            check_availability(article_number);
+            var article_number_ = $('#article_number').data('article_number');
+            console.log(article_number_);
+            check_availability(article_number_);
 
             function check_availability(article_number){
                 var token = $('input[name="csrfmiddlewaretoken"]').val();
