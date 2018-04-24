@@ -231,13 +231,7 @@
         $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
            console.log(image_url);
-           $('.large-img.img-item').attr('src', image_url);
-        });
-
-        $('.large-img').on('click', $('.img-item'), function (e) {
-            e.preventDefault();
-            var image_to_open = $(this).attr('src');
-            $('.large-img img.img-item').attr('src', image_to_open);
+           $('.large-img .img-item').attr('src', image_url);
         });
 
     </script>
