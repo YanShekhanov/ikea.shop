@@ -113,25 +113,29 @@
 
 
     function check_availability(article_number){
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            console.log(article_number);
             $.ajax({
                 url:'{% url "checkAvailability" %}',
                 method:'POST',
                 data:{
                     'csrfmiddlewaretoken':token,
-                    'article_number':article_number,
+                    'article_number':article_number
                 },
                 success: function (data) {
+                    $to_paste = $('#product_available');
                     if (data.availability){
-
+                        return data.availability;
+                    } else if (data.successMessage){
+                        return data.successMessage;
+                    } else if (data.errorMessage){
+                        return data.errorMessage;
                     }
-                    console.log(data.availability);
                 },
                 error: function () {
-                    console.log('error')
-                },
-            })
-    }
+                    return ('функция недоступна, попробуйте позже')
+                }
+            });
+        }
 
 
 
