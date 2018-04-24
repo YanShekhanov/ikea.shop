@@ -202,7 +202,7 @@
     <script>
         var article_number_ = $('#article_number').data('product_article');
         console.log(article_number_);
-        check_availability(article_number_);
+        var availability = check_availability(article_number_);
         $('#product_count').show();
 
         function check_availability(article_number){
@@ -219,6 +219,7 @@
                     $to_paste = $('#product_available');
                     if (data.availability){
                         $to_paste.text(data.availability).css('color', 'green');
+                        return data.availability;
                     } else if (data.successMessage){
                         $to_paste.text(data.successMessage).css('color', 'green');
                     } else if (data.errorMessage){
@@ -236,6 +237,15 @@
            console.log(image_url);
            $('.large-img .img-item').attr('src', image_url);
         });
+
+        $('#product_count').change(function () {
+            var max_count = availability;
+            if ($(this).val() > max_count){
+                $('#message').text('Введено количество больше доступного');
+                $(this).trigger('reset');
+            }
+
+        })
 
         $('#add_to_basket').click(function (e) {
             e.preventDefault();
