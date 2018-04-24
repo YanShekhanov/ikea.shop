@@ -1,7 +1,6 @@
 {% extends 'shop_template.html' %}
 
 {% block content %}
-    {% csrf_token %}
     <span data-product_article='{{ product.article_number }}' id='article_number'></span>
 
     <!--One Product-->
@@ -199,7 +198,7 @@
 
 {% block onload_js %}
     <script>
-        var article_number_ = $('#article_number').data('article_number');
+        var article_number_ = $('#article_number').data('product_article');
         console.log(article_number_);
         check_availability(article_number_);
 
