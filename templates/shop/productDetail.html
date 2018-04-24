@@ -247,13 +247,13 @@
                 product_article_number = $('#article_number').data('product_article');
             if (product_count > 0){
                 $to_paste = $('#added_product_message');
+                $to_paste.find('#added_article_number').text(product_article_number);
+                $to_paste.find('#added_count').text(product_count);
                 $to_paste.slideDown(function () {
-                    $to_paste.find('#added_article_number').text(product_article_number);
-                    $to_paste.find('#added_count').text(product_count);
                     function reset_added_product(){
                         $to_paste.find('#added_article_number').text('');
                         $to_paste.find('#added_count').text('');
-                        $to_paste.slideDown();
+                        $to_paste.slideUp();
                     };
                     setTimeout(reset_added_product, 3000);
                 });
