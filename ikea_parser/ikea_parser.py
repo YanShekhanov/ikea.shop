@@ -144,9 +144,10 @@ def get_sub_and_sub_subcategories():
             sub_subcategory_status = False
             parse_products_articles_(subcategory, subcategory_status, sub_subcategory_status)
 
+from googletrans import Translator
 #парсинг артикулов и основной информации к ним (название, краткое описание, цена)
 def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
-
+    translator = Translator()
     created_products_list = []
     iter_category_products_number = 0
     foreign_key_query = query
@@ -194,8 +195,8 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                     available = 0
                 product_detail = product.find('div', class_='productDetails')
                 product_url = DOMAIN + product_detail.find('a').get('href')
-                product_title = product_detail.find('span', class_='productTitle').text.strip()  # название
-                product_description = product_detail.find('span', class_='productDesp').text.strip()  # разшифровка
+                product_title = translator.translate(product_detail.find('span', class_='productTitle').text.strip(), dest='uk').text  # название
+                product_description = translator.translate(product_detail.find('span', class_='productDesp').text.strip(), dest='uk').text  # разшифровка
                 product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
                 if product_price[1] == 'PLN':
                     product_price = product_price[0]
@@ -255,6 +256,8 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
 #парсинг изображений, основной информации к артикулу
 def parse_one_product_information_(product_query, browser_driver):
 
+    translator = Translator()
+
     time_start = time.time()
     product_to_save = Product.objects.get(id=product_query.id)
     product_url = product_query.url_ikea
@@ -268,13 +271,13 @@ def parse_one_product_information_(product_query, browser_driver):
     # technical information - основная информация
     key_feautures = None
     try:
-        key_feautures = product_soup.find('div', id='custBenefit').text
+        key_feautures = translator.translate(product_soup.find('div', id='custBenefit').text, dest='uk').text
     except AttributeError:
         key_feautures = None
 
     good_to_know = None
     try:
-        good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+        good_to_know = translator.translate(product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text, dest='uk').text
     except AttributeError:
         good_to_know = None
 
@@ -285,7 +288,7 @@ def parse_one_product_information_(product_query, browser_driver):
         for instruction in care_instructions:
             if isinstance(instruction, str):
                 care_instructions_list.append(instruction)
-        care_instruction_to_save = '.'.join(care_instructions_list)
+        care_instruction_to_save = translator.translate('.'.join(care_instructions_list), dest='uk').text
     except AttributeError:
         pass
 
@@ -298,13 +301,13 @@ def parse_one_product_information_(product_query, browser_driver):
         for string in dimensions_parsed:
             if isinstance(string, str):
                 dimensions_list.append(string)
-        dimension_to_save = '.'.join(dimensions_list)
+        dimension_to_save = translator.translate('.'.join(dimensions_list), dest='uk').text
     except AttributeError:
         pass
 
     #------------------------------------------------------#
     #доп. цвета, доп. размеры
-    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2']
+    blocks = ['selectionDropDownDiv1', 'selectionDropDownDiv2', 'selectionDropDownDiv3']
     color_options = None
     size_options = None
     for block in blocks:
@@ -415,7 +418,7 @@ def parse_one_product_information_(product_query, browser_driver):
         for material in materials:
             if isinstance(material, str):
                 materials_list.append(material)
-        materials_to_save = ' '.join(materials_list)
+        materials_to_save = translator.translate('. '.join(materials_list), dest='uk').text
     except NoSuchElementException:
         pass
 
@@ -612,8 +615,7 @@ def parse_one_product_information_(product_query, browser_driver):
 #статус дополняющего артикула остается is_parsed=False для того, чтоб артикул в дальнейшем смог парсится в случае не достающей информации
 
 def parseComplementaryProducts(parent_product, *complementary_products_list):
-    #print('---------ПАРСИНГ ДОПОЛНЯЮЩИХ АРТИКУЛОВ К %s НАЧАЛСЯ---------' % parent_product.article_number)
-    # 1
+    translator = Translator()
     start_parse = time.time()
     created_product = None
     available = 0
@@ -656,11 +658,11 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             html = driver.page_source
             product_soup = BeautifulSoup(html, 'lxml')
 
-            product_title = product_soup.find('span', id='name').text.strip()  # название
-            product_description = product_soup.find('span', id='type').text.strip()  # разшифровка
-            product_color = ''
+            product_title = translator.translate(product_soup.find('span', id='name').text.strip(), dest='uk').text  # название
+            product_description = translator.translate(product_soup.find('span', id='type').text.strip(), dest='uk').text  # разшифровка
+            product_color = None
             try:
-                product_color = product_description.split(',')[1]
+                product_color = translator.translate(product_description.split(',')[1], dest='uk').text
             except IndexError:
                 pass
             product_price = product_soup.find('span', class_='packagePrice').text.split()[:2]
@@ -683,13 +685,13 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             # technical information - основная информация
             key_feautures = None
             try:
-                key_feautures = product_soup.find('div', id='custBenefit').text
+                key_feautures = translator.translate(product_soup.find('div', id='custBenefit').text, dest='uk').text
             except AttributeError:
                 key_feautures = None
 
             good_to_know = None
             try:
-                good_to_know = product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text
+                good_to_know = translator.translate(product_soup.find('div', id='goodToKnowPart').find('div', id='goodToKnow').text, dest='uk').text
             except AttributeError:
                 good_to_know = None
 
@@ -700,7 +702,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for instruction in care_instructions:
                     if isinstance(instruction, str):
                         care_instructions_list.append(instruction)
-                care_instruction_to_save = '. '.join(care_instructions_list)
+                care_instruction_to_save = translator.translate('. '.join(care_instructions_list), dest='uk').text
             except AttributeError:
                 pass
 
@@ -713,7 +715,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for string in dimensions_parsed:
                     if isinstance(string, str):
                         dimensions_list.append(string)
-                dimension_to_save = '. '.join(dimensions_list)
+                dimension_to_save = translator.translate('. '.join(dimensions_list), dest='uk').text
             except TypeError or AttributeError:
                 pass
 
@@ -817,7 +819,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                 for material in materials:
                     if isinstance(material, str):
                         materials_list.append(material)
-                materials_to_save = '. '.join(materials_list)
+                materials_to_save = translator.translate('. '.join(materials_list), dest='uk').text
             except NoSuchElementException:
                 pass
 
