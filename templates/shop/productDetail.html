@@ -26,7 +26,8 @@
 			<!--Buttons-->
 			<div class="prod-btns">
                 	<div class="button-item">
-                        <input type="number" id="product_count" style="display:none;">
+                        <span id="message"></span>
+                        <input type="number" id="product_count">
      					<a href="" class="btn-1" id="add_to_basket">Добавить в корзину</a>
                         <div class="amount"><span>В наличии:</span><span id="product_available"></span></div>
     				</div>
@@ -237,13 +238,14 @@
 
         $('#add_to_basket').click(function (e) {
             e.preventDefault();
-            $(this).addClass('disabled');
-            $('#product_count').show();
+            var product_count = $('#product_count').val(),
+                product_article_number = $('#article_number').data('product_article');
+            if (product_count > 0){
+                console.log(product_article_number + ' * ' + product_count);
+            } else {
+                $('#message').text('Введите корректное количество')
+            }
         });
-        $('#add_to_basket').mouseout(function () {
-            $('#product_count').trigger('reset');
-            $('#product_count').hide();
-            $(this).removeClass('disabled');
-        })
+        
     </script>
 {% endblock %}
