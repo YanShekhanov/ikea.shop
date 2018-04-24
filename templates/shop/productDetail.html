@@ -199,7 +199,7 @@
 {% block onload_js %}
     <script>
         $(document).ready(function () {
-            var article_number = {{ product.article_number }}
+            var article_number = "'" + {{ product.article_number }} + "'"
             check_availability(article_number);
 
             function check_availability(article_number){
