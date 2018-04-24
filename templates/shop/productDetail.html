@@ -238,7 +238,7 @@
            $('.large-img .img-item').attr('src', image_url);
         });
 
-        $('#product_count').change(function () {
+        $('#product_count').keyup(function () {
             var max_count = availability;
             if ($(this).val() > max_count){
                 $('#message').text('Введено количество больше доступного');
