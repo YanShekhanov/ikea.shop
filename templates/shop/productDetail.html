@@ -213,11 +213,11 @@
                     success: function (data) {
                         $to_paste = $('#product_available');
                         if (data.availability){
-                            to_paste.text(data.availability);
+                            $to_paste.text(data.availability);
                         } else if (data.successMessage){
-                            to_paste.text(data.successMessage);
+                            $to_paste.text(data.successMessage);
                         } else if (data.errorMessage){
-                            to_paste.text(data.errorMessage);
+                            $to_paste.text(data.errorMessage);
                         }
                     },
                     error: function () {
