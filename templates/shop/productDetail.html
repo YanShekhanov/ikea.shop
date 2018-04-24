@@ -249,6 +249,7 @@
                 $to_paste = $('#added_product_message');
                 $to_paste.find('#added_article_number').text(product_article_number);
                 $to_paste.find('#added_count').text(product_count);
+                $to_paste.show();
                 console.log(product_article_number + ' * ' + product_count);
             } else {
                 $('#message').text('Введите корректное количество')
