@@ -206,9 +206,11 @@
     <script>
         var token = $('input[name="csrfmiddlewaretoken"]').val();
         var article_number_ = $('#article_number').data('product_article');
-        var availability = check_availability(article_number_);
-        console.log(availability);
-        $('#product_available').text(availability);
+
+        function paste_availability(availability){
+            $('#product_available').text(availability);
+        };
+        var availability = check_availability(article_number_, paste_availability(availability));
 
         //не отображается без этого свойства , спросить ясика
         $('#product_count').show();
