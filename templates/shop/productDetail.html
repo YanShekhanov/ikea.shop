@@ -199,7 +199,7 @@
 {% block onload_js %}
     <script>
         var availability = check_availability({{ product.article_number }});
-        document.getElementById('product_available').text(availability);
+        $('#product_available').html(availability);
 
         function check_availability(article_number){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
