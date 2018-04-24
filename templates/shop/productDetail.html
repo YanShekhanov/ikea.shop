@@ -250,7 +250,12 @@
                 $to_paste.slideDown(function () {
                     $to_paste.find('#added_article_number').text(product_article_number);
                     $to_paste.find('#added_count').text(product_count);
-                    setTimeout($to_paste.slideUp(), 1200);
+                    function reset_added_product(){
+                        $to_paste.find('#added_article_number').text('');
+                        $to_paste.find('#added_count').text('');
+                        $to_paste.slideDown();
+                    };
+                    setTimeout(reset_added_product, 3000);
                 });
 
             } else {
