@@ -228,6 +228,11 @@
             });
         }
 
+        $('.small-img.img-item').click(function () {
+           var image_url = $(this).attr('src');
+           var large_image = $('.large-img.img-item').attr('src', image_url);
+        });
+
         $('.large-img').on('click', $('.img-item'), function (e) {
             e.preventDefault();
             var image_to_open = $(this).attr('src');
