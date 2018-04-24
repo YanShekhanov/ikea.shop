@@ -307,6 +307,7 @@ def check_availability(request):
     response_dict = {}
     if request.method == 'POST' and request.is_ajax():
         url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (request.POST['article_number'])
+        print(request.POST['article_number'])
         request = requests.get(url).text
         product_soup = BeautifulSoup(request, 'xml')
         try:
