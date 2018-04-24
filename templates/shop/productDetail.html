@@ -203,38 +203,37 @@
             var article_number_ = $('#article_number').data('article_number');
             console.log(article_number_);
             check_availability(article_number_);
+        });
 
-            function check_availability(article_number){
-                console.log('start');
-                var token = $('input[name="csrfmiddlewaretoken"]').val();
-                $.ajax({
-                    url:'{% url "checkAvailability" %}',
-                    method:'POST',
-                    data:{
-                        'csrfmiddlewaretoken':token,
-                        'article_number':article_number
-                    },
-                    success: function (data) {
-                        $to_paste = $('#product_available');
-                        if (data.availability){
-                            $to_paste.text(data.availability);
-                        } else if (data.successMessage){
-                            $to_paste.text(data.successMessage);
-                        } else if (data.errorMessage){
-                            $to_paste.text(data.errorMessage);
-                        }
-                    },
-                    error: function () {
-                        return ('функция недоступна, попробуйте позже')
+        function check_availability(article_number){
+            var token = $('input[name="csrfmiddlewaretoken"]').val();
+            $.ajax({
+                url:'{% url "checkAvailability" %}',
+                method:'POST',
+                data:{
+                    'csrfmiddlewaretoken':token,
+                    'article_number':article_number
+                },
+                success: function (data) {
+                    $to_paste = $('#product_available');
+                    if (data.availability){
+                        $to_paste.text(data.availability);
+                    } else if (data.successMessage){
+                        $to_paste.text(data.successMessage);
+                    } else if (data.errorMessage){
+                        $to_paste.text(data.errorMessage);
                     }
-                });
-            }
+                },
+                error: function () {
+                    return ('функция недоступна, попробуйте позже')
+                }
+            });
+        }
 
-            $('.large-img').on('click', $('.img-item'), function (e) {
-                e.preventDefault();
-                var image_to_open = $(this).attr('src');
-                $('.large-img img.img-item').attr('src', image_to_open);
-            })
+        $('.large-img').on('click', $('.img-item'), function (e) {
+            e.preventDefault();
+            var image_to_open = $(this).attr('src');
+            $('.large-img img.img-item').attr('src', image_to_open);
         });
 
     </script>
