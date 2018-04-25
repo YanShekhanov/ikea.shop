@@ -913,9 +913,8 @@ margin-top: 0.2vw;
 }
 .prod-name{
 	width: 100%;
-	max-height: 5.2vw;
-	padding-top: 2vw;
-	padding-bottom: 2%;
+	height: 5.2vw;
+	padding-top: 1vw;
 	text-align: center;
 	font-family: "MyriadProBold";
     font-size: 1.9vw;
@@ -924,24 +923,21 @@ margin-top: 0.2vw;
 }
 .prod-info{
 	width: 100%;
-	height: 19vw;
-	padding-top: 1vw;
-	padding-bottom: 2%;
-	padding-left: 2%;
-	padding-right: 2%;
+	height: 6.5vw;
+	padding-bottom: 0.5vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
 	text-align: center;
 	font-family: "MyriadProRegular";
     font-size: 1.2vw;
 	line-height: 1.2;
 	color: #515050;
 	overflow: scroll;
-
 }
 .prod-price{
 	width: 100%;
-	height: 3.5vw;
-	padding-top: 4%;
-	padding-bottom: 1.5%;
+	height: 3vw;
+	padding-top: 0.5vw;
 	text-align: center;
 	font-family: "MyriadProBold";
     font-size: 1.9vw;
@@ -999,6 +995,98 @@ margin-top: 0.2vw;
   z-index: -1;
   transition: all 300ms ease;
 }
+.model-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.size-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.color-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.amount-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+	height: auto;
+	width: auto;
+}
+#model-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+#model-select .fa-cog{
+	margin-left: 0.5vw;
+	color: lightslategray;	
+}
+#size-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+#size-select .fa-arrows{
+	margin-left: 0.5vw;
+	color: lightslategray;
+}
+#color-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+.square-1{
+	color: lightsalmon;
+	margin-left: 0.5vw;
+}
+.square-2{
+	color: lightgreen;
+	margin-left: 0.5vw;
+}
+.square-3{
+	color: lightblue;
+	margin-left: 0.5vw;
+}
+#amount-select{
+	display: inline-block;
+    cursor: text;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+	border: 0.15vw solid #e3e3e3;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+
 /*In Stock*/
 #info-block .amount{
 	position: absolute;
