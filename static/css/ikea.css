@@ -8,16 +8,6 @@ body{
 }
 
 /*Loader*/
-.loader{
-	position: fixed;
-	z-index: 999;
-	width: 100%;
-	height: 100%;
-	background-color: #373A48;
-	display: flex;
-    	align-items: center;
-	justify-content: center;
-}
 h1 {
 	position: fixed;
 	display: block;
@@ -28,6 +18,7 @@ h1 {
 	border-radius: 100px;
 	width: 370px;
 	font: 900 800% Baskerville, 'Palatino Linotype', Palatino, serif;
+	margin: auto;
 }
 
 @keyframes loading {
@@ -922,9 +913,8 @@ margin-top: 0.2vw;
 }
 .prod-name{
 	width: 100%;
-	max-height: 5.2vw;
-	padding-top: 2vw;
-	padding-bottom: 2%;
+	height: 5.2vw;
+	padding-top: 1vw;
 	text-align: center;
 	font-family: "MyriadProBold";
     font-size: 1.9vw;
@@ -933,24 +923,21 @@ margin-top: 0.2vw;
 }
 .prod-info{
 	width: 100%;
-	height: 19vw;
-	padding-top: 1vw;
-	padding-bottom: 2%;
-	padding-left: 2%;
-	padding-right: 2%;
+	height: 6.5vw;
+	padding-bottom: 0.5vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
 	text-align: center;
 	font-family: "MyriadProRegular";
     font-size: 1.2vw;
 	line-height: 1.2;
 	color: #515050;
 	overflow: scroll;
-
 }
 .prod-price{
 	width: 100%;
-	height: 3.5vw;
-	padding-top: 4%;
-	padding-bottom: 1.5%;
+	height: 3vw;
+	padding-top: 0.5vw;
 	text-align: center;
 	font-family: "MyriadProBold";
     font-size: 1.9vw;
@@ -1008,6 +995,98 @@ margin-top: 0.2vw;
   z-index: -1;
   transition: all 300ms ease;
 }
+.model-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.size-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.color-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+}
+.amount-select{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5vw;
+	height: auto;
+	width: auto;
+}
+#model-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+#model-select .fa-cog{
+	margin-left: 0.5vw;
+	color: lightslategray;	
+}
+#size-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+#size-select .fa-arrows{
+	margin-left: 0.5vw;
+	color: lightslategray;
+}
+#color-select{
+	display: flex;
+	align-items: center;
+    cursor: pointer;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+    border: 0.15vw solid #e3e3e3;
+	color: #7C7979;
+	background-color: white;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+.square-1{
+	color: lightsalmon;
+	margin-left: 0.5vw;
+}
+.square-2{
+	color: lightgreen;
+	margin-left: 0.5vw;
+}
+.square-3{
+	color: lightblue;
+	margin-left: 0.5vw;
+}
+#amount-select{
+	display: inline-block;
+    cursor: text;
+    width: 21.2vw;
+    height: 3vw;
+	padding-left: 0.5vw;
+	border: 0.15vw solid #e3e3e3;
+    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
+}
+
 /*In Stock*/
 #info-block .amount{
 	position: absolute;
@@ -1258,6 +1337,61 @@ input:checked + label {
   label {
     padding: 15px;
   }
+}
+
+/*Added To Cart*/
+.added-to-cart-icon{
+	position: fixed;
+	top: 3vw;
+	right: 1vw;
+	color: white;
+	font-size: 9vw;
+	border-radius: 100%;
+	height: 10vw;
+	width: 10vw;
+	background-color: #FF9344;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 16;
+}
+.added-to-cart{
+	position: fixed;
+	background-color: #FFF9F7;
+	color: #373a48;
+	z-index: 14;
+	top: 4vw;
+	right: 3.5vw;
+	height: 8vw;
+	width: 28vw;
+	padding-right: 7vw;
+	padding-left: 0.8vw;
+	padding-top: 0.6vw;
+    border: 0.2vw solid #FF9344;
+	border-radius: 0;
+	font-size: 1.1vw;
+	font-weight: 500;
+}
+.go-to-cart{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 15;
+	color: #FF9344;
+	font-size: 1.2vw;
+	font-weight: 600;
+	top: 9.8vw;
+	right: 18.5vw;
+	background-color: white;
+	width: 13vw;
+	height: 4vw;
+	border-radius: 1vw;
+    border: 0.2vw solid #FF9344;
+}
+.go-to-cart:hover{
+	color: white;
+	background-color: #FF9344;
 }
 
 /*Media Queries*/
