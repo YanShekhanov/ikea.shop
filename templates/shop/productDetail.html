@@ -25,16 +25,30 @@
 			<div class="prod-name">{{ product.title }}</div>
 			<!--Info-->
             <div class="prod-info">{{ product.description }}</div>
+			<!--Model Select-->
+			<div class="model-select">
+				<div id="model-select">Выбор модели <i class="fa fa-cog" aria-hidden="true"></i></div>
+			</div>
+			<!--Size Select-->
+			<div class="size-select">
+				<div id="size-select">Выбор размера <i class="fa fa-arrows" aria-hidden="true"></i></div>
+			</div>
+			<!--Color Select-->
+			<div class="color-select">
+				<div id="color-select">Выбор цвета <i class="fa fa-square square-1" aria-hidden="true"></i><i class="fa fa-square square-2" aria-hidden="true"></i><i class="fa fa-square square-3" aria-hidden="true"></i></div>
+			</div>
+			<!--Amount Select-->
+			<div class="amount-select">
+				<input type="number" id="amount-select product_count" placeholder="Введите количество..." />
+			</div>
+			<!--Price-->
 			<div class="prod-price">{{ product.price }}</div>
 			<!--Buttons-->
 			<div class="prod-btns">
                 	<div class="button-item">
-                        <!--jaciku zadanie -->
-                        <span id="message"></span>
-                        <br><input type="number" id="product_count" style="width: 100px;">
-     					<a href="" class="btn-1" id="add_to_basket">Добавить в корзину</a>
-                        <div class="amount"><span>В наличии:</span><span id="product_available"></span></div>
-    				</div>
+     				<a href="" class="btn-1" id="add_to_basket">Добавить в корзину</a>
+                        	<div class="amount"><span>В наличии:</span><span id="product_available"></span></div>
+    			</div>
 			</div>
 		</div>
 	</div>
