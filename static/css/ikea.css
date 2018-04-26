@@ -1278,7 +1278,7 @@ section {
   display: none;
   padding: 20px 0 0;
 }
-input {
+#pages-block input {
   display: none;
 }
 label {
@@ -1311,7 +1311,7 @@ label:hover {
   color: #888;
   cursor: pointer;
 }
-input:checked + label {
+#pages-block input:checked + label {
   color: #ff6c00;
   border: 2px solid #ddd;
   border-top: 3px solid #ff6c00;
