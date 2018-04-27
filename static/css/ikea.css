@@ -46,9 +46,9 @@ h1:before {
 	min-height: 200px;
 }
 .grid{
-    margin-left: 17%;
-    margin-right: 17%;
-    width: 66%;
+    margin-left: 17vw;
+    margin-right: 17vw;
+    width: 66vw;
 }
 .left{
     float: left;
@@ -57,9 +57,9 @@ h1:before {
     float: right;
 }
 .grid-prod{
-    margin-left: 17%;
-    margin-right: 17%;
-    width: 66%;
+    margin-left: 17vw;
+    margin-right: 17vw;
+    width: 66vw;
 }
 
 /*Top Strip*/
