@@ -8,6 +8,12 @@ body{
 }
 
 /*Loader*/
+.loader{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #373a48;
+}
 h1 {
 	position: fixed;
 	display: block;
@@ -40,9 +46,9 @@ h1:before {
 	min-height: 200px;
 }
 .grid{
-    margin-left: 17%;
-    margin-right: 17%;
-    width: 66%;
+    margin-left: 17vw;
+    margin-right: 17vw;
+    width: 66vw;
 }
 .left{
     float: left;
@@ -51,9 +57,9 @@ h1:before {
     float: right;
 }
 .grid-prod{
-    margin-left: 17%;
-    margin-right: 17%;
-    width: 66%;
+    margin-left: 17vw;
+    margin-right: 17vw;
+    width: 66vw;
 }
 
 /*Top Strip*/
@@ -1278,7 +1284,7 @@ section {
   display: none;
   padding: 20px 0 0;
 }
-input {
+#pages-block input {
   display: none;
 }
 label {
@@ -1311,7 +1317,7 @@ label:hover {
   color: #888;
   cursor: pointer;
 }
-input:checked + label {
+#pages-block input:checked + label {
   color: #ff6c00;
   border: 2px solid #ddd;
   border-top: 3px solid #ff6c00;
