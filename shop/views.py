@@ -23,6 +23,16 @@ class MainInfo(TemplateView):
         context = super(MainInfo, self).get_context_data(**kwargs)
         context['Categories'] = Category.objects.exclude(title='Panele słoneczne').order_by('created')
         context['SubCategories'] = SubCategory.objects.all().order_by('created')
+
+        #rooms
+        rooms = Room.objects.all()
+        rooms_places = []
+        for room in rooms:
+            room_places = RoomPlace.objects.filter(room=room)
+            for room_place in room_places:
+                rooms_places.append(room_place)
+        context['Rooms'] = rooms
+        context['RoomsPlaces'] = rooms_places
         return context
 
 #главная страница
@@ -152,8 +162,10 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
                     complementary_products_images.append(image)
                 except Product.DoesNotExist:
                     pass
-            context['complementaryProducts'] = complementary_products_list
-            context['complementaryProductsImages'] = complementary_products_images
+        else:
+            complementary_products_list = None
+        context['complementaryProducts'] = complementary_products_list
+        context['complementaryProductsImages'] = complementary_products_images
 
         #изображения к дополняющим артикулам
         for product in complementary_images_list:
@@ -167,36 +179,23 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
         return context
 
 #пересмотреть
-class RoomDetail(MainInfo, DetailView):
-    template_name = 'shop/room.html'
-    model = Room
-    context_object_name = 'room'
+class RoomPlaceDetail(MainInfo, DetailView):
+    template_name = 'shop/room_place.html'
+    model = RoomPlace
+    context_object_name = 'room_place'
     slug_url_kwarg = 'unique_identificator'
     slug_field = 'unique_identificator'
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
-        room_places = RoomPlace.objects.filter(room=self.object)
-        rooms_examples_list = []
-        for room_place in room_places:
-            room_example = RoomExample.objects.filter(room_place=room_place)
-            for example in room_example:
-                rooms_examples_list.append(example)
-
+        room_examples = RoomExample.objects.filter(room_place=self.object)
         images_list = []
-        for room_example in rooms_examples_list:
-            image = ExampleImage.objects.get(example=room_example, is_presentation=True)
+        for room_example in room_examples:
+            image = ExampleImage.objects.get(example=room_example)
             images_list.append(image)
-
-        context = super(RoomDetail, self).get_context_data(**kwargs)
-        context['room_places'] = room_places
-        context['rooms_examples'] = rooms_examples_list
-        context['images'] = images_list
-        for image in images_list:
-            try:
-                print(image.image.url)
-            except ValueError:
-                pass
+        context = super(RoomPlaceDetail, self).get_context_data(**kwargs)
+        context['roomExamples'] = room_examples
+        context['examplesImages'] = images_list
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!

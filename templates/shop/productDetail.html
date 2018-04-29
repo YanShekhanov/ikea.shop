@@ -75,8 +75,10 @@
   			<label for="tab3">Размеры</label>
         {% endif %}
 
+        {% if complementaryProducts %}
   		<input id="tab4" type="radio" name="tabs">
         <label for="tab4">Дополняющие товары</label>
+        {% endif %}
 
   {% if product.key_feautures %}
   <section id="content1">
@@ -122,9 +124,8 @@
   </section>
   {% endif %}
 
+    {% if complementaryProducts %}
   <section id="content4">
-
-      {% if complementaryProducts %}
           {% for complementary_product in complementaryProducts %}
               <div class="card">
 				<div class="card-open">
@@ -161,9 +162,9 @@
 					<p class="card-price">{{ complementary_product.price }} грн.</p>
               </div>
           {% endfor %}
-      {% endif %}
-
   </section>
+    {% endif %}
+
 </main>
 
 
