@@ -191,7 +191,7 @@ class RoomPlaceDetail(MainInfo, DetailView):
         room_examples = RoomExample.objects.filter(room_place=self.object)
         images_list = []
         for room_example in room_examples:
-            image = ExampleImage.objects.get(example=room_example)
+            image = ExampleImage.objects.get(example=room_example, is_presentation=True)
             images_list.append(image)
         context = super(RoomPlaceDetail, self).get_context_data(**kwargs)
         context['roomExamples'] = room_examples
