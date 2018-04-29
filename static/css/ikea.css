@@ -2345,12 +2345,7 @@ label:hover {
 	}
 
 
-#load{
-    position: absolute;
-    z-index: 100;
-    top: 45%;
-    left: 45%;
-}
+
 
 .icon-image{
     height: 40px;
