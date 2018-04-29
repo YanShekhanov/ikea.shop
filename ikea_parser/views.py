@@ -96,6 +96,11 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
+    products = Product.objects.all()
+    for product in products:
+        product.delete()
+
+    '''
     url_ = 'https://www.ikea.com/pl/pl/catalog/products/S59208673/#/S89196678'
     #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
     options = Options()
@@ -128,7 +133,7 @@ def test(request):
             models_article = model.get('data-url').split('/')[-2]
             models_articles_list.append(models_article)
         if len(models_articles_list) != 0:
-            models_to_save = '#'.join(models_articles_list)
+            models_to_save = '#'.join(models_articles_list)'''
     return redirect(reverse('home'))
 
 
