@@ -436,7 +436,7 @@ def parse_one_product_information_(product_query, browser_driver):
             try:
                 existed_images = ProductImage.objects.filter(product=product_to_save, size=500)
                 for existed_image in existed_images:
-                    if existed_image[1] == ikea_image_prefix:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix:
                         start_download = False
             except ProductImage.DoesNotExist:
                 pass
@@ -469,7 +469,7 @@ def parse_one_product_information_(product_query, browser_driver):
             try:
                 existed_images = ProductImage.objects.filter(product=product_to_save, size=250)
                 for existed_image in existed_images:
-                    if existed_image[1] == ikea_image_prefix:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix:
                         start_download = False
             except ProductImage.DoesNotExist:
                 pass
@@ -502,7 +502,7 @@ def parse_one_product_information_(product_query, browser_driver):
             try:
                 existed_images = ProductImage.objects.filter(product=product_to_save, size=2000)
                 for existed_image in existed_images:
-                    if existed_image[1] == ikea_image_prefix:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix:
                         start_download = False
             except ProductImage.DoesNotExist:
                 pass
@@ -535,7 +535,7 @@ def parse_one_product_information_(product_query, browser_driver):
             try:
                 existed_images = ProductImage.objects.filter(product=product_to_save, is_icon=True)
                 for existed_image in existed_images:
-                    if existed_image[1] == ikea_image_prefix:
+                    if existed_image.title.split('_')[1] == ikea_image_prefix:
                         start_download = False
             except ProductImage.DoesNotExist:
                 pass
