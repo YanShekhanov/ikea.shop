@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^query=(?P<category_identificator>\w+)/$', GetOneCategoryProducts.as_view(), name='getOneCategoryProducts'),
     url(r'^translate/$', translate_query, name='translate'),
     url(r'rooms/room_place=(?P<unique_identificator>\w+)/$', RoomPlaceDetail.as_view(), name='roomPlaceDetail'),
+    url(r'rooms/room_detail/room=(?P<unique_identificator>\w+)/$', RoomExampleDetail.as_view(), name='roomExampleDetail'),
 
     #ajax
     url(r'^getAllProductImages/$', get_all_product_images, name='get_all_product_images'),
