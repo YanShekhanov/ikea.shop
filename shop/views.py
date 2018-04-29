@@ -106,6 +106,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
+        print(len(self.object))
         context = super(ProductDetail, self).get_context_data(**kwargs)
         #Изображения
         try:
