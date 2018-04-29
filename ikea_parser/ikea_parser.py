@@ -433,6 +433,13 @@ def parse_one_product_information_(product_query, browser_driver):
         for image in images_500:
             start_download = True
             ikea_image_prefix = image.text.split('_')[2]  # префикс номера изображения в икеа
+            try:
+                existed_images = ProductImage.objects.filter(product=product_to_save, size=500)
+                for existed_image in existed_images:
+                    if existed_image[1] == ikea_image_prefix:
+                        start_download = False
+            except ProductImage.DoesNotExist:
+                pass
             if start_download:
                 image_request = requests.get(image.text).content
                 image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_500px + '.jpg'
@@ -459,6 +466,13 @@ def parse_one_product_information_(product_query, browser_driver):
         for image in images_250:
             start_download = True
             ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+            try:
+                existed_images = ProductImage.objects.filter(product=product_to_save, size=250)
+                for existed_image in existed_images:
+                    if existed_image[1] == ikea_image_prefix:
+                        start_download = False
+            except ProductImage.DoesNotExist:
+                pass
             if start_download:
                 image_request = requests.get(image.text).content
                 image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_250px + '.jpg'
@@ -485,6 +499,13 @@ def parse_one_product_information_(product_query, browser_driver):
         for image in images_2000:
             start_download = True
             ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+            try:
+                existed_images = ProductImage.objects.filter(product=product_to_save, size=2000)
+                for existed_image in existed_images:
+                    if existed_image[1] == ikea_image_prefix:
+                        start_download = False
+            except ProductImage.DoesNotExist:
+                pass
             if start_download:
                 image_request = requests.get(image.text).content
                 image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_2000px + '.jpg'
@@ -511,6 +532,13 @@ def parse_one_product_information_(product_query, browser_driver):
         for image in images_icon:
             start_download = True
             ikea_image_prefix = image.text.split('/')[-1].split('_')[0]  # префикс номера изображения в икеа
+            try:
+                existed_images = ProductImage.objects.filter(product=product_to_save, is_icon=True)
+                for existed_image in existed_images:
+                    if existed_image[1] == ikea_image_prefix:
+                        start_download = False
+            except ProductImage.DoesNotExist:
+                pass
             if start_download:
                 image_request = requests.get(image.text).content
                 image_title = product_to_save.article_number + '_' + ikea_image_prefix + '_' + prefix_for_icon + '.jpg'
@@ -561,7 +589,7 @@ def parse_one_product_information_(product_query, browser_driver):
     json.dumps(product_dict, file_to_write, ensure_ascii=False)
 
     print(product_dict)'''
-    print('{article_number}, seconds: {time}'.format({'article_number':product_to_save.article_number, 'seconds': delta}))
+    print('%s, seconds: %s' % (product_to_save.article_number, delta))
     return product_to_save
 
 
