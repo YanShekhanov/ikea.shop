@@ -95,14 +95,14 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
     slug_field = 'article_number'
     context_object_name = 'product'
 
-    def get_object(self):
+    '''def get_object(self):
         self.object = self.model._default_manager.filter(article_number=self.kwargs.get(self.slug_url_kwarg))
         print(len(self.object))
         if len(self.object) > 1:
             print(len(self.object))
             self.object = self.object.first()
             print(len(self.object))
-        return self.object
+        return self.object'''
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
