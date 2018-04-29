@@ -196,6 +196,8 @@ class RoomPlaceDetail(MainInfo, DetailView):
         context = super(RoomPlaceDetail, self).get_context_data(**kwargs)
         context['roomExamples'] = room_examples
         context['examplesImages'] = images_list
+        print(context['roomExamples'])
+        print(context['examplesImages'])
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
