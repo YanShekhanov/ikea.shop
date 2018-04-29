@@ -96,7 +96,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
     context_object_name = 'product'
 
     def get_object(self):
-        self.object = self.model._default_manager.objects.filter(unique_identificator=self.kwargs.get(self.slug_url_kwarg))
+        self.object = self.model._default_manager.filter(article_number=self.kwargs.get(self.slug_url_kwarg))
         print(self.object)
         if len(self.object) > 1:
             print(len(self.object))
