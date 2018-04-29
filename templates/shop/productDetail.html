@@ -246,6 +246,7 @@
             var product_count = $('#product_count').val(),
                 product_article_number = $('#main_product_info').data('product_article'),
                 product_title = $('#main_product_info').data('product_title');
+            console.log(product_title, product_article_number, product_count);
             if (product_count > 0){
                 $to_paste = $('#added_product_message');
                 $to_paste.find('#added_product_title').text(product_title);
