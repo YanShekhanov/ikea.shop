@@ -389,7 +389,7 @@ def parse_one_product_information_(product_query, browser_driver):
     # -----------------------------------------------------#
     # complamantary products - дополняющие продукты
     complementary_products_list = []
-    complementary_product_to_save = ''
+    complementary_product_to_save = None
     try:
         complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
         complementary_products = complementary_products_block.find_all('li')
@@ -776,6 +776,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             # -----------------------------------------------------#
             # complamantary products - дополняющие продукты
             complementary_products_list = []
+            complementary_products_to_save = None
             complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
             try:
                 complementary_products = complementary_products_block.find_all('li')

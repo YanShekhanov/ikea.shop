@@ -57,7 +57,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
         <a class="nav-link" id="menu-button" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link" id="menu-button" href="#">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="menu-button" href="#" onclick="open_rooms()">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" href="#">Акции</a>
     </div>
 </nav>
@@ -81,6 +81,21 @@
         {% endfor %}
     </ul>
 </div>
+
+<!---JASIKU ZADANIE--->
+<ul id="rooms" style="display: none;">
+    {% for room in Rooms %}
+        <li><img src="{{ room.image.url }}">{{ room.title }}</li>
+        <ul>
+            {% for room_place in RoomsPlaces %}
+                {% if room_place.room == room %}
+                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}"><li>{{ room_place.title }}</li></a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</ul>
+
 
 <!--Kategories And Sort-->
 <div class="grid">
@@ -154,6 +169,11 @@
         $('#product-categories').show();
         $('li[data-category_id="' + category_id + '"]').show()
     };
+
+    //rooms
+    function open_rooms() {
+        $('#rooms').show();
+    }
 </script>
 
 <!-- search template -->
