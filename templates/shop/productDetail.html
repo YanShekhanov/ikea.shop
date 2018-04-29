@@ -251,9 +251,9 @@
                 $to_paste.find('#added_product_title').text(product_title);
                 $to_paste.find('#added_article_number').text(product_article_number);
                 $to_paste.find('#added_count').text(product_count);
-                $to_paste.slideDown(function () {
+                $to_paste.fadeIn(600, function () {
                     function reset_added_product(){
-                        $to_paste.slideUp();
+                        $to_paste.fadeOut(600);
                         $to_paste.find('#added_article_number').text('');
                         $to_paste.find('#added_product_title').text('');
                         $to_paste.find('#added_count').text('');
