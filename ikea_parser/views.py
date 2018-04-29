@@ -96,7 +96,7 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
-    products = Product.objects.all()
+    products = ProductImage.objects.all()
     for product in products:
         product.delete()
 
