@@ -66,7 +66,7 @@ class Product(models.Model):
     price = models.FloatField(blank=False, null=False, default=0, verbose_name='Цена')
     url_ikea = models.CharField(max_length=256, null=False, blank=False, default='', verbose_name='Ссылка')
     url = models.CharField(max_length=256, null=True, blank=True, default='', verbose_name='Ссылка')
-    available = models.IntegerField(default=0, blank=False, null=False, verbose_name='Наличие')
+    available = models.IntegerField(default=0, blank=True, null=True, verbose_name='Наличие')
     key_feautures = models.TextField(blank=True, null=True, default='', verbose_name='Основное описание')
     good_to_know = models.TextField(blank=True, null=True, default='', verbose_name='Полезно знать')
     care_instructions = models.TextField(blank=True, null=True, default='', verbose_name='Инструкция по уходу')
