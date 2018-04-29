@@ -253,10 +253,11 @@
                 $to_paste.find('#added_count').text(product_count);
                 $to_paste.fadeIn(600, function () {
                     function reset_added_product(){
-                        $to_paste.fadeOut(600);
-                        $to_paste.find('#added_article_number').text('');
-                        $to_paste.find('#added_product_title').text('');
-                        $to_paste.find('#added_count').text('');
+                        $to_paste.fadeOut(600, function () {
+                            $to_paste.find('#added_article_number').text('');
+                            $to_paste.find('#added_product_title').text('');
+                            $to_paste.find('#added_count').text('');
+                        });
                     };
                     setTimeout(reset_added_product, 3000);
                 });
