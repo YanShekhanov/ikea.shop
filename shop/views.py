@@ -171,7 +171,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
             try:
                 image = ProductImage.objects.get(product=product, is_icon=True)
             except ProductImage.MultipleObjectsReturned:
-                image = image.first()
+                image = ProductImage.objects.filter(product=product, is_icon=True).first()
             except ProductImage.DoesNotExist:
                 image = ProductImage.objects.filter(product=product, size=250).first()
             if image not in complementary_images:
