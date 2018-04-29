@@ -96,12 +96,7 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
-    products = ProductImage.objects.all()
-    for product in products:
-        product.delete()
-
-    '''
-    url_ = 'https://www.ikea.com/pl/pl/catalog/products/S59208673/#/S89196678'
+    url_ = 'https://www.ikea.com/pl/pl/catalog/products/00318292/'
     #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
     options = Options()
     options.add_argument("--headless")
@@ -110,10 +105,14 @@ def test(request):
 
     browser = webdriver.Chrome(chrome_options=options)
     browser.get(url_)
-    html = browser.page_source
-    html = requests.get(url_).text
-    product_soup = BeautifulSoup(html, 'lxml')
+    button = browser.find_element_by_id('techInfoTab')
+    button.click()
+    page = browser.page_source
+    bs = BeautifulSoup(page, 'lxml')
+    html = bs.find('table', class_='technical-specification-table').contents
+    print(html)
 
+    '''
     # -----------------------------------------------------#
     # more models - модели
     parse_models = True
