@@ -204,7 +204,7 @@ def parse_products_articles_(query, subcategory_status, sub_subcategory_status):
                 for symbol in product_price:
                     if symbol == ',':
                         product_price = '.'.join(product_price.split(','))
-                product_price = float(product_price) * Coef.objects.all().first().coef
+                product_price = int(float(product_price) * Coef.objects.all().first().coef)
 
                 product_unit = product_detail.find('span', class_='unit')  # /шт.
                 if product_unit is not None:
@@ -674,7 +674,7 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
             for symbol in product_price:
                 if symbol == ',':
                     product_price = '.'.join(product_price.split(','))
-            product_price = float(product_price) * Coef.objects.all().first().coef
+            product_price = int(float(product_price) * Coef.objects.all().first().coef)
             product_unit = product_soup.find('span', class_='unit')  # /шт.
             if product_unit is not None:
                 product_unit = product_unit.text.strip()
