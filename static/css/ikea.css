@@ -10,8 +10,8 @@ body{
 /*Loader*/
 .loader{
 	position: fixed;
-	margin: 0;
-	padding: 0;
+    	align-items: center;
+    	justify-content: center;
 	min-width: 100%;
 	min-height: 100%;
 	background-color: #373a48;
