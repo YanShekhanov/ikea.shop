@@ -95,9 +95,14 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
     slug_field = 'article_number'
     context_object_name = 'product'
 
+    def get_object(self):
+        self.object = self.model._default_manager.filter(unique_identificator=self.kwargs.get(self.slug_url_kwarg))
+        if len(self.object) > 1:
+            self.object = self.object.first()
+        return self.object
+
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
-        context = super().get_context_data(**kwargs)
 
         #Изображения
         try:
