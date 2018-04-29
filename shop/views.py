@@ -97,6 +97,7 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
     def get_object(self):
         self.object = self.model._default_manager.filter(unique_identificator=self.kwargs.get(self.slug_url_kwarg))
+        print(self.object)
         if len(self.object) > 1:
             print(len(self.object))
             self.object = self.object.first()
