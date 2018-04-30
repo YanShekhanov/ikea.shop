@@ -3,6 +3,8 @@ from django.views.generic import DetailView
 from shop.views import MainInfo
 from django.http import JsonResponse
 from ikea_parser.create_identificator import create_identificator
+from ikea_parser.models import Product
+from .models import *
 
 # Create your views here.
 
@@ -20,7 +22,6 @@ def add_to_basket(request):
             existed_order = Order.objects.get(session_key=session_key)
         except Order.DoesNotExist:
             existed_order = Order.objects.create(session_key=session_key, unique_identificator=create_identificator(16), status='новый')
-
         try:
             existed_product = Product.objects.get(article_number=product_article)
             try:
