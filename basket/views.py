@@ -26,7 +26,7 @@ class ShowBasket(MainInfo, ListView):
 def add_to_basket(request):
     if request.method == 'POST' and request.is_ajax():
         product_article = request.POST['product_article']
-        count = request.POST['count']
+        count = int(request.POST['count'])
 
         if not request.session.exists(request.session.session_key):
             request.session.create()
