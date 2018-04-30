@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from django.views.generic import DetailView, ListView,
+from django.views.generic import DetailView, ListView
 from shop.views import MainInfo
 from django.http import JsonResponse
 from ikea_parser.create_identificator import create_identificator
