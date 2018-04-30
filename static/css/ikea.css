@@ -1321,6 +1321,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 }
 #content4 .button-item {
   display: none;
+  position: relative;
   margin-top: 0vw;
   margin-bottom: 0.5vw;
   padding-bottom: 0vw;
@@ -1461,7 +1462,7 @@ main {
 #pages-block .amount{
 	position: absolute;
 	z-index: 9;
-	bottom: 3vw;
+	bottom: 2.5vw;
 	left: 0.2vw;
 	display: none;
 	justify-content: center;
