@@ -21,7 +21,7 @@ def add_to_basket(request):
         try:
             existed_order = Order.objects.get(session_key=session_key)
         except Order.DoesNotExist:
-            existed_order = Order.objects.create(session_key=session_key, unique_identificator=create_identificator(16), status='новый')
+            existed_order = Order.objects.create(session_key=session_key, unique_identificator=create_identificator(16))
         try:
             existed_product = Product.objects.get(article_number=product_article)
             try:
