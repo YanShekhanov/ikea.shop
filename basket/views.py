@@ -19,7 +19,7 @@ class ShowBasket(MainInfo, ListView):
         return self.queryset
 
     def get_context_data(self, **kwargs):
-        self.objects_list = self.get_queryset()
+        self.object_list = self.get_queryset()
         context = super(ShowBasket, self).get_context_data(**kwargs)
         if len(self.objects_list) == 0:
             context['ExistError'] = True
