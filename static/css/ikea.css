@@ -914,7 +914,6 @@ margin-top: 0.2vw;
 
 /*Info Block*/
 .info-block{
-	position: relative;
 	display: inline-block;
 	float: right;
 	background-color: #f5f5f5;
@@ -923,8 +922,8 @@ margin-top: 0.2vw;
 }
 .prod-name{
 	width: 100%;
-	height: 5.2vw;
-	padding-top: 1vw;
+	height: 4.3vw;
+	padding-top: 0.5vw;
 	text-align: center;
 	font-family: "MyriadProBold";
     font-size: 1.9vw;
@@ -956,11 +955,11 @@ margin-top: 0.2vw;
 }
 #info-block .button-item {
   margin-top: 0vw;
-  margin-bottom: 0.5vw;
   padding-bottom: 0vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 #info-block a {
   text-decoration: none;
