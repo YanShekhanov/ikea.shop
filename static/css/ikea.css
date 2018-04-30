@@ -1009,7 +1009,7 @@ margin-top: 0.2vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 0.5vw;
+	position: relative;
 }
 #model-select-open{
 	position: absolute;
@@ -1018,7 +1018,8 @@ margin-top: 0.2vw;
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
-	top: 14.55vw;
+	border-top: 0;
+	top: 3vw;
 }
 .model-select-item{
 	display: flex;
@@ -1067,7 +1068,7 @@ input[type="checkbox"]:checked ~ #model-select-open {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 0.5vw;
+	position: relative;
 }
 #size-select-open{
 	position: absolute;
@@ -1076,7 +1077,8 @@ input[type="checkbox"]:checked ~ #model-select-open {
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
-	top: 18vw;
+	border-top: 0;
+	top: 3vw;
 }
 .size-select-item{
 	display: flex;
@@ -1125,7 +1127,7 @@ input[type="checkbox"]:checked ~ #size-select-open {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 0.5vw;
+	position: relative;
 }
 #color-select-open{
 	position: absolute;
@@ -1134,7 +1136,8 @@ input[type="checkbox"]:checked ~ #size-select-open {
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
-	top: 21.35vw;
+	border-top: 0;
+	top: 3vw;
 }
 .color-select-item{
 	display: flex;
@@ -1191,7 +1194,6 @@ input[type="checkbox"]:checked ~ #color-select-open {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 0.5vw;
 	height: auto;
 	width: auto;
 }
@@ -1379,7 +1381,6 @@ input[type="checkbox"]:checked ~ #color-select-open {
 #content4 .card:hover .button-item{
 	display: block;
 }
-
 /*Pages Block*/
 #pages-block p {
   margin: 0 0 20px;
@@ -1392,14 +1393,14 @@ main {
   margin: 0 auto;
   background: #fff;
 }
-section {
+#pages-block section {
   display: none;
   padding: 20px 0 0;
 }
 #pages-block input {
   display: none;
 }
-label {
+#pages-block label {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 15px;
@@ -1408,24 +1409,24 @@ label {
   color: #515050;
   border: 0.1vw solid transparent;
 }
-label:before {
+#pages-block label:before {
   font-family: fontawesome;
   font-weight: normal;
   margin-right: 10px;
 }
-label[for*='1']:before {
+#pages-block label[for*='1']:before {
   content:"\f039";
 }
-label[for*='2']:before {
+#pages-block label[for*='2']:before {
   content:"\f129";
 }
-label[for*='3']:before {
+#pages-block label[for*='3']:before {
   content: '\f047';
 }
-label[for*='4']:before {
+#pages-block label[for*='4']:before {
   content:"\f16b";
 }
-label:hover {
+#pages-block label:hover {
   color: #888;
   cursor: pointer;
 }
@@ -1455,6 +1456,34 @@ label:hover {
   label {
     padding: 15px;
   }
+}
+
+/*In Stock 2*/
+#pages-block .amount{
+	position: absolute;
+	z-index: 9;
+	bottom: 3vw;
+	left: 0.2vw;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	color: #ff6c00;
+	background-color: #f5f5f5;
+	padding: 0.5vw;
+	border: 2px solid #ADA6A6;
+	width: 11.6vw;
+	font-size: 0.9vw;
+	margin-left: 2.1vw;
+	margin-right: 2.1vw;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+
+}
+#pages-block .button-item:hover .amount{
+	display: flex;
+}
+#pages-block span{
+	color: black;
+	padding-right: 0.5vw;
 }
 
 /*Added To Cart*/
