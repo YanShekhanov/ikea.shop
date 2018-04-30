@@ -257,6 +257,10 @@ from django.db.models import Q
 def search(request):
     if request.method =='POST' and request.is_ajax():
         searched_text = request.POST['searched_text']
+
+        verificate_text = searched_text.split('.')
+        if len(verificate_text) == 3:
+            searched_text = ''.join(verificate_text)
         products = Product.objects.filter(
             Q(article_number__icontains=searched_text) |
             Q(title__icontains=searched_text) |
