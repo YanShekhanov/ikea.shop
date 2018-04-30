@@ -3,5 +3,7 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    test
+    {% for order in orders %}
+        {{ order.session_key }}
+    {% endfor %}
 {% endblock %}

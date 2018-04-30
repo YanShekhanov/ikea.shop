@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from shop.views import MainInfo
 from django.http import JsonResponse
 from ikea_parser.create_identificator import create_identificator
@@ -8,8 +8,19 @@ from .models import *
 
 # Create your views here.
 
-class Basket(MainInfo, DetailView):
+class ShowBasket(MainInfo, ListView):
     template_name = 'basket/basket.html'
+    model = Order
+    context_object_name = 'orders'
+    paginate_by = 100
+
+    def get_queryset(self):
+        self.queryset = Order.objects.all()
+        return self.queryset
+
+    def get_context_data(self, **kwargs):
+        self.queryset = self.get_queryset()
+        return super(ShowBasket, self).get_context_data(**kwargs)
 
 
 def add_to_basket(request):
