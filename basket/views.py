@@ -1,26 +1,38 @@
 from django.shortcuts import render, HttpResponse
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView,
 from shop.views import MainInfo
 from django.http import JsonResponse
 from ikea_parser.create_identificator import create_identificator
-from ikea_parser.models import Product
+from ikea_parser.models import Product, ProductImage
 from .models import *
 
 # Create your views here.
 
 class ShowBasket(MainInfo, ListView):
     template_name = 'basket/basket.html'
-    model = Order
-    context_object_name = 'orders'
+    model = ProductInOrder
+    context_object_name = 'products'
     paginate_by = 100
 
     def get_queryset(self):
-        self.queryset = Order.objects.all()
+        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
         return self.queryset
 
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
+        context = super(ShowBasket, self).get_context_data(**kwargs)
+        if len(self.objects_list) == 0:
+            context['ExistError'] = True
+        if not context.get('ExistError'):
+            images_list = []
+            for product in self.queryset:
+                image = ProductImage.objects.filter(product=product, size=250).first()
+                images_list.append(image)
+            context['images'] = images_list
         return super(ShowBasket, self).get_context_data(**kwargs)
+
+def order_detail(request):
+    pass
 
 
 def add_to_basket(request):
