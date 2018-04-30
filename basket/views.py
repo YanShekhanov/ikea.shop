@@ -17,7 +17,10 @@ def add_to_basket(request):
         product_article = request.POST['product_article']
         count = request.POST['count']
 
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
         session_key = request.session.session_key
+
         try:
             existed_order = Order.objects.get(session_key=session_key)
         except Order.DoesNotExist:
