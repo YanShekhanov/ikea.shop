@@ -21,7 +21,7 @@ class ShowBasket(MainInfo, ListView):
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
         context = super(ShowBasket, self).get_context_data(**kwargs)
-        if len(self.objects_list) == 0:
+        if len(self.object_list) == 0:
             context['ExistError'] = True
         if not context.get('ExistError'):
             images_list = []
