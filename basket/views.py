@@ -19,7 +19,7 @@ class ShowBasket(MainInfo, ListView):
         return self.queryset
 
     def get_context_data(self, **kwargs):
-        self.queryset = self.get_queryset()
+        self.object_list = self.get_queryset()
         return super(ShowBasket, self).get_context_data(**kwargs)
 
 
