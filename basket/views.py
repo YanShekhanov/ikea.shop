@@ -26,7 +26,7 @@ class ShowBasket(MainInfo, ListView):
         if not context.get('ExistError'):
             images_list = []
             for product in self.queryset:
-                image = ProductImage.objects.filter(product=product, size=250).first()
+                image = ProductImage.objects.filter(product=product.product, size=250).first()
                 images_list.append(image)
             context['images'] = images_list
         return super(ShowBasket, self).get_context_data(**kwargs)
