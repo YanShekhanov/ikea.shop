@@ -265,18 +265,18 @@
 
                 //ajax
                 $.ajax({
-                    url: '',
+                    url: '{% url 'add_to_basket' %}',
                     method:'POST',
                     data:{
                         'csrfmiddlewaretoken':token,
                         'product_article':product_article_number,
-                        'product_count':product_count,
+                        'count':product_count,
                     },
-                    success: function () {
-                        return;
+                    success: function (data) {
+                        console.log(data.product_article, data.count);
                     },
                     error: function () {
-                        return;
+                        console.log('error');
                     }
                 })
 
