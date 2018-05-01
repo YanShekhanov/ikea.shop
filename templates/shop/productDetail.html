@@ -1,22 +1,16 @@
 {% extends 'shop_template.html' %}
 
+{% block path %}
+    {% if sub_subcategory_path %}
+        {% if is_sub_subcategory %}{{ category_path.title }} / <a href="{% url 'getOneCategoryProducts' subcategory_path.unique_identificator %}">{{ subcategory_path.title }}</a>
+        / <a href="{% url 'getOneCategoryProducts' sub_subcategory_path.unique_identificator %}">{{ sub_subcategory_path.title }}</a>{% endif %}
+    {% else %}
+        {% if is_subcategory %}{{ category_path.title }} / <a href="{% url 'getOneCategoryProducts' subcategory_path.unique_identificator %}">{{ subcategory_path.title }}</a>{% endif %}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <span data-product_article='{{ product.article_number }}' data-product_title="{{ product.title }}" id='main_product_info'></span>
-
-    <!--Big Images-->
-    <!--New-->
-	<div class="img-block" id="big-img">
-		<i class="fa fa-times close-icon" id="close_images_block" aria-hidden="true"></i>
-		<div class="btns-all-images">
-			<p class="name">Бримэнс тумба</p>
-			<p class="price">29000 грн.</p>
-			<div class="button-item">
-     			<a href="" class="btn-1">Добавить в корзину</a>
-    		</div>
-		</div>
-		<div class="mini-img-list">
-        </div>
- 	</div>
     
     <!--Gotovii blok "dobavleno v korzinu"-->
 	<div class="added-block" style="display: none;" id="added_product_message">
