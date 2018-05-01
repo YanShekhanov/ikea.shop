@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'^add_to_basket/$', add_to_basket, name='add_to_basket'),
     url(r'^$', ShowBasket.as_view(), name='show_basket'),
     url(r'^change_product/$', change_product, name='change_product'),
+    url(r'^delete_product_from_basket/$', delete_product_from_basket, name='delete_product_from_basket'),
 ]
