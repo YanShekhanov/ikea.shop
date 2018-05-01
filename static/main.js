@@ -102,7 +102,7 @@
                 product_article_number:product_query.article_number,
                 product_title:product_query.title,
                 product_price:product_query.price,
-                product_description:product_query.description,
+                product_dimensions:product_query.dimensions,
                 image_url:product_query.image,
                 unique_identificator:product_query.unique_identificator,
             };
