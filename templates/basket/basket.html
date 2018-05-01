@@ -34,8 +34,8 @@
                 <td>{{ product.product.title }}</td>
                 <td>{{ product.product.article_number }}</td>
                 <td><input type="number" value="{{ product.count }}" id="product_count"> шт.</td>
-                <td>{{ product.price_per_one }}</td>
-                <td>{{ product.price }}</td>
+                <td id="price_per_one">{{ product.price_per_one }}</td>
+                <td id="price">{{ product.price }}</td>
             </tr>
         {% endfor %}
 
@@ -62,13 +62,20 @@
                     "count":count,
                 },
                 success:function (data) {
-                    console.log(data.success_message)
+                    console.log(data.success_message);
+                    refresh_page_info($(this));
                 },
                 error:function () {
                     console.log('error')
                 },
             })
-        })
+        });
+
+        function refresh_page_info(object){
+            $parent_object = object.parents('#product_card');
+            var count = $parent_object.find('#product_count').val();
+            $parent_object.find('#price').val(count * $parent_object.find('#price_per_one'));
+        };
 
         function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
             e.preventDefault();
@@ -86,7 +93,7 @@
                     'order_identificator':order_identificator,
                 },
                 success: function (data) {
-                    $('#product_card[data-product_unique_identificator="' + product_identificator + '"]').slideUp(function () {
+                    $('#product_card[data-product_unique_identificator="' + product_identificator + '"]').slideUp(600, function () {
                         $(this).remove()
                     });
                 },
@@ -96,5 +103,7 @@
             })
 
         }
+
+
     </script>
 {% endblock %}
