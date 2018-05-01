@@ -3,8 +3,8 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    <div id="order">
-    <h3>Уникальный идентификатор заказа: <span id="order_unique_identificator" data-order_unique_identificator="{{ order.unique_indetificator }}">{{ order.unique_identificator }}</span></h3>
+    <div id="order" data-order_unique_identificator="{{ order.unique_indetificator }}">
+    <h3>Уникальный идентификатор заказа: <span>{{ order.unique_identificator }}</span></h3>
     <table>
         <tr>
             <th></th>
@@ -40,11 +40,25 @@
     <script>
         $('#order').on('change', '#product_count', function () {
             var product_unique_identificator = $(this).parents('#product_card').data('unique_identificator'),
-                order_unique_identificator = $(this).parents('#order').find('#order_unique_identificator').data('order_unique_identificator'),
-                count = $(this).val();
-            console.log(product_unique_identificator);
-            console.log(order_unique_identificator);
-            console.log(count);
+                order_unique_identificator = $(this).parents('#order').data('order_unique_identificator'),
+                count = $(this).val(),
+                token = $('input[name="csrfmiddlewaretoken"]').val();
+            $.ajax({
+                url:'{% url "change_product" %}',
+                method:'POST',
+                data:{
+                    "csrfmiddlewaretoken":token,
+                    "product_unique_identificator":product_unique_identificator,
+                    "order_unique_identificator":order_unique_identificator,
+                    "count":count,
+                },
+                success:function (data) {
+                    console.log(data.success_message)
+                },
+                error:function () {
+                    console.log('error')
+                },
+            })
         })
     </script>
 {% endblock %}
