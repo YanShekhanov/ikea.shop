@@ -15,6 +15,7 @@
             <th>ЦЕНА ЗА ЕДИНИЦУ</th>
             <th>СУММА</th>
         </tr>
+        <script>console.log($('#order').data('order_unique_identificator'))</script>
         {% for product in products %}
             <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
                 <td><button value="delete"
