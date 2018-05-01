@@ -3,6 +3,8 @@
 {% block title %}Catalogue{% endblock %}
 {% block content %}
 
+{% if is_subcategory %}{{ category_path.title }}/{{ subcategory_path.title }}{% endif %}
+{% if is_sub_subcategory %}{{ category_path.title }}/{{ subcategory_path.title }}/{{ sub_subcategory_path.title }}{% endif %}
 <!--Product Cards-->
 {% if displayProducts %}
     <div class="container-fluid">
@@ -32,15 +34,6 @@
         </div>
  	</div>
 
-
-<!--
-	<div class="img-block">
-        <i class="fa fa-times close-icon" id="close_images_block" aria-hidden="true"></i>
-        <div class="mini-img-list"></div>
-        <div id="price">
-        <div id="description"></div>
-    </div>
--->
 </div>
 {% endblock %}
 
