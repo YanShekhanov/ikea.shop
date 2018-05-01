@@ -3,6 +3,9 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
+    {% if ExistError %}<h3>Ваша корзина пуста</h3>
+
+    {% else %}
     <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}">
     <h3>Уникальный идентификатор заказа: <span>{{ order.unique_identificator }}</span></h3>
     <table>
@@ -39,6 +42,7 @@
         {{ order.order_price }}, status {{ order.status }}
     </table>
     </div>
+    {% endif %}
 {% endblock %}
 
 {% block onload_js %}
