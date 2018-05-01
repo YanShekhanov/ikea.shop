@@ -34,7 +34,10 @@ class ShowBasket(MainInfo, ListView):
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
-        pass
+        count = request.POST['count']
+        order_unique_identificator = request.POST['order_unique_identificator']
+        product_unique_identificaotr = request.POST['product_unique_identificator']
+        return JsonResponse({'success_message':'okey'})
 
 def order_detail(request):
     pass
