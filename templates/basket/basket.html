@@ -73,9 +73,9 @@
 
         function refresh_page_info(product_unique_identificator){
             $parent_object = $('#product_card[data-product_unique_identificator="' + product_unique_identificator +'"]');
-            var count = $parent_object.find('#product_count').val();
+            var count = $parent_object.find('#product_count').val() * 1;
             console.log('changed count', count);
-            $parent_object.find('#price').text(count * $parent_object.find('#price_per_one'));
+            $parent_object.find('#price').text(count * ($parent_object.find('#price_per_one') * 1));
             console.log('ok')
         };
 
