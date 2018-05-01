@@ -27,6 +27,7 @@ def calculate(sender, instance, **kwargs):
     print('sygnal 1')
     instance.price_per_one = instance.product.price
     instance.price = float(instance.count) * instance.product.price
+    print(instance.price)
 
 @receiver(post_save, sender=ProductInOrder)
 def calculate_order(sender, instance, **kwargs):
