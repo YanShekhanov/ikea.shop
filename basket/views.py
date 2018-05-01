@@ -29,9 +29,8 @@ class ShowBasket(MainInfo, ListView):
                 image = ProductImage.objects.filter(product=product.product, size=250).first()
                 images_list.append(image)
             context['images'] = images_list
-            print(images_list)
             context['order'] = Order.objects.get(session_key=self.request.session.session_key)
-        return super(ShowBasket, self).get_context_data(**kwargs)
+        return context
 
 def order_detail(request):
     pass
