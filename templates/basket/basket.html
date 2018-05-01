@@ -4,7 +4,6 @@
 
 {% block content %}
     {% for product in products %}
-        <p>
             {% for image in images %}
                 {% for product_image in image.product.all %}
                     {% if product_image == product.product %}
@@ -12,7 +11,7 @@
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-            <h4>{{ product.product.title }}</h4>{{ product.product.article_number }}, количество <h4>{{ product.count }} шт., <h3>{{ product.product.price }}</h3></h4>
+            <span>{{ product.product.title }}</span>{{ product.product.article_number }}, количество <span>{{ product.count }} шт., <span>{{ product.product.price }}</span></span>
         </p>
     {% endfor %}
 {% endblock %}

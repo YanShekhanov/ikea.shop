@@ -1,7 +1,6 @@
 {% extends 'shop_template.html' %}
 {% load staticfiles %}
 {% block title %}Catalogue{% endblock %}
-{% block content %}
 
 {% block path %}
     <!--если открыта подкатегория-->
@@ -12,22 +11,17 @@
         / <a href="{% url 'getOneCategoryProducts' sub_subcategory_path.unique_identificator %}">{{ sub_subcategory_path.title }}</a>{% endif %}
 {% endblock %}
 
+{% block content %}
+
     <!--Product Cards-->
 {% if displayProducts %}
     <div class="container-fluid">
         <div class="grid-prod" id="product-cards"></div>
     </div>
     <script>start_sort()</script>
-{% endif  %}
 
-{% if displayCategories %}
-    {% for sub_subcategory in subSubCategories %}
-        <p><a href="{% url 'getOneCategoryProducts' sub_subcategory.unique_identificator %}">{{ sub_subcategory.title }}</a></p>
-    {% endfor %}
-{% endif %}
-
-<!--Big Images-->
-<!--New-->
+    <!--Big Images-->
+    <!--New-->
 	<div class="img-block" id="big-img">
 		<i class="fa fa-times close-icon" id="close_images_block" aria-hidden="true"></i>
 		<div class="btns-all-images">
@@ -40,8 +34,14 @@
 		<div class="mini-img-list">
         </div>
  	</div>
+{% endif  %}
 
-</div>
+{% if displayCategories %}
+    {% for sub_subcategory in subSubCategories %}
+        <p><a href="{% url 'getOneCategoryProducts' sub_subcategory.unique_identificator %}">{{ sub_subcategory.title }}</a></p>
+    {% endfor %}
+{% endif %}
+
 {% endblock %}
 
 {% block js %}

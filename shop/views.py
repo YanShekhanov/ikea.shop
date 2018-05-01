@@ -102,10 +102,11 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         context = super(ProductDetail, self).get_context_data(**kwargs)
-        #path
+        '''#path
         context['category_path'] = self.object.subcategory.all[0].category
         context['subcategory_path'] = self.object.subcategory
         context['sub_subcategory_path'] = self.object.sub_subcategory
+        '''
 
         #Изображения
         try:
