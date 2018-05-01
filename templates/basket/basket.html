@@ -4,6 +4,14 @@
 
 {% block content %}
     <table>
+        <tr>
+            <th></th>
+            <th>НАЗВАНИЕ</th>
+            <th>АРТИКУЛ</th>
+            <th>КОЛ-ВО</th>
+            <th>ЦЕНА ЗА ЕДИНИЦУ</th>
+            <th>СУММА</th>
+        </tr>
         {% for product in products %}
             <tr>
                 {% for image in images %}
