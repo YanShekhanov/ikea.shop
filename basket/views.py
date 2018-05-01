@@ -32,6 +32,10 @@ class ShowBasket(MainInfo, ListView):
             context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         return context
 
+def change_product(request):
+    if request.method == 'POST' and request.is_ajax():
+        pass
+
 def order_detail(request):
     pass
 
