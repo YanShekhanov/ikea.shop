@@ -92,7 +92,7 @@ def add_to_basket(request):
         return JsonResponse(response_dict)
 
 def refresh_basket(request):
-    if request.method == 'GET' and request.id_ajax():
+    if request.method == 'GET' and request.is_ajax():
         session_key = request.session.session_key
         order = Order.objects.get(session_key=session_key)
         products_in_order = ProductInOrder.objects.filter(order=order)
