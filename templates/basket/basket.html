@@ -107,7 +107,7 @@
             })
         }
 
-        function generete_page(data, product_template, order_template) {
+        function generate_page(data, product_template, order_template) {
             Mustache.tags = ['<%', '%>'];
             for (i=0; i<data.products.length; i++){
                 var query = data.products[i];
