@@ -75,6 +75,7 @@
             $parent_object = object.parents('#product_card');
             var count = $parent_object.find('#product_count').val();
             $parent_object.find('#price').val(count * $parent_object.find('#price_per_one'));
+            console.log('ok')
         };
 
         function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
