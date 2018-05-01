@@ -74,6 +74,7 @@
         function refresh_page_info(object){
             $parent_object = object.parents('#product_card');
             var count = $parent_object.find('#product_count').val();
+            console.log('changed count', count);
             $parent_object.find('#price').val(count * $parent_object.find('#price_per_one'));
             console.log('ok')
         };
