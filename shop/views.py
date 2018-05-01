@@ -77,14 +77,18 @@ class GetOneCategoryProducts(MainInfo, DetailView):
                 context['subSubCategories'] = sub_subcategories
                 context['displayCategories'] = True
                 return context
-        context['displayProducts'] = True
-        context['is_filtered'] = True
-
-        #отображение списка следования
-        if self.is_subcategory:
+            else:
+                context['displayProducts'] = True
+                context['is_filtered'] = True
+            context['category_path'] = self.object.category
+            context['subcategory_path'] = self.object
             context['is_subcategory'] = True
-        else:
+        if self.is_sub_subcategory:
             context['is_sub_subcategory'] = True
+            context['category_path'] = self.object.subcategory.category
+            context['subcategory_path'] = self.object.subcategory
+            context['sub_subcategory_path'] = self.object
+            context['displayProducts'] = True
         return context
 
 #страница одного товара

@@ -163,7 +163,6 @@
               <div class="card">
 				<div class="card-open">
                 <!--Product Images Open-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
                     {% for image in complementaryProductsImages %}
                         {% for image_product in image.product.all %}
                             {% if image_product == complementary_product %}
@@ -181,7 +180,6 @@
     				</div>
             	</div>
                 <!--Product Images-->
-					<i class="fa fa-search-plus" id='get-all-images' data-unique_identificator='{{ complementary_product.unique_identificator }}' aria-hidden="true"></i>
                     {% for image in complementaryProductsImages %}
                         {% for image_product in image.product.all %}
                             {% if image_product == complementary_product %}
@@ -316,44 +314,6 @@
             } else {
                 $('#message').text('Введите корректное количество')
             }
-        });
-
-        //ajax загрузка изображений артикула
-        $('body').on('click', '.get-all-images', function (){
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
-            var unique_identificator = $(this).data('unique_identificator');
-
-            $.ajax({
-                url: "{% url 'get_all_product_images' %}",
-                method: 'post',
-                data: {
-                    'csrfmiddlewaretoken':token,
-                    'unique_identificator':unique_identificator
-                },
-                success: function (data) {
-                    $block_to_paste_images=$('.img-block');
-                    $block_to_paste_images.slideDown(function (img) {
-                    $block_to_paste_images.prepend('<img class="big-img-item" src="' + data.images[0] + '">');
-                    for (i=0; i<data.images.length; i++) {
-                        $block_to_paste_images.find('.mini-img-list').append('<img class="mini-img" src="' + data.images[i] + '"></a>');
-                    };
-
-                    });
-                }
-
-            });
-
-            //клик на маленькое изображение и загрузка большого
-            $('.img-block').on('click', '.mini-img', function() {
-                var img=$(this);
-                $('.big-img-item').attr('src', img.attr('src'));
-            })
-        });
-
-        //закрытие блока с загруженными изображениями
-        $('#close_images_block').click(function () {
-            $('.img-block').find('img').remove();
-            $('.img-block').slideUp();
         });
 
     </script>
