@@ -250,10 +250,15 @@
 
 {% block onload_js %}
     <script>
+        var global = window;
+
         var token = $('input[name="csrfmiddlewaretoken"]').val();
         var article_number_ = $('#main_product_info').data('product_article');
 
-        var availability = check_availability(article_number_, function (availability){$('#product_available').text(availability);});
+        var availability = check_availability(article_number_, function (availability){
+            $('#product_available').text(availability);
+            window.availablity = availability * 1;
+        });
 
         $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
@@ -265,9 +270,8 @@
             e.preventDefault();
             var product_count = $('#amount-select').val() * 1,
                 product_article_number = $('#main_product_info').data('product_article'),
-                product_title = $('#main_product_info').data('product_title'),
-                availability = $('#product_available').text() * 1;
-            if (product_count > availability){
+                product_title = $('#main_product_info').data('product_title');
+            if (product_count > window.availability){
                 console.log('количество заказанное больше чем наличие')
             }
             if (product_count > 0){
