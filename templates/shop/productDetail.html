@@ -272,7 +272,8 @@
                 product_article_number = $('#main_product_info').data('product_article'),
                 product_title = $('#main_product_info').data('product_title');
             if (product_count > window.availability){
-                console.log('количество заказанное больше чем наличие')
+                alert('Запрашуемое количество привышает допустимое');
+                $('#amount-select').val('');
             }
             if (product_count > 0){
                 $to_paste = $('#added_product_message');
