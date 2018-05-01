@@ -30,6 +30,7 @@ class ShowBasket(MainInfo, ListView):
                 images_list.append(image)
             context['images'] = images_list
             print(images_list)
+            context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         return super(ShowBasket, self).get_context_data(**kwargs)
 
 def order_detail(request):
