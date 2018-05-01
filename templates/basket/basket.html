@@ -82,8 +82,7 @@
                     'order_identificator':order_identificator,
                 },
                 success: function (data) {
-                    console.log('ok');
-                    $('#product_card[data-product_unique_identificator="' + data.test + '"]').slideUp(function () {
+                    $('#product_card[data-product_unique_identificator="' + data.deleted + '"]').slideUp(function () {
                         $(this).remove()
                     });
                 },

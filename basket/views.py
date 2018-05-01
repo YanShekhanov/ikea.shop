@@ -50,7 +50,10 @@ def delete_product_from_basket(request):
         product_to_delete = ProductInOrder.objects.get(product=Product.objects.get(unique_identificator=product_unique_identificator),
                                                        order=Order.objects.get(unique_identificator=order_unique_identificator))
         product_to_delete.delete()
-        return JsonResponse({'success_message':'okey'})
+        response_dict = {
+            'deleted': product_to_delete.unique_identificator,
+        }
+        return JsonResponse(response_dict)
 
 def order_detail(request):
     pass
