@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.views.generic import DetailView, ListView
 from shop.views import MainInfo
 from django.http import JsonResponse
-from ikea_parser.create_identificator import create_identificator
+from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product, ProductImage
 from .models import *
 
@@ -71,7 +71,7 @@ def add_to_basket(request):
         try:
             existed_order = Order.objects.get(session_key=session_key)
         except Order.DoesNotExist:
-            existed_order = Order.objects.create(session_key=session_key, unique_identificator=create_identificator(16))
+            existed_order = Order.objects.create(session_key=session_key, unique_identificator=create_num_identificator(8))
         try:
             existed_product = Product.objects.get(article_number=product_article)
             try:
