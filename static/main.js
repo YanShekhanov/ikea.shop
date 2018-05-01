@@ -71,7 +71,7 @@
 
 
     //*сортировка*//
-    function get_sort(sort_by, unique_identificator , template){
+    function get_sort(sort_by, unique_identificator , token, template){
         $.ajax({
             url: '/shop/getSortQuery/',
             method: 'POST',
