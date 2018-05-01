@@ -36,7 +36,11 @@ def change_product(request):
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']
         order_unique_identificator = request.POST['order_unique_identificator']
-        product_unique_identificaotr = request.POST['product_unique_identificator']
+        product_unique_identificator = request.POST['product_unique_identificator']
+        product_in_order = ProductInOrder.objects.get(product=Product.objects.get(unique_identificator=product_unique_identificator),
+                                                      order=Order.objects.get(unique_identificator=order_unique_identificator))
+        product_in_order.count = count
+        product_in_order.save()
         return JsonResponse({'success_message':'okey'})
 
 def order_detail(request):
