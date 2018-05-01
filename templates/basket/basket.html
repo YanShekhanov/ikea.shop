@@ -19,7 +19,7 @@
             <th>СУММА</th>
         </tr>
         {% for product in products %}
-            <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
+            <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}" class="product_card">
                 <td><button value="delete"
                 onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
                                                     $(this).parents('#product_card').data('product_unique_identificator'))">
@@ -99,6 +99,7 @@
                 url:'{% url "refresh_basket" %}',
                 method:'GET',
                 success:function (data) {
+                    $('#product_card').remove();
                     var product_template = document.getElementById('product_in_order_template').innerHTML,
                         order_template = document.getElementById('order_template').innerHTML;
                     generate_page(data, product_template, order_template);
