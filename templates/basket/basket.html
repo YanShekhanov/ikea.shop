@@ -73,7 +73,7 @@
                 token = $('input[name="csrfmiddlewaretoken"]').val();
 
             $.ajax({
-                url:{% url 'delete_product_from_basket' %},
+                url:'{% url 'delete_product_from_basket' %}',
                 method:'POST',
                 data:{
                     'csrfmiddlewaretoken':token,
