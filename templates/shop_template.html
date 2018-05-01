@@ -100,10 +100,7 @@
 <!--Kategories And Sort-->
 <div class="grid">
     <div class="kat-sort">
-        <!--Kategories-->
-        {% if category %}
-        <p id="kat" style="float: left; text-align: left;">{{ category.category.title }}<b> / </b><a href="{% url 'getOneCategoryProducts' category.unique_identificator %}">{{ category.title }}</a></p>
-        {% endif %}
+        {% block path %}{% endblock %}
         <!--Sort-->
     {% if is_filtered %}
         <select id="get_sort">
