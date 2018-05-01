@@ -275,7 +275,7 @@
                 alert('Запрашуемое количество привышает допустимое');
                 $('#amount-select').val('');
             }
-            if (product_count > 0){
+            if (product_count > 0 && product_count <= window.availability){
                 $to_paste = $('#added_product_message');
                 $to_paste.find('#added_product_title').text(product_title);
                 $to_paste.find('#added_article_number').text(product_article_number);
