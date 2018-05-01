@@ -3,18 +3,24 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    {% for product in products %}
-            {% for image in images %}
-                {% for product_image in image.product.all %}
-                    {% if product_image == product.product %}
-                        <img src="{{ image.image.url }}">
-                    {% endif %}
+    <table>
+        {% for product in products %}
+            <tr>
+                {% for image in images %}
+                    {% for product_image in image.product.all %}
+                        {% if product_image == product.product %}
+                            <td><img src="{{ image.image.url }}"></td>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-            <span>{{ product.product.title }}</span> {{ product.product.article_number }}, количество
-        <input type="number" value="{{ product.count }}"> шт. * <span>{{ product.price_per_one }} = {{ product.price }}</span></span>
-        </p>
-    {% endfor %}
+                <td>{{ product.product.title }}</td>
+                <td>{{ product.product.article_number }}</td>
+                <td><input type="number" value="{{ product.count }}"> шт.</td>
+                <td>{{ product.price_per_one }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+        {% endfor %}
 
-    {{ order.order_price }}, status {{ order.status }}
+        {{ order.order_price }}, status {{ order.status }}
+    </table>
 {% endblock %}
