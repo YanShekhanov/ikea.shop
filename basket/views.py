@@ -90,3 +90,26 @@ def add_to_basket(request):
             'count':count
         }
         return JsonResponse(response_dict)
+
+def refresh_basket(request):
+    if request.method == 'GET' and request.id_ajax():
+        session_key = request.session.session_key
+        order = Order.objects.get(session_key=session_key)
+        products_in_order = ProductInOrder.objects.filter(order=order)
+        products_list = []
+        for product_in_order in products_in_order:
+            one_product_dict = {
+                'image_url':ProductImage.objects.filter(product=product_in_order.product, size=250).first().image.url,
+                'product_unique_identificator':product_in_order.product.unique_identificator,
+                'product_title':product_in_order.product.title,
+                'article_number':product_in_order.product.article_number,
+                'count':products_in_order.count,
+                'price_per_one':products_in_order.price_per_one,
+                'price':products_in_order.price,
+            }
+            products_list.append(one_product_dict)
+        response_dict = {
+            'products':products_list,
+            'order_unique_identificator':order.unique_identificator,
+        }
+        return JsonResponse(response_dict)
