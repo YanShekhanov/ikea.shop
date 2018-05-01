@@ -60,16 +60,26 @@
 					<div class="size-select-item"><img src="images/product-cards/product-1-1.JPG" alt="#">Model 1, 102044</div>
 				</div>
 			</div>
+
+            {% if colorOptions %}
 			<!--Color Select-->
 			<div class="color-select">
 				<label for="btn-cl-sel-open" id="color-select">Выбор цвета <i class="fa fa-square square-1" aria-hidden="true"></i><i class="fa fa-square square-2" aria-hidden="true"></i><i class="fa fa-square square-3" aria-hidden="true"></i></label>
 				<input type="checkbox" id="btn-cl-sel-open">
 				<div class="color-select-open" id="color-select-open">
-					<div class="color-select-item"><img src="images/product-cards/product-2-3.JPG" alt="#">Model 1, 102044</div>
-					<div class="color-select-item"><img src="images/product-cards/product-2-2.JPG" alt="#">Model 1, 102044</div>
-					<div class="color-select-item"><img src="images/product-cards/product-2-1.JPG" alt="#">Model 1, 102044</div>
+                    {% for color in colorOptions %}
+                        {% for image in complementaryImages %}
+                            {% for product in image.product.all %}
+                                {% if color == product %}
+                                    <div class="color-select-item"><img src="{{ image.image.url }}" alt="{{ color.title }}">{{ color.title}}, {{ color.color }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
 				</div>
 			</div>
+            {% endif %}
+
 			<!--Amount Select-->
 			<div class="amount-select">
 				<input type="number" id="amount-select" placeholder="Введите количество..." />
