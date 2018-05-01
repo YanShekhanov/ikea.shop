@@ -72,7 +72,6 @@
 
     //*сортировка*//
     function get_sort(sort_by, unique_identificator , token, template){
-        console.log(template);
         $.ajax({
             url: '/shop/getSortQuery/',
             method: 'POST',
@@ -113,7 +112,6 @@
 
 
     function check_availability(article_number, callback){
-            console.log(article_number);
             $.ajax({
                 url:'/shop/checkAvailability/',
                 method:'POST',
@@ -127,8 +125,10 @@
                         callback(data.availability);
                         return data.availability;
                     } else if (data.successMessage){
+                        callback(data.successMessage);
                         return data.successMessage;
                     } else if (data.errorMessage){
+                        callback(data.errorMessage);
                         return data.errorMessage;
                     }
                 },
