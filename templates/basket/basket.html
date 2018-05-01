@@ -11,7 +11,7 @@
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-            <span>{{ product.product.title }}</span> {{ product.product.article_number }}, количество <span>{{ product.count }} шт., <span>{{ product.product.price }}</span></span>
+            <span>{{ product.product.title }}</span> {{ product.product.article_number }}, количество <span>{{ product.count }} шт. * <span>{{ product.price_per_one }} = {{ product.price }}</span></span>
         </p>
     {% endfor %}
 
