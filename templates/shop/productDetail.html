@@ -250,9 +250,6 @@
 
 {% block onload_js %}
     <script>
-
-        console.log('25'*1);
-        console.log('25');
         var token = $('input[name="csrfmiddlewaretoken"]').val();
         var article_number_ = $('#main_product_info').data('product_article');
 
@@ -265,14 +262,11 @@
 
         //добавление товара в корзину
         $('#add_to_basket').click(function (e) {
-            console.log('25'*1);
-            console.log(25);
             e.preventDefault();
             var product_count = $('#amount-select').val() * 1,
                 product_article_number = $('#main_product_info').data('product_article'),
-                product_title = $('#main_product_info').data('product_title');
-            console.log(product_title, product_article_number, product_count);
-            console.log(availability);
+                product_title = $('#main_product_info').data('product_title'),
+                availability = $('#product_available').text() * 1;
             if (product_count > availability){
                 console.log('количество заказанное больше чем наличие')
             }
