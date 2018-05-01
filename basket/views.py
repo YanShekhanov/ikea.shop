@@ -51,7 +51,7 @@ def delete_product_from_basket(request):
                                                        order=Order.objects.get(unique_identificator=order_unique_identificator))
         product_to_delete.delete()
         response_dict = {
-            'deleted': product_to_delete.unique_identificator,
+            'deleted': True,
         }
         return JsonResponse(response_dict)
 
