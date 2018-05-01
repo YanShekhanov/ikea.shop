@@ -63,7 +63,7 @@
                 },
                 success:function (data) {
                     console.log(data.success_message);
-                    refresh_page_info($(this));
+                    refresh_page_info(product_unique_identificator);
                 },
                 error:function () {
                     console.log('error')
@@ -71,8 +71,8 @@
             })
         });
 
-        function refresh_page_info(object){
-            $parent_object = object.parents('#product_card');
+        function refresh_page_info(product_unique_identificator){
+            $parent_object = $('#product_card[data-product_unique_identificator="' + product_unique_identificator +'"]');
             var count = $parent_object.find('#product_count').val();
             console.log('changed count', count);
             $parent_object.find('#price').val(count * $parent_object.find('#price_per_one'));
