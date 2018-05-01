@@ -45,8 +45,8 @@ def change_product(request):
 
 def delete_product_from_basket(request):
     if request.method == 'POST' and request.is_ajax():
-        order_unique_identificator = request.POST['order_unique_identificator']
-        product_unique_identificator = request.POST['product_unique_identificator']
+        order_unique_identificator = request.POST['order_identificator']
+        product_unique_identificator = request.POST['product_identificator']
         product_to_delete = ProductInOrder.objects.get(product=Product.objects.get(unique_identificator=product_unique_identificator),
                                                        order=Order.objects.get(unique_identificator=order_unique_identificator))
         product_to_delete.delete()
