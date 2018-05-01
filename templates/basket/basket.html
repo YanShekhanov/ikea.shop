@@ -18,7 +18,8 @@
         {% for product in products %}
             <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
                 <td><button value="delete"
-                onclick="console.log($(this).parents('#order').data('order_unique_identificator'))">
+                onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
+                                                    $(this).parents('#product_card').data('product_unique_identificator'))">
                 </button></td>
                 {% for image in images %}
                     {% for product_image in image.product.all %}
