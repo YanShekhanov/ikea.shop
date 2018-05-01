@@ -71,7 +71,7 @@
             var order_identificator = order_unique_identificator,
                 product_identificator = product_unique_identificator,
                 token = $('input[name="csrfmiddlewaretoken"]').val();
-            console.log(order_identificator, product_identificator);
+            console.log(order_identificator, '+', product_identificator);
 
             $.ajax({
                 url:'{% url 'delete_product_from_basket' %}',
