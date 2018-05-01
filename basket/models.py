@@ -1,7 +1,7 @@
 from django.db import models
 from ikea_parser.create_identificator import create_identificator
 from ikea_parser.models import Product
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 # Create your models here.
@@ -22,16 +22,13 @@ class ProductInOrder(models.Model):
     price_per_one = models.FloatField(default=0.0, blank=True, null=True)
     price = models.FloatField(default=0.0, blank=False, null=True)
 
-@receiver(post_save, sender=ProductInOrder)
+@receiver(pre_save, sender=ProductInOrder)
 def calculate(sender, instance, **kwargs):
-    print('sygnal 1')
     instance.price_per_one = instance.product.price
     instance.price = float(instance.count) * instance.product.price
-    instance.save()
 
 @receiver(post_save, sender=ProductInOrder)
 def calculate_order(sender, instance, **kwargs):
-    print('sygnal 2')
     order = Order.objects.get(id=instance.order.id)
     products_in_order = ProductInOrder.objects.filter(order=order)
     price = 0.0
