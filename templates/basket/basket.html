@@ -8,6 +8,7 @@
     <table>
         <tr>
             <th></th>
+            <th></th>
             <th>НАЗВАНИЕ</th>
             <th>АРТИКУЛ</th>
             <th>КОЛ-ВО</th>
@@ -15,7 +16,11 @@
             <th>СУММА</th>
         </tr>
         {% for product in products %}
-            <tr id="product_card" data-unique_identificator="{{ product.product.unique_identificator }}">
+            <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
+                <td><button value="delete"
+                onclick="delete_product_from_basket(event, $(this).parents('#order').data('order_unique_identificator'),
+                                                    $(this).parents('#product_card').data('product_unique_identificator'))">
+                </button></td>
                 {% for image in images %}
                     {% for product_image in image.product.all %}
                         {% if product_image == product.product %}
@@ -39,7 +44,7 @@
 {% block onload_js %}
     <script>
         $('#order').on('change', '#product_count', function () {
-            var product_unique_identificator = $(this).parents('#product_card').data('unique_identificator'),
+            var product_unique_identificator = $(this).parents('#product_card').data('product_unique_identificator'),
                 order_unique_identificator = $(this).parents('#order').data('order_unique_identificator'),
                 count = $(this).val(),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
@@ -60,5 +65,32 @@
                 },
             })
         })
+
+        function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
+            e.preventDefault();
+            var order_identificator = order_unique_identificator,
+                product_identificator = product_unique_identificator,
+                token = $('input[name="csrfmiddlewaretoken"]').val();
+
+            $.ajax({
+                url:{% url 'delete_product_from_basket' %},
+                method:'POST',
+                data:{
+                    'csrfmiddlewaretoken':token,
+                    'product_identificator':product_identificator,
+                    'order_identificator':order_identificator,
+                },
+                success: function (data) {
+                    console.log('ok');
+                    $('#product_card[data-product_unique_identificator="' + data.test + '"]').slideUp(function () {
+                        $(this).remove()
+                    });
+                },
+                error: function () {
+                    console.log('error')
+                }
+            })
+
+        }
     </script>
 {% endblock %}
