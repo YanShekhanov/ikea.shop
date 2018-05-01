@@ -97,8 +97,8 @@
                 url:'{% url "refresh_basket" %}',
                 method:'GET',
                 success:function (data) {
-                    var product_template = $('#product_in_order_template'),
-                        order_template = $('#order_template');
+                    var product_template = $('#product_in_order_template').innerHTML,
+                        order_template = $('#order_template').innerHTML;
                     generate_page(data, product_template, order_template);
                 },
                 error:function () {
