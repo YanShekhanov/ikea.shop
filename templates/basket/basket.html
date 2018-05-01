@@ -99,7 +99,7 @@
                 url:'{% url "refresh_basket" %}',
                 method:'GET',
                 success:function (data) {
-                    $('#product_card').remove();
+                    $('.product_card').remove();
                     var product_template = document.getElementById('product_in_order_template').innerHTML,
                         order_template = document.getElementById('order_template').innerHTML;
                     generate_page(data, product_template, order_template);
