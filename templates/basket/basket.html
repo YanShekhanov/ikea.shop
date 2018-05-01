@@ -45,6 +45,27 @@
     {% endif %}
 {% endblock %}
 
+<script type="text/productInOrder" id="product_in_order_template">
+    <tr id="product_card" data-product_unique_identificator="<%product_unique_identificator%>">
+                <td><button value="delete"
+                onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
+                                                    $(this).parents('#product_card').data('product_unique_identificator'))">
+                </button></td>
+                <td><img src="<%image_url%>"></td>
+                <td><%product_title%></td>
+                <td><%article_number%></td>
+                <td><input type="number" value="<%count%>" id="product_count"> шт.</td>
+                <td id="price_per_one"><%price_per_one%></td>
+                <td id="price"><%price%></td>
+            </tr>
+</script>
+
+<script type="text/orderTemplate" id="order_template">
+    <tr>
+        <td><%summ%></td>
+    </tr>
+</script>
+
 {% block onload_js %}
     <script>
         $('#order').on('change', '#product_count', function () {
@@ -63,7 +84,7 @@
                 },
                 success:function (data) {
                     console.log(data.success_message);
-                    refresh_page_info(product_unique_identificator);
+                    refresh_basket();
                 },
                 error:function () {
                     console.log('error')
@@ -71,12 +92,18 @@
             })
         });
 
-        function refresh_page_info(product_unique_identificator){
-            $parent_object = $('#product_card[data-product_unique_identificator="' + product_unique_identificator +'"]');
-            var count = $parent_object.find('#product_count').val() * 1,
-                price_per_one = $parent_object.find('#price_per_one').text() * 1;
-            $parent_object.find('#price').text(count * price_per_one);
-        };
+        function refresh_basket() {
+            $.ajax({
+                url:'{% url "refresh_basket" %}',
+                method:'GET',
+                success:function (data) {
+                    console.log(data);
+                },
+                error:function () {
+                    console.log('error');
+                },
+            })
+        }
 
         function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
             e.preventDefault();
