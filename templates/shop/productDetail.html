@@ -268,7 +268,7 @@
             console.log('25'*1);
             console.log(25);
             e.preventDefault();
-            var product_count = $('#amount-select').val(),
+            var product_count = $('#amount-select').val() * 1,
                 product_article_number = $('#main_product_info').data('product_article'),
                 product_title = $('#main_product_info').data('product_title');
             console.log(product_title, product_article_number, product_count);
