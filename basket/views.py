@@ -103,9 +103,9 @@ def refresh_basket(request):
                 'product_unique_identificator':product_in_order.product.unique_identificator,
                 'product_title':product_in_order.product.title,
                 'article_number':product_in_order.product.article_number,
-                'count':products_in_order.count,
-                'price_per_one':products_in_order.price_per_one,
-                'price':products_in_order.price,
+                'count':product_in_order.count,
+                'price_per_one':product_in_order.price_per_one,
+                'price':product_in_order.price,
             }
             products_list.append(one_product_dict)
         response_dict = {
