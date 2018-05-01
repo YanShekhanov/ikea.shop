@@ -3,9 +3,16 @@
 {% block title %}Catalogue{% endblock %}
 {% block content %}
 
-{% if is_subcategory %}{{ category_path.title }}/{{ subcategory_path.title }}{% endif %}
-{% if is_sub_subcategory %}{{ category_path.title }}/{{ subcategory_path.title }}/{{ sub_subcategory_path.title }}{% endif %}
-<!--Product Cards-->
+{% block path %}
+    <!--если открыта подкатегория-->
+    {% if is_subcategory %}{{ category_path.title }} / <a href="{% url 'getOneCategoryProducts' subcategory_path.unique_identificator %}">{{ subcategory_path.title }}</a>{% endif %}
+
+    <!--если открыта под подкатегория-->
+    {% if is_sub_subcategory %}{{ category_path.title }} / <a href="{% url 'getOneCategoryProducts' subcategory_path.unique_identificator %}">{{ subcategory_path.title }}</a>
+        / <a href="{% url 'getOneCategoryProducts' sub_subcategory_path.unique_identificator %}">{{ sub_subcategory_path.title }}</a>{% endif %}
+{% endblock %}
+
+    <!--Product Cards-->
 {% if displayProducts %}
     <div class="container-fluid">
         <div class="grid-prod" id="product-cards"></div>
