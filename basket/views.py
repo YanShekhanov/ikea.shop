@@ -15,7 +15,7 @@ class ShowBasket(MainInfo, ListView):
     paginate_by = 100
 
     def get_queryset(self):
-        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
+        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key).order_by('created'))
         return self.queryset
 
     def get_context_data(self, **kwargs):
@@ -95,7 +95,7 @@ def refresh_basket(request):
     if request.method == 'GET' and request.is_ajax():
         session_key = request.session.session_key
         order = Order.objects.get(session_key=session_key)
-        products_in_order = ProductInOrder.objects.filter(order=order)
+        products_in_order = ProductInOrder.objects.filter(order=order).order_by('created')
         products_list = []
         for product_in_order in products_in_order:
             one_product_dict = {
