@@ -16,6 +16,9 @@ class ShowBasket(MainInfo, ListView):
 
     def get_queryset(self):
         self.product_error_404 = False
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+        session_key = self.request.session.session_key
         try:
             self.order = Order.objects.get(session_key=self.request.session.session_key)
             print('existed order')
