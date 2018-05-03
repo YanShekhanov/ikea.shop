@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.views.generic import DetailView, ListView
+from django.views.generic.edit import FormView
 from shop.views import MainInfo
 from django.http import JsonResponse
 from ikea_parser.create_identificator import create_num_identificator
@@ -42,6 +43,12 @@ class ShowBasket(MainInfo, ListView):
             context['images'] = images_list
             context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         return context
+
+from .forms import OrderRegistrationForm
+class OrderRegistration(MainInfo, FormView):
+    form_class = OrderRegistrationForm
+    template_name = 'basket/order_registration.html'
+    context_object_name = 'form'
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
@@ -126,3 +133,7 @@ def refresh_basket(request):
             'order_price':order.order_price,
         }
         return JsonResponse(response_dict)
+
+def order_registration(request):
+    if request.method == "POST" and request.is_ajax():
+        pass
