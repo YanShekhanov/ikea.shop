@@ -13,7 +13,6 @@ class ShowBasket(MainInfo, ListView):
     template_name = 'basket/basket.html'
     model = ProductInOrder
     context_object_name = 'products'
-    paginate_by = 100
 
     def get_queryset(self):
         try:
