@@ -17,7 +17,6 @@
             <th>ЦЕНА ЗА ЕДИНИЦУ</th>
             <th>СУММА</th>
         </tr>
-        <tbody>
         {% for product in products %}
             <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}" class="product_card">
                 <td><button value="delete"
@@ -39,7 +38,6 @@
             </tr>
         {% endfor %}
         <tr><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
-        </tbody>
     </table>
     </div>
     {% endif %}
