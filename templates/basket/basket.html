@@ -114,6 +114,7 @@
         }
 
         function generate_page(data, product_template, order_template) {
+            $block_to_paste = $('tbody');
             Mustache.tags = ['<%', '%>'];
             for (i=0; i<data.products.length; i++){
                 var query = data.products[i],
@@ -127,12 +128,12 @@
                     'price':query.price,
                 };
                 var rendered_html = Mustache.render(product_template, rendered_data);
-                $('tbody').append(rendered_html);
+                $block_to_paste.append(rendered_html);
             }
             var order_info = {'summ':data.order_price},
                 rendered_order_info = Mustache.render(order_template, order_info);
                 console.log(rendered_order_info);
-            $('tbody').append(rendered_order_info);
+            $block_to_paste.append(rendered_order_info);
         }
 
         function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
