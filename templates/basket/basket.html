@@ -126,6 +126,7 @@
             }
             var order_info = {'summ':data.order_price},
                 rendered_order_info = Mustache.render(order_template, order_info);
+                console.log(rendered_order_info);
             $('tbody').append(rendered_order_info);
         }
 
