@@ -122,7 +122,7 @@
                     'price':query.price,
                 };
                 var rendered_html = Mustache.render(product_template, rendered_data);
-                $('tbody').prepend(rendered_html);
+                $('tbody').append(rendered_html);
             }
 
             var rendered_order_info = Mustache.render(order_template, order_info)
