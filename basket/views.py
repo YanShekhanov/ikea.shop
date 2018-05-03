@@ -19,10 +19,11 @@ class ShowBasket(MainInfo, ListView):
         if not self.request.session.exists(self.request.session.session_key):
             self.request.session.create()
         try:
-            self.order = Order.objects.get(session_key=self.request.session.session_key)
+            order = Order.objects.get(session_key=self.request.session.session_key)
             print('existed order')
             try:
-                self.queryset = ProductInOrder.objects.filter(order=self.order)
+                self.queryset = ProductInOrder.objects.filter(order=order)
+                print(self.queryset)
                 print('existed_product')
             except ProductInOrder.DoesNotExist:
                 print('product does not exist')
