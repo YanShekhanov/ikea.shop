@@ -40,6 +40,8 @@
         <tr id="order_info"><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
     </table>
     </div>
+
+    <button onclick="document.location.href='{% url "order_registration" %}'">перейти к оформлению заказа</button>
     {% endif %}
 {% endblock %}
 
