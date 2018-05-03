@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product, ProductImage
 from .models import *
+from ikea_parser.create_identificator import create_num_identificator
 
 # Create your views here.
 
@@ -15,16 +16,24 @@ class ShowBasket(MainInfo, ListView):
     paginate_by = 100
 
     def get_queryset(self):
-        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
-        self.queryset = self.queryset.order_by('created')
+        try:
+            self.order = Order.objects.get(session_key=self.request.session.session_key)
+            try:
+                self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
+                self.queryset = self.queryset.order_by('created')
+            except ProductInOrder.DoesNotExist:
+                self.product_error_404 = True
+        except Order.DoesNotExist:
+            self.order = Order.objects.create(session_key=self.request.session.session_key, unique_identificator=create_num_identificator(8))
+            self.product_error_404 = True
         return self.queryset
 
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
         context = super(ShowBasket, self).get_context_data(**kwargs)
-        if len(self.object_list) == 0:
-            context['ExistError'] = True
-        if not context.get('ExistError'):
+        if self.product_error_404:
+            context['ExistsError'] = True
+        else:
             images_list = []
             for product in self.queryset:
                 image = ProductImage.objects.filter(product=product.product, size=250).first()
