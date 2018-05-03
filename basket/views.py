@@ -21,12 +21,8 @@ class ShowBasket(MainInfo, ListView):
         try:
             order = Order.objects.get(session_key=self.request.session.session_key)
             print('existed order')
-            try:
-                self.queryset = ProductInOrder.objects.filter(order=order)
-                print(self.queryset)
-                print('existed_product')
-            except ProductInOrder.DoesNotExist:
-                print('product does not exist')
+            self.queryset = list(ProductInOrder.objects.filter(order=order))
+            if not self.queryset:
                 self.product_error_404 = True
         except Order.DoesNotExist:
             self.order = Order.objects.create(session_key=self.request.session.session_key, unique_identificator=create_num_identificator(8))
@@ -36,7 +32,6 @@ class ShowBasket(MainInfo, ListView):
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
         context = super(ShowBasket, self).get_context_data(**kwargs)
-        print(self.product_error_404)
         if self.product_error_404:
             context['ExistError'] = True
         else:
