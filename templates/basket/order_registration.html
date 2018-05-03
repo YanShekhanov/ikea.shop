@@ -8,12 +8,25 @@
             <li>Сумма к оплате: <b>{{ order.order_price }} грн</b></li>
         </ul>
     </div>
-   {{ form.as_p }}
+    <form method="POST" id="order_registration" onsubmit="order_registration(event)">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="заказать">
+    </form>
+    <input type="submit" value="заказать">
 {% endblock %}
 
 {% block onload_js %}
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
+
+        function order_registration(event){
+            event.preventDefault();
+            var name=$('#id_name').val(),
+                sorname=$('#id_sorname').val(),
+                phone=$('#id_phone').val(),
+                email=$('#id_email').val();
+        }
+
 
     $.ajax({
         url:'https://api.novaposhta.ua/v2.0/json/',
