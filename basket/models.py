@@ -1,7 +1,7 @@
 from django.db import models
 from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 
@@ -30,7 +30,7 @@ def calculate(sender, instance, **kwargs):
     instance.price_per_one = instance.product.price
     instance.price = float(instance.count) * instance.product.price
 
-@receiver(post_save, sender=ProductInOrder)
+@receiver([post_save, post_delete], sender=ProductInOrder)
 def calculate_order(sender, instance, **kwargs):
     order = Order.objects.get(id=instance.order.id)
     products_in_order = ProductInOrder.objects.filter(order=order)
