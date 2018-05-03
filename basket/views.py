@@ -18,10 +18,13 @@ class ShowBasket(MainInfo, ListView):
         self.product_error_404 = False
         try:
             self.order = Order.objects.get(session_key=self.request.session.session_key)
+            print('existed order')
             try:
                 self.queryset = ProductInOrder.objects.filter(order=self.order)
                 self.queryset = self.queryset.order_by('created')
+                print('existed_product')
             except ProductInOrder.DoesNotExist:
+                print('product does not exist')
                 self.product_error_404 = True
         except Order.DoesNotExist:
             self.order = Order.objects.create(session_key=self.request.session.session_key, unique_identificator=create_num_identificator(8))
