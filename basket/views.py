@@ -15,7 +15,8 @@ class ShowBasket(MainInfo, ListView):
     paginate_by = 100
 
     def get_queryset(self):
-        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key).order_by('created'))
+        self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
+        self.queryset = self.queryset.order_by('created')
         return self.queryset
 
     def get_context_data(self, **kwargs):
