@@ -37,7 +37,7 @@
                 <td id="price">{{ product.price }} грн</td>
             </tr>
         {% endfor %}
-        <tr><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
+        <tr id="order_info"><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
     </table>
     </div>
     {% endif %}
@@ -60,7 +60,7 @@
     </script>
 
     <script type="text/orderTemplate" id="order_template">
-        <tr>
+        <tr id="order_info">
             <tr><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td><%summ%> грн</td>
         </tr>
     </script>
@@ -69,26 +69,31 @@
 {% block onload_js %}
     <script>
         $('#order').on('change', '#product_count', function () {
-            var product_unique_identificator = $(this).parents('#product_card').data('product_unique_identificator'),
+            if ($(this).val() == '0'){
+                $(this).val('');
+                alert('Введите правильно количество')
+            } else {
+                var product_unique_identificator = $(this).parents('#product_card').data('product_unique_identificator'),
                 order_unique_identificator = $(this).parents('#order').data('order_unique_identificator'),
                 count = $(this).val(),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
-            $.ajax({
-                url:'{% url "change_product" %}',
-                method:'POST',
-                data:{
-                    "csrfmiddlewaretoken":token,
-                    "product_unique_identificator":product_unique_identificator,
-                    "order_unique_identificator":order_unique_identificator,
-                    "count":count,
-                },
-                success:function (data) {
-                    refresh_basket();
-                },
-                error:function () {
-                    console.log('error')
-                },
-            })
+                $.ajax({
+                    url:'{% url "change_product" %}',
+                    method:'POST',
+                    data:{
+                        "csrfmiddlewaretoken":token,
+                        "product_unique_identificator":product_unique_identificator,
+                        "order_unique_identificator":order_unique_identificator,
+                        "count":count,
+                    },
+                    success:function (data) {
+                        refresh_basket();
+                    },
+                    error:function () {
+                        alert('Ошибка сервера, попробуйте еще раз')
+                    },
+                })
+            }
         });
 
         function refresh_basket() {
@@ -97,12 +102,13 @@
                 method:'GET',
                 success:function (data) {
                     $('.product_card').remove();
+                    $('#order_info').remove();
                     var product_template = document.getElementById('product_in_order_template').innerHTML,
                         order_template = document.getElementById('order_template').innerHTML;
                     generate_page(data, product_template, order_template);
                 },
                 error:function () {
-                    console.log('error');
+                    alert('Ошибка сервера, попробуйте еще раз')
                 },
             })
         }
@@ -151,7 +157,7 @@
                     refresh_basket();
                 },
                 error: function () {
-                    console.log('error')
+                    alert('Ошибка сервера, попробуйте еще раз')
                 }
             })
 
