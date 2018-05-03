@@ -48,7 +48,7 @@ class OrderRegistration(models.Model):
     phone = models.CharField(max_length=17, default=None, blank=False, null=True, verbose_name='телефон')
     email = models.EmailField(max_length=64, default=None, blank=False, null=True, verbose_name='email')
     city = models.CharField(max_length=32, default=None, blank=True, null=False, verbose_name='город')
-    delivery = models.СharField(max_length=256, default=None, blank=False, null=True, verbose_name='адрес доставки')
+    delivery = models.CharField(max_length=256, default=None, blank=False, null=True, verbose_name='адрес доставки')
     payment_method = models.CharField(choices=methods, max_length=32, default=None, blank=False, null=True, verbose_name='способ оплаты')
     attentions = models.TextField(blank=True, default=None, null=True, verbose_name='дополнительно')
     created = models.DateTimeField(auto_now_add=True, editable=False)
