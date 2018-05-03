@@ -19,7 +19,7 @@ class ShowBasket(MainInfo, ListView):
         try:
             self.order = Order.objects.get(session_key=self.request.session.session_key)
             try:
-                self.queryset = ProductInOrder.objects.filter(order=Order.objects.get(session_key=self.request.session.session_key))
+                self.queryset = ProductInOrder.objects.filter(order=self.order)
                 self.queryset = self.queryset.order_by('created')
             except ProductInOrder.DoesNotExist:
                 self.product_error_404 = True
@@ -31,7 +31,7 @@ class ShowBasket(MainInfo, ListView):
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
         context = super(ShowBasket, self).get_context_data(**kwargs)
-        if self.product_error_404:
+        if self.product_error_404 == True:
             context['ExistsError'] = True
         else:
             images_list = []
