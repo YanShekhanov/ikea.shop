@@ -54,14 +54,14 @@
                 <td><%product_title%></td>
                 <td><%article_number%></td>
                 <td><input type="number" value="<%count%>" id="product_count"> шт.</td>
-                <td id="price_per_one"><%price_per_one%></td>
-                <td id="price"><%price%></td>
+                <td id="price_per_one"><%price_per_one%> грн</td>
+                <td id="price"><%price%> грн</td>
             </tr>
     </script>
 
     <script type="text/orderTemplate" id="order_template">
         <tr>
-            <td><%summ%></td>
+            <tr><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td><%summ%> грн</td>
         </tr>
     </script>
 {% endblock %}
