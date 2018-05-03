@@ -52,7 +52,7 @@ class OrderRegistration(MainInfo, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(OrderRegistration, self).get_context_data(**kwargs)
-        context['order'] = Order.objects.get(session_key=self.session.session_key)
+        context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
         return context
 
