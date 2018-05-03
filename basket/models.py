@@ -3,6 +3,7 @@ from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 # Create your models here.
 class Order(models.Model):
@@ -21,8 +22,8 @@ class ProductInOrder(models.Model):
     count = models.SmallIntegerField(default=0, blank=False, null=True)
     price_per_one = models.FloatField(default=0.0, blank=True, null=True)
     price = models.FloatField(default=0.0, blank=False, null=True)
-    created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    updated = models.DateTimeField(auto_now=True, blank=False, null=False)
+    created = models.DateTimeField(auto_now_add=True, blank=False, null=False, editable=False, default=timezone.now())
+    updated = models.DateTimeField(auto_now=True, blank=False, null=False, editable=False, default=timezone.now())
 
 @receiver(pre_save, sender=ProductInOrder)
 def calculate(sender, instance, **kwargs):
