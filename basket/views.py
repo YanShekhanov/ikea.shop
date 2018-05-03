@@ -50,6 +50,12 @@ class OrderRegistration(MainInfo, FormView):
     template_name = 'basket/order_registration.html'
     context_object_name = 'form'
 
+    def get_context_data(self, **kwargs):
+        context = super(OrderRegistration, self).get_context_data(**kwargs)
+        context['order'] = Order.objects.get(session_key=self.session.session_key)
+        context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
+        return context
+
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']

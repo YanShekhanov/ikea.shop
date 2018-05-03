@@ -2,6 +2,11 @@
 {% block title %}Оформление заказа{% endblock %}
 
 {% block content %}
-    work!!
+    <div id="order_info">
+        <ul>
+            <li>Уникальный номер заказа: <b>{{ order.unique_identificator }}</b></li>
+            <li>Сумма к оплате: <b>{{ order.order_price }} грн</b></li>
+        </ul>
+    </div>
    {{ form.as_p }}
 {% endblock %}
