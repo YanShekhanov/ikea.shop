@@ -15,6 +15,7 @@ class ShowBasket(MainInfo, ListView):
     context_object_name = 'products'
 
     def get_queryset(self):
+        self.product_error_404 = False
         try:
             self.order = Order.objects.get(session_key=self.request.session.session_key)
             try:
