@@ -50,6 +50,7 @@ class OrderRegistration(models.Model):
     city = models.CharField(max_length=32, default=None, blank=True, null=False, verbose_name='город')
     delivery = models.CharField(max_length=256, default=None, blank=False, null=True, verbose_name='адрес доставки')
     payment_method = models.CharField(choices=methods, max_length=32, default=None, blank=False, null=True, verbose_name='способ оплаты')
+    amount = models.FloatField(default=0.0, blank=True, null=True, verbose_name='сумма')
     attentions = models.TextField(blank=True, default=None, null=True, verbose_name='дополнительно')
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(default=timezone.now(), editable=False)
