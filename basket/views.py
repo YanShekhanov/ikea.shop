@@ -123,6 +123,6 @@ def refresh_basket(request):
             products_list.append(one_product_dict)
         response_dict = {
             'products':products_list,
-            'order_unique_identificator':order.order_price,
+            'order_price':order.order_price,
         }
         return JsonResponse(response_dict)
