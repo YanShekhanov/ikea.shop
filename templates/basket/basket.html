@@ -17,6 +17,7 @@
             <th>ЦЕНА ЗА ЕДИНИЦУ</th>
             <th>СУММА</th>
         </tr>
+        <tbody>
         {% for product in products %}
             <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}" class="product_card">
                 <td><button value="delete"
@@ -37,6 +38,7 @@
                 <td id="price">{{ product.price }} грн</td>
             </tr>
         {% endfor %}
+        </tbody>
 
         <tr><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
     </table>
@@ -46,7 +48,7 @@
 
 {% block js %}
     <script type="text/productInOrder" id="product_in_order_template">
-    <tr id="product_card" data-product_unique_identificator="<%product_unique_identificator%>">
+    <tr id="product_card" data-product_unique_identificator="<%product_unique_identificator%>" class="product_card">
                 <td><button value="delete"
                 onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
                                                     $(this).parents('#product_card').data('product_unique_identificator'))">
@@ -123,8 +125,7 @@
                     'price':query.price,
                 };
                 var rendered_html = Mustache.render(product_template, rendered_data);
-                console.log(rendered_html);
-                $('table').append(rendered_html);
+                $('tbody').prepend(rendered_html);
             }
 
             var rendered_order_info = Mustache.render(order_template, order_info)
