@@ -83,7 +83,6 @@
                     "count":count,
                 },
                 success:function (data) {
-                    console.log(data.success_message);
                     refresh_basket();
                 },
                 error:function () {
@@ -149,6 +148,7 @@
                     $('#product_card[data-product_unique_identificator="' + product_identificator + '"]').slideUp(600, function () {
                         $(this).remove()
                     });
+                    refresh_basket();
                 },
                 error: function () {
                     console.log('error')
