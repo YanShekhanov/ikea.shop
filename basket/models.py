@@ -21,8 +21,8 @@ class ProductInOrder(models.Model):
     count = models.SmallIntegerField(default=0, blank=False, null=True)
     price_per_one = models.FloatField(default=0.0, blank=True, null=True)
     price = models.FloatField(default=0.0, blank=False, null=True)
-    #created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    #updated = models.DateTimeField(auto_now=True, blank=False, null=False)
+    created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+    updated = models.DateTimeField(auto_now=True, blank=False, null=False)
 
 @receiver(pre_save, sender=ProductInOrder)
 def calculate(sender, instance, **kwargs):
