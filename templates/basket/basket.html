@@ -111,8 +111,8 @@
         function generate_page(data, product_template, order_template) {
             Mustache.tags = ['<%', '%>'];
             for (i=0; i<data.products.length; i++){
-                var query = data.products[i];
-                rendered_data = {
+                var query = data.products[i],
+                    rendered_data = {
                     'product_unique_identificator':query.product_unique_identificator,
                     'image_url':query.image_url,
                     'article_number':query.article_number,
@@ -124,8 +124,9 @@
                 var rendered_html = Mustache.render(product_template, rendered_data);
                 $('tbody').append(rendered_html);
             }
-
-            var rendered_order_info = Mustache.render(order_template, order_info)
+            var order_info = {'summ':data.order_price},
+                rendered_order_info = Mustache.render(order_template, order_info);
+            $('tbody').append(rendered_order_info);
         }
 
         function delete_product_from_basket(e, order_unique_identificator, product_unique_identificator) {
