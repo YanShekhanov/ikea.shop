@@ -21,7 +21,7 @@ class ShowBasket(MainInfo, ListView):
         try:
             order = Order.objects.get(session_key=self.request.session.session_key)
             print('existed order')
-            self.queryset = list(ProductInOrder.objects.filter(order=order))
+            self.queryset = list(ProductInOrder.objects.filter(order=order).order_by('-created'))
             if not self.queryset:
                 self.product_error_404 = True
         except Order.DoesNotExist:
@@ -102,11 +102,13 @@ def add_to_basket(request):
         }
         return JsonResponse(response_dict)
 
+
+#ajax обновление корзины
 def refresh_basket(request):
     if request.method == 'GET' and request.is_ajax():
         session_key = request.session.session_key
         order = Order.objects.get(session_key=session_key)
-        products_in_order = ProductInOrder.objects.filter(order=order).order_by('created')
+        products_in_order = ProductInOrder.objects.filter(order=order).order_by('-created')
         products_list = []
         for product_in_order in products_in_order:
             one_product_dict = {
