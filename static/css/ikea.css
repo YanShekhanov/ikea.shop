@@ -235,14 +235,15 @@ h1:before {
 }
 
 /*Dropdown Products*/
+#dropdown-products{
+ position: absolute;
+ z-index: 50;
+}
 #dropdown-products i{
 position: absolute;
 font-size: 0.8vw;
 margin-top: 0.2vw;
-	left: 41.8vw;
-	/*При прижатии меню к верху*/
-	/*
-	left: 25vw; */
+left: 41.8vw;
 }
 #dropdown-products i:hover{
     color: #ff6c00;
