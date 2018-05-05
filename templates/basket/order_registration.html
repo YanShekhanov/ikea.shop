@@ -21,7 +21,8 @@
 
     <h3>СПОСОБ ОПЛАТЫ</h3>
     <form method="POST" id="payment_method">{% csrf_token %}
-        {{ PaymentMethodForm.as_p }}
+        {{ PaymentMethodForm.payment_method }}
+        {{ PaymentMethodForm.amount }}
     </form>
 {% endblock %}
 

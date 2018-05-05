@@ -54,8 +54,8 @@ class OrderRegistration(MainInfo, FormView):
         context = super(OrderRegistration, self).get_context_data(**kwargs)
         context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
-        context['DeliveryMethodForm'] = DeliveryMethod
-        context['PaymentMethodForm'] = PaymentMethod
+        context['DeliveryMethodForm'] = DeliveryMethodForm
+        context['PaymentMethodForm'] = PaymentMethodForm
         return context
 
 def change_product(request):
