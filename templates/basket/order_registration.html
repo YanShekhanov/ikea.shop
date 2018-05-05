@@ -16,7 +16,7 @@
 
     <h3>СПОСОБ ДОСТАВКИ</h3>
     <form method="POST" id="delivery_method">{% csrf_token %}
-        {{ DeliveryMethodForm.as_p }}
+        {{ DeliveryMethodForm.delivery_method }}
     </form>
 
     <h3>СПОСОБ ОПЛАТЫ</h3>
