@@ -175,6 +175,18 @@
     tags_list = ['#dropdown-products', '#product-categories li', 'product-categories'];
     hide_tags(tags_list);
 
+    $('body').on('mouseenter', '#categories_menu', function (event) {
+        console.log('на кнопке меню');
+        $('#dropdown-products').fadeIn(600);
+    }).on('mouseleave', '#categories_menu', function(event){
+        if(event.target == document.getElementById('dropdown-products')){
+            console.log('в категориях');
+        } else {
+            console.log('нигде');
+            $('#dropdown-products').fadeOut(600);
+        }
+    });
+
     function open_categories() {
         $('#dropdown-products').toggle();
     };
