@@ -6,7 +6,7 @@ class OrderRegistrationForm(forms.ModelForm):
         model = OrderRegistration
         exclude = ['created', 'updated', 'order']
 
-class DeliveryMethodForm(forms.Form):
+class DeliveryMethodForm(forms.ModelForm):
     class Meta:
         model = DeliveryMethod
         exclude = ['order']
