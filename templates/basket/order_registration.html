@@ -10,7 +10,7 @@
     </div>
 
     <div id="registration_info">
-         <button class="open_registration_method">open</button>
+        <button class="open_registration_method">open</button>
         <h3>ДАННЫЕ ЗАКАЗЧИКА</h3>
         <form method="POST" id="order_registration">{% csrf_token %}
             {{ form.as_p }}
@@ -19,7 +19,7 @@
     </div>
 
     <div id="registration_delivery">
-         <button class="open_registration_method">open</button>
+        <button class="open_registration_method">open</button>
         <h3>СПОСОБ ДОСТАВКИ</h3>
         <form method="POST" id="delivery_method">{% csrf_token %}
             {{ DeliveryMethodForm.delivery_method }}
@@ -73,7 +73,7 @@
         });
 
         $('.open_registration_method').click(function () {
-           $(this).parents('div').slideDown();
+           $(this).siblings('form').slideToggle();
         });
 
 
