@@ -8,11 +8,21 @@
             <li>Сумма к оплате: <b>{{ order.order_price }} грн</b></li>
         </ul>
     </div>
+
+    <h3>ДАННЫЕ ЗАКАЗЧИКА</h3>
     <form method="POST" id="order_registration" onsubmit="order_registration(event)">{% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="заказать">
     </form>
-    <input type="submit" value="заказать">
+
+    <h3>СПОСОБ ДОСТАВКИ</h3>
+    <form method="POST" id="delivery_method">{% csrf_token %}
+        {{ DeliveryMethodForm.as_p }}
+    </form>
+
+    <h3>СПОСОБ ОПЛАТЫ</h3>
+    <form method="POST" id="payment_method">{% csrf_token %}
+        {{ PaymentMethodForm.as_p }}
+    </form>
 {% endblock %}
 
 {% block onload_js %}
