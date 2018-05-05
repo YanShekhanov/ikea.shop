@@ -46,6 +46,10 @@
         $('#id_phone').mask('+380(99)999-99-99');
         hide_tags(['#registration_delivery', '#registration_payment']);
 
+        $('.open_registration_method').click(function () {
+           $(this).siblings('form').slideToggle();
+        });
+
         $('#order_registration').submit(function (event) {
             event.preventDefault();
             window.registration_data = {};
@@ -64,13 +68,20 @@
 
         $('#delivery_method').submit(function (event) {
             event.preventDefault();
-            window.registration_data['word']='work';
+            window.registration_data['delivery_method']=$('#delivery_method select :selected').val();
+            window.registration_data['city']=$('#id_city').val();
+            window.registration_data['adres']=$('#id_adres').val();
+            window.registration_data['department_number']=$('#id_department_number').val();
             $(this).slideUp();
             $('#registration_payment').slideDown();
         });
 
-        $('.open_registration_method').click(function () {
-           $(this).siblings('form').slideToggle();
+        $('#payment_method').submit(function (event) {
+            event.preventDefault();
+            window.registration_data['payment_method']=$(this).find('select :selected').val();
+            window.registration_data['amount']=$(this).find('#id_amount').val();
+            $(this).slideUp();
+            console.log(window.registration_data);
         });
 
         $('#delivery_method').change(function () {
