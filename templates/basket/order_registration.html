@@ -21,6 +21,7 @@
         <h3>СПОСОБ ДОСТАВКИ</h3>
         <form method="POST" id="delivery_method">{% csrf_token %}
             {{ DeliveryMethodForm.delivery_method }}
+            <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
     </div>
 
@@ -29,6 +30,7 @@
         <form method="POST" id="payment_method">{% csrf_token %}
             {{ PaymentMethodForm.payment_method }}
             {{ PaymentMethodForm.amount }}
+            <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
     </div>
 {% endblock %}
@@ -36,22 +38,30 @@
 {% block onload_js %}
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
+        hide_tags(['#delivery_method', '#payment_method']);
 
         $('#order_registration').submit(function (event) {
             event.preventDefault();
-            var name=$(this).find('#id_name').val(),
-                second_name=$(this).find('#id_second_name').val(),
-                sorname=$(this).find('#id_sorname').val(),
-                phone=$(this).find('#id_phone').val(),
-                email=$(this).find('#id_email').val(),
-                attentions=$(this).find('#id_attentions').val();
+            window.registration_data = {};
+            registration_data['name']=$(this).find('#id_name').val();
+            registration_data['second_name']=$(this).find('#id_second_name').val();
+            registration_data['sorname']=$(this).find('#id_sorname').val();
+            registration_data['phone']=$(this).find('#id_phone').val();
+            registration_data['email']=$(this).find('#id_email').val();
+            if ($(this).find('#id_attentions') != ''){
+                registration_data['attentions'] = $(this).find('#id_attentions').val();
+            }
             $(this).slideUp();
             $('#registration_delivery').slideDown();
         });
 
         $('#registration_delivery').submit(event, function (event) {
             event.preventDefault();
+            $(this).slideUp();
+            $('#registration_payment').slideDown();
         });
+
+        console.log(window.registration_data);
 
 
 
