@@ -41,7 +41,7 @@ h1:before {
 	overflow: hidden;
 	max-width: 4em;
 	color: white;
-	animation: loading 2s linear;
+	animation: loading 1s linear;
 }
 
 /*Common*/
