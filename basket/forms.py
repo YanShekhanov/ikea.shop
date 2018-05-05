@@ -11,10 +11,6 @@ class DeliveryMethodForm(forms.ModelForm):
         model = DeliveryMethod
         exclude = ['order']
 
-class DeliveryInfoForm(forms.Form):
-    adres = forms.CharField(max_length=64, label=u'Адрес')
-    department_number = forms.CharField(max_length=32, label=u'Номер отделения')
-
 class PaymentMethodForm(forms.ModelForm):
     class Meta:
         model = PaymentMethod

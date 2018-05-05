@@ -22,9 +22,10 @@
         <button class="open_registration_method">open</button>
         <h3>СПОСОБ ДОСТАВКИ</h3>
         <form method="POST" id="delivery_method">{% csrf_token %}
-            {{ DeliveryMethodForm.delivery_method }}
-            <label for="adres">Адрес отделения</label>{{ DeliveryInfoForm.adres }}
-            <label for="department_number">Номер отделения</label>{{ DeliveryInfoForm.department_number }}
+            <label for="city">Город</label>{{ DeliveryMethodForm.city }}
+            <label for="delivary_method">Почта</label>{{ DeliveryMethodForm.delivery_method }}
+            <label for="adres">Адрес отделения</label>{{ DeliveryMethodForm.adres }}
+            <label for="department_number">Номер отделения</label>{{ DeliveryMethodForm.department_number }}
             <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
     </div>
@@ -61,10 +62,9 @@
             console.log(window.registration_data);
         });
 
-        $('#registration_delivery').submit(function (event) {
+        $('#delivery_method').submit(function (event) {
             event.preventDefault();
             window.registration_data['word']='work';
-            console.log(window.registration_data);
             $(this).slideUp();
             $('#registration_payment').slideDown();
         });
