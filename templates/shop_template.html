@@ -179,7 +179,7 @@
         console.log('на кнопке меню');
         $('#dropdown-products').fadeIn(600);
     }).on('mouseleave', '#categories_menu', function(event){
-        if(event.target == document.getElementById('dropdown-products')){
+        if(event.target == $('#dropdown-products')){
             console.log('в категориях');
         } else {
             console.log('нигде');
