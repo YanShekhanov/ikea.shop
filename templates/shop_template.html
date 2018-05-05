@@ -174,12 +174,12 @@
     };
 
     
-    $('#room_opened_menu').on('mouseover', '#room_menu', function () {
-        $('#room_opened_menu').fadeOut(600);
+    $('#room_opened_menu').on('mouseenter', '#room_menu', function () {
+        $('#room_opened_menu').fadeIn(600);
     });
 
-    $('#room_opened_menu').on('mouseout', '#room_menu', function () {
-        $('#room_opened_menu').fadeIn(600);
+    $('#room_opened_menu').on('mouseleave', '#room_menu', function () {
+        $('#room_opened_menu').fadeOut(600);
     });
 </script>
 
