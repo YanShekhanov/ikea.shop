@@ -1595,6 +1595,20 @@ main {
 .room-item:hover .room-drop{
 	display: block;
 }
+#room-page{
+	width: 66vw;
+	height: auto;
+}
+#room-page img{
+	max-height: 13vw;
+	max-width: auto;
+}
+#room-page a{
+	display: inline-block;
+	float: left;
+	margin-right: 0.5vw;
+	margin-top: 0.5vw;
+}
 
 /*Media Queries*/
 @media screen and (max-width: 1111px){
