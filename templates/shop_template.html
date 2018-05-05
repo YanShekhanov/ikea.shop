@@ -70,7 +70,10 @@
     $('body').on('mouseenter', '#open_room_menu', function () {
         $('#room-menu').fadeOut(600);
     } );
-    
+
+    $('#open_room_menu').mouseenter(function () {
+        $('#room-menu').fadeOut(600);
+    })
 </script>
 
 <!--Dropdown-->
