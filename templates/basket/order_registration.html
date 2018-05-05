@@ -23,12 +23,9 @@
         <h3>СПОСОБ ДОСТАВКИ</h3>
         <form method="POST" id="delivery_method">{% csrf_token %}
             {{ DeliveryMethodForm.delivery_method }}
-            <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
-        </form>
-
-        <form method="POST" id="delivery_info">{% csrf_token %}
             <label for="adres">Адрес отделения</label>{{ DeliveryInfoForm.adres }}
             <label for="department_number">Номер отделения</label>{{ DeliveryInfoForm.department_number }}
+            <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
     </div>
 
