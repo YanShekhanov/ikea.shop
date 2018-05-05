@@ -45,14 +45,16 @@
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
         hide_tags(['#registration_delivery', '#registration_payment']);
+        $('input').val(0);
 
         $('.open_registration_method').click(function () {
            $(this).siblings('form').slideToggle();
         });
 
+        window.registration_data = {};
+
         $('#order_registration').submit(function (event) {
             event.preventDefault();
-            window.registration_data = {};
             window.registration_data['name']=$(this).find('#id_name').val();
             window.registration_data['second_name']=$(this).find('#id_second_name').val();
             window.registration_data['sorname']=$(this).find('#id_sorname').val();
@@ -81,18 +83,33 @@
             window.registration_data['payment_method']=$(this).find('select :selected').val();
             window.registration_data['amount']=$(this).find('#id_amount').val();
             $(this).slideUp();
-            console.log(window.registration_data);
+
+            register_order(window.registration_data);
         });
 
         $('#delivery_method').change(function () {
             var selected_val = $(this).find('select :selected').val();
-            console.log(selected_val);
             if (selected_val=='1' || selected_val=="3" || selected_val=='5' || selected_val=='7'){
                  $('#id_department_number').attr('disabled', true);
             } else {
                 $('#id_department_number').attr('disabled', false);
             }
         });
+
+
+        function register_order(data){
+            $.ajax({
+                url:{% url 'order_registration' %},
+                method:'POST',
+                data:data,
+                success:function (data) {
+                    console.log('success');
+                },
+                error:function (data) {
+                    console.log('error');
+                }
+            })
+        }
 
     $.ajax({
         url:'https://api.novaposhta.ua/v2.0/json/',
