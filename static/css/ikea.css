@@ -1941,6 +1941,7 @@ main {
         width: 0;
         padding: 0;
         margin: 0;
+        display: none;
     }
     #product-categories li{
         list-style-type: none;
