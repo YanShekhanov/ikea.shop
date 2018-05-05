@@ -58,9 +58,12 @@ class OrderRegistration(MainInfo, FormView):
         context['PaymentMethodForm'] = PaymentMethodForm
         return context
 
-    def form_valid(self, form):
-        name = self.cleaned_data['name']
-        print(name)
+    def post(self, **kwargs):
+        if self.request.is_ajax():
+            print(self.request.POST['name'])
+        return super(OrderRegistration, self).post(**kwargs)
+
+    def form_valid(self):
         return redirect(reverse('home'))
 
 def change_product(request):
