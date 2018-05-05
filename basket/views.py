@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect, reverse
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 from shop.views import MainInfo
@@ -57,6 +57,12 @@ class OrderRegistration(MainInfo, FormView):
         context['DeliveryMethodForm'] = DeliveryMethodForm
         context['PaymentMethodForm'] = PaymentMethodForm
         return context
+
+    def post(self, *args, **kwargs):
+        super(OrderRegistration, self).post(*args, **kwargs)
+        if self.form.is_valid():
+            print('ok')
+            return redirect(reverse('home'))
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
