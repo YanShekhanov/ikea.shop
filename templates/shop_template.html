@@ -165,8 +165,8 @@
     hide_tags(tags_list);
 
     $('body').on('click', '#categories_menu', function () {
+        hide_tags(['#room-menu']);
         $('#dropdown-products').fadeToggle(300);
-        hide_tags(['#product-categories']);
     });
 
     $('#dropdown-products').mouseleave(function () {
