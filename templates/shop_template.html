@@ -71,7 +71,7 @@
 	<!--Product List-->
 	<ul id="product-list">
             {% for category in Categories %}
-                <li onclick="open_subcategory({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
+                <li onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
@@ -171,6 +171,10 @@
     $('body').on('click', '#open_room_menu', function () {
         $('#room-menu').fadeToggle(600);
     });
+
+    function open_subcategories(id){
+        $('#product-categories li[data-category_id="'+ id +'"]').fadeIn(300);
+    }
 
 </script>
 
