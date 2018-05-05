@@ -66,6 +66,12 @@
     </div>
 </nav>
 
+<script>
+    $('body').on('mouseleave', 'open_room_menu', function () {
+        $('#room-menu').fadeOut(600);
+    } )
+</script>
+
 <!--Dropdown-->
 <div class="grid" id="dropdown-products">
 	<!--Product List-->
@@ -172,10 +178,6 @@
         $('#product-categories').show();
         $('li[data-category_id="' + category_id + '"]').show()
     };
-
-    $('#open_room_menu').click(function () {
-        $('#room-menu').fadeToggle(600);
-    });
 </script>
 
 <!-- search template -->
