@@ -44,7 +44,7 @@ class ShowBasket(MainInfo, ListView):
             context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         return context
 
-from .forms import OrderRegistrationForm
+from .forms import OrderRegistrationForm, DeliveryMethod, PaymentMethod
 class OrderRegistration(MainInfo, FormView):
     form_class = OrderRegistrationForm
     template_name = 'basket/order_registration.html'
@@ -54,6 +54,8 @@ class OrderRegistration(MainInfo, FormView):
         context = super(OrderRegistration, self).get_context_data(**kwargs)
         context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
+        context['DeliveryMethodForm'] = DeliveryMethod
+        context['PaymentMethodForm'] = PaymentMethod
         return context
 
 def change_product(request):
