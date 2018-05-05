@@ -9,21 +9,28 @@
         </ul>
     </div>
 
-    <h3>ДАННЫЕ ЗАКАЗЧИКА</h3>
-    <form method="POST" id="order_registration" onsubmit="order_registration(event)">{% csrf_token %}
-        {{ form.as_p }}
-    </form>
+    <div id="registration_info">
+        <h3>ДАННЫЕ ЗАКАЗЧИКА</h3>
+        <form method="POST" id="order_registration" onsubmit="order_registration(event)">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
+        </form>
+    </div>
 
-    <h3>СПОСОБ ДОСТАВКИ</h3>
-    <form method="POST" id="delivery_method">{% csrf_token %}
-        {{ DeliveryMethodForm.delivery_method }}
-    </form>
+    <div id="registration_delivery">
+        <h3>СПОСОБ ДОСТАВКИ</h3>
+        <form method="POST" id="delivery_method">{% csrf_token %}
+            {{ DeliveryMethodForm.delivery_method }}
+        </form>
+    </div>
 
-    <h3>СПОСОБ ОПЛАТЫ</h3>
-    <form method="POST" id="payment_method">{% csrf_token %}
-        {{ PaymentMethodForm.payment_method }}
-        {{ PaymentMethodForm.amount }}
-    </form>
+    <div id="registration_payment">
+        <h3>СПОСОБ ОПЛАТЫ</h3>
+        <form method="POST" id="payment_method">{% csrf_token %}
+            {{ PaymentMethodForm.payment_method }}
+            {{ PaymentMethodForm.amount }}
+        </form>
+    </div>
 {% endblock %}
 
 {% block onload_js %}
