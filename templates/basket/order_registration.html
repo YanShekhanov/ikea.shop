@@ -23,7 +23,7 @@
         <h3>СПОСОБ ДОСТАВКИ</h3>
         <form method="POST" id="delivery_method">{% csrf_token %}
             <label for="city">Город</label>{{ DeliveryMethodForm.city }}
-            <label for="delivary_method">Почта</label>{{ DeliveryMethodForm.delivery_method }}
+            <label for="delivery_method">Почта</label>{{ DeliveryMethodForm.delivery_method }}
             <label for="adres">Адрес отделения</label>{{ DeliveryMethodForm.adres }}
             <label for="department_number">Номер отделения</label>{{ DeliveryMethodForm.department_number }}
             <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
@@ -73,8 +73,12 @@
            $(this).siblings('form').slideToggle();
         });
 
-
-
+        $('#delivery_method').change(function () {
+            var selected_val = $(this).find('select :selected').val();
+            if (selected_val=='1' || selected_val=="3" || selected_val=='5' || selected_val=='7'){
+                 $('#id_department_number').hide();
+            }
+        });
 
     $.ajax({
         url:'https://api.novaposhta.ua/v2.0/json/',
