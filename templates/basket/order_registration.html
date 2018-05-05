@@ -43,13 +43,13 @@
         $('#order_registration').submit(function (event) {
             event.preventDefault();
             window.registration_data = {};
-            registration_data['name']=$(this).find('#id_name').val();
-            registration_data['second_name']=$(this).find('#id_second_name').val();
-            registration_data['sorname']=$(this).find('#id_sorname').val();
-            registration_data['phone']=$(this).find('#id_phone').val();
-            registration_data['email']=$(this).find('#id_email').val();
+            window.registration_data['name']=$(this).find('#id_name').val();
+            window.registration_data['second_name']=$(this).find('#id_second_name').val();
+            window.registration_data['sorname']=$(this).find('#id_sorname').val();
+            window.registration_data['phone']=$(this).find('#id_phone').val();
+            window.registration_data['email']=$(this).find('#id_email').val();
             if ($(this).find('#id_attentions') != ''){
-                registration_data['attentions'] = $(this).find('#id_attentions').val();
+                window.registration_data['attentions'] = $(this).find('#id_attentions').val();
             }
             $(this).slideUp();
             $('#registration_delivery').slideDown();
