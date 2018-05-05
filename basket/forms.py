@@ -6,12 +6,12 @@ class OrderRegistrationForm(forms.ModelForm):
         model = OrderRegistration
         exclude = ['created', 'updated', 'order']
 
-class PostMethod(forms.Form):
+class DeliveryMethodForm(forms.Form):
     class Meta:
         model = DeliveryMethod
         exclude = ['order']
 
-class PayMethod(forms.ModelForm):
+class PaymentMethodForm(forms.ModelForm):
     class Meta:
         model = PaymentMethod
         exclude = ['order']
