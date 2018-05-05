@@ -178,6 +178,10 @@
         $('#room-menu').fadeToggle(300);
     });
 
+    $('#room-menu').mouseleave(function () {
+        $(this).fadeOut(300);
+    });
+
     function open_subcategories(id){
         $('#product-categories li').hide();
         $('#product-categories li[data-category_id="'+ id +'"]').show();
