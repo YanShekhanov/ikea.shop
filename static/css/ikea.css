@@ -41,7 +41,7 @@ h1:before {
 	overflow: hidden;
 	max-width: 4em;
 	color: white;
-	animation: loading 2s linear;
+	animation: loading 1s linear;
 }
 
 /*Common*/
@@ -1569,7 +1569,6 @@ main {
 	margin-top: 1vw;
 	padding: 0;
 	font-size: 1.2vw;
-	background-color: #f5f5f5;
 }
 .room-item:nth-child(4n){
     margin-right: 0;
