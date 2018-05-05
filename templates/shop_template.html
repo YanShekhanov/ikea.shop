@@ -60,8 +60,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
-        <a class="nav-link" id="menu-button" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link room_menu" id="menu-button" href="#" >Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="categories_menu" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="room_menu" href="#" >Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" href="#">Акции</a>
     </div>
 </nav>
@@ -87,7 +87,7 @@
 </div>
 
 ﻿<!--Room Menu-->
-<div class="grid" id="room-menu">
+<div class="grid" id="room_opened_menu">
     {% for room in Rooms %}
         <div class="room-item">
 		<img class="room-image" src="{{ room.image.url }}" alt="{{ room.title }}">
@@ -174,13 +174,13 @@
     };
 
     
-    $('#room-menu').on('mouseover', '.room_menu', function () {
-        $('#room-menu').fadeOut(600);
+    $('#room_opened_menu').on('mouseover', '#room_menu', function () {
+        $('#room_opened_menu').fadeOut(600);
     });
 
-    $('#room-menu').on('mouseout', '.roon_menu', function () {
-        $('#room-menu').fadeIn(600);
-    })
+    $('#room_opened_menu').on('mouseout', '#room_menu', function () {
+        $('#room_opened_menu').fadeIn(600);
+    });
 </script>
 
 <!-- search template -->
