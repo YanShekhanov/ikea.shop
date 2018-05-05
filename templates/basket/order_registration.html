@@ -37,14 +37,6 @@
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
 
-        function order_registration(event){
-            event.preventDefault();
-            var name=$('#id_name').val(),
-                sorname=$('#id_sorname').val(),
-                phone=$('#id_phone').val(),
-                email=$('#id_email').val();
-        }
-
         $('#order_registration').submit(function (event) {
             event.preventDefault();
             var name=$(this).find('#id_name').val(),
@@ -53,8 +45,15 @@
                 phone=$(this).find('#id_phone').val(),
                 email=$(this).find('#id_email').val(),
                 attentions=$(this).find('#id_attentions').val();
-            console.log(name, second_name, sorname, phone, email, attentions);
+            $(this).slideUp();
+            $('#registration_delivery').slideDown();
         });
+
+        $('#registration_delivery').submit(event, function (event) {
+            event.preventDefault();
+        });
+
+
 
 
     $.ajax({
