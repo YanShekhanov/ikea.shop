@@ -61,10 +61,9 @@
             console.log(window.registration_data);
         });
 
-        $('#registration_delivery').submit(function (event) {
+        $('#delivery_method').submit(function (event) {
             event.preventDefault();
             window.registration_data['word']='work';
-            console.log(window.registration_data);
             $(this).slideUp();
             $('#registration_payment').slideDown();
         });
