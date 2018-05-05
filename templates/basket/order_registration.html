@@ -88,9 +88,9 @@
             var selected_val = $(this).find('select :selected').val();
             console.log(selected_val);
             if (selected_val=='1' || selected_val=="3" || selected_val=='5' || selected_val=='7'){
-                 $('#id_department_number').attr('disable', true);
+                 $('#id_department_number').attr('disabled', true);
             } else {
-                $('#id_department_number').attr('disable', false);
+                $('#id_department_number').attr('disabled', false);
             }
         });
 
