@@ -99,7 +99,7 @@
 
         function register_order(data){
             $.ajax({
-                url:'{% url 'last_order_registration' %}',
+                url:'{% url 'order_registration' %}',
                 method:'POST',
                 data:data,
                 success:function (data) {
