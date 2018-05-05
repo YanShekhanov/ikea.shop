@@ -86,6 +86,23 @@
     </ul>
 </div>
 
+﻿<!--Room Menu-->
+<div class="grid" id="room-menu">
+    {% for room in Rooms %}
+        <div class="room-item">
+		<img class="room-image" src="{{ room.image.url }}" alt="{{ room.title }}">
+		<p class="room-title">{{ room.title }}</p>
+		<div class="room-drop">
+            {% for room_place in RoomsPlaces %}
+                {% if room_place.room == room %}
+                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}">{{ room_place.title }}</a>
+                {% endif %}
+            {% endfor %}
+		</div>
+	</div>
+    {% endfor %}
+</div>
+
 <!---JASIKU ZADANIE--->
 <ul id="rooms" style="display: none;">
     {% for room in Rooms %}
