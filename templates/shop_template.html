@@ -69,8 +69,10 @@
 <script>
     $('body').on('mouseenter', '#open_room_menu', function () {
         $('#room-menu').fadeIn(600);
-    } );
-    
+    } ).on('mouseleave', '#open_room_menu', function () {
+        $('#room-menu').fadeOut(600);
+    });
+
 </script>
 
 <!--Dropdown-->
