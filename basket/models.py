@@ -55,6 +55,9 @@ class DeliveryMethod(models.Model):
                (4, 'УкрПочта'), (5, 'УкрПочта (курьер)'), (6, 'Интайм'), (7, 'Интайм (курьер)'))
     order = models.OneToOneField(Order, on_delete=models.CASCADE, verbose_name='order')
     delivery_method = models.CharField(max_length=32, choices=methods, default=None, blank=False, null=True)
+    city = models.CharField(max_length=32, default=None, blank=False, null=True)
+    adres = models.CharField(max_length=64, default=None, blank=True, null=True)
+    department_number = models.SmallIntegerField(default=0, blank=True, null=True)
 
 class PaymentMethod(models.Model):
     methods = ((0, 'Полная оплата'), (1, 'Частичная оплата'), (2, 'Наложенный платеж'))
