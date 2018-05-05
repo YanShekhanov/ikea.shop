@@ -70,7 +70,7 @@
     $('body').on('mouseenter', '#open_room_menu', function () {
         $('#room-menu').fadeIn(600);
     } ).on('mouseleave', '#open_room_menu', function (event) {
-        if (document.getElementById('room-menu') == event.target()){
+        if (document.getElementById('room-menu') == event.target){
             console.log('наведено на меню');
         } else {$('#room-menu').fadeOut(600);}
     });
