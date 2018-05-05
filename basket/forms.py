@@ -20,5 +20,5 @@ class PaymentMethodForm(forms.ModelForm):
         model = PaymentMethod
         exclude = ['order']
         labels = {
-            'payment_method':_('Способ оплаты')
+            'payment_method':u'Способ оплаты'
         }
