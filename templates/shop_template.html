@@ -165,9 +165,12 @@
     hide_tags(tags_list);
 
     $('body').on('click', '#categories_menu', function () {
-        hide_tags(tags_list);
         $('#dropdown-products').fadeToggle(300);
         hide_tags(['#product-categories']);
+    });
+
+    $('#dropdown-products').mouseleave(function () {
+       $(this).fadeOut(300);
     });
 
     $('body').on('click', '#open_room_menu', function () {
