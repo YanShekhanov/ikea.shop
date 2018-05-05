@@ -38,7 +38,7 @@
 {% block onload_js %}
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
-        hide_tags(['#delivery_method', '#payment_method']);
+        hide_tags(['#registration_delivery', '#registration_payment']);
 
         $('#order_registration').submit(function (event) {
             event.preventDefault();
