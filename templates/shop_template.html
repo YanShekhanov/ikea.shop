@@ -61,7 +61,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
         <a class="nav-link" id="menu-button" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link" id="menu-button" href="#" onclick="rooms()" onmouseover="rooms()" onmouseout="rooms()">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link room_menu" id="menu-button" href="#" onclick="rooms()" onmouseover="rooms()" onmouseout="rooms()">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" href="#">Акции</a>
     </div>
 </nav>
@@ -172,13 +172,15 @@
         $('#product-categories').show();
         $('li[data-category_id="' + category_id + '"]').show()
     };
+    
+    
+    $('#room-menu').on('mouseenter', '#room_menu', function () {
+        $('#room-menu').fadeOut(600);
+    });
 
-
-
-    //rooms
-    function rooms() {
-        $('#room-menu').fadeToggle(600);
-    }
+    $('#room-menu').on('mouseleave', '#roon_menu', function () {
+        $('#room-menu').fadeIn(600);
+    })
 </script>
 
 <!-- search template -->
