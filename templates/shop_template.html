@@ -165,11 +165,12 @@
     hide_tags(tags_list);
 
     $('body').on('click', '#categories_menu', function () {
-        $('#dropdown-products').fadeToggle(600);
+        $('#dropdown-products').fadeToggle(300);
+        hide_tags('#product-categories');
     });
 
     $('body').on('click', '#open_room_menu', function () {
-        $('#room-menu').fadeToggle(600);
+        $('#room-menu').fadeToggle(300);
     });
 
     function open_subcategories(id){
