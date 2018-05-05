@@ -1536,6 +1536,7 @@ main {
 /*Rooms Page*/
 #room-menu{
 	position: absolute;
+	top: 13vw;
 	z-index: 50;
 	width: 66vw;
 	height: auto;
