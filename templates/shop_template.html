@@ -61,7 +61,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
         <a class="nav-link" id="menu-button" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link" id="menu-button" href="#" onclick="rooms()" onmouseover="rooms()" onmouseup="rooms()">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="menu-button" href="#" onclick="rooms()" onmouseover="rooms()" onmouseout="rooms()">Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" href="#">Акции</a>
     </div>
 </nav>
@@ -177,7 +177,7 @@
 
     //rooms
     function rooms() {
-        $('#room-menu').toggle();
+        $('#room-menu').fadeToggle(600);
     }
 </script>
 
