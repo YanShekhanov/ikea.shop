@@ -45,13 +45,14 @@
     <script>
         $('#id_phone').mask('+380(99)999-99-99');
         hide_tags(['#registration_delivery', '#registration_payment']);
-        $('input').val(0);
+        $('input').val('');
 
         $('.open_registration_method').click(function () {
            $(this).siblings('form').slideToggle();
         });
 
         window.registration_data = {};
+        window.registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
 
         $('#order_registration').submit(function (event) {
             event.preventDefault();
