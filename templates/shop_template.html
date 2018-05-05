@@ -166,18 +166,12 @@
 
     $('body').on('click', '#categories_menu', function () {
         $('#dropdown-products').fadeToggle(600);
+    });
 
     $('body').on('click', '#open_room_menu', function () {
-        $('#room-menu').fadeIn(600);
+        $('#room-menu').fadeToggle(600);
+    });
 
-    function open_categories() {
-        $('#dropdown-products').toggle();
-    };
-    function open_subcategory(category_id){
-        $('#product-categories').find('li').hide();
-        $('#product-categories').show();
-        $('li[data-category_id="' + category_id + '"]').show()
-    };
 </script>
 
 <!-- search template -->
