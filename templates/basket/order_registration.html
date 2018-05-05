@@ -25,6 +25,11 @@
             {{ DeliveryMethodForm.delivery_method }}
             <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
+
+        <form method="POST" id="delivery_info">{% csrf_token %}
+            {{ DeliveryInfoForm.adres }}
+            {{ DeliveryInfoForm.department_number }}
+        </form>
     </div>
 
     <div class="one_method" id="registration_payment">
