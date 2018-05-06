@@ -58,6 +58,7 @@ class OrderRegis(MainInfo, FormView):
         context['PaymentMethodForm'] = PaymentMethodForm
         return context
 
+from .models import *
 def order_registration(request):
     if request.method == "POST" and request.is_ajax():
         request_dict = request.POST
