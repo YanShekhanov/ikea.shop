@@ -146,6 +146,7 @@
             var token = $('input[name="csrfmiddlewaretoken"]').val(),
                 product_article_number = $(this).parents('.card').data('article_number'),
                 count = 1;
+            console.log(token, product_article_number, count);
             ajax_add_to_basket(token, product_article_number, count, function (data){generate_added_message(data)});
         });
 
