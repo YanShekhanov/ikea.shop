@@ -141,8 +141,8 @@
         });
 
 
-        $.get('../templates', data);
-        console.log(data);
+        $.get('../templates');
+        console.log($.get('../templates'));
         //ajax добавление в корзину
         $('.add_to_basket').click(function () {
             var token = $('input[name="csrfmiddlewaretoken"]').val(),
