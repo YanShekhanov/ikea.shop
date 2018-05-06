@@ -58,7 +58,6 @@ class OrderRegis(MainInfo, FormView):
         context['PaymentMethodForm'] = PaymentMethodForm
         return context
 
-from .models import *
 def order_registration(request):
     if request.method == "POST" and request.is_ajax():
         request_dict = request.POST
@@ -76,27 +75,10 @@ def order_registration(request):
         amount = request_dict['amount']
 
         order = Order.objects.get(session_key=request.session.session_key)
-        order_regis = OrderRegistration.objects.get(order=order)
-        order_regis.name = name
-        order_regis.sorname = sorname
-        order_regis.second_name = second_name
-        order_regis.phone = phone
-        order_regis.email = email
-        if attentions != '':
-            order_regis.attentions = attentions
-        order_regis.save()
-
-        delivery = DeliveryMethod.objects.get(order=order)
-        delivery.delivery_method = delivery_method
-        delivery.city = city
-        delivery.adres = adres
-        delivery.department_number = department_number
-        delivery.save()
-
-        payment = PaymentMethod.objects.get(order=order)
-        payment.payment_method = payment_method
-        payment.amount = amount
-        payment.save()
+        order_regis = OrderRegistration.objects.create(order=order, name=name, sorname=sorname, second_name=second_name,
+                                                       phone=phone, email=email, attentions=attentions)
+        delivery = DeliveryMethod.objects.create(order=order, delivery_method=delivery_method, city=city, adres=adres, department_number=department_number)
+        payment = PaymentMethod.objects.create(order=order, payment_method=payment_method, amount=amount)
 
         order.status = 1
         order.session_key = create_identificator(16)
