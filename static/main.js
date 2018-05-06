@@ -139,6 +139,7 @@
         }
 
     function ajax_add_to_basket(token, product_article_number, product_count){
+            console.log('ok');
                     $.ajax({
                         url: '/basket/add_to_basket/',
                         method:'POST',

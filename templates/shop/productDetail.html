@@ -279,8 +279,7 @@
         $('#add_to_basket').click(function (e) {
             e.preventDefault();
             var product_count = $('#amount-select').val() * 1,
-                product_article_number = $('#main_product_info').data('product_article'),
-                product_title = $('#main_product_info').data('product_title');
+                product_article_number = $('#main_product_info').data('product_article');
             if (product_count > window.availability){
                 alert('Запрашуемое количество привышает допустимое');
                 $('#amount-select').val('');
