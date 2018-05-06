@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^change_product/$', change_product, name='change_product'),
     url(r'^delete_product_from_basket/$', delete_product_from_basket, name='delete_product_from_basket'),
     url(r'^refresh_basket/$', refresh_basket, name='refresh_basket'),
-    url(r'^order_registration/$', OrderRegistration.as_view(), name='order_registration'),
+    url(r'^order_registration/$', OrderRegis.as_view(), name='order_registration'),
     url(r'^order_registration/success/$', order_registration, name='ajax_order_registration'),
 ]

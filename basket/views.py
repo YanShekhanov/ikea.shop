@@ -45,13 +45,13 @@ class ShowBasket(MainInfo, ListView):
         return context
 
 from .forms import OrderRegistrationForm, DeliveryMethodForm, PaymentMethodForm
-class OrderRegistration(MainInfo, FormView):
+class OrderRegis(MainInfo, FormView):
     form_class = OrderRegistrationForm
     template_name = 'basket/order_registration.html'
     context_object_name = 'form'
 
     def get_context_data(self, **kwargs):
-        context = super(OrderRegistration, self).get_context_data(**kwargs)
+        context = super(OrderRegis, self).get_context_data(**kwargs)
         context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
         context['DeliveryMethodForm'] = DeliveryMethodForm
