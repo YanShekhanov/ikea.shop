@@ -102,7 +102,7 @@ def order_registration(request):
             }
         return JsonResponse(response_dict)
     else:
-        return Http404()
+        raise Http404()
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
