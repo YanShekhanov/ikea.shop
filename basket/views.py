@@ -10,6 +10,7 @@ from ikea_parser.create_identificator import create_num_identificator, create_id
 
 # Create your views here.
 
+#показать корзину
 class ShowBasket(MainInfo, ListView):
     template_name = 'basket/basket.html'
     model = ProductInOrder
@@ -44,6 +45,7 @@ class ShowBasket(MainInfo, ListView):
             context['order'] = Order.objects.get(session_key=self.request.session.session_key)
         return context
 
+#страница с формой для регистрации заказа
 from .forms import OrderRegistrationForm, DeliveryMethodForm, PaymentMethodForm
 class OrderReg(MainInfo, FormView):
     form_class = OrderRegistrationForm
@@ -61,6 +63,7 @@ class OrderReg(MainInfo, FormView):
             raise Http404()
         return context
 
+#ajax регистрация информации по доставке
 def order_registration(request):
     if request.method == "POST" and request.is_ajax():
         request_dict = request.POST
@@ -104,6 +107,7 @@ def order_registration(request):
     else:
         raise Http404()
 
+#ajax изменения кол-ва продукта в корзине
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']
@@ -115,6 +119,7 @@ def change_product(request):
         product_in_order.save()
         return JsonResponse({'success_message':'okey'})
 
+#ajax удаление продукта с корзины
 def delete_product_from_basket(request):
     if request.method == 'POST' and request.is_ajax():
         order_unique_identificator = request.POST['order_identificator']
@@ -127,10 +132,7 @@ def delete_product_from_basket(request):
         }
         return JsonResponse(response_dict)
 
-def order_detail(request):
-    pass
-
-
+#ajax добавление продкта в корзину
 def add_to_basket(request):
     if request.method == 'POST' and request.is_ajax():
         product_article = request.POST['product_article']
@@ -155,10 +157,10 @@ def add_to_basket(request):
         except Product.DoesNotExist:
             return HttpResponse(status=404)
 
-        print(product_article, count)
         response_dict = {
             'added':True,
-            'product_article':product_article,
+            'product_article':created_in_basket.product.product_article,
+            'product_title':created_in_basket.product.title,
             'count':count
         }
         return JsonResponse(response_dict)

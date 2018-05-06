@@ -138,6 +138,24 @@
             });
         }
 
+    function ajax_add_to_basket(token, product_article_number, product_count){
+                    $.ajax({
+                        url: '/basket/add_to_basket/',
+                        method:'POST',
+                        data:{
+                            'csrfmiddlewaretoken':token,
+                            'product_article':product_article_number,
+                            'count':product_count,
+                        },
+                        success: function (data) {
+                            generate_added_message(data)
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    })
+                }
+
 
 
 
