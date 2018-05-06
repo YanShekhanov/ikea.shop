@@ -153,7 +153,7 @@
         });
 
         //ajax добавление в корзину
-        $('.add_to_basket').click(function () {
+        $('.content').on('click', '.add_to_basket', function () {
             var token = $('input[name="csrfmiddlewaretoken"]').val(),
                 product_article_number = $(this).parents('.card').data('article_number'),
                 count = 1;
