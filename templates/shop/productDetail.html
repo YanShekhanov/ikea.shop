@@ -298,11 +298,11 @@
             Mustache.tags = ['<%', '%>'];
             var template = document.getElementById('basketMessage').innerHTML,
                 rendered_template = Mustache.render(template, data);
-            console.log(rendered_template);
-            $('body').prepend(rendered_template);
-            $to_paste.fadeIn(600, function () {
+            $('.content').prepend(rendered_template);
+            $block = $('#added_product_message');
+            $block.fadeIn(600, function () {
                 function reset_added_product(){
-                    $to_paste.fadeOut(600, function () {
+                    $block.fadeOut(600, function () {
                         $('#added_product_message').remove();
                     });
                 };
