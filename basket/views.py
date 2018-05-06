@@ -159,7 +159,7 @@ def add_to_basket(request):
 
         response_dict = {
             'added':True,
-            'product_article':created_in_basket.product.product_article,
+            'product_article':created_in_basket.product.article_number,
             'product_title':created_in_basket.product.title,
             'count':count
         }
