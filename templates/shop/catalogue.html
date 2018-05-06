@@ -45,7 +45,7 @@
 {% block js %}
         <!-- card template -->
     <script type="text/card-template" id="cardTemplate">
-        <div class="card">
+        <div class="card" data-article_number="<%product_article_number%>">
             <div class="card-open">
                 <i class="fa fa-search-plus get-all-images" data-unique_identificator=<%unique_identificator%> aria-hidden="true"></i>
                 <img src="<%image_url%>" alt=<%product_article_number%>
@@ -55,7 +55,7 @@
                 <p class="card-text"><%product_dimensions%></p>
                 <p class="card-price"><%product_price%> грн.</p>
                 <div class="button-item">
-                    <a href="" class="btn-1">Добавить в корзину</a>
+                    <a href="" class="btn-1" id="add_to_basket">Добавить в корзину</a>
                 </div>
             </div>
             <!--Product Images-->
@@ -139,6 +139,19 @@
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
         });
+
+
+        //ajax добавление в корзину
+        $('#add_to_basket').click(function () {
+            var token = $('input[name="csrfmiddlewaretoken"]').val(),
+                product_article_number = $(this).parents('.card').data('article_number'),
+                count = 1;
+            ajax_add_to_basket(token, product_article_number, count, function (data){generate_added_message(data)});
+        });
+
+        function generate_added_message(data) {
+            console.log(data);
+        }
     </script>
 
 {% endblock %}

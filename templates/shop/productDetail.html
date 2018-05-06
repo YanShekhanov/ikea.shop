@@ -285,10 +285,12 @@
                 $('#amount-select').val('');
             }
             if (product_count > 0 && product_count <= window.availability){
-                ajax_add_to_basket(token, product_article_number, product_count);
+                //добавляем изменения в бд ajax
+                ajax_add_to_basket(token, product_article_number, product_count, function (data) {generate_added_message(data)});
             };
         });
 
+        //генерация блока о добавленнии продукта в корзину
         function generate_added_message(data){
             $to_paste = $('#added_product_message');
             $to_paste.find('#added_product_title').text(data.product_title);

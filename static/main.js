@@ -138,7 +138,7 @@
             });
         }
 
-    function ajax_add_to_basket(token, product_article_number, product_count){
+    function ajax_add_to_basket(token, product_article_number, product_count, callback){
             $.ajax({
                 url: '/basket/add_to_basket/',
                 method:'POST',
@@ -148,7 +148,7 @@
                     'count':product_count,
                 },
                 success: function (data) {
-                    generate_added_message(data)
+                    callback(data);
                 },
                 error: function () {
                     console.log('error');
