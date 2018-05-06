@@ -1610,6 +1610,126 @@ main {
 	margin-top: 0.5vw;
 }
 
+/*Cart*/
+#cart{
+	padding-top: 0.5vw;
+}
+#cart-item{
+	position: relative;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+	border: 0.1vw solid #e3e3e3;
+	margin-top: 0.5vw;
+	margin-bottom: 1vw;
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+#cart-item img{
+	display: inline-block;
+	width: 6.11vw;
+	height: 100%;
+	margin-right: 0.5vw;
+}
+#cart-item img:hover{
+	z-index: 30;
+	transform: scale(3);
+}
+#cart-item a{
+	display: inline-block;
+	text-align: center;
+	font-family: verdana;
+	font-size: 1.4vw;
+	margin-right: 0.5vw;
+}
+#cart-item h6{
+	text-align: center;
+	padding-top: 0.5vw;
+	margin-right: 0.5vw;
+	margin-left: 0.5vw;
+}
+#cart-item input{
+	width: 5vw;
+}
+#cart-item .fa-times-circle{
+	position: absolute;
+	left: -5vw;
+	font-size: 4vw;
+	color: #FF6C00;
+}
+#cart-item .fa-times-circle:hover{
+	color: red;
+}
+#cart-offer{
+	position: relative;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+	border: 0.1vw solid #e3e3e3;
+	margin-top: 0.5vw;
+	margin-bottom: 1vw;
+	width: 100%;
+	height: auto;
+	padding: 1vw;
+	display: flex;
+	align-items: center;
+}
+#cart-offer h6{
+	text-align: center;
+	padding-top: 0.5vw;
+	margin-right: 0.5vw;
+	margin-left: 0.5vw;
+}
+#cart-offer .button-item {
+  display: inline-block;
+  position: absolute;
+  right: 0.5vw;
+}
+#cart-offer .button-item-2 {
+  display: inline-block;
+  position: absolute;
+  right: 11vw;
+}
+#cart-offer .btn-1 {
+  padding: 1em 1em;
+  border: 2px solid #ff6c00;
+  transition: all 300ms ease;
+  color: #ff6c00;
+  z-index: 1;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  font-size: 0.9vw;
+}
+#cart-offer .btn-1:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transition: all 0ms ease;
+}
+#cart-offer .btn-1:hover {
+  color: white;
+  border: 2px solid #ADA6A6;
+  box-shadow: none;
+}
+#cart-offer .btn-1:hover:before {
+  position: absolute;
+  color: white;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+  transition: all 300ms ease;
+}
+
 /*Media Queries*/
 @media screen and (max-width: 1111px){
 .price-search{
