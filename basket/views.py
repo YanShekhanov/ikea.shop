@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, reverse
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 from shop.views import MainInfo
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product, ProductImage
 from .models import *
@@ -45,17 +45,20 @@ class ShowBasket(MainInfo, ListView):
         return context
 
 from .forms import OrderRegistrationForm, DeliveryMethodForm, PaymentMethodForm
-class OrderRegis(MainInfo, FormView):
+class OrderReg(MainInfo, FormView):
     form_class = OrderRegistrationForm
     template_name = 'basket/order_registration.html'
     context_object_name = 'form'
 
     def get_context_data(self, **kwargs):
-        context = super(OrderRegis, self).get_context_data(**kwargs)
-        context['order'] = Order.objects.get(session_key=self.request.session.session_key)
-        context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
-        context['DeliveryMethodForm'] = DeliveryMethodForm
-        context['PaymentMethodForm'] = PaymentMethodForm
+        context = super(OrderReg, self).get_context_data(**kwargs)
+        try:
+            context['order'] = Order.objects.get(session_key=self.request.session.session_key)
+            context['products'] = ProductInOrder.objects.filter(order=context.get('order'))
+            context['DeliveryMethodForm'] = DeliveryMethodForm
+            context['PaymentMethodForm'] = PaymentMethodForm
+        except Order.DoesNotExist:
+            raise Http404()
         return context
 
 def order_registration(request):
@@ -98,6 +101,8 @@ def order_registration(request):
                 'error_message':u'Что-то пошло не так, попробуйте еще раз'
             }
         return JsonResponse(response_dict)
+    else:
+        return Http404()
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
