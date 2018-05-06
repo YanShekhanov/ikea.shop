@@ -58,12 +58,6 @@ class OrderRegistration(MainInfo, FormView):
         context['PaymentMethodForm'] = PaymentMethodForm
         return context
 
-    def post(self):
-        if self.request.is_ajax():
-            name = self.request.POST['name']
-            print(name)
-            return redirect(reverse('home'))
-
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']
@@ -150,4 +144,5 @@ def refresh_basket(request):
 
 def order_registration(request):
     if request.method == "POST" and request.is_ajax():
-        pass
+        print(request.POST['name'])
+        return redirect(reverse('order_registration'))
