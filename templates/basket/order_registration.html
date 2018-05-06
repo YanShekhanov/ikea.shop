@@ -101,7 +101,7 @@
                 method:'POST',
                 data:data,
                 success:function (data) {
-                    console.log('success');
+                    alert('На вашу почту ' + data.order_info.email + ' было выслано сообщение с данными для оплаты')
                 },
                 error:function (data) {
                     console.log('error');

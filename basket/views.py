@@ -73,17 +73,31 @@ def order_registration(request):
         department_number = request_dict['department_number']
         payment_method = request_dict['payment_method']
         amount = request_dict['amount']
+        try:
+            order = Order.objects.get(session_key=request.session.session_key)
+            order_regis = OrderRegistration.objects.create(order=order, name=name, sorname=sorname, second_name=second_name,
+                                                           phone=phone, email=email, attentions=attentions)
+            delivery = DeliveryMethod.objects.create(order=order, delivery_method=delivery_method, city=city, adres=adres, department_number=department_number)
+            payment = PaymentMethod.objects.create(order=order, payment_method=payment_method, amount=amount)
 
-        order = Order.objects.get(session_key=request.session.session_key)
-        order_regis = OrderRegistration.objects.create(order=order, name=name, sorname=sorname, second_name=second_name,
-                                                       phone=phone, email=email, attentions=attentions)
-        delivery = DeliveryMethod.objects.create(order=order, delivery_method=delivery_method, city=city, adres=adres, department_number=department_number)
-        payment = PaymentMethod.objects.create(order=order, payment_method=payment_method, amount=amount)
-
-        order.status = 1
-        order.session_key = create_identificator(16)
-        order.save()
-        return redirect(reverse('order_registration'))
+            order.status = 1
+            order.session_key = create_identificator(16)
+            order.save()
+            response_dict = {
+                'success':True,
+                'success_message':u'Ваш заказ успешно создан и принят в обработку.',
+                'order_info':{
+                    'unique_identificator':order.unique_identificator,
+                    'date':order.updated.strftime('yyyy.mm.dd H:m'),
+                    'email':email,
+                }
+            }
+        except:
+            response_dict = {
+                'success':False,
+                'error_message':u'Что-то пошло не так, попробуйте еще раз'
+            }
+        return JsonResponse(response_dict)
 
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
