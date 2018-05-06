@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from ikea_parser.create_identificator import create_num_identificator
 from ikea_parser.models import Product, ProductImage
 from .models import *
-from ikea_parser.create_identificator import create_num_identificator
+from ikea_parser.create_identificator import create_num_identificator, create_identificator
 
 # Create your views here.
 
@@ -60,7 +60,46 @@ class OrderRegistration(MainInfo, FormView):
 
 def order_registration(request):
     if request.method == "POST" and request.is_ajax():
-        print(request.POST['name'])
+        request_dict = request.POST
+        name = request_dict['name']
+        sorname = request_dict['sorname']
+        second_name = request_dict['second_name']
+        phone = request_dict['phone']
+        email = request_dict['email']
+        attentions = request_dict['attentions']
+        city = request_dict['city']
+        delivery_method = request_dict['delivery_method']
+        adres = request_dict['adres']
+        department_number = request_dict['department_number']
+        payment_method = request_dict['payment_method']
+        amount = request_dict['amount']
+
+        order = Order.objects.get(session_key=request.session.session_key)
+        order_registration = OrderRegistration.objects.get(order=order)
+        order_registration.name = name
+        order_registration.sorname = sorname
+        order_registration.second_name = second_name
+        order_registration.phone = phone
+        order_registration.email = email
+        if attentions != '':
+            order_registration.attentions = attentions
+        order_registration.save()
+
+        delivery = DeliveryMethod.objects.get(order=order)
+        delivery.delivery_method = delivery_method
+        delivery.city = city
+        delivery.adres = adres
+        delivery.department_number = department_number
+        delivery.save()
+
+        payment = PaymentMethod.objects.get(order=order)
+        payment.payment_method = payment_method
+        payment.amount = amount
+        payment.save()
+
+        order.status = 1
+        order.session_key = create_identificator(16)
+        order.save()
         return redirect(reverse('order_registration'))
 
 def change_product(request):

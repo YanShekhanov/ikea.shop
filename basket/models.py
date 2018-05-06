@@ -7,7 +7,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Order(models.Model):
-    status = ((0, 'в процессе'), (1, 'новый'),(2, 'не оплачен'), (3, 'задаток'), (4, 'оплачен'), (5, 'выполнен'), (6, 'отменен'))
+    status = ((0, 'в процессе'), (1, 'не оплачен'), (2, 'задаток'), (3, 'оплачен'), (4, 'выполнен'), (5, 'отменен'))
     unique_identificator = models.CharField(max_length=8, default=create_num_identificator(8), blank=False, null=False)
     order_price = models.FloatField(default=0.0, blank=True, null=True)
     status = models.SmallIntegerField(default=0, blank=True, null=True, choices=status)
