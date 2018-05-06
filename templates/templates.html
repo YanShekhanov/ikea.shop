@@ -26,3 +26,13 @@
                 <p class="card-price"><%product_price%> грн.</p>
         </div>
     </script>
+
+<script type="text/basket-message" id="basketMessage">
+	<div class="added-block" style="display: none;" id="added_product_message">
+	<div class="added-to-cart-icon">
+		<i class="fa fa-check" aria-hidden="true"></i>
+	</div>
+        <div class="added-to-cart">Продукт <span id="added_product_title"><%product_title%></span> (<span id="added_article_number"><%article_number%></span>) в количестве <span id="added_count"><%count%></span> добавлен в корзину </div>
+	<div class="go-to-cart" onclick="document.location.href='{% url 'show_basket' %}'">Перейти в корзину</div>
+        </div>
+</script>
