@@ -286,42 +286,26 @@
                 $('#amount-select').val('');
             }
             if (product_count > 0 && product_count <= window.availability){
-                $to_paste = $('#added_product_message');
-                $to_paste.find('#added_product_title').text(product_title);
-                $to_paste.find('#added_article_number').text(product_article_number);
-                $to_paste.find('#added_count').text(product_count);
-                $to_paste.fadeIn(600, function () {
-                    function reset_added_product(){
-                        $to_paste.fadeOut(600, function () {
-                            $to_paste.find('#added_article_number').text('');
-                            $to_paste.find('#added_product_title').text('');
-                            $to_paste.find('#added_count').text('');
-                        });
-                    };
-                    setTimeout(reset_added_product, 3000);
-                });
-
-                //ajax
-                $.ajax({
-                    url: '{% url 'add_to_basket' %}',
-                    method:'POST',
-                    data:{
-                        'csrfmiddlewaretoken':token,
-                        'product_article':product_article_number,
-                        'count':product_count,
-                    },
-                    success: function (data) {
-                        console.log(data.product_article, data.count);
-                    },
-                    error: function () {
-                        console.log('error');
-                    }
-                })
-
-            } else {
-                $('#message').text('Введите корректное количество')
-            }
+                ajax_add_to_basket(token, product_article_number, product_count);
+            };
         });
+
+        function generate_added_message(data){
+            $to_paste = $('#added_product_message');
+            $to_paste.find('#added_product_title').text(data.product_title);
+            $to_paste.find('#added_article_number').text(data.product_article);
+            $to_paste.find('#added_count').text(data.count);
+            $to_paste.fadeIn(600, function () {
+                function reset_added_product(){
+                    $to_paste.fadeOut(600, function () {
+                        $to_paste.find('#added_article_number').text('');
+                        $to_paste.find('#added_product_title').text('');
+                        $to_paste.find('#added_count').text('');
+                    });
+                };
+                setTimeout(reset_added_product, 3000);
+            });
+        }
 
     </script>
 {% endblock %}
