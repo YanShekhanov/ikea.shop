@@ -75,15 +75,15 @@ def order_registration(request):
         amount = request_dict['amount']
 
         order = Order.objects.get(session_key=request.session.session_key)
-        order_registration = OrderRegistration.objects.get(order=order)
-        order_registration.name = name
-        order_registration.sorname = sorname
-        order_registration.second_name = second_name
-        order_registration.phone = phone
-        order_registration.email = email
+        order_regis = OrderRegistration.objects.get(order=order)
+        order_regis.name = name
+        order_regis.sorname = sorname
+        order_regis.second_name = second_name
+        order_regis.phone = phone
+        order_regis.email = email
         if attentions != '':
-            order_registration.attentions = attentions
-        order_registration.save()
+            order_regis.attentions = attentions
+        order_regis.save()
 
         delivery = DeliveryMethod.objects.get(order=order)
         delivery.delivery_method = delivery_method
