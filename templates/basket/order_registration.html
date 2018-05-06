@@ -60,9 +60,7 @@
             window.registration_data['sorname']=$(this).find('#id_sorname').val();
             window.registration_data['phone']=$(this).find('#id_phone').val();
             window.registration_data['email']=$(this).find('#id_email').val();
-            if ($(this).find('#id_attentions') != ''){
-                window.registration_data['attentions'] = $(this).find('#id_attentions').val();
-            }
+            window.registration_data['attentions'] = $(this).find('#id_attentions').val();
             $(this).slideUp();
             $('#registration_delivery').slideDown();
             console.log(window.registration_data);
