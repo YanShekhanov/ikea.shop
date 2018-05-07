@@ -214,56 +214,6 @@
     {% endif %}
 
 </main>
-
-
-    <!--старый код-->
-
-    {% if colorOptions %}
-        <p>
-            <h3>Цвета</h3>
-                    {% for color in colorOptions %}
-                        {% for image in complementaryImages %}
-                            {% for product in image.product.all %}
-                                {% if color == product %}
-                                    <img src="{{ image.image.url }}" class="icon-image"><a href="{% url 'productDetail' color %}">{{ color }}</a>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                    {% endfor %}
-        </p>
-    {% endif %}
-
-    {% if sizeOptions %}
-        <p>
-            <h3>Размеры</h3>
-            {% for size in sizeOptions %}
-                {% for image in complementaryImages %}
-                    {% for product in image.product.all %}
-                        {% if size == product %}
-                            <p><img src="{{ image.image.url }}" class="icon-image">
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-               <a href="{% url 'productDetail' size %}">{{ size }}</a></p>
-            {% endfor %}
-        </p>
-    {% endif %}
-
-    {% if modelOptions %}
-            <h3>Модели</h3>
-            {% for model in modelOptions %}
-                {% for image in complementaryImages %}
-                    {% for product in image.product.all %}
-                        {% if model == product %}
-                            <p><img src="{{ image.image.url }}" class="icon-image">
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-               <a href="{% url 'productDetail' model %}">{{ model }}</a></p>
-            {% endfor %}
-    {% endif %}
-
-
 {% endblock %}
 
 {% block js %}
