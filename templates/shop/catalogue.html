@@ -125,9 +125,9 @@
                 success: function (data) {
                     $block_to_paste_images = $('.img-block');
                     $block_to_paste_images.slideDown(function () {
-                        $('.big-image').append('<img class="big-img-item" src="' + data.image[0] + '" alt="#">');
+                        $('.big-image').append('<img class="big-img-item" src="' + data.images[0] + '" alt="#">');
                         for (i=0; i<data.images.length; i++) {
-                            $('.mini-img-list').append('<img class="mini-img" src="' + data.image[i] + '" alt="#">');
+                            $('.mini-img-list').append('<img class="mini-img" src="' + data.images[i] + '" alt="#">');
                     };
 
                     });

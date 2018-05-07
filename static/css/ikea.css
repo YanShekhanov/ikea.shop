@@ -1421,13 +1421,30 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 16;
+	z-index: 20;
+}
+.go-to-cart{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 19;
+	color: #FF9344;
+	font-size: 1.2vw;
+	font-weight: 600;
+	top: 9.8vw;
+	right: 18.5vw;
+	background-color: white;
+	width: 13vw;
+	height: 4vw;
+	border-radius: 1vw;
+    border: 0.2vw solid #FF9344;
 }
 .added-to-cart{
 	position: fixed;
 	background-color: #FFF9F7;
 	color: #373a48;
-	z-index: 14;
+	z-index: 18;
 	top: 4vw;
 	right: 3.5vw;
 	height: 8vw;
@@ -1439,23 +1456,6 @@ main {
 	border-radius: 0;
 	font-size: 1.1vw;
 	font-weight: 500;
-}
-.go-to-cart{
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 15;
-	color: #FF9344;
-	font-size: 1.2vw;
-	font-weight: 600;
-	top: 9.8vw;
-	right: 18.5vw;
-	background-color: white;
-	width: 13vw;
-	height: 4vw;
-	border-radius: 1vw;
-    border: 0.2vw solid #FF9344;
 }
 .go-to-cart:hover{
 	color: white;
