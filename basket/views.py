@@ -122,10 +122,9 @@ def change_product(request):
 #ajax удаление продукта с корзины
 def delete_product_from_basket(request):
     if request.method == 'POST' and request.is_ajax():
-        order_unique_identificator = request.POST['order_identificator']
-        product_unique_identificator = request.POST['product_identificator']
-        product_to_delete = ProductInOrder.objects.get(product=Product.objects.get(unique_identificator=product_unique_identificator),
-                                                       order=Order.objects.get(unique_identificator=order_unique_identificator))
+        product_article_number = request.POST['product_article_number']
+        product_to_delete = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
+                                                       order=Order.objects.get(session_key=request.session.session_key))
         product_to_delete.delete()
         response_dict = {
             'deleted': True,
