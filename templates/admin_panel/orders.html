@@ -2,5 +2,10 @@
 {% block title %}Заказы{% endblock %}
 
 {% block content %}
-    work!
+    {% for order in orders %}
+        <div class="order">
+            <h4>order identificator : {{ order.unique_identificator }}</h4>
+            <h5>summa: {{ order.order_price }}, status: {{ order.status }}</h5>
+        </div>
+    {% endfor %}
 {% endblock %}
