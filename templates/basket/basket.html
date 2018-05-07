@@ -6,6 +6,34 @@
     {% if ExistError %}<h3>Ваша корзина пуста</h3>
 
     {% else %}
+        {% for product in products %}
+            <div id="cart-item">
+                {% for image in images %}
+                        {% for product_image in image.product.all %}
+                            {% if product_image == product.product %}
+                                <td><img src="{{ image.image.url }}"></td>
+                            {% endif %}
+                        {% endfor %}
+                {% endfor %}
+                <img src="{{ image.image.url }}">
+                <a>{{ product.product.title }}<br>{{ product.product.article_number }}</a>
+                <h6>Количество:</h6><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6><h6>Цена: {{ product.product.price }} грн.</h6><h6>Сумма: {{ product.price }} грн.</h6>
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </div>
+        {% endfor %}
+		<div id="cart-offer">
+			<h6>Сумма: {{ order.order_price }} грн.</h6>
+				<div class="button-item">
+     				<a href="" class="btn-1">Оформить заказ</a>
+    			</div>
+				<div class="button-item-2">
+     				<a href="" class="btn-1">Обновить</a>
+    			</div>
+		</div>
+	</div>
+
+
+
     <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}">
     <table>
         <tr>
