@@ -6,9 +6,10 @@
     {% if ExistError %}<h3>Ваша корзина пуста</h3>
 
     {% else %}
+        <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}"></div>
         <div class="grid" id="cart">
             {% for product in products %}
-                <div id="cart-item">
+                <div id="cart-item" class="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
                     {% for image in images %}
                             {% for product_image in image.product.all %}
                                 {% if product_image == product.product %}
@@ -74,36 +75,38 @@
 
 {% block js %}
     <script type="text/productInOrder" id="product_in_order_template">
-    <tr id="product_card" data-product_unique_identificator="<%product_unique_identificator%>" class="product_card">
-                <td><button value="delete"
-                onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
-                                                    $(this).parents('#product_card').data('product_unique_identificator'))">
-                </button></td>
-                <td><img src="<%image_url%>"></td>
-                <td><%product_title%></td>
-                <td><%article_number%></td>
-                <td><input type="number" value="<%count%>" id="product_count"> шт.</td>
-                <td id="price_per_one"><%price_per_one%> грн</td>
-                <td id="price"><%price%> грн</td>
-            </tr>
+        <div id="cart-item" class="product_card" data-product_unique_identificator="<%product_unique_identificator%>">
+            <img src="<%image_url%>">
+            <a><%product_title%><br><%article_number%></a>
+            <div class="amount-cart"><h6>Количество:</h6><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
+            <div class="cart-price"><h6>Цена: <br> <%price_per_one%> грн.</h6></div>
+            <div class="cart-total"><h6>Сумма: <br> <%price%>грн.</h6></div>
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </div>
     </script>
 
     <script type="text/orderTemplate" id="order_template">
-        <tr id="order_info">
-            <td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td><%summ%> грн</td>
-        </tr>
+        <div id="cart-offer">
+                <h6>Сумма: <%summ%> грн.</h6>
+            <div class="button-item">
+                <a href="" class="btn-1">Оформить заказ</a>
+            </div>
+            <div class="button-item-2">
+                <a href="" class="btn-1">Обновить</a>
+            </div>
+        </div>
     </script>
 {% endblock %}
 
 {% block onload_js %}
     <script>
-        $('#order').on('change', '#product_count', function () {
-            if ($(this).val() == '0'){
+        $('#cart').on('change', '#product_count', function () {
+            if ($(this).val() === '0'){
                 $(this).val('');
                 alert('Введите правильно количество')
             } else {
                 var product_unique_identificator = $(this).parents('#product_card').data('product_unique_identificator'),
-                order_unique_identificator = $(this).parents('#order').data('order_unique_identificator'),
+                order_unique_identificator = $('#order').data('order_unique_identificator'),
                 count = $(this).val(),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
                 $.ajax({
@@ -143,7 +146,7 @@
         }
 
         function generate_page(data, product_template, order_template) {
-            $block_to_paste = $('tbody');
+            $block_to_paste = $('#cart');
             Mustache.tags = ['<%', '%>'];
             for (i=0; i<data.products.length; i++){
                 var query = data.products[i],
