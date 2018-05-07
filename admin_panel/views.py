@@ -20,7 +20,7 @@ class DisplayOrders(ListView):
             orders_delivery.append(DeliveryMethod(order=order))
             orders_payment.append(PaymentMethod(order=order))
         context = super(DisplayOrders, self).get_context_data(**kwargs)
-        context['order_info'] = orders_info
-        context['order_delivery'] = orders_delivery
-        context['order_payment'] = orders_payment
+        context['orders_info'] = orders_info
+        context['orders_delivery'] = orders_delivery
+        context['orders_payment'] = orders_payment
         return context
