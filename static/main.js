@@ -86,7 +86,13 @@
                 };
                 hide_tags(tags_list); //*скрываем стандартно скрытые блоки
                 hover_product_card(); //*при наведении появляется иконка просмотра изображений
-                $('#product-cards').fadeIn(1800, loader_hide()); //*делаем видимыми карточки продуктов
+                $(document).ready(function () {
+                    console.log('ready')
+                });
+                $(window).load(function () {
+                    console.log('load');
+                    $('#product-cards').fadeIn(1800, loader_hide()); //*делаем видимыми карточки продуктов
+                });
             },
             error:function () {
                 console.log('error')
