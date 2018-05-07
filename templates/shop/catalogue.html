@@ -20,7 +20,7 @@
 
     ﻿<!--Big Images-->
 	<div class="img-block">
-		<em class="fa fa-times close-icon" aria-hidden="true"></em>
+		<em class="fa fa-times close-icon" id="close_images_icon" aria-hidden="true"></em>
 		<div class="mini-img-list"></div>
 		<div class="big-image"></div>
  	</div>
@@ -135,13 +135,13 @@
             $('.img-block').on('click', '.mini-img', function() {
                 var img=$(this);
                 $('.big-img-item').attr('src', img.attr('src'));
-            })
-        });
+            });
 
-        //закрытие блока с загруженными изображениями
-        $('.close-icon').click(function () {
+            //закрытие блока с загруженными изображениями
+            $('#close_images_icon').click(function () {
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
+            });
         });
 
         //ajax добавление в корзину
