@@ -1614,6 +1614,20 @@ main {
 #cart{
 	padding-top: 0.5vw;
 }
+#cart-price-total{
+	position: relative;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+	border: 0.1vw solid #e3e3e3;
+	margin-top: 0.5vw;
+	margin-bottom: 1vw;
+	padding-right: 1vw;
+	padding-top: 0.5vw;
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
 #cart-item{
 	position: relative;
 	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
@@ -1652,6 +1666,7 @@ main {
 #cart-item .amount-cart{
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	width: 17vw;
 }
 #cart-item .cart-price{
@@ -1665,6 +1680,30 @@ main {
 	align-items: center;
 	justify-content: center;
 	width: 13vw;
+}
+#cart-price-total .cart-price{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 13vw;
+}
+#cart-price-total .cart-total{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 13vw;
+}
+#cart-price-total .amount-cart{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 17vw;
+}
+#cart-price-total .cart-name{
+	display: inline-block;
+	text-align: center;
+	width: 15vw;
+	margin-right: 0.5vw;
 }
 #cart-item input{
 	width: 5vw;
