@@ -46,7 +46,7 @@
             <th>СУММА</th>
         </tr>
         {% for product in products %}
-            <tr id="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}" class="product_card">
+            <tr id="product_card" data-product="{{ product.product.article_number }}" class="product_card">
                 <td><button value="delete"
                 onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
                                                     $(this).parents('#product_card').data('product_unique_identificator'))">
