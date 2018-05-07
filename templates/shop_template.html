@@ -104,11 +104,11 @@
 </div>
 
 <!--Kategories And Sort-->
+{% if is_filtered %}
 <div class="grid">
     <div class="kat-sort">
         {% block path %}{% endblock %}
         <!--Sort-->
-    {% if is_filtered %}
         <select id="get_sort">
             <option>Выбор сортировки</option>
             <option value="increase">От дешевых к дорогим</option>
@@ -116,9 +116,9 @@
             <option value="from_A_to_Z">От A до Z</option>
             <option value="from_Z_to_A">От Z до А</option>
         </select>
-    {% endif %}
     </div>
 </div>
+{% endif %}
 
 {% csrf_token %}
 {% block content %}{% endblock %}
