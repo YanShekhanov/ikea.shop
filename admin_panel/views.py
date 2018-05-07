@@ -16,9 +16,9 @@ class DisplayOrders(ListView):
         orders_payment = []
         self.objects_list = self.get_queryset()
         for order in self.objects_list:
-            orders_info.append(OrderRegistration(order=order))
-            orders_delivery.append(DeliveryMethod(order=order))
-            orders_payment.append(PaymentMethod(order=order))
+            orders_info.append(OrderRegistration.objects.get(order=order))
+            orders_delivery.append(DeliveryMethod.objects.get(order=order))
+            orders_payment.append(PaymentMethod.objects.get(order=order))
         context = super(DisplayOrders, self).get_context_data(**kwargs)
         context['orders_info'] = orders_info
         context['orders_delivery'] = orders_delivery
