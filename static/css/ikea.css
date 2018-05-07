@@ -936,6 +936,8 @@ left: 25vw;
 	position: absolute;
 	z-index: 11;
 	width:  21.2vw;
+	max-height: 120px;
+	overflow: scroll;
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
@@ -995,6 +997,8 @@ input[type="checkbox"]:checked ~ #model-select-open {
 	position: absolute;
 	z-index: 10;
 	width:  21.2vw;
+	max-height: 120px;
+	overflow: scroll;
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
@@ -1054,6 +1058,8 @@ input[type="checkbox"]:checked ~ #size-select-open {
 	position: absolute;
 	z-index: 9;
 	width:  21.2vw;
+	max-height: 120px;
+	overflow: scroll;
 	color: #7C7979;
 	background-color: white;
 	border: 0.15vw solid #e3e3e3;
