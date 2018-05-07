@@ -4,3 +4,6 @@ from .models import *
 
 admin.site.register(ProductInOrder)
 admin.site.register(Order)
+admin.site.register(OrderRegistration)
+admin.site.register(DeliveryMethod)
+admin.site.register(PaymentMethod)
