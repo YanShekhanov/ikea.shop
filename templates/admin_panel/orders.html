@@ -8,10 +8,15 @@
             <h5>summa: {{ order.order_price }}, status: {{ order.status }}</h5>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
-                    {{ order_info.order.unique_identificator }}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
                         Телефон: {{ order_info.phone }}, Email: {{ order_info.email }}
                     </h6>
+                {% endif %}
+            {% endfor %}
+
+            {% for order_delivery in orders_delivery %}
+                {% if order_delivery.order == order %}
+                    {{ order_delivery.city }}
                 {% endif %}
             {% endfor %}
         </div>
