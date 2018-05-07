@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^', include('shop.urls'), name='shop'),
     url(r'^parse/', include('ikea_parser.urls'), name='parse'),
     url(r'^basket/', include('basket.urls'), name='basket'),
+    url(r'^admin_panel/', include('admin_panel.urls'), name='admin-panel'),
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
   + static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
