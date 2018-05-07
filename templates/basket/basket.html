@@ -135,7 +135,7 @@
                 method:'GET',
                 success:function (data) {
                     $('.product_card').remove();
-                    $('#order_info').remove();
+                    $('#cart-offer').remove();
                     var product_template = document.getElementById('product_in_order_template').innerHTML,
                         order_template = document.getElementById('order_template').innerHTML;
                     generate_page(data, product_template, order_template);
