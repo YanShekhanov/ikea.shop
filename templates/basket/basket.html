@@ -106,7 +106,7 @@
                 $(this).val('');
                 alert('Введите правильно количество')
             } else {
-                var product_unique_identificator = $(this).parents('#product_card').data('product_unique_identificator'),
+                var product_unique_identificator = $(this).parents('.product_card').data('product_unique_identificator'),
                 order_unique_identificator = $('#order').data('order_unique_identificator'),
                 count = $(this).val(),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
