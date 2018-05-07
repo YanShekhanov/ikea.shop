@@ -9,7 +9,7 @@
         <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}"></div>
         <div class="grid" id="cart">
             {% for product in products %}
-                <div id="cart-item" class="product_card" data-product_unique_identificator="{{ product.product.unique_identificator }}">
+                <div id="cart-item" class="product_card" data-product="{{ product.product.article_number }}">
                     {% for image in images %}
                             {% for product_image in image.product.all %}
                                 {% if product_image == product.product %}
@@ -33,41 +33,6 @@
                     </div>
             </div>
         </div>
-
-    <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}">
-    <table>
-        <tr>
-            <th></th>
-            <th></th>
-            <th>НАЗВАНИЕ</th>
-            <th>АРТИКУЛ</th>
-            <th>КОЛ-ВО</th>
-            <th>ЦЕНА ЗА ЕДИНИЦУ</th>
-            <th>СУММА</th>
-        </tr>
-        {% for product in products %}
-            <tr id="product_card" data-product="{{ product.product.article_number }}" class="product_card">
-                <td><button value="delete"
-                onclick="delete_product_from_basket(event, $('#order').data('order_unique_identificator'),
-                                                    $(this).parents('#product_card').data('product_unique_identificator'))">
-                </button></td>
-                {% for image in images %}
-                    {% for product_image in image.product.all %}
-                        {% if product_image == product.product %}
-                            <td><img src="{{ image.image.url }}"></td>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-                <td>{{ product.product.title }}</td>
-                <td>{{ product.product.article_number }}</td>
-                <td><input type="number" value="{{ product.count }}" id="product_count"> шт.</td>
-                <td id="price_per_one">{{ product.price_per_one }} грн</td>
-                <td id="price">{{ product.price }} грн</td>
-            </tr>
-        {% endfor %}
-        <tr id="order_info"><td></td><td></td><td></td><td></td><td></td><td>СУММА</td><td>{{ order.order_price }} грн</td></tr>
-    </table>
-    </div>
 
     <button onclick="document.location.href='{% url "order_registration" %}'">перейти к оформлению заказа</button>
     {% endif %}
