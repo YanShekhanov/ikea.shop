@@ -20,7 +20,7 @@
 
     ﻿<!--Big Images-->
 	<div class="img-block">
-		<em class="fa fa-times close-icon" id="close_images_block" aria-hidden="true"></em>
+		<em class="fa fa-times close-icon" aria-hidden="true"></em>
 		<div class="mini-img-list"></div>
 		<div class="big-image"></div>
  	</div>
@@ -139,7 +139,7 @@
         });
 
         //закрытие блока с загруженными изображениями
-        $('#close_images_block').click(function () {
+        $('.close-icon').click(function () {
             $('.img-block').find('img').remove();
             $('.img-block').slideUp();
         });
