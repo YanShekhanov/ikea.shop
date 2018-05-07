@@ -22,7 +22,7 @@ from shop.views import MainInfo
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^shop/', include('shop.urls'), name='shop'),
+    url(r'^', include('shop.urls'), name='shop'),
     url(r'^parse/', include('ikea_parser.urls'), name='parse'),
     url(r'^basket/', include('basket.urls'), name='basket'),
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
