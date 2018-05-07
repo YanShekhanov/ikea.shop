@@ -102,9 +102,9 @@
 
         //*сортировка*//
         $('body').on('change', '#get_sort', function () {
+            loader_show(); //*показываем лоадер
             hide_tags(['#product-cards']); //*скрываем контент с карточками
             remove_tags(['.card']); //*удаляем неосортированные карточки продуктов
-            loader_show(); //*показываем лоадер
             var sort_by = $(this).find('option:selected').val();
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = '{{ category.unique_identificator }}';
