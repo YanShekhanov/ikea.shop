@@ -54,10 +54,10 @@
         <div id="cart-offer">
                 <h6>Сумма: <%summ%> грн.</h6>
             <div class="button-item">
-                <a href="" class="btn-1">Оформить заказ</a>
+                <a href="{% url 'order_registration' %}" class="btn-1">Оформить заказ</a>
             </div>
             <div class="button-item-2">
-                <a href="" class="btn-1">Обновить</a>
+                <a href="{% url 'show_basket' %}" class="btn-1">Обновить</a>
             </div>
         </div>
     </script>
