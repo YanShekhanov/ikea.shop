@@ -11,11 +11,10 @@
                 {% for image in images %}
                         {% for product_image in image.product.all %}
                             {% if product_image == product.product %}
-                                <td><img src="{{ image.image.url }}"></td>
+                                <img src="{{ image.image.url }}">
                             {% endif %}
                         {% endfor %}
                 {% endfor %}
-                <img src="{{ image.image.url }}">
                 <a>{{ product.product.title }}<br>{{ product.product.article_number }}</a>
                 <h6>Количество:</h6><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6><h6>Цена: {{ product.product.price }} грн.</h6><h6>Сумма: {{ product.price }} грн.</h6>
                 <i class="fa fa-times-circle" aria-hidden="true"></i>
