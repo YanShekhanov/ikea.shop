@@ -1440,6 +1440,7 @@ main {
 	height: 4vw;
 	border-radius: 1vw;
     border: 0.2vw solid #FF9344;
+		cursor: pointer;
 }
 .added-to-cart{
 	position: fixed;
