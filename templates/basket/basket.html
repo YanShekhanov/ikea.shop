@@ -75,7 +75,7 @@
 
 {% block js %}
     <script type="text/productInOrder" id="product_in_order_template">
-        <div id="cart-item" class="product_card" data-product_unique_identificator="<%product_unique_identificator%>">
+        <div id="cart-item" class="product_card" data-product="<%article_number%>">
             <img src="<%image_url%>">
             <a><%product_title%><br><%article_number%></a>
             <div class="amount-cart"><h6>Количество:</h6><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
@@ -106,8 +106,7 @@
                 $(this).val('');
                 alert('Введите правильно количество')
             } else {
-                var product_unique_identificator = $(this).parents('.product_card').data('product_unique_identificator'),
-                order_unique_identificator = $('#order').data('order_unique_identificator'),
+                var product_article_number = $(this).parents('.product_card').data('product'),
                 count = $(this).val(),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
                 $.ajax({
@@ -115,8 +114,7 @@
                     method:'POST',
                     data:{
                         "csrfmiddlewaretoken":token,
-                        "product_unique_identificator":product_unique_identificator,
-                        "order_unique_identificator":order_unique_identificator,
+                        "product_article_number":product_article_number,
                         "count":count,
                     },
                     success:function (data) {
@@ -152,7 +150,6 @@
             for (i=0; i<data.products.length; i++){
                 var query = data.products[i],
                     rendered_data = {
-                    'product_unique_identificator':query.product_unique_identificator,
                     'image_url':query.image_url,
                     'article_number':query.article_number,
                     'product_title':query.product_title,

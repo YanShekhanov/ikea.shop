@@ -112,10 +112,9 @@ def order_registration(request):
 def change_product(request):
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']
-        order_unique_identificator = request.POST['order_unique_identificator']
-        product_unique_identificator = request.POST['product_unique_identificator']
-        product_in_order = ProductInOrder.objects.get(product=Product.objects.get(unique_identificator=product_unique_identificator),
-                                                      order=Order.objects.get(unique_identificator=order_unique_identificator))
+        product_article_number = request.POST['product_article_number']
+        product_in_order = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
+                                                      order=Order.objects.get(session_key=request.session.session_key))
         product_in_order.count = count
         product_in_order.save()
         return JsonResponse({'success_message':'okey'})
@@ -177,7 +176,6 @@ def refresh_basket(request):
         for product_in_order in products_in_order:
             one_product_dict = {
                 'image_url':ProductImage.objects.filter(product=product_in_order.product, size=250).first().image.url,
-                'product_unique_identificator':product_in_order.product.unique_identificator,
                 'product_title':product_in_order.product.title,
                 'article_number':product_in_order.product.article_number,
                 'count':product_in_order.count,
