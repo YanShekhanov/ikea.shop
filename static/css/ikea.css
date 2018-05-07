@@ -1639,6 +1639,7 @@ main {
 	display: inline-block;
 	text-align: center;
 	font-family: verdana;
+	width: 15vw;
 	font-size: 1.4vw;
 	margin-right: 0.5vw;
 }
@@ -1647,6 +1648,23 @@ main {
 	padding-top: 0.5vw;
 	margin-right: 0.5vw;
 	margin-left: 0.5vw;
+}
+#cart-item .amount-cart{
+	display: flex;
+	align-items: center;
+	width: 17vw;
+}
+#cart-item .cart-price{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 13vw;
+}
+#cart-item .cart-total{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 13vw;
 }
 #cart-item input{
 	width: 5vw;
