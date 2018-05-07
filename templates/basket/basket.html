@@ -14,9 +14,10 @@
                                 <img src="{{ image.image.url }}">
                             {% endif %}
                         {% endfor %}
-                {% endfor %}
-                <a>{{ product.product.title }}<br>{{ product.product.article_number }}</a>
-                <h6>Количество:</h6><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6><h6>Цена: {{ product.product.price }} грн.</h6><h6>Сумма: {{ product.price }} грн.</h6>
+                {% endfor %}<a>{{ product.product.title }}<br>{{ product.product.article_number }}</a>
+                <div class="amount-cart"><h6>Количество:</h6><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
+                <div class="cart-price"><h6>Цена: <br> {{ product.product.price }} грн.</h6></div>
+                <div class="cart-total"><h6>Сумма: <br> {{ product.price }}грн.</h6></div>
                 <i class="fa fa-times-circle" aria-hidden="true"></i>
             </div>
         {% endfor %}
@@ -29,9 +30,6 @@
      				<a href="" class="btn-1">Обновить</a>
     			</div>
 		</div>
-	</div>
-
-
 
     <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}">
     <table>
