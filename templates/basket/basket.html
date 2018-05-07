@@ -45,33 +45,6 @@
     {% endif %}
 {% endblock %}
 
-﻿<!--Cart-->
-	<div class="grid" id="cart">
-		<div id="cart-price-total">
-			<div class="cart-name"><h6>Название</h6></div>
-			<div class="amount-cart"><h6>Количество</h6></div>
-			<div class="cart-price"><h6>Цена за 1шт</h6></div>
-			<div class="cart-total"><h6>Сумма</h6></div>
-		</div>
-		<div id="cart-item">
-			<img src="../Yan/IKEA/IKEA Site/images/product-cards/product-4-3.JPG" alt="#">
-			<a>PERSISK KELIM GASHGAI<br>(12345646)</a>
-			<div class="amount-cart"><input type="number" value="31" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
-			<div class="cart-price"><h6>180332грн.</h6></div>
-			<div class="cart-total"><h6>100000грн.</h6></div>
-			<i class="fa fa-times-circle" aria-hidden="true"></i>
-		</div>
-		<div id="cart-offer">
-			<h6>Сумма: 100000грн.</h6>
-				<div class="button-item">
-     				<a href="" class="btn-1">Оформить заказ</a>
-    			</div>
-				<div class="button-item-2">
-     				<a href="" class="btn-1">Обновить</a>
-    			</div>
-		</div>
-	</div>
-
 {% block js %}
     <script type="text/productInOrder" id="product_in_order_template">
         <div id="cart-item" class="product_card" data-product="<%article_number%>">
