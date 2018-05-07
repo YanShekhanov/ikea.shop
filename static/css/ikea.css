@@ -753,12 +753,12 @@ left: 25vw;
 }
 .close-icon{
 	position: absolute;
+	z-index: 101;
 	top: 0.5vw;
 	right: 1vw;
 	font-size: 3vw;
 	color: #ff6c00;
 	opacity: .6;
-	z-index: 101;
 }
 .close-icon:hover{
 	opacity: .9;
