@@ -38,7 +38,7 @@
 
     function search(searched_text, token, template) {
         $.ajax({
-            url:'/shop/search/',
+            url:'/search/',
             type:'json',
             method:'POST',
             data:{
@@ -73,7 +73,7 @@
     //*сортировка*//
     function get_sort(sort_by, unique_identificator , token, template){
         $.ajax({
-            url: '/shop/getSortQuery/',
+            url: '/getSortQuery/',
             method: 'POST',
             data:{
                 'csrfmiddlewaretoken':token,
@@ -113,7 +113,7 @@
 
     function check_availability(article_number, callback){
             $.ajax({
-                url:'/shop/checkAvailability/',
+                url:'/checkAvailability/',
                 method:'POST',
                 data:{
                     'csrfmiddlewaretoken':token,
