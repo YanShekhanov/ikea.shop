@@ -1132,7 +1132,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 #info-block .amount{
 	position: absolute;
 	z-index: 9;
-	bottom: 6vw;
+	bottom: 4.5vw;
 	display: none;
     align-items: center;
     justify-content: center;
@@ -1142,7 +1142,6 @@ input[type="checkbox"]:checked ~ #color-select-open {
 	border: 2px solid #ADA6A6;
 	width: 21.2vw;
 	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
-
 }
 #info-block .button-item:hover .amount{
 	display: flex;
@@ -1151,6 +1150,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 	color: black;
 	padding-right: 0.5vw;
 }
+
 
 /*Cards On Pages Block*/
 #content4 .card{
