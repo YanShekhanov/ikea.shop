@@ -21,12 +21,8 @@
     ﻿<!--Big Images-->
 	<div class="img-block">
 		<em class="fa fa-times close-icon" aria-hidden="true"></em>
-		<div class="mini-img-list">
-			<img class="mini-img" src="images/product-cards/product-2-2.JPG" alt="#">
-        </div>
-		<div class="big-image">
-			<img class="big-img-item" src="images/product-cards/product-1-1.JPG" alt="#">
-		</div>
+		<div class="mini-img-list"></div>
+		<div class="big-image"></div>
  	</div>
 {% endif  %}
 
@@ -164,7 +160,7 @@
                 rendered_template = Mustache.render(template, data);
             $('.content').prepend(rendered_template);
             $block = $('#added_product_message');
-            $block.fadeIn(600, function () {
+            $block.show(function () {
                 function reset_added_product(){
                     $block.fadeOut(600, function () {
                         $('#added_product_message').remove();
