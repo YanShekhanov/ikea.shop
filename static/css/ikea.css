@@ -690,28 +690,24 @@ left: 25vw;
 }
 
 /*In Stock*/
-#product-cards .amount{
+#info-block .amount{
 	position: absolute;
 	z-index: 9;
-	bottom: 3vw;
+	bottom: 4.5vw;
 	display: none;
-	justify-content: center;
-	align-items: center;
+    align-items: center;
+    justify-content: center;
 	color: #ff6c00;
 	background-color: #f5f5f5;
 	padding: 0.5vw;
 	border: 2px solid #ADA6A6;
-	width: 11.5vw;
-	font-size: 0.9vw;
-	margin-left: 2.1vw;
-	margin-right: 2.1vw;
+	width: 21.2vw;
 	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
-
 }
-#product-cards .button-item:hover .amount{
+#info-block .button-item:hover .amount{
 	display: flex;
 }
-#product-cards span{
+#info-block span{
 	color: black;
 	padding-right: 0.5vw;
 }
