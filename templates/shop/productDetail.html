@@ -63,7 +63,7 @@
                                 {% for image in complementaryImages %}
                                     {% for product in image.product.all %}
                                         {% if size == product %}
-                                            <div class="size-select-item"><img src="{{ image.image.url }}" alt="#"><a href="{% url 'productDetail' size %}">{{ size }}</a></div>
+                                            <div class="size-select-item"><img src="{{ image.image.url }}" alt="#"><a href="{% url 'productDetail' size %}">{{ size.dimensions }}</a></div>
                                         {% endif %}
                                 {% endfor %}
                             {% endfor %}
