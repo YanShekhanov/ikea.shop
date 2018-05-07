@@ -41,7 +41,7 @@
                         {% for image in complementaryImages %}
                             {% for product in image.product.all %}
                                 {% if model == product %}
-                                    <div class="model-select-item"><img src="{{ image.image.url }}" alt="#"><a href="{% url 'productDetail' model %}">{{ model.article_number }}</a></div>
+                                    <div class="model-select-item" onclick="document.location.href='{% url "productDetail" model %}'"><img src="{{ image.image.url }}" alt="#">{{ model.article_number }}</div>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
@@ -54,7 +54,6 @@
             {% endif %}
 
             {% if sizeOptions %}
-                <!--Size Select-->
                     <div class="size-select">
                         <label for="btn-sz-sel-open" id="size-select">Выбор размера <i class="fa fa-arrows" aria-hidden="true"></i></label>
                         <input type="checkbox" id="btn-sz-sel-open">
@@ -63,7 +62,7 @@
                                 {% for image in complementaryImages %}
                                     {% for product in image.product.all %}
                                         {% if size == product %}
-                                            <div class="size-select-item" onclick="document.location.href='{% url "productDetail" size %}'"><img src="{{ image.image.url }}" alt="#">>{{ size.dimensions }}</div>
+                                            <div class="size-select-item" onclick="document.location.href='{% url "productDetail" size %}'"><img src="{{ image.image.url }}" alt="#">{{ size.dimensions }}</div>
                                         {% endif %}
                                 {% endfor %}
                             {% endfor %}
@@ -73,20 +72,6 @@
                             <div class="size-select-item"><img src="images/product-cards/product-1-1.JPG" alt="#">Model 1, 102044</div>
                         </div>
                     </div>
-
-                <!--<p>
-                    <h3>Размеры</h3>
-                    {% for size in sizeOptions %}
-                        {% for image in complementaryImages %}
-                            {% for product in image.product.all %}
-                                {% if size == product %}
-                                    <p><img src="{{ image.image.url }}" class="icon-image">
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                       <a href="{% url 'productDetail' size %}">{{ size }}</a></p>
-                    {% endfor %}
-                </p>-->
             {% endif %}
 
             {% if colorOptions %}
@@ -99,7 +84,7 @@
                         {% for image in complementaryImages %}
                             {% for product in image.product.all %}
                                 {% if color == product %}
-                                    <div class="color-select-item"><img src="{{ image.image.url }}" alt="{{ color.title }}">{{ color.color }}</div>
+                                    <div class="color-select-item" onclick="document.location.href='{% url "productDetail" color %}'"><img src="{{ image.image.url }}" alt="{{ color.title }}">{{ color.color }}</div>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
