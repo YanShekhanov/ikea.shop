@@ -101,7 +101,8 @@
 {% block onload_js %}
     <script>
         $('#cart').on('change', '#product_count', function () {
-            if ($(this).val() === 0){
+            if ($(this).val() == 0){
+                console.log($(this).val());
                 $(this).val('');
                 alert('Введите правильно количество')
             } else {
