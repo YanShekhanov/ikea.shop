@@ -5,7 +5,7 @@
     {% for order in orders %}
         <div class="order">
             <h4>order identificator : {{ order.unique_identificator }}</h4>
-            <h5>summa: {{ order.order_price }}, status: {{ order.get_status_display }}</h5>
+            <h5>summa: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
@@ -16,7 +16,7 @@
 
             {% for order_delivery in orders_delivery %}
                 {% if order_delivery.order == order %}
-                    {{ order_delivery.city }}
+                    Данные для отправки: {{ order_delivery.city }}, {{ order_delivery.get_delivery_method_display|upper }},  {{ order.adres }}, {% if order_delivery.department_number %}{{ order_delivery.department_number }}{% endif %}
                 {% endif %}
             {% endfor %}
         </div>
