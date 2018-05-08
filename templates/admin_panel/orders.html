@@ -24,7 +24,7 @@
                 {% if order_payment.order == order %}
                     Способ оплаты: {{ order_payment.method_readable }}
                 {% endif %}
-            {% endif %}
+            {% endfor %}
         </div>
     {% endfor %}
 {% endblock %}
