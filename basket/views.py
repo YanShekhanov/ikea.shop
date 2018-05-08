@@ -79,7 +79,6 @@ def order_registration(request):
         department_number = request_dict['department_number']
         payment_method = request_dict['payment_method']
         amount = request_dict['amount']
-        print(name)
         try:
             order = Order.objects.get(session_key=request.session.session_key)
             order_regis = OrderRegistration.objects.create(order=order, name=name, sorname=sorname, second_name=second_name,
