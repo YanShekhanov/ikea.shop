@@ -11,7 +11,7 @@
             ﻿<div id="cart-price-total">
                 <div class="cart-name"><h6>Название</h6></div>
                 <div class="amount-cart"><h6>Количество</h6></div>
-                <div class="cart-price"><h6>Цена за 1шт</h6></div>
+                <div class="cart-price"><h6>Цена/ 1шт.</h6></div>
                 <div class="cart-total"><h6>Сумма</h6></div>
 		    </div>
 
@@ -33,10 +33,10 @@
             <div id="cart-offer">
                 <h6>Сумма: {{ order.order_price }} грн.</h6>
                     <div class="button-item">
-                        <a href="" class="btn-1">Оформить заказ</a>
+                        <a href="{% url 'order_registration' %}" class="btn-1">Оформить заказ</a>
                     </div>
                     <div class="button-item-2">
-                        <a href="" class="btn-1">Обновить</a>
+                        <a href="{% url 'show_basket' %}" class="btn-1">Обновить</a>
                     </div>
             </div>
         </div>
@@ -50,9 +50,9 @@
         <div id="cart-item" class="product_card" data-product="<%article_number%>">
             <img src="<%image_url%>">
             <a><%product_title%><br><%article_number%></a>
-            <div class="amount-cart"><h6>Количество:</h6><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
-            <div class="cart-price"><h6>Цена: <br> <%price_per_one%> грн.</h6></div>
-            <div class="cart-total"><h6>Сумма: <br> <%price%>грн.</h6></div>
+            <div class="amount-cart"><h6></h6><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
+            <div class="cart-price"><h6><br> <%price_per_one%> грн.</h6></div>
+            <div class="cart-total"><h6><br> <%price%>грн.</h6></div>
             <i class="fa fa-times-circle" aria-hidden="true" onclick="delete_product_from_basket(event, $(this).parents('.product_card').data('product'))"></i>
         </div>
     </script>
@@ -61,7 +61,7 @@
         <div id="cart-offer">
                 <h6>Сумма: <%summ%> грн.</h6>
             <div class="button-item">
-                <a href="/basket/order_registration/" class="btn-1">Оформить заказ</a>
+                <a href="{% url 'order_registration' %}" class="btn-1">Оформить заказ</a>
             </div>
             <div class="button-item-2">
                 <a href="{% url 'show_basket' %}" class="btn-1">Обновить</a>
