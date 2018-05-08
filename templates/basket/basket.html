@@ -94,7 +94,7 @@
                             alert(data.success.message);
                             refresh_basket();
                         } else if (data.availabilityError){
-                            alert(data.availabilityError.message, 'Доступное количество ', data.availabilityError.availability);
+                            alert(data.availabilityError.message +  'Доступное количество ' + data.availabilityError.availability);
                         } else if (data.serverError){
                             alert(data.serverError.message);
                         }
