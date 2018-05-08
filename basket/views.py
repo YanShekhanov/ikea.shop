@@ -116,6 +116,7 @@ def change_product(request):
         count = request.POST['count']
         product_article_number = request.POST['product_article_number']
 
+        #проверяем на доступность продукт
         #check_availability
         product_availability = availability(product_article_number)
         if product_availability.get('availability'):
