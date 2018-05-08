@@ -16,7 +16,7 @@
 
             {% for order_delivery in orders_delivery %}
                 {% if order_delivery.order == order %}
-                    Данные для отправки: {{ order_delivery.city }}, {{ order_delivery.delivery_readable|upper }},  {{ order.adres }}, {% if order_delivery.department_number %}{{ order_delivery.department_number }}{% endif %}
+                    Данные для отправки: {{ order_delivery.city }}, {{ order_delivery.delivery_readable }},  {{ order.adres }}, {% if order_delivery.department_number %}{{ order_delivery.department_number }}{% endif %}
                 {% endif %}
             {% endfor %}
         </div>
