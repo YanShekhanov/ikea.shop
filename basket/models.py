@@ -59,6 +59,9 @@ class DeliveryMethod(models.Model):
     adres = models.CharField(max_length=64, default=None, blank=True, null=True)
     department_number = models.SmallIntegerField(default=0, blank=True, null=True)
 
+    def method_readable(self):
+        return dict(DeliveryMethod.methods)[self.delivery_method]
+
 class PaymentMethod(models.Model):
     methods = ((0, 'Полная оплата'), (1, 'Частичная оплата'), (2, 'Наложенный платеж'))
     order = models.OneToOneField(Order, on_delete=models.CASCADE, verbose_name='order')
