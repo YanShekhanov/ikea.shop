@@ -322,19 +322,24 @@ from bs4 import BeautifulSoup
 def check_availability(request):
     response_dict = {}
     if request.method == 'POST' and request.is_ajax():
-        print(request.POST['article_number'])
-        url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (request.POST['article_number'])
-        request = requests.get(url).text
-        product_soup = BeautifulSoup(request, 'xml')
-        try:
-            availability = product_soup.find('localStore', buCode='311').find('availableStock').text
-            if int(availability) == 0:
-                response_dict['successMessage'] = 'К сожалению этот продукт не доступен'
-            else:
-                response_dict['availability'] = availability
-        except AttributeError:
-            response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
+        response_dict = availability(request.POST['article_number'])
         return JsonResponse(response_dict)
+
+def availability(article_number):
+    response_dict = {}
+    url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (article_number)
+    request = requests.get(url).text
+    product_soup = BeautifulSoup(request, 'xml')
+    try:
+        availability = product_soup.find('localStore', buCode='311').find('availableStock').text
+        if int(availability) == 0:
+            response_dict['successMessage'] = 'К сожалению этот продукт не доступен'
+        else:
+            response_dict['availability'] = availability
+    except AttributeError:
+        response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
+    return response_dict
+
 
 #translate query
 def translate_query(request):
