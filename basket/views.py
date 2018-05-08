@@ -108,16 +108,30 @@ def order_registration(request):
     else:
         raise Http404()
 
+from shop.views import availability
 #ajax изменения кол-ва продукта в корзине
 def change_product(request):
+    response_dict = {}
     if request.method == 'POST' and request.is_ajax():
         count = request.POST['count']
         product_article_number = request.POST['product_article_number']
-        product_in_order = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
-                                                      order=Order.objects.get(session_key=request.session.session_key))
-        product_in_order.count = count
-        product_in_order.save()
-        return JsonResponse({'success_message':'okey'})
+
+        #check_availability
+        product_availability = availability(product_article_number)
+        if product_availability.get('availability'):
+            if int(count > product_availability):
+                response_dict['availabilityError'] = {'message': u'Введенное количество привышает доступное', 'availability':product_availability}
+            else:
+                product_in_order = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
+                                                              order=Order.objects.get(session_key=request.session.session_key))
+                product_in_order.count = count
+                product_in_order.save()
+                response_dict['success'] = {'message': u'Количество изменено'}
+        else:
+            response_dict['serverError'] = {'message': u'Повторите попытку позже или обратитесь к администратору'}
+    else:
+        response_dict['methodError'] = "Bad request"
+    return JsonResponse(response_dict)
 
 #ajax удаление продукта с корзины
 def delete_product_from_basket(request):

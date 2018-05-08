@@ -90,7 +90,14 @@
                         "count":count,
                     },
                     success:function (data) {
-                        refresh_basket();
+                        if (data.success){
+                            alert(data.success.message);
+                            refresh_basket();
+                        } else if (data.availabilityError){
+                            alert(data.availabilityError.message, 'Доступное количество ', data.availabilityError.availability);
+                        } else if (data.serverError){
+                            alert(data.serverError.message);
+                        }
                     },
                     error:function () {
                         alert('Ошибка сервера, попробуйте еще раз')
