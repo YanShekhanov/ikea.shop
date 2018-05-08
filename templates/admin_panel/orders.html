@@ -16,9 +16,15 @@
 
             {% for order_delivery in orders_delivery %}
                 {% if order_delivery.order == order %}
-                    Данные для отправки: {{ order_delivery.city }}, {{ order_delivery.method_readable }},  {{ order.adres }}, {% if order_delivery.department_number %}{{ order_delivery.department_number }}{% endif %}
+                    Данные для отправки: {{ order_delivery.method_readable }}
                 {% endif %}
             {% endfor %}
+
+            {% for order_payment in orders_payment %}
+                {% if order_payment.order == order %}
+                    Способ оплаты: {{ order_payment.method_readable }}
+                {% endif %}
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}

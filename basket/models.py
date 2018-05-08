@@ -60,13 +60,25 @@ class DeliveryMethod(models.Model):
     department_number = models.SmallIntegerField(default=0, blank=True, null=True)
 
     def method_readable(self):
-        return dict(DeliveryMethod.methods)[self.delivery_method]
+        if self.delivery_method == 1 or self.delivery_method == 3 or self.delivery_method == 5 or self.delivery_method ==7:
+            str = '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, self.adres )
+            return str
+        else:
+            str = '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, str(self.department_number))
+            return str
 
 class PaymentMethod(models.Model):
     methods = ((0, 'Полная оплата'), (1, 'Частичная оплата'), (2, 'Наложенный платеж'))
     order = models.OneToOneField(Order, on_delete=models.CASCADE, verbose_name='order')
-    payment_method = models.CharField(max_length=32, choices=methods, blank=False, null=True, default=None)
+    payment_method = models.SmallIntegerField(choices=methods, blank=False, null=True, default=None)
     amount = models.SmallIntegerField(blank=True, null=True, default=0)
+
+    def method_readable(self):
+        if self.payment_method == 0 or self.payment_method == 2:
+            return dict(PaymentMethod.methods)[self.payment_method]
+        elif self.payment_method == 1:
+            return '%s, сумма: %i' % (dict(PaymentMethod.methods)[self.payment_method], self.amount)
+
 
 
 
