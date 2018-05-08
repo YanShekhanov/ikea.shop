@@ -120,7 +120,7 @@ def change_product(request):
         product_availability = availability(product_article_number)
         if product_availability.get('availability'):
             if int(count) > int(product_availability.get('availability')):
-                response_dict['availabilityError'] = {'message': u'Введенное количество привышает доступное', 'availability':product_availability}
+                response_dict['availabilityError'] = {'message': u'Введенное количество привышает доступное', 'availability':product_availability.get('availability')}
             else:
                 product_in_order = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
                                                               order=Order.objects.get(session_key=request.session.session_key))
