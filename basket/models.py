@@ -61,11 +61,9 @@ class DeliveryMethod(models.Model):
 
     def method_readable(self):
         if self.delivery_method == 1 or self.delivery_method == 3 or self.delivery_method == 5 or self.delivery_method ==7:
-            str = '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, self.adres )
-            return str
+            return '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, self.adres )
         else:
-            str = '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, str(self.department_number))
-            return str
+            return '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, str(self.department_number))
 
 class PaymentMethod(models.Model):
     methods = ((0, 'Полная оплата'), (1, 'Частичная оплата'), (2, 'Наложенный платеж'))
