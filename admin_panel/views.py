@@ -24,3 +24,8 @@ class DisplayOrders(ListView):
         context['orders_delivery'] = orders_delivery
         context['orders_payment'] = orders_payment
         return context
+
+def order_detail(request):
+    if request.method == 'POST' and request.is_ajax():
+        print(request.POST['unique_identificator'])
+        return True
