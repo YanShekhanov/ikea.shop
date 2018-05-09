@@ -43,7 +43,7 @@
             <div class="price-search">
 				<i class="fa fa-shopping-basket" aria-hidden="true" onclick="document.location.href='{% url "show_basket" %}'"></i>
                 <img class="money-icon" src="{% static 'icons/uah-cash-icon.png' %}">
-				<h6 class="price">({{ product_count }}) {{ order_price }}</h6>
+                <h6 class="price"><span style="font-size: 12px" id="product_count">({{ product_count }})</span> <span id="price">{{ order_price }}</span></h6>
                 <input class="search-form" placeholder="Поиск..." />
                 <!--ясику задание-->
                 <ul id="searched_query" style="overflow: scroll; max-height: 100px;"></ul>
