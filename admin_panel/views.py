@@ -27,6 +27,8 @@ class DisplayOrders(ListView):
         context['orders_payment'] = orders_payment
         return context
 
+from ikea_parser.models import ProductImage
+from basket.models import ProductInOrder, Order
 def order_detail(request):
     response_dict = {}
     if request.method == 'POST' and request.is_ajax():
@@ -34,7 +36,7 @@ def order_detail(request):
         order = Order.objects.get(unique_identificator=request.POST['unique_identificator'])
         products_in_order = ProductInOrder.objects.filter(order=order).order_by('-created')
         for product in products_in_order:
-            image = Product.objects.filter(product=product.product, size=250).first()
+            image = ProductImage.objects.filter(product=product.product, size=250).first()
             one_product_dict = {
                 'title':product.product.title,
                 'article_number':product.product.article_number,
