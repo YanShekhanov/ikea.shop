@@ -66,9 +66,8 @@
             var product_template = template;
             for (i=0; i<data.length; i++){
                 query = data[i];
-                console.log(query.image);
                 rendered_data = {
-                    image: query.image,
+                    image_url: query.image,
                     title: query.title,
                     article_number:query.article_number,
                     price_per_one:query.price_per_one,
