@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView
 from basket.models import *
+from django.shortcut import render, redirect, reverse, JsonResponse
 
 class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
@@ -28,4 +29,4 @@ class DisplayOrders(ListView):
 def order_detail(request):
     if request.method == 'POST' and request.is_ajax():
         print(request.POST['unique_identificator'])
-        return True
+        return JsonResponse({'data':True})
