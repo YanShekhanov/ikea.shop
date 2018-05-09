@@ -4,8 +4,8 @@
 {% block content %}
     {% for order in orders %}
         <div class="order">
-            <h4>order identificator : {{ order.unique_identificator }}</h4>
-            <h5>summa: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
+            <h4>Уникальный идентификатор : {{ order.unique_identificator }}</h4>
+            <h5>Общая стоимость: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
@@ -25,6 +25,36 @@
                     Способ оплаты: {{ order_payment.method_readable }}
                 {% endif %}
             {% endfor %}
+
+            <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
+
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block onload_js %}
+    <script>
+        $('body').on('click', 'show_product_in_order', function () {
+            var unique_identificator = $(this).data('unique_identificator'),
+                token = $('input[name="csrfmiddlewaretoken"]').val();
+            alert(unique_identificator);
+            alert(token);
+
+            $.ajax({
+                url: '{% url "order_detail" %}',
+                method: 'POST',
+                data:{
+                    'csrfmiddlewaretoken':token,
+                    'unique_identificator':unique_identificator,
+                },
+                success: function () {
+                    alert('ok');
+                },
+                error:function () {
+                    alert('error');
+                }
+            })
+
+        })
+    </script>
 {% endblock %}
