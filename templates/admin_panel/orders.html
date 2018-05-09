@@ -32,12 +32,18 @@
     {% endfor %}
 {% endblock %}
 
+{% block templates %}
+    <script type="text/productTemplate" id="product_template">
+        <img src="<%image%>"><%title%>, <%article_number%>, count: <%count%>, per one: <%price_per_one%>, summ: <%price%>
+    </script>
+{% endblock %}
+
 {% block onload_js %}
     <script>
         $('body').on('click', '.show_product_in_order', function () {
             var unique_identificator = $(this).data('order_identificator'),
-                token = $('input[name="csrfmiddlewaretoken"]').val();
-
+                token = $('input[name="csrfmiddlewaretoken"]').val(),
+                template = document.getElementById('product_template').innerHTML;
             $.ajax({
                 url: '{% url "order_detail" %}',
                 method: 'POST',
@@ -46,13 +52,31 @@
                     'unique_identificator':unique_identificator,
                 },
                 success: function (data) {
-                    console.log(data);
+                    render_products(data.products, template);
                 },
                 error:function () {
                     alert('error');
                 }
             })
 
-        })
+        });
+
+        function render_products(data, template) {
+            Mustache.tags = ['<%','%>'];
+            var product_template = template;
+            for (i=0; i<data.length; i++){
+                var query = data[i];
+                rendered_data = {
+                    'image': query.image,
+                    'title': query.title,
+                    'article_number':query.article_number,
+                    'price_per_one':query.price_per_one,
+                    'price':query.price,
+                    'count':query.count,
+                };
+                var rendered_template = Mustache.render(product_template, rendered_data);
+                console.log(rendered_template);
+            }
+        }
     </script>
 {% endblock %}
