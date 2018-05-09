@@ -37,6 +37,7 @@ def order_detail(request):
         products_in_order = ProductInOrder.objects.filter(order=order).order_by('-created')
         for product in products_in_order:
             image = ProductImage.objects.filter(product=product.product, size=250).first()
+            print(image.image.url)
             one_product_dict = {
                 'title':product.product.title,
                 'article_number':product.product.article_number,
