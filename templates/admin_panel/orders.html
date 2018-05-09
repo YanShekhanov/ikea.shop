@@ -65,8 +65,7 @@
             Mustache.tags = ['<%','%>'];
             var product_template = template;
             for (i=0; i<data.length; i++){
-                var query = data[i];
-                console.log(data[i]);
+                query = data[i];
                 rendered_data = {
                     'image': query.image,
                     'title': query.title,
