@@ -159,7 +159,7 @@
     function refresh_basket_price(token){
             $.ajax({
                 url: '/basket/refresh_basket_price/',
-                method: 'get',
+                method: 'POST',
                 data: {
                     'csrfmiddlewaretoken':token
                 },
