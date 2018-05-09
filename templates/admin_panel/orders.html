@@ -37,8 +37,6 @@
         $('body').on('click', '.show_product_in_order', function () {
             var unique_identificator = $(this).data('order_identificator'),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
-            alert(unique_identificator);
-            alert(token);
 
             $.ajax({
                 url: '{% url "order_detail" %}',
@@ -47,8 +45,8 @@
                     'csrfmiddlewaretoken':token,
                     'unique_identificator':unique_identificator,
                 },
-                success: function () {
-                    alert('ok');
+                success: function (data) {
+                    console.log(data);
                 },
                 error:function () {
                     alert('error');
