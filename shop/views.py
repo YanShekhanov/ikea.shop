@@ -36,7 +36,12 @@ class MainInfo(TemplateView):
         context['RoomsPlaces'] = rooms_places
 
         #basket
-        order = Order.objects.get(session_key=self.request.session.session_key)
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+        try:
+            order = Order.objects.get(session_key=self.request.session.session_key)
+        except Order.DoesNotExist:
+            order = Order.objects.create(session_key=self.request.session.session_key)
         context['order_price'] = order.order_price
         context['product_count'] = len(list(ProductInOrder.objects.filter(order=order)))
         return context
