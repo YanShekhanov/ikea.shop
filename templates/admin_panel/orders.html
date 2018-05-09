@@ -67,12 +67,12 @@
             for (i=0; i<data.length; i++){
                 query = data[i];
                 rendered_data = {
-                    'image': query.image,
-                    'title': query.title,
-                    'article_number':query.article_number,
-                    'price_per_one':query.price_per_one,
-                    'price':query.price,
-                    'count':query.count,
+                    image: query.image,
+                    title: query.title,
+                    article_number:query.article_number,
+                    price_per_one:query.price_per_one,
+                    price:query.price,
+                    count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
                 console.log(rendered_template);
