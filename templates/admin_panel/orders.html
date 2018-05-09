@@ -3,7 +3,7 @@
 
 {% block content %}
     {% for order in orders %}
-        <div class="order">
+        <div class="order" id="{{ order.unique_identificator }}">
             <h4>Уникальный идентификатор : {{ order.unique_identificator }}</h4>
             <h5>Общая стоимость: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
             {% for order_info in orders_info %}
@@ -66,7 +66,8 @@
             Mustache.tags = ['<%','%>'];
             var product_template = template;
             for (i=0; i<data.length; i++){
-                var query = data[i];
+                var query = data[i],
+                    unique_identificator = query.unique_identificator;
                 rendered_data = {
                     image_url: query.image,
                     title: query.title,
@@ -76,7 +77,7 @@
                     count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
-                $('.products').append(rendered_template);
+                $('#' + unique_identificator).append(rendered_template);
             }
         }
     </script>
