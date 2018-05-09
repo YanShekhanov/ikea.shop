@@ -148,11 +148,29 @@
                 },
                 success: function (data) {
                     callback(data);
+                    refresh_basket_price(token);
                 },
                 error: function () {
                     console.log('error');
                 }
             })
+    }
+
+    function refresh_basket_price(token){
+            $.ajax({
+                url: '/basket/refresh_basket_price/',
+                method: 'get',
+                data: {
+                    'csrfmiddlewaretoken':token
+                },
+                success:function (data) {
+                    console.log(data);
+                },
+                error:function (data) {
+                    console.log(data);
+                },
+            })
+
     }
 
 
