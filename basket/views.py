@@ -201,3 +201,13 @@ def refresh_basket(request):
             'order_price':order.order_price,
         }
         return JsonResponse(response_dict)
+
+def refresh_basket_price(request):
+    response_dict = {}
+    if request.method == 'get' and request.is_ajax():
+        order = Order.objetcs.get(session_key=request.session.session_key)
+        response_dict['order'] = {'order_price':order.order_price, 'product_count':len(list(ProductInOrder.objects.filter(order=order)))}
+        return JsonResponse(response_dict)
+    else:
+        response_dict['methodError'] = 'Bad request'
+        raise Http404(response_dict)
