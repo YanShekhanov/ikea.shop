@@ -34,7 +34,7 @@
 
 {% block onload_js %}
     <script>
-        $('body').on('click', 'show_product_in_order', function () {
+        $('body').on('click', '.show_product_in_order', function () {
             var unique_identificator = $(this).data('unique_identificator'),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
             alert(unique_identificator);
