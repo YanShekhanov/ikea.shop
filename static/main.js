@@ -164,7 +164,8 @@
                     'csrfmiddlewaretoken':token
                 },
                 success:function (data) {
-                    console.log(data);
+                    $('#product_count').html(data.order.product_count);
+                    $('#price').html(data.order.price);
                 },
                 error:function (data) {
                     console.log(data);
