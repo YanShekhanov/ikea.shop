@@ -16,6 +16,7 @@ def redirect_to_home(request):
     home_page = 'catalogue'
     return redirect(reverse(home_page))
 
+from basket.models import Order, ProductInOrder
 class MainInfo(TemplateView):
     template_name = 'shop_template.html'
 
@@ -33,6 +34,11 @@ class MainInfo(TemplateView):
                 rooms_places.append(room_place)
         context['Rooms'] = rooms
         context['RoomsPlaces'] = rooms_places
+
+        #basket
+        order = Order.objects.get(session_key=self.request.session.session_key)
+        context['order_price'] = order.order_price
+        context['product_count'] = len(list(ProductInOrder.objects.filter(order=order)))
         return context
 
 #главная страница
