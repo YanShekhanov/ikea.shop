@@ -25,6 +25,7 @@
                     Способ оплаты: {{ order_payment.method_readable }}
                 {% endif %}
             {% endfor %}
+            <div class="products"></div>
 
             <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
 
@@ -75,7 +76,7 @@
                     count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
-                console.log(rendered_template);
+                $('.products').append(rendered_template);
             }
         }
     </script>
