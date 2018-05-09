@@ -47,7 +47,7 @@ def order_detail(request):
                 'image':image.image.url,
             }
             products_list.append(one_product_dict)
-        response_dict = {'success':True, 'products':products_list}
+        response_dict = {'success':True, 'unique_identificator':order.unique_identificator, 'products':products_list}
         return JsonResponse(response_dict)
     else:
         response_dict['methodError'] = 'Bad request'
