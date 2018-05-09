@@ -106,6 +106,7 @@
                 unique_identificator:product_query.unique_identificator,
             };
             var rendered_html = Mustache.render(template, rendered_data);
+            console.log(rendered_html);
             $('#product-cards').append(rendered_html);
         }
 
