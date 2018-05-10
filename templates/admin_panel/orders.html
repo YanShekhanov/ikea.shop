@@ -45,6 +45,7 @@
             var unique_identificator = $(this).data('order_identificator'),
                 token = $('input[name="csrfmiddlewaretoken"]').val(),
                 template = document.getElementById('product_template').innerHTML;
+                console.log(unique_identificator);
             $.ajax({
                 url: '{% url "order_detail" %}',
                 method: 'POST',
