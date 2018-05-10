@@ -28,7 +28,7 @@
             <div class="products"></div>
 
             <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
-            <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Скрыть детали заказа</button>
+            <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>
 
         </div>
     {% endfor %}
@@ -85,6 +85,7 @@
 
             //кнопка меняет содержимое
             button.hide();
+            console.log(button);
             button.siblings('.close_product_in_order').show();
 
         }
