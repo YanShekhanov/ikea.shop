@@ -1,7 +1,8 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, FormView
 from basket.models import *
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
+from .forms import ChangeStatusForm
 
 class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
@@ -25,7 +26,14 @@ class DisplayOrders(ListView):
         context['orders_info'] = orders_info
         context['orders_delivery'] = orders_delivery
         context['orders_payment'] = orders_payment
+        context['change_order_status_form'] = ChangeStatusForm
         return context
+
+    def post(self, *args, **kwargs):
+        form = self.get_form(self.form_class)
+        if form.is_valid():
+            print(form.cleaned_data['status', ''])
+            return redirect(reverse('home'))
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
@@ -52,3 +60,6 @@ def order_detail(request):
     else:
         response_dict['methodError'] = 'Bad request'
         raise Http404(response_dict)
+
+def change_order_status(request):
+    form =
