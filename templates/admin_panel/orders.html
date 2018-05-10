@@ -47,7 +47,8 @@
         $('body').on('click', '.show_product_in_order', function () {
             var unique_identificator = $(this).data('order_identificator'),
                 token = $('input[name="csrfmiddlewaretoken"]').val(),
-                template = document.getElementById('product_template').innerHTML;
+                template = document.getElementById('product_template').innerHTML,
+                button = $(this);
             $.ajax({
                 url: '{% url "order_detail" %}',
                 method: 'POST',
@@ -56,7 +57,7 @@
                     'unique_identificator':unique_identificator,
                 },
                 success: function (data) {
-                    render_products(data, template, $(this));
+                    render_products(data, template, button);
                 },
                 error:function () {
                     alert('error');
