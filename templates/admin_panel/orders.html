@@ -8,7 +8,7 @@
             <h5>Общая стоимость: {{ order.order_price }},
                 status: <form class="change_order_status" method="POST">{% csrf_token %}
                 {{ change_order_status_form.status }}
-                    <input type="submit" value="Сохранить">
+                    <input type="submit" value="Сохранить" style="display: none;">
                 </form>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
@@ -50,15 +50,16 @@
     <script>
         //изменения статуса заказа
         $('.order').on('change', 'select[name="status"]', function () {
-            var form = $(this).parents('form'),
-                status = $(this).val(),
-                unique_identificator = $(this).parents('.order').attr('id'),
-                token = $('input[name="csrfmiddlewaretoken"]').val();
-            console.log(status, unique_identificator, token);
-            $('.order').on('submit', function (e) {
+            $form = $(this).parents('form');
+            $form.find('input[type="submit"]').show();
+            $form.submit(function (e) {
                 e.preventDefault();
-                console.log(status, unique_identificator);
+                var status = $(this).find('input[name="status"]').val(),
+                    unique_identificator = $(this).parents('.order').attr('id'),
+                    token = $('input[name="csrfmiddlewaretoken"]').val();
+                console.log(status, unique_identificator, token);
             })
+            });
 
         });
 
