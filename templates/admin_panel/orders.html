@@ -77,7 +77,7 @@
                     count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
-                document.getElementById(unique_identificator).append(rendered_template);
+                document.getElementById(unique_identificator).find('.products').append(rendered_template);
             }
         }
     </script>
