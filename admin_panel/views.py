@@ -62,4 +62,6 @@ def order_detail(request):
         raise Http404(response_dict)
 
 def change_order_status(request):
-    pass
+    response_dict = {}
+    if request.method == "POST" and request.is_ajax():
+        status = request.POST['status']

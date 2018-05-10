@@ -5,10 +5,11 @@
     {% for order in orders %}
         <div class="order" id="{{ order.unique_identificator }}">
             <h4>Уникальный идентификатор : {{ order.unique_identificator }}</h4>
-            <h5>Общая стоимость: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
-            <form class="change_order_status" method="POST">{% csrf_token %}
+            <h5>Общая стоимость: {{ order.order_price }},
+                status: <form class="change_order_status" method="POST">{% csrf_token %}
                 {{ change_order_status_form.status }}
-            </form>
+                </form>
+                <button>Сохранить</button></h5>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
@@ -47,6 +48,14 @@
 
 {% block onload_js %}
     <script>
+        //изменения статуса заказа
+        ('.order').on('change', 'select[name="status"]', function () {
+            var status = $(this).val(),
+                unique_identificator = $(this).parents('.order').attr('id'),
+                token = $('input[name="csrfmiddlewaretoken"]').val();
+            console.log(status, unique_identificator, token);
+        });
+
         $('body').on('click', '.show_product_in_order', function () {
             var unique_identificator = $(this).data('order_identificator'),
                 token = $('input[name="csrfmiddlewaretoken"]').val(),
