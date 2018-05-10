@@ -86,15 +86,15 @@
 
             //кнопка меняет содержимое
             button.hide();
-            console.log(button);
             button.siblings('.close_product_in_order').show();
+            button.siblings('.products').show();
 
         }
 
         //зыкрытие дополнительных товаров
         $('body').on('click', '.close_product_in_order', function () {
             $(this).hide();
-            $('.product').hide();
+            $('.products').hide();
             $(this).siblings('.show_product_in_order').show();
         })
     </script>
