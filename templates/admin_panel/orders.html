@@ -6,6 +6,9 @@
         <div class="order" id="{{ order.unique_identificator }}">
             <h4>Уникальный идентификатор : {{ order.unique_identificator }}</h4>
             <h5>Общая стоимость: {{ order.order_price }}, status: {{ order.get_status_display|upper }}<button value="{{ order.unique_identificator }}">Изменить</button></h5>
+            <form class="change_order_status" method="POST">{% csrf_token %}
+                {{ change_order_status_form.status }}
+            </form>
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
