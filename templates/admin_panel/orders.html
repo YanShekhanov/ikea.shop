@@ -28,6 +28,7 @@
             <div class="products"></div>
 
             <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
+            <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Скрыть детали заказа</button>
 
         </div>
     {% endfor %}
@@ -35,7 +36,9 @@
 
 {% block templates %}
     <script type="text/productTemplate" id="product_template">
-        <img src="<%image_url%>"><%title%>, <%article_number%>, count: <%count%>, per one: <%price_per_one%>, summ: <%price%>
+        <div class="product" id="<%article_number%>">
+            <img src="<%image_url%>"><%title%>, <%article_number%>, count: <%count%>, per one: <%price_per_one%>, summ: <%price%>
+        </div>
     </script>
 {% endblock %}
 
@@ -53,7 +56,7 @@
                     'unique_identificator':unique_identificator,
                 },
                 success: function (data) {
-                    render_products(data, template);
+                    render_products(data, template. $(this));
                 },
                 error:function () {
                     alert('error');
@@ -62,7 +65,7 @@
 
         });
 
-        function render_products(data, template) {
+        function render_products(data, template, button) {
             Mustache.tags = ['<%','%>'];
             var product_template = template;
             for (i=0; i<data.products.length; i++){
@@ -79,6 +82,18 @@
                 var rendered_template = Mustache.render(product_template, rendered_data);
                 $('#' + unique_identificator).find('.products').append(rendered_template);
             }
+
+            //кнопка меняет содержимое
+            button.hide();
+            button.siblings('.close_product_in_order').show();
+
         }
+
+        //зыкрытие дополнительных товаров
+        $('body').on('click', '.close_product_in_order', function () {
+            $(this).hide();
+            $('.product').hide();
+            $(this).siblings('.show_product_in_order').show();
+        })
     </script>
 {% endblock %}
