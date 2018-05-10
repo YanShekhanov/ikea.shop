@@ -95,6 +95,7 @@
         $('body').on('click', '.close_product_in_order', function () {
             $(this).hide();
             $('.products').hide();
+            $('.product').remove();
             $(this).siblings('.show_product_in_order').show();
         })
     </script>
