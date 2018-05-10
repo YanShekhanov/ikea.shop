@@ -53,7 +53,7 @@
                     'unique_identificator':unique_identificator,
                 },
                 success: function (data) {
-                    render_products(data.products, template);
+                    render_products(data, template);
                 },
                 error:function () {
                     alert('error');
@@ -65,9 +65,9 @@
         function render_products(data, template) {
             Mustache.tags = ['<%','%>'];
             var product_template = template;
-            for (i=0; i<data.length; i++){
-                var query = data[i],
-                    unique_identificator = query.unique_identificator;
+            for (i=0; i<data.products.length; i++){
+                var query = data.products[i],
+                    unique_identificator = data.unique_identificator;
                 rendered_data = {
                     image_url: query.image,
                     title: query.title,
