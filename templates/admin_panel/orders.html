@@ -49,7 +49,7 @@
 {% block onload_js %}
     <script>
         //изменения статуса заказа
-        ('.order').on('change', 'select[name="status"]', function () {
+        $('.order').on('change', 'select[name="status"]', function () {
             var status = $(this).val(),
                 unique_identificator = $(this).parents('.order').attr('id'),
                 token = $('input[name="csrfmiddlewaretoken"]').val();
