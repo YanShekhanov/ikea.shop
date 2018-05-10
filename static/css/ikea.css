@@ -108,6 +108,7 @@ h1:before {
 	margin: 0;
 	margin-top: 0.9vw;
 	font-size: 2vw;
+	cursor: pointer;
 }
 .amount-circle{
 	position: absolute;
@@ -128,6 +129,7 @@ h1:before {
 	font-size: 0.9vw;
 	font-family: verdana;
 	font-weight: bold;
+	cursor: pointer;
 }
 .price{
     float: right;
@@ -138,6 +140,7 @@ h1:before {
     font: sans-serif;
     font-weight: bold;
     font-style: italic;
+    cursor: pointer;
 }
 .money-icon{
     float: right;
@@ -146,7 +149,8 @@ h1:before {
     width: 1.7vw;
     margin-top: 1.9vw;
     margin-left: 0.3vw;
-    margin-right: 7.3vw
+    margin-right: 7.3vw;
+    cursor: pointer;
 }
 .search-form {
     display: inline-block;
