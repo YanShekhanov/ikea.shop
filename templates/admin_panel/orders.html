@@ -25,7 +25,7 @@
                     Способ оплаты: {{ order_payment.method_readable }}
                 {% endif %}
             {% endfor %}
-            <div class="products"></div>
+            <div class="products" style="display: none"></div>
 
             <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
             <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>
