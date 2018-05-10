@@ -104,9 +104,30 @@ h1:before {
     margin-bottom: 0.5vw;
 }
 .fa-shopping-basket{
+	position: relative;
 	margin: 0;
 	margin-top: 0.9vw;
 	font-size: 2vw;
+}
+.amount-circle{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 1.5vw;
+	width: auto;
+	min-height: 1.5vw;
+	height: auto;
+	padding-bottom: 0.1vw;
+	padding-left: 0.1vw;
+	padding-right: 0.1vw;
+	border-radius: 100%;
+	background-color: #FF6C00;
+	top: -0.8vw;
+	right: -0.3vw;
+	font-size: 0.9vw;
+	font-family: verdana;
+	font-weight: bold;
 }
 .price{
     float: right;
