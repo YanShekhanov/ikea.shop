@@ -106,7 +106,6 @@
                 unique_identificator:product_query.unique_identificator,
             };
             var rendered_html = Mustache.render(template, rendered_data);
-            console.log(rendered_html);
             $('#product-cards').append(rendered_html);
         }
 
@@ -175,46 +174,6 @@
             })
 
     }
-
-    //ajax загрузка изображений артикула
-        $('body').on('click', '.get-all-images', function (){
-            var token = $('input[name="csrfmiddlewaretoken"]').val();
-            var unique_identificator = $(this).data('unique_identificator');
-            console.log(unique_identificator);
-
-            $.ajax({
-                url: "{% url 'get_all_product_images' %}",
-                method: 'post',
-                data: {
-                    'csrfmiddlewaretoken':token,
-                    'unique_identificator':unique_identificator
-                },
-                success: function (data) {
-                    $block_to_paste_images = $('.img-block');
-                    $block_to_paste_images.slideDown(function () {
-                        $('.big-image').append('<img class="big-img-item" src="' + data.images[0] + '" alt="#">');
-                        for (i=0; i<data.images.length; i++) {
-                            $('.mini-img-list').append('<img class="mini-img" src="' + data.images[i] + '" alt="#">');
-                    };
-
-                    });
-                }
-
-            });
-
-            //клик на маленькое изображение и загрузка большого
-            $('.img-block').on('click', '.mini-img', function() {
-                var img=$(this);
-                $('.big-img-item').attr('src', img.attr('src'));
-            });
-
-            //закрытие блока с загруженными изображениями
-            $('#close_images_icon').click(function () {
-                console.log('ok');
-                $('.img-block').find('img').remove();
-                $('.img-block').slideUp();
-            });
-        });
 
 
 
