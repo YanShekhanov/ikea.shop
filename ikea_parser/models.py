@@ -140,6 +140,7 @@ class RoomExample(models.Model):
     room_place = models.ForeignKey(RoomPlace, on_delete=models.CASCADE, verbose_name='часть комнаты')
     title = models.CharField(max_length=512, null=True, default=None, blank=False, verbose_name='название')
     products = models.CharField(max_length=1024, null=True, default=None, blank=True, verbose_name='продукты')
+    unique_identificator = models.CharField(max_length=8, null=True, default=None, blank=True, verbose_name='идентификатор')
 
 class ExampleImage(models.Model):
     example = models.ForeignKey(RoomExample, on_delete=models.CASCADE, verbose_name='комната')

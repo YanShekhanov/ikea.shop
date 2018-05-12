@@ -222,6 +222,18 @@ class RoomPlaceDetail(MainInfo, DetailView):
         print(context['examplesImages'])
         return context
 
+class ExampleDetail(MainInfo, DetailView):
+    template_name = 'shop/example_detail.html'
+    model = RoomExample
+    context_object_name = 'room'
+    slug_url_kwarg = 'unique_identificator'
+    slug_field = 'unique_identificator'
+
+    def get_context_data(self, **kwargs):
+        self.object = self.get_object()
+        context = super(ExampleDetail, self).get_context_data(**kwargs)
+        return context
+
 #!!!!!!!!!!!!!!!!!!!!!!
 #парсинг артикула по номеру артикула
 class DownloadOneProductInformation(FormView):
@@ -327,6 +339,7 @@ def get_all_product_images(request):
         'productDimensions':product.dimensions,}
     return JsonResponse(data=json_response)
 
+#по запросу POST
 import requests
 from bs4 import BeautifulSoup
 #ajax проверка наличия
@@ -336,6 +349,7 @@ def check_availability(request):
         response_dict = availability(request.POST['article_number'])
         return JsonResponse(response_dict)
 
+#через передавваемый аргумент
 def availability(article_number):
     response_dict = {}
     url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (article_number)

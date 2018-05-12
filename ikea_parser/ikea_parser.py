@@ -715,7 +715,7 @@ def parse_examples(query):
     url = query.ikea_url
     html = BeautifulSoup(requests.get(url).text, 'lxml')
     examples = html.find_all('div', class_='roomblock')
-    print(query.ikea_url)
+    print('___________________' + query.ikea_url)
     for example in examples:
         start_load = True
         example_url = DOMAIN + example.find('a').get('href')
@@ -748,11 +748,11 @@ def parse_examples(query):
                 created_room = RoomExample.objects.get(title=example_title, room_place=query)
                 continue_ = False
             except RoomExample.DoesNotExist:
-                created_room = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save)
+                created_room = RoomExample.objects.create(room_place=query, title=example_title, products=products_in_example_to_save, unique_identificator=create_identificator(8))
             if continue_:
                 #small image
                 try:
-                    ExampleImage.objects.get(title=small_image_title, example=created_room)
+                    ExampleImage.objects.get(title=small_image_title, example=created_room, is_presentation=True)
                 except ExampleImage.DoesNotExist:
                     image_page = requests.get(example_small_image).content
                     image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + small_image_title), 'wb')
@@ -761,7 +761,7 @@ def parse_examples(query):
                     ExampleImage.objects.create(image='rooms_examples/' + small_image_title, title=small_image_title, example=created_room, is_presentation=True)
                 #big image
                 try:
-                    ExampleImage.objects.get(title=big_image_title, example=created_room)
+                    ExampleImage.objects.get(title=big_image_title, example=created_room, is_presentation=False)
                 except ExampleImage.DoesNotExist:
                     image_page = requests.get(example_big_image).content
                     image_file = open(os.path.join(MEDIA_ROOT, 'rooms_examples/' + big_image_title), 'wb')
@@ -773,17 +773,6 @@ def parse_examples(query):
             print('load error on page %s' % example_url)
             print('----------------------------------')
 
-
-def translate(category=None, subcategory=None, product=None):
-    parsed_domain = 'https://ikea-club.com.ua/ua/'
-    try:
-        products = Product.objects.filter(is_translated=False)
-    except Product.DoesNotExist:
-        return FileExistsError
-
-    for product in products:
-        request = requests.get(parsed_domain + product.article_number).text
-        product_soup = BeautifulSoup(request, 'lxml')
 
 
 
