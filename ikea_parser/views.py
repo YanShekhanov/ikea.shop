@@ -96,43 +96,9 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
-    url_ = 'https://www.ikea.com/pl/pl/catalog/products/00318292/'
-    #url = 'https://www.ikea.com/pl/pl/catalog/products/00261295/'
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("window-size=1024,768")
-    options.add_argument("--no-sandbox")
-
-    browser = webdriver.Chrome(chrome_options=options)
-    browser.get(url_)
-    button = browser.find_element_by_id('techInfoTab')
-    button.click()
-    page = browser.page_source
-    bs = BeautifulSoup(page, 'lxml')
-    html = bs.find('table', class_='technical-specification-table').contents
-    print(html)
-
-    '''
-    # -----------------------------------------------------#
-    # more models - модели
-    parse_models = True
-    models_articles_list = []
-    models_ = None
-    models_to_save = None
-    try:
-        models_ = product_soup.find('div', id='selectMoremodelsWrapper').find_all('li')
-        print(models_)
-        print('have models')
-    except AttributeError:
-        parse_models = False
-        print('not exist')
-
-    if parse_models:
-        for model in models_:
-            models_article = model.get('data-url').split('/')[-2]
-            models_articles_list.append(models_article)
-        if len(models_articles_list) != 0:
-            models_to_save = '#'.join(models_articles_list)'''
+    room_places = RoomPlace.objects.all()
+    for place in room_places:
+        parse_examples(place)
     return redirect(reverse('home'))
 
 

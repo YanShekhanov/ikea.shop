@@ -222,6 +222,18 @@ class RoomPlaceDetail(MainInfo, DetailView):
         print(context['examplesImages'])
         return context
 
+class ExampleDetail(MainInfo, DetailView):
+    template_name = 'shop/example_detail.html'
+    model = RoomExample
+    context_object_name = 'room'
+    slug_url_kwarg = 'unique_identificator'
+    slug_field = 'unique_identificator'
+
+    def get_context_data(self, **kwargs):
+        self.object = self.get_object()
+        context = super(ExampleDetail, self).get_context_data(**kwargs)
+        return context
+
 #!!!!!!!!!!!!!!!!!!!!!!
 #парсинг артикула по номеру артикула
 class DownloadOneProductInformation(FormView):
