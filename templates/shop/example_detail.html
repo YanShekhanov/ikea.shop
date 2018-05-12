@@ -10,7 +10,7 @@
 
         {% for product in products %}
             {% for image in products_images %}
-                {% for image_rel in image.all %}
+                {% for image_rel in image.product.all %}
                     {% if image_rel == product %}
                         <div id="product-cards">
                         <!--Card-1-->
