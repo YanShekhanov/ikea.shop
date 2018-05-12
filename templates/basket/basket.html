@@ -70,10 +70,9 @@
 
 {% block onload_js %}
     <script>
+        //изменение количества продукта
         $('#cart').on('change', '#product_count', function () {
             if ($(this).val() == 0){
-                console.log($(this).val());
-                $(this).val('');
                 alert('Введите правильно количество')
             } else {
                 var product_article_number = $(this).parents('.product_card').data('product'),
@@ -91,6 +90,7 @@
                         if (data.success){
                             alert(data.success.message);
                             refresh_basket();
+                            refresh_basket_price(token);
                         } else if (data.availabilityError){
                             alert(data.availabilityError.message +  'Доступное количество ' + data.availabilityError.availability);
                         } else if (data.serverError){
