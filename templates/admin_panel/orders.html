@@ -54,10 +54,13 @@
             $form.find('input[type="submit"]').show();
             $form.submit(function (e) {
                 e.preventDefault();
-                var status = $(this).find('input[name="status"]').val(),
+                var status = $(this).find('select[name="status"]').val(),
                     unique_identificator = $(this).parents('.order').attr('id'),
                     token = $('input[name="csrfmiddlewaretoken"]').val();
-                console.log(status, unique_identificator, token);
+
+                $.ajax({
+                    url:'{% url "change_order_status" %}'
+                })
             })
             });
 
