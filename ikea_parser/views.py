@@ -96,9 +96,15 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
+    places = RoomPlace.objects.all()
+    for place in places:
+        place.unique_identificator = create_identificator(8)
+        place.save()
+
+    '''
     room_places = RoomPlace.objects.all()
     for place in room_places:
-        parse_examples(place)
+        parse_examples(place)'''
     return redirect(reverse('home'))
 
 
