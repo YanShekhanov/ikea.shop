@@ -7,31 +7,39 @@
 		<div class="room-img">
 			<img src="{{ image.image.url }}" alt="{{ image.title }}">
 		</div>
-		<div id="product-cards">
-		<!--Card-1-->
-            <div class="card">
-				<div class="card-open">
-                <!--Product Images Open-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info Open-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-                    <p class="card-text">Комод с 2 ящиками, под белый дуб, белый, шикарный комод, лучший просто.</p>
-					<p class="card-price">2999 грн.</p>
-                	<div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
-						<div class="amount"><span>В наличии:</span>1000 шт.</div>
-    				</div>
-            	</div>
-                <!--Product Images-->
-					<i class="fa fa-search-plus" aria-hidden="true"></i>
-                    <img src="images/product-cards/product-1-1.JPG" alt="First slide">
-                <!--Product Info-->
-                    <a class="card-title">АСКВОЛЬ tovar nazva ssmkd</a>
-					<p class="ind-code">Артикул: 595969</p>
-					<p class="card-price">2999 грн.</p>
-            	</div>
-			</div>
-	</div>
+
+        {% for product in products %}
+            {% for image in products_images %}
+                {% for image_rel in image.all %}
+                    {% if image_rel == product %}
+                        <div id="product-cards">
+                        <!--Card-1-->
+                            <div class="card">
+                                <div class="card-open">
+                                <!--Product Images Open-->
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                    <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
+                                <!--Product Info Open-->
+                                    <a class="card-title">{{ product.title }}</a>
+                                    <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                    <p class="card-text">К{{ product.deminsions }}</p>
+                                    <p class="card-price">{{ product.price }} грн.</p>
+                                    <div class="button-item">
+                                        <a href="" class="btn-1">Добавить в корзину</a>
+                                    </div>
+                                </div>
+                                <!--Product Images-->
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                    <img src="{{ image.image.url }}" alt="{{ product.article_number }}" alt="First slide">
+                                <!--Product Info-->
+                                    <a class="card-title">{{ product.title }}</a>
+                                    <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                    <p class="card-price">{{ product.price }} грн.</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endor %}
+            {% endfor %}
+        {% endfor %}
+</div>
 {% endblock %}
