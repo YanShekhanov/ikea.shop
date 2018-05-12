@@ -231,7 +231,18 @@ class ExampleDetail(MainInfo, DetailView):
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
+        try:
+            image = ExampleImage.objects.get(example=self.object, is_presentation=False)
+            products = [Product.objects.get(article_number=product) for product in self.object.products.split('#')]
+            products_images = []
+            for product in products:
+                products_images.append(ProductImage.objects.get(product=product, size=250).first())
+        except:
+            raise Http404
         context = super(ExampleDetail, self).get_context_data(**kwargs)
+        context['image'] = image
+        context['products'] = products
+        context['products_images'] = products_images
         return context
 
 #!!!!!!!!!!!!!!!!!!!!!!
