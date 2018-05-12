@@ -240,7 +240,7 @@ class ExampleDetail(MainInfo, DetailView):
                 print(product)
         products_images = []
         for product in products_list:
-            products_images.append(ProductImage.objects.get(product=product, size=250).first())
+            products_images.append(ProductImage.objects.filter(product=product, size=250).first())
         context = super(ExampleDetail, self).get_context_data(**kwargs)
         context['image'] = image
         context['products'] = products_list
