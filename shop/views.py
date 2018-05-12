@@ -230,14 +230,20 @@ class ExampleDetail(MainInfo, DetailView):
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
         image = ExampleImage.objects.get(example=self.object, is_presentation=False)
-        #products = [Product.objects.get(article_number=product) for product in self.object.products.split('#')]
-        print([product for product in self.object.products.split('#')])
-        products_images = []
+        products = self.object.products.split('#')
+        products_list = []
         for product in products:
+            try:
+                product = Product.objects.get(article_number=product)
+                products_list.append(product)
+            except Product.DoesNotExist:
+                print(product)
+        products_images = []
+        for product in products_list:
             products_images.append(ProductImage.objects.get(product=product, size=250).first())
         context = super(ExampleDetail, self).get_context_data(**kwargs)
         context['image'] = image
-        context['products'] = products
+        context['products'] = products_list
         context['products_images'] = products_images
         return context
 
