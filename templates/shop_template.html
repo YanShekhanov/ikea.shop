@@ -214,8 +214,10 @@
                search($(this).val(), token, template);
            }
         });
-    })
+    });
 
+    tags_list = ['.img-block', '.get-all-images'];
+    hide_tags(tags_list);
     //ajax загрузка изображений артикула
         $('body').on('click', '.get-all-images', function (){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
