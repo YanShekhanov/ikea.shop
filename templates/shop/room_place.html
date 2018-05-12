@@ -4,7 +4,9 @@
     {% for room_example in roomExamples %}
         {% for image in examplesImages %}
             {% if image.example == room_example %}
-                <img src="{{ image.image.url }}"><a href="#">{{ room_example.title }}</a>
+	            <div class="grid" id="room-page">
+		            <a href="{% url 'exampleDetail' unique_identificator%}"><img src="{{ image.image.url }}" alt="{{ image.title }}"></a>
+	            </div>
             {% endif %}
         {% endfor %}
     {% endfor %}
