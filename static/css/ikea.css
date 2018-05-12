@@ -173,6 +173,7 @@ h1:before {
 
 /*Search Results*/
 #searched_query{
+	display: none;
 	float: right;
 	position: absolute;
 	z-index: 997;
