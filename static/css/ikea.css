@@ -1575,17 +1575,19 @@ main {
 }
 
 /*Room*/
-#room .room-img{
-	width: 66vw;
-	height: 27vw;
+#room {
+	width: 100%;
+	height: auto;
 	display: flex;
 	align-items: center;
 	align-content: center;
 	justify-content: center;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
 }
 #room img{
-	max-width: 100%;
-	max-height: 27vw;
+	max-width: 90vw;
+	max-height: auto;
 }
 
 

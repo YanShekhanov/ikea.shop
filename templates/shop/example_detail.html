@@ -3,43 +3,40 @@
 ﻿
 {% block content %}
 <!--Room-->
-	<div class="grid" id="room">
-		<div class="room-img">
-			<img src="{{ image.image.url }}" alt="{{ image.title }}">
-		</div>
-
+    <div id="room">
+        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+    </div>
         {% for product in products %}
             {% for image in products_images %}
                 {% for image_rel in image.product.all %}
                     {% if image_rel == product %}
-                        <div id="product-cards">
-                        <!--Card-1-->
-                            <div class="card">
-                                <div class="card-open">
-                                <!--Product Images Open-->
-                                    <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
-                                    <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
-                                <!--Product Info Open-->
-                                    <a class="card-title">{{ product.title }}</a>
-                                    <p class="ind-code">Артикул: {{ product.article_number }}</p>
-                                    <p class="card-text">К{{ product.dimensions }}</p>
-                                    <p class="card-price">{{ product.price }} грн.</p>
-                                    <div class="button-item">
-                                        <a href="" class="btn-1">Добавить в корзину</a>
+                        <div class="grid-prod" id="product-cards">
+                            <!--Card-1-->
+                                <div class="card">
+                                    <div class="card-open">
+                                    <!--Product Images Open-->
+                                        <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
+                                        <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
+                                    <!--Product Info Open-->
+                                        <a class="card-title">{{ product.title }}</a>
+                                        <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                        <p class="card-text">{{ product.dimensions }}</p>
+                                        <p class="card-price">{{ product.price }} грн.</p>
+                                        <div class="button-item">
+                                            <a href="" class="btn-1">Добавить в корзину</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <!--Product Images-->
-                                    <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
-                                    <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
-                                <!--Product Info-->
-                                    <a class="card-title">{{ product.title }}</a>
-                                    <p class="ind-code">Артикул: {{ product.article_number }}</p>
-                                    <p class="card-price">{{ product.price }} грн.</p>
-                            </div>
+                                    <!--Product Images-->
+                                        <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
+                                        <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
+                                    <!--Product Info-->
+                                        <a class="card-title">{{ product.title }}</a>
+                                        <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                        <p class="card-price">{{ product.price }} грн.</p>
+                                    </div>
                         </div>
                     {% endif %}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
-    </div>
 {% endblock %}
