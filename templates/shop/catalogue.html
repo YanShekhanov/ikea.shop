@@ -111,14 +111,13 @@
                 rendered_template = Mustache.render(template, data);
             $('.content').prepend(rendered_template);
             $block = $('#added_product_message');
-            $block.show(function () {
-                function reset_added_product(){
-                    $block.hide(function () {
-                        $('#added_product_message').remove();
-                    });
-                };
-                setTimeout(reset_added_product, 3000);
-            });
+            $block.show();
+            function reset_added_product() {
+                $block.hide();
+                $('#added_product_message').remove();
+            }
+            setTimeout(reset_added_product, 3000);
+            
         }
     </script>
 
