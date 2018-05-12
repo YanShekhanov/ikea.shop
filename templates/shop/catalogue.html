@@ -111,9 +111,9 @@
                 rendered_template = Mustache.render(template, data);
             $('.content').prepend(rendered_template);
             $block = $('#added_product_message');
-            $block.fadeIn(600, function () {
+            $block.show(function () {
                 function reset_added_product(){
-                    $block.fadeOut(600, function () {
+                    $block.hide(function () {
                         $('#added_product_message').remove();
                     });
                 };
