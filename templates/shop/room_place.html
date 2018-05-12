@@ -5,7 +5,7 @@
         {% for image in examplesImages %}
             {% if image.example == room_example %}
 	            <div class="grid" id="room-page">
-		            <a href="{% url 'exampleDetail' unique_identificator%}"><img src="{{ image.image.url }}" alt="{{ image.title }}"></a>
+		            <a href="{% url 'exampleDetail' room_example.unique_identificator%}"><img src="{{ image.image.url }}" alt="{{ image.title }}"></a>
 	            </div>
             {% endif %}
         {% endfor %}
