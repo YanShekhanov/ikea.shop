@@ -46,9 +46,6 @@
                             {% endfor %}
                         {% endfor %}
                     {% endfor %}
-                    <div class="model-select-item"><img src="images/product-cards/product-4-3.JPG" alt="#">Model 1, 102044</div>
-                    <div class="model-select-item"><img src="images/product-cards/product-4-1.JPG" alt="#">Model 1, 102044</div>
-                    <div class="model-select-item"><img src="images/product-cards/product-4-2.JPG" alt="#">Model 1, 102044</div>
                 </div>
 			</div>
             {% endif %}
@@ -67,9 +64,6 @@
                                 {% endfor %}
                             {% endfor %}
                             {% endfor %}
-                            <div class="size-select-item"><img src="images/product-cards/product-1-3.JPG" alt="#">Model 1, 102044</div>
-                            <div class="size-select-item"><img src="images/product-cards/product-1-2.JPG" alt="#">Model 1, 102044</div>
-                            <div class="size-select-item"><img src="images/product-cards/product-1-1.JPG" alt="#">Model 1, 102044</div>
                         </div>
                     </div>
             {% endif %}
@@ -190,7 +184,7 @@
                     <!--Product Info Open-->
                     <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
 					<p class="ind-code">Артикул: {{ complementary_product.article_number }}</p>
-                    <p class="card-text">{{ complementary_product.description }}</p>
+                    <p class="card-text">{{ complementary_product.dimensions }}</p>
 					<p class="card-price">{{ complementary_product.price }} грн.</p>
                 	<div class="button-item">
      					<a href="" class="btn-1">Добавить в корзину</a>
