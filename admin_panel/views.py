@@ -65,3 +65,13 @@ def change_order_status(request):
     response_dict = {}
     if request.method == "POST" and request.is_ajax():
         status = request.POST['status']
+        order_unique_identificator = request.POST['unique_identificator']
+        try:
+            existed_order = Order.objects.get(unique_identificator=order_unique_identificator)
+            existed_order.status = status
+            existed_order.save()
+        except:
+            response_dict['existError'] = 'Order does not exist'
+    else:
+        response_dict['requestError'] = 'Bad request'
+    return JsonResponse(response_dict)
