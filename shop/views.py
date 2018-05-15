@@ -17,6 +17,7 @@ def redirect_to_home(request):
     return redirect(reverse(home_page))
 
 from basket.models import Order, ProductInOrder
+from ikea_parser.create_identificator import create_num_identificator
 class MainInfo(TemplateView):
     template_name = 'shop_template.html'
 
@@ -41,7 +42,7 @@ class MainInfo(TemplateView):
         try:
             order = Order.objects.get(session_key=self.request.session.session_key)
         except Order.DoesNotExist:
-            order = Order.objects.create(session_key=self.request.session.session_key)
+            order = Order.objects.create(session_key=self.request.session.session_key, unique_identificator=create_num_identificator(8))
         context['order_price'] = order.order_price
         context['product_count'] = len(list(ProductInOrder.objects.filter(order=order)))
         return context
