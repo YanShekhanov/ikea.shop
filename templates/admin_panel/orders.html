@@ -10,6 +10,8 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
+                <script>get_select_value(status={{ order.status }},object=$(this).siblings('select[name="status"]'))</script>
+
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
@@ -46,6 +48,14 @@
     </script>
 {% endblock %}
 
+{% block js %}
+    <script>function get_select_value(status, object) {
+        object.find('option[value="' + status + '"]').attr('selected', 'selected');
+        console.log('status selected');
+    }
+    </script>
+{% endblock %}
+
 {% block onload_js %}
     <script>
         //изменения статуса заказа
@@ -56,10 +66,18 @@
                 e.preventDefault();
                 var status = $(this).find('select[name="status"]').val(),
                     unique_identificator = $(this).parents('.order').attr('id'),
-                    token = $('input[name="csrfmiddlewaretoken"]').val();
-
+                    token = $('input[name="csrfmiddlewaretoken"]').val(),
+                    data = {'status':status, 'unique_identificator':unique_identificator, 'token':token};
                 $.ajax({
-                    url:'{% url "change_order_status" %}'
+                    url:'{% url "change_order_status" %}',
+                    method:'POST',
+                    data:data,
+                    success:function () {
+                        alert('ok');
+                    },
+                    error:function (){
+                        alert('error');
+                    }
                 })
             })
             });
