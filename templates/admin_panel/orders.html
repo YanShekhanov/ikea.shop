@@ -10,7 +10,7 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
-                <script>get_select_value(status={{ order.status }},object=$(this).siblings('.order').attr('id'))</script>
+                <script>get_select_value(status={{ order.status }},$(this).siblings('.order').attr('id'))</script>
 
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
