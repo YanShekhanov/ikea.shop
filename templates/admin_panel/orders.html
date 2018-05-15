@@ -50,6 +50,7 @@
 
 {% block js %}
     <script>function get_select_value(status, object) {
+        console.log(status, object);
         object.find('option[value="' + status + '"]').attr('selected', 'selected');
         console.log('status selected');
     }
