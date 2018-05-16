@@ -71,7 +71,7 @@
 	<ul id="product-list">
     <li id="to_menu">Назад в меню</li>
             {% for category in Categories %}
-                <li class="category_el" onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
+                <li class="category_el" data-category_id="{{ category.id }}" onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
@@ -190,6 +190,12 @@
         $('body').on('click', '#open_room_menu', function () {
             $('#navbarNav').hide();
             $('#room-menu').show();
+        });
+
+        $('body').on('click', '.category_el', function () {
+            var category_id = $(this).data('category_id');
+            $('#product-categories li[data-category_id="' + category_id + '"]').show();
+            $('#product-categories').show();
         });
 
     } else {
