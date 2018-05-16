@@ -206,6 +206,7 @@
         $('body').on('click', '#categories_menu', function () {
             hide_tags(['.nav-cat']);
             $('#dropdown-products').fadeToggle(300);
+            $('#product-list').fadeToggle(300);
         });
         $('#dropdown-products').mouseleave(function () {
            $(this).fadeOut(300);
