@@ -65,6 +65,16 @@ h1:before {
     margin-right: 17vw;
     width: 66vw;
 }
+@media screen and (max-width: 750px){
+	.grid{
+		margin: 0;
+		width: 100%;
+	}
+	.grid-prod{
+    	margin: 0;
+    	width: 100%;
+	}
+}
 
 /*Top Strip*/
 #top-strip{
@@ -85,6 +95,18 @@ h1:before {
 #top-strip a:hover, #top-strip a:focus{
 	text-decoration: none;
 	color:white;
+}
+@media screen and (max-width: 750px){
+	#top-strip{
+    	height: 3vw;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	#top-strip p{
+    	margin-top: 0.2vw;
+    	width: 45%;
+    	font-size: 1.7vw;
+	}
 }
 
 /*Logo/Shopping Cart/Price/Search*/
@@ -162,6 +184,39 @@ h1:before {
     background-clip: border-box;
     background-size: 3vw 3vw;
 }
+@media screen and (max-width: 750px){
+	.logo{
+		margin-left: 1vw;
+		height: 9.5vw;
+		width: 23vw;
+		margin-top: 0.5vw;
+		margin-bottom: 0.5vw;
+		padding: 0;
+	}
+	.price-search{
+		margin-right: 1vw;
+		width: 27vw;
+		height: 9.5vw;
+	}
+	.fa-shopping-basket{
+		font-size: 3vw;
+	}
+	.amount-circle{
+		min-width: 2vw;
+		min-height: 2vw;
+		font-size: 1.3vw;
+	}
+	.price{
+		left: 3.8vw;
+		bottom: 0.2vw;
+		font-size: 2.5vw;
+	}
+	.search-form {
+		width: 27vw;
+		height: 4.7vw;
+		font: normal 2vw/normal Arial, Helvetica, sans-serif;
+	}
+}
 
 
 /*Search Results*/
@@ -203,6 +258,7 @@ h1:before {
 	padding-top: 15px;
 	width: auto;
 }
+
 
 /*Navigation Menu*/
 .navbar-light{
@@ -247,6 +303,17 @@ h1:before {
 }
 #menu-button i{
     font-size: 1.2vw;
+}
+@media screen and (max-width: 750px){
+	.navbar-light{
+		min-height: 7vw;
+	}
+	#menu-button a{
+		font-size: 2.2vw;
+		padding-top: 2.5vw;
+		height: 7vw;
+		width: 25%;
+	}
 }
 
 /*Dropdown Products*/
