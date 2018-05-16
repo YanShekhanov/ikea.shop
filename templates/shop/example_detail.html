@@ -20,7 +20,7 @@
                                         <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
                                     <!--Product Info Open-->
                                         <a class="card-title">{{ product.title }}</a>
-                                        <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                        <p class="ind-code">Артикул: {{ product.with_dot }}</p>
                                         <p class="card-text">{{ product.dimensions }}</p>
                                         <p class="card-price">{{ product.price }} грн.</p>
                                         <div class="button-item">
@@ -32,7 +32,7 @@
                                         <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
                                     <!--Product Info-->
                                         <a class="card-title">{{ product.title }}</a>
-                                        <p class="ind-code">Артикул: {{ product.article_number }}</p>
+                                        <p class="ind-code">Артикул: {{ product.with_dot }}</p>
                                         <p class="card-price">{{ product.price }} грн.</p>
                                     </div>
                         </div>
