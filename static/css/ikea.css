@@ -1016,9 +1016,10 @@ left: 25vw;
 .model-select-item{
 	display: flex;
 	align-items: center;
-	height: 40px;
+	height: auto;
 	width: 100%;
 	padding-left: 0;
+	line-height: 1;
 }
 #model-select-open img{
 	width: 40px;
