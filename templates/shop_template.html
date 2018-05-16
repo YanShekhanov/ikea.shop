@@ -175,17 +175,20 @@
     tags_list = ['#dropdown-products', '#product-categories li', '#product-categories'];
     hide_tags(tags_list);
 
-    $('body').on('click', '#mobile_menu_open', function () {
-        $('#navbarNav').show();
-    });
+    if ($(window).width() <= 540){
+        $('body').on('click', '.nav-link', function () {
+               $('#navbarNav').hide();
+        });
 
-    $('body').on('click', '#categories_menu', function () {
-        hide_tags(['.nav-cat']);
-        $('#dropdown-products').fadeToggle(300);
-    });
 
-    $('#dropdown-products').mouseleave(function () {
-       $(this).fadeOut(300);
+    //открытие меню в мобильной версиии
+    //изменение ширины экрана
+    $(window).resize(function () {
+       if ($(window).width() <= 540){
+           $('body').on('click', '.nav-link', function () {
+               $('#navbarNav').hide();
+           })
+       }
     });
 
     $('body').on('click', '#open_room_menu', function () {
