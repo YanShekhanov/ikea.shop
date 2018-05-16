@@ -170,6 +170,12 @@
 
 <!--основные скрипты-->
 <script>
+    //изменение ширины экрана
+    $(window).resize(function () {
+       console.log($(window).width());
+    });
+
+
     tags_list = ['#dropdown-products', '#product-categories li', '#product-categories'];
     hide_tags(tags_list);
 
