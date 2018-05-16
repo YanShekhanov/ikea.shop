@@ -183,9 +183,8 @@
         });
 
         $('body').on('click', '.nav-link', function () {
-            $('#navbarNav').slideUp(function () {
-                $('#product-list').slideDown();
-            });
+            $('#navbarNav').slideUp();
+            $('#product-list').slideDown();
         });
 
         $('body').on('click', '.category_el', function () {
