@@ -101,14 +101,16 @@ h1:before {
     width: 17.8vw;
     height: 6.3vw;
     margin-top: 0.5vw;
-    margin-bottom: 0.5vw;
+	margin-bottom: 0.5vw;
 }
 .fa-shopping-basket{
+	float: left;
 	position: relative;
 	margin: 0;
 	margin-top: 0.9vw;
 	font-size: 2vw;
 	cursor: pointer;
+	padding-bottom: 0.5vw;
 }
 .amount-circle{
 	position: absolute;
@@ -132,25 +134,14 @@ h1:before {
 	cursor: pointer;
 }
 .price{
-    float: right;
-    height: 1.8vw;
-    margin: 0;
-    margin-top: 1.1vw;
+	position: absolute;
+	width: auto;
+	left: 2.5vw;
+	bottom: 0;
     font-size: 1.8vw;
-    font: sans-serif;
+    font-family: verdana;
     font-weight: bold;
-    font-style: italic;
-    cursor: pointer;
-}
-.money-icon{
-    float: right;
-    display: inline-block;
-    height: 1vw;
-    width: 1.7vw;
-    margin-top: 1.9vw;
-    margin-left: 0.3vw;
-    margin-right: 7.3vw;
-    cursor: pointer;
+	cursor: pointer;
 }
 .search-form {
     display: inline-block;
@@ -170,6 +161,7 @@ h1:before {
     background-clip: border-box;
     background-size: 3vw 3vw;
 }
+
 
 /*Search Results*/
 #searched_query{
