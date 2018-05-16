@@ -1078,9 +1078,10 @@ input[type="checkbox"]:checked ~ #model-select-open {
 .size-select-item{
 	display: flex;
 	align-items: center;
-	height: 40px;
+	height: auto;
 	width: 100%;
 	padding-left: 0;
+	line-height: 1;
 }
 #size-select-open img{
 	width: 40px;
@@ -1139,9 +1140,10 @@ input[type="checkbox"]:checked ~ #size-select-open {
 .color-select-item{
 	display: flex;
 	align-items: center;
-	height: 40px;
+	height: auto;
 	width: 100%;
 	padding-left: 0;
+	line-height: 1;
 }
 #color-select-open img{
 	width: 40px;
