@@ -286,7 +286,7 @@ def get_sort_query(request):
         except:
             return Http404
 
-        from ikea_parser.json_serializer import json_serializer
+        from ikea_parser.json_serializer import product_to_json
         try:
             query = SubCategory.objects.get(unique_identificator=unique_identificator)
             response_json_dict['data'] = product_to_json(Product.objects.filter(subcategory=query).order_by(sort_by))
