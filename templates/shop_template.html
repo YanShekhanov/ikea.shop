@@ -69,12 +69,14 @@
 <div class="grid nav-cat" id="dropdown-products">
 	<!--Product List-->
 	<ul id="product-list">
+    <li id="to_menu">Назад в меню</li>
             {% for category in Categories %}
                 <li onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
     <ul id="product-categories">
+        <li id="to_categories">Назад к категориям</li>
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
@@ -173,16 +175,28 @@
 
     if ($(window).width() <= 540){
         $('body').on('click', '.nav-link', function () {
-               console.log('скрыть меню');
-               $('#navbarNav').hide();
-        })
-    };
+               $('#navbarNav').toggle();
+        });
+
+        $('body').on('click', '#product-list li', function () {
+           $('#product-list').toggle();
+        });
+
+        $('body').on('click', '#to_menu', function () {
+            $('#product-list').toggle();
+            $('#navbarNav').toggle();
+        });
+
+        $('body').on('click', '#to_categories', function () {
+            $('#product-categories').toggle();
+            $('#product-list').toggle();
+        });
+
     //открытие меню в мобильной версиии
     //изменение ширины экрана
     $(window).resize(function () {
        if ($(window).width() <= 540){
            $('body').on('click', '.nav-link', function () {
-               console.log('скрыть меню');
                $('#navbarNav').hide();
            })
        }
