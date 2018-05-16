@@ -193,6 +193,7 @@
         });
 
         $('body').on('click', '.category_el', function () {
+            $('#product-list').hide();
             var category_id = $(this).data('category_id');
             $('#product-categories li[data-category_id="' + category_id + '"]').show();
             $('#product-categories').show();
