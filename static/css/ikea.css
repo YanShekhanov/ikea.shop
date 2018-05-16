@@ -360,9 +360,7 @@ h1:before {
 }
 @media screen and (max-width: 540px){
 	.navbar-light{
-		width: 98%;
-		margin-left: 1%;
-		margin-right: 1%;
+		width: 100%;
 	}
 	#menu-button a{
 		display: flex;
@@ -553,9 +551,7 @@ h1:before {
 		display: none;
 	}
 	#product-list{
-		width: 98%;
-		margin-left: 1%;
-		margin-right: 1%;
+		width: 100%;
 	}
 	#product-list li{
 		font-size: 5vw;
@@ -564,9 +560,7 @@ h1:before {
 
 	}
 	#product-categories{
-		width: 98%;
-		margin-left: 1%;
-		margin-right: 1%;
+		width: 100%;
 		position: absolute;
 		z-index: 51;
 		top: 0;
@@ -1084,7 +1078,7 @@ h1:before {
 	}
 	#product-cards .card-title{
 		height: 6vw;
-		font-size: 4vw;
+		font-size: 5vw;
 		margin-left: 2%;
 		margin-right: 2%;
 		width: 96%;
