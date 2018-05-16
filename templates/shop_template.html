@@ -41,9 +41,9 @@
         <div class="grid">
             <!-- <img class="logo" src="{% static 'images/ikea-logo.png' %}"> -->
             <div class="price-search">
-                <i class="fa fa-shopping-basket" aria-hidden="true" onclick="document.location.href='{% url "show_basket" %}'"><div class="amount-circle">{{ product_count }}</div></i>
-                <img class="money-icon" src="{% static 'icons/uah-cash-icon.png' %}">
-                <h6 class="price"><span id="price">{{ order_price }}</span></h6>
+                <div class="prc-basket">
+                <i class="fa fa-shopping-basket" aria-hidden="true" onclick="document.location.href='{% url "show_basket" %}'"><div class="amount-circle">{{ product_count }}</div><span class="price" id="price">{{ order_price }}грн.</span></i>
+				</div>
                 <input class="search-form" placeholder="Поиск..." />
                 <ul id="searched_query"></ul>
 
