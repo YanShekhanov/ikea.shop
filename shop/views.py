@@ -304,7 +304,7 @@ def product_to_json(queryset):
         one_product_dict = {}
         try:
             image = ProductImage.objects.filter(product=product, size=250).first()
-            one_product_dict['image'] = image
+            one_product_dict['image'] = image.image.url
         except ProductImage.DoesNotExist:
             one_product_dict['image'] = 'Image does not exist'
         one_product_dict['article_number_with_dot'] = product.with_dot()
