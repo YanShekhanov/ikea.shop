@@ -170,10 +170,13 @@
 
 <!--основные скрипты-->
 <script>
+    //открытие меню в мобильной версиии
     //изменение ширины экрана
     $(window).resize(function () {
        if ($(window).width() <= 540){
-           console.log('ok');
+           $('body').on('click', '#navbarNav a', function () {
+               $('#navbarNav').hide();
+           })
        }
     });
 
