@@ -560,6 +560,8 @@ h1:before {
 	#product-list li{
 		font-size: 5vw;
 		height: 13vw;
+		    border-bottom: 0.1vw solid #e3e3e3;
+
 	}
 	#product-categories{
 		width: 98%;
@@ -572,10 +574,14 @@ h1:before {
 	#product-categories li{
 		font-size: 5vw;
 		height: 13vw;
+		    border-bottom: 0.1vw solid #e3e3e3;
+
 	}
 	#product-subcategories li{
 		font-size: 5vw;
 		height: 13vw;
+		    border-bottom: 0.1vw solid #e3e3e3;
+
 	}
 }
 
