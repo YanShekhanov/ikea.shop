@@ -1639,6 +1639,15 @@ main {
 	max-width: 90vw;
 	max-height: auto;
 }
+.room-name{
+	width: 100%;
+	font: verdana;
+	font-size: 2vw;
+	font-weight: bold;
+	text-align: center;
+	color: #FF6C00;
+}
+
 /*Product Cards*/
 #room-card .card{
     display: inline-block;
