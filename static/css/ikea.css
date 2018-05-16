@@ -134,6 +134,7 @@ h1:before {
 	cursor: pointer;
 }
 .price{
+	white-space: nowrap;
 	position: absolute;
 	width: auto;
 	left: 2.5vw;
