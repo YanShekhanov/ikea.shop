@@ -175,9 +175,9 @@
     tags_list = ['#dropdown-products', '#product-categories li', '#product-categories'];
     hide_tags(tags_list);
 
-    //открытие меню в мобильной версиии
-    //изменение ширины экрана
     if ($(window).width() <= 540) {
+        //открытие меню в мобильной версиии
+        //изменение ширины экрана
         $('body').on('click', '#mobile_menu_open', function () {
             $('#navbarNav').slideDown();
         });
@@ -189,35 +189,36 @@
         $('body').on('click', '.category_el', function () {
             $('#product-list').slideUp();
         })
+    } else {
+        //laptop
+        $('body').on('click', '#categories_menu', function () {
+            hide_tags(['.nav-cat']);
+            $('#dropdown-products').fadeToggle(300);
+        });
+        $('#dropdown-products').mouseleave(function () {
+           $(this).fadeOut(300);
+        });
+
+        $('body').on('click', '#open_room_menu', function () {
+            hide_tags(['.nav-cat']);
+            $('#room-menu').fadeToggle(300);
+        });
+
+        $('#room-menu').mouseleave(function () {
+            $(this).fadeOut(300);
+        });
+
+        function open_subcategories(id){
+            $('#product-categories li').hide();
+            $('#product-categories li[data-category_id="'+ id +'"]').show();
+            $('#product-categories').fadeIn(300);
+        }
     }
 
     $(window).resize(function () {
        if ($(window).width() <= 540){}
     });
 
-    //laptop
-    $('body').on('click', '#categories_menu', function () {
-        hide_tags(['.nav-cat']);
-        $('#dropdown-products').fadeToggle(300);
-    });
-    $('#dropdown-products').mouseleave(function () {
-       $(this).fadeOut(300);
-    });
-
-    $('body').on('click', '#open_room_menu', function () {
-        hide_tags(['.nav-cat']);
-        $('#room-menu').fadeToggle(300);
-    });
-
-    $('#room-menu').mouseleave(function () {
-        $(this).fadeOut(300);
-    });
-
-    function open_subcategories(id){
-        $('#product-categories li').hide();
-        $('#product-categories li[data-category_id="'+ id +'"]').show();
-        $('#product-categories').fadeIn(300);
-    }
 
 </script>
 
