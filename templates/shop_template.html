@@ -223,9 +223,10 @@
         });
 
         $('body').on('click', '.category_el', function () {
+            $('#product-categories li').hide();
             var category_id = $(this).data('category_id');
             $('#product-categories li[data-category_id="' + category_id + '"]').show();
-            $('#product-categories').fadeIn();
+            $('#product-categories').fadeIn(300);
         });
 
         /*function open_subcategories(id){
