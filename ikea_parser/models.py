@@ -63,7 +63,7 @@ class Product(models.Model):
     article_number = models.CharField(max_length=9, blank=False, default='', null=False, verbose_name='Артикул')
     title = models.CharField(max_length=64, blank=False, null=False, default='', verbose_name='Название')
     description = models.TextField(blank=False, null=True, default='', verbose_name='Короткое описание')
-    price = models.SmallIntegerField(blank=False, null=False, default=0, verbose_name='Цена')
+    price = models.IntegerField(blank=False, null=False, default=0, verbose_name='Цена')
     url_ikea = models.CharField(max_length=256, null=False, blank=False, default='', verbose_name='Ссылка')
     url = models.CharField(max_length=256, null=True, blank=True, default='', verbose_name='Ссылка')
     available = models.IntegerField(default=0, blank=True, null=True, verbose_name='Наличие')
