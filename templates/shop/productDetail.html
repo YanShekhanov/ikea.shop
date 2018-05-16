@@ -171,7 +171,7 @@
     {% if complementaryProducts %}
   <section id="content4">
           {% for complementary_product in complementaryProducts %}
-              <div class="card" data-article_number="">
+              <div class="card" data-article_number="{{ complementary_product.article_number }}">
 				<div class="card-open">
                 <!--Product Images Open-->
                     <i class="fa fa-search-plus get-all-images" data-unique_identificator={{ complementary_product.unique_identificator }} aria-hidden="true"></i>
