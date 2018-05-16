@@ -88,6 +88,16 @@ class Product(models.Model):
     def __str__(self):
         return self.article_number
 
+    def with_dot(self):
+        without_litt = []
+        for sym in self.article_number:
+            if sym == 'S' or sym == 's':
+                pass
+            else:
+                without_litt.append(sym)
+        return ''.join(without_litt[0:3]) + '.' + ''.join(without_litt[3:6]) + '.' + ''.join(without_litt[6:])
+
+
 #при удалении записи продукта ищем связанные с ним изображения и удаляем. Если у изображения 2 или больше связанных продуктов,
 #то удаляем из reletedField только удаляемый продукт
 @receiver(post_delete, sender=Product)

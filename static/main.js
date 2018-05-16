@@ -99,6 +99,7 @@
             Mustache.tags = ['<%', '%>'];
             rendered_data = {
                 product_article_number:product_query.article_number,
+                article_number_with_dot:product_query.article_number_with_dot,
                 product_title:product_query.title,
                 product_price:product_query.price,
                 product_dimensions:product_query.dimensions,
