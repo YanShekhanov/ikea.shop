@@ -172,24 +172,6 @@
 
 <!--основные скрипты-->
 <script>
-
-    if ($(window).width() <= 540){
-        $('body').on('click', '.nav-link', function () {
-               $('#navbarNav').hide();
-        });
-        
-
-    //открытие меню в мобильной версиии
-    //изменение ширины экрана
-    $(window).resize(function () {
-       if ($(window).width() <= 540){
-           $('body').on('click', '.nav-link', function () {
-               $('#navbarNav').hide();
-           })
-       }
-    });
-
-
     tags_list = ['#dropdown-products', '#product-categories li', '#product-categories'];
     hide_tags(tags_list);
 
