@@ -179,7 +179,7 @@
         //открытие меню в мобильной версиии
         //изменение ширины экрана
         $('body').on('click', '#mobile_menu_open', function () {
-            hide_tags(['#product-list', '', '#product-categories', 'room-menu']);
+            hide_tags(['#product-list', '#product-categories li', '#product-categories', 'room-menu']);
             $('#navbarNav').show();
         });
 
@@ -219,6 +219,12 @@
         $('#room-menu').mouseleave(function () {
             $(this).fadeOut(300);
         });
+
+        /*function open_subcategories(id){
+            $('#product-categories li').hide();
+            $('#product-categories li[data-category_id="'+ id +'"]').show();
+            $('#product-categories').fadeIn(300);
+        }*/
     }
 
     $(window).resize(function () {
