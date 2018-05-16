@@ -10,7 +10,7 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
-                <script>get_select_value(status={{ order.status }},$.siblings('.order').attr('id'))</script>
+                <script>get_select_value(status={{ order.status }},$('.order').last().find('select[name="status"]'))</script>
 
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
@@ -69,6 +69,7 @@
                     unique_identificator = $(this).parents('.order').attr('id'),
                     token = $('input[name="csrfmiddlewaretoken"]').val(),
                     data = {'status':status, 'unique_identificator':unique_identificator, 'token':token};
+                    console.log(token);
                 $.ajax({
                     url:'{% url "change_order_status" %}',
                     method:'POST',
