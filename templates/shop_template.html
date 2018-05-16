@@ -179,17 +179,17 @@
         //открытие меню в мобильной версиии
         //изменение ширины экрана
         $('body').on('click', '#mobile_menu_open', function () {
-            $('#navbarNav').slideDown();
+            $('#navbarNav').show();
         });
 
         $('body').on('click', '#categories_menu', function () {
-            $('#navbarNav').slideUp();
-            $('#product-list').slideDown();
+            $('#navbarNav').hide();
+            $('#product-list').show();
         });
 
         $('body').on('click', '#open_room_menu', function () {
-            $('#navbarNav').slideUp();
-            $('#room-menu').slideDown();
+            $('#navbarNav').hide();
+            $('#room-menu').show();
         });
 
     } else {
