@@ -251,14 +251,13 @@ h1:before {
 
 /*Dropdown Products*/
 #dropdown-products{
- position: absolute;
- z-index: 50;
+	position: absolute;
+	z-index: 50;
 }
 #dropdown-products i{
-position: absolute;
-font-size: 0.8vw;
-margin-top: 0.2vw;
-left: 25vw;
+	position: absolute;
+	font-size: 0.8vw;
+	left: 25vw;
 }
 #dropdown-products i:hover{
     color: #ff6c00;
@@ -279,7 +278,8 @@ left: 25vw;
 #product-list li{
     list-style-type: none;
     background-color: #f5f5f5;
-	display: inline-block;
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 	color: #515050;
 	font-family: Verdana;
@@ -288,10 +288,8 @@ left: 25vw;
 	font-style: italic;
     text-align: left;
 	text-decoration: none;
-    padding-top: 0.4vw;
     padding-left: 1vw;
     padding-right: 0.5vw;
-    padding-bottom: 0vw;
     margin: 0;
     height: 2vw;
     width: 100%;
@@ -324,7 +322,8 @@ left: 25vw;
 	position: relative;
     list-style-type: none;
     background-color: #f5f5f5;
-	display: inline-block;
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 	color: #515050;
 	font-family: Verdana;
@@ -333,10 +332,8 @@ left: 25vw;
 	font-style: italic;
     text-align: left;
 	text-decoration: none;
-    padding-top: 0.4vw;
     padding-left: 1vw;
     padding-right: 0.5vw;
-    padding-bottom: 0vw;
     margin: 0;
     height: 2vw;
     width: 100%;
@@ -371,7 +368,8 @@ left: 25vw;
 	position: relative;
     list-style-type: none;
     background-color: #f5f5f5;
-	display: inline-block;
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 	color: #515050;
 	font-family: Verdana;
@@ -380,10 +378,8 @@ left: 25vw;
 	font-style: italic;
     text-align: left;
 	text-decoration: none;
-    padding-top: 0.4vw;
     padding-left: 1vw;
     padding-right: 0.5vw;
-    padding-bottom: 0vw;
     margin: 0;
     height: 2vw;
     width: 100%;
@@ -399,6 +395,29 @@ left: 25vw;
 #product-subcategories li:focus{
 	text-decoration: none;
     background-color:#e4e4e4;
+}
+@media screen and (max-width: 750px){
+	#dropdown-products i{
+		font-size: 1.8vw;
+		margin-top: 0vw;
+		left: 38vw;
+	}
+	#product-list{
+		height: 100%;
+		width: 40%;
+	}
+	#product-list li{
+		font-size: 1.8vw;
+		height: 5vw;
+	}
+	#product-categories li{
+		font-size: 1.8vw;
+		height: 5vw;
+	}
+	#product-subcategories li{
+		font-size: 1.8vw;
+		height: 5vw;
+	}
 }
 
 
