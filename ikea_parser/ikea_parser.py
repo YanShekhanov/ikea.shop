@@ -394,9 +394,12 @@ def parse_one_product_information_(product_query, browser_driver):
         complementary_products_block = product_soup.find('div', id='complementaryProductContainer')
         complementary_products = complementary_products_block.find_all('li')
         for complementary_product in complementary_products:
-            complementary_product_article = complementary_product.get('id').split('_')[1]
-            if complementary_product_article not in complementary_products_list:
-                complementary_products_list.append(complementary_product_article)
+            try:
+                complementary_product_article = complementary_product.get('id').split('_')[1]
+                if complementary_product_article not in complementary_products_list:
+                    complementary_products_list.append(complementary_product_article)
+            except IndexError:
+                pass
         #print('Количество дополняющих продуктов %i' % len(complementary_products_list))
         if len(complementary_products_list) != 0:
             complementary_product_to_save = '#'.join(complementary_products_list)
