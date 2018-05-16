@@ -370,6 +370,8 @@ h1:before {
 		padding-top: 0;
 		height: 13vw;
 		width: 100%;
+		    border-bottom: 0.1vw solid #e3e3e3;
+
 	}
 	#menu-button i{
 		display: none;
