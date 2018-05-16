@@ -55,6 +55,7 @@
                     rend_data = {image_url:data.products[product].product_image,
                                  product_title:data.products[product].product_title,
                                  product_article_number:data.products[product].product_article_number,
+                                 article_number_with_dot:data.products[product].article_number_with_dot,
                                  product_price:data.products[product].product_price,
                                 };
                     var rend_html = Mustache.render(template, rend_data);

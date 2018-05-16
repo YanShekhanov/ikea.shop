@@ -276,7 +276,6 @@ def get_sort_query(request):
         'from_Z_to_A':'-title'
     }
     response_json_dict = {}
-
     if request.method == 'POST' and request.is_ajax():
         sort_by_from_post = request.POST['sort_by']
         unique_identificator = request.POST['unique_identificator']
@@ -323,6 +322,7 @@ def search(request):
                 image_url = None
             one_product_dict['product_title'] = product.title
             one_product_dict['product_article_number'] = product.article_number
+            one_product_dict['article_number_with_dot'] = product.with_dot()
             one_product_dict['product_price'] = product.price
             one_product_dict['product_image'] = image_url
             products_list.append(one_product_dict)
