@@ -99,7 +99,8 @@ def test(request):
     for product in Product.objects.filter(is_parsed=True):
         print(product.article_number)
         print(type(product.price), product.price)
-        product.price = int(product.price)
+        to_int = int(product.price)
+        product.price = to_int
         product.save()
         print(type(product.price), product.price)
     '''
