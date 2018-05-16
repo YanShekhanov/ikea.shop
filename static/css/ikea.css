@@ -373,7 +373,7 @@ h1:before {
 		height: 13vw;
 		width: 100%;
 	}
-	#menu-button em{
+	#menu-button i{
 		display: none;
 	}
 }
