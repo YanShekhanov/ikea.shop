@@ -134,10 +134,11 @@ h1:before {
 	cursor: pointer;
 }
 .price{
+	white-space: nowrap;
 	position: absolute;
 	width: auto;
 	left: 2.5vw;
-	bottom: 0;
+	bottom: 0.2vw;
     font-size: 1.8vw;
     font-family: verdana;
     font-weight: bold;
