@@ -558,8 +558,8 @@ h1:before {
 		margin-right: 1%;
 	}
 	#product-list li{
-		font-size: 3vw;
-		height: 8vw;
+		font-size: 5vw;
+		height: 13vw;
 	}
 	#product-categories{
 		width: 98%;
@@ -570,12 +570,12 @@ h1:before {
 		top: 0;
 	}
 	#product-categories li{
-		font-size: 3vw;
-		height: 8vw;
+		font-size: 5vw;
+		height: 13vw;
 	}
 	#product-subcategories li{
-		font-size: 3vw;
-		height: 8vw;
+		font-size: 5vw;
+		height: 13vw;
 	}
 }
 
