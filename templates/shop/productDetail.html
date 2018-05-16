@@ -202,7 +202,7 @@
                     {% endfor %}
                 <!--Product Info-->
                     <a class="card-title" href="{% url 'productDetail' complementary_product.article_number %}">{{ complementary_product.title }}</a>
-					<p class="ind-code">Артикул: {{ complementary_product.article_number }}</p>
+					<p class="ind-code">Артикул: {{ complementary_product.with_dot }}</p>
 					<p class="card-price">{{ complementary_product.price }} грн.</p>
               </div>
           {% endfor %}

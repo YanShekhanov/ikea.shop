@@ -191,6 +191,7 @@ def refresh_basket(request):
                 'image_url':ProductImage.objects.filter(product=product_in_order.product, size=250).first().image.url,
                 'product_title':product_in_order.product.title,
                 'article_number':product_in_order.product.article_number,
+                'article_number_with_dot':product_in_order.product.with_dot(),
                 'count':product_in_order.count,
                 'price_per_one':product_in_order.price_per_one,
                 'price':product_in_order.price,

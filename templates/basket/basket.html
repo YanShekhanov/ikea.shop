@@ -23,7 +23,7 @@
                                     <img src="{{ image.image.url }}">
                                 {% endif %}
                             {% endfor %}
-                    {% endfor %}<a>{{ product.product.title }}<br>{{ product.product.article_number }}</a>
+                    {% endfor %}<a href="{% url 'productDetail' product.product.article_number %}">{{ product.product.title }}<br>{{ product.product.with_dot }}</a>
                     <div class="amount-cart"><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
                     <div class="cart-price"><h6>{{ product.product.price }} грн.</h6></div>
                     <div class="cart-total"><h6>{{ product.price }}грн.</h6></div>
@@ -47,7 +47,7 @@
     <script type="text/productInOrder" id="product_in_order_template">
         <div id="cart-item" class="product_card" data-product="<%article_number%>">
             <img src="<%image_url%>">
-            <a><%product_title%><br><%article_number%></a>
+            <a href="/product_detail/product=<%article_number%>/"><%product_title%><br><%article_number_with_dot%></a>
             <div class="amount-cart"><h6></h6><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
             <div class="cart-price"><h6><br> <%price_per_one%> грн.</h6></div>
             <div class="cart-total"><h6><br> <%price%>грн.</h6></div>
@@ -127,12 +127,13 @@
             for (i=0; i<data.products.length; i++){
                 var query = data.products[i],
                     rendered_data = {
-                    'image_url':query.image_url,
-                    'article_number':query.article_number,
-                    'product_title':query.product_title,
-                    'count':query.count,
-                    'price_per_one':query.price_per_one,
-                    'price':query.price,
+                    image_url:query.image_url,
+                    article_number:query.article_number,
+                    article_number_with_dot:query.article_number_with_dot,
+                    product_title:query.product_title,
+                    count:query.count,
+                    price_per_one:query.price_per_one,
+                    price:query.price,
                 };
                 var rendered_html = Mustache.render(product_template, rendered_data);
                 $block_to_paste.append(rendered_html);
