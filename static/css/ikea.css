@@ -583,6 +583,8 @@ left: 25vw;
 	float: right;
     cursor: pointer;
     height: 2.1vw;
+    padding: 0.3vw;
+    padding-top: 0.45vw;
     margin: 0;
     margin-top: 0.5vw;
     border: 0.12vw solid #e3e3e3;
@@ -599,8 +601,8 @@ left: 25vw;
     padding-right: 0.35vw;
 }
 #kat{
+	font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
     padding-top: 1.2vw;
-    font: normal 1.3vw/normal Arial, Helvetica, sans-serif;
     margin: 0;
     color: #515050;
     height: 0vw;
