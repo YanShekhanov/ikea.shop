@@ -68,8 +68,7 @@
                 var status = $(this).find('select[name="status"]').val(),
                     unique_identificator = $(this).parents('.order').attr('id'),
                     token = $('input[name="csrfmiddlewaretoken"]').val(),
-                    data = {'status':status, 'unique_identificator':unique_identificator, 'token':token};
-                    console.log(token);
+                    data = {'status':status, 'unique_identificator':unique_identificator, 'csrfmiddlewaretoken':token};
                 $.ajax({
                     url:'{% url "change_order_status" %}',
                     method:'POST',
