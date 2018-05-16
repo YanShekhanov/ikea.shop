@@ -180,7 +180,7 @@
         //изменение ширины экрана
         $('body').on('click', '#mobile_menu_open', function () {
             hide_tags(['#product-list', '#product-categories li', '#product-categories', 'room-menu']);
-            $('#navbarNav').show();
+            $('#navbarNav').toggle();
         });
 
         $('body').on('click', '#categories_menu', function () {
