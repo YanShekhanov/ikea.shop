@@ -553,14 +553,18 @@ h1:before {
 		display: none;
 	}
 	#product-list{
-		width: 100%;
+		width: 98%;
+		margin-left: 1%;
+		margin-right: 1%;
 	}
 	#product-list li{
 		font-size: 3vw;
 		height: 8vw;
 	}
 	#product-categories{
-		width: 100%;
+		width: 98%;
+		margin-left: 1%;
+		margin-right: 1%;
 		position: absolute;
 		z-index: 51;
 		top: 0;
