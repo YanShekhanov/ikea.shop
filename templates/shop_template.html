@@ -179,6 +179,7 @@
         //открытие меню в мобильной версиии
         //изменение ширины экрана
         $('body').on('click', '#mobile_menu_open', function () {
+            hide_tags(['#product-list', '', '#product-categories', 'room-menu']);
             $('#navbarNav').show();
         });
 
