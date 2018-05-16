@@ -71,7 +71,7 @@
 	<ul id="product-list">
     <li id="to_menu">Назад в меню</li>
             {% for category in Categories %}
-                <li onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
+                <li class="category_el"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
@@ -80,7 +80,7 @@
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
-                    <li data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
+                    <li class="subcategory_el" data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
                 {% endif %}
             {% endfor %}
         {% endfor %}
@@ -184,6 +184,10 @@
 
         $('body').on('click', '.nav-link', function () {
             $('#navbarNav').slideUp();
+        });
+
+        $('body').on('click', '.category_el', function(){
+            $('#product-list').slideUp();
         });
     }
 
