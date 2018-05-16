@@ -201,7 +201,7 @@
             $('html, body').animate({scrollTop:0});
         });
 
-    } else {
+    } else if ($(window).width > 540){
         //laptop
         $('body').on('click', '#categories_menu', function () {
             hide_tags(['.nav-cat']);
