@@ -289,11 +289,11 @@ def get_sort_query(request):
         from ikea_parser.json_serializer import json_serializer
         try:
             query = SubCategory.objects.get(unique_identificator=unique_identificator)
-            response_json_dict['data'] = json_serializer(Product.objects.filter(subcategory=query).order_by(sort_by))
+            response_json_dict['data'] = product_to_json(Product.objects.filter(subcategory=query).order_by(sort_by))
         except SubCategory.DoesNotExist:
             try:
                 query = SubSubCategory.objects.get(unique_identificator=unique_identificator)
-                response_json_dict['data'] = json_serializer(Product.objects.filter(sub_subcategory=query).order_by(sort_by))
+                response_json_dict['data'] = product_to_json(Product.objects.filter(sub_subcategory=query).order_by(sort_by))
             except SubSubCategory.DoesNotExist:
                 return Http404
         return JsonResponse(response_json_dict)
@@ -313,6 +313,8 @@ def product_to_json(queryset):
         one_product_dict['price'] = product.price
         one_product_dict['unique_identificator'] = product.unique_identificator
         one_product_dict['dimensions'] = product.dimensions
+        objects_list.append(one_product_dict)
+    return objects_list
 
 
 #ajax поиск
