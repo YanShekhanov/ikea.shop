@@ -806,6 +806,7 @@ h1:before {
 #product-cards .card-open{
     display: none;
 	height: auto;
+	min-height: 23vw;
     width: 16.5vw;
     float: left;
 	top: -5px;
