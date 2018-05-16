@@ -54,12 +54,12 @@
 
 <!--Menu-->
 <nav class="navbar navbar-expand-sm navbar-light grid" id="menu-button">
-    <button class="navbar-toggler" onclick="open_categories()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button id="mobile_menu_open" class="navbar-toggler" onclick="open_categories()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
-        <a class="nav-link" id="categories_menu" href="#" onclick="open_categories()">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="categories_menu" href="#">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" id="open_room_menu" href="#" >Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
         <a class="nav-link" href="#">Акции</a>
     </div>
@@ -173,6 +173,10 @@
     tags_list = ['#dropdown-products', '#product-categories li', '#product-categories'];
     hide_tags(tags_list);
 
+    $('body').on('click', '#mobile_menu_open', function () {
+        $('#navbarNav').show();
+    });
+
     $('body').on('click', '#categories_menu', function () {
         hide_tags(['.nav-cat']);
         $('#dropdown-products').fadeToggle(300);
@@ -260,7 +264,8 @@
         });
 </script>
 
-{% block onload_js %}{% endblock %}
+{% block onload_js %}
+{% endblock %}
 
 </body>
 </html>
