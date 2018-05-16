@@ -166,9 +166,8 @@
                     'csrfmiddlewaretoken':token
                 },
                 success:function (data) {
-                    console.log(data);
                     $('.amount-circle').html(data.order.product_count);
-                    $('#price').text(data.order.order_price);
+                    $('#price').text(data.order.order_price + 'грн.');
                 },
                 error:function (data) {
                     console.log(data);
