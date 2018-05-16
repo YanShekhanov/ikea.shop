@@ -124,7 +124,7 @@ def change_product(request):
             else:
                 product_in_order = ProductInOrder.objects.get(product=Product.objects.get(article_number=product_article_number),
                                                               order=Order.objects.get(session_key=request.session.session_key))
-                product_in_order.count = count
+                product_in_order.count = int(count)
                 product_in_order.save()
                 response_dict['success'] = {'message': u'Количество изменено'}
         else:
