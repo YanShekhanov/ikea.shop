@@ -4,7 +4,7 @@
 {% block content %}
     {% for order in orders %}
         <div class="order" id="{{ order.unique_identificator }}">
-            <h4>Уникальный идентификатор : {{ order.unique_identificator }}</h4>
+            <h4>Уникальный идентификатор : {{ order.unique_identificator }}, date: {{ order.updated|date:"Y-m-d H:i" }}</h4>
             <h5>Общая стоимость: {{ order.order_price }},
                 status: <form class="change_order_status" method="POST">{% csrf_token %}
                 {{ change_order_status_form.status }}
