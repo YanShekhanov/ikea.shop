@@ -9,7 +9,7 @@ from django.utils import timezone
 class Order(models.Model):
     status = ((0, 'в процессе'), (1, 'не оплачен'), (2, 'задаток'), (3, 'оплачен'), (4, 'выполнен'), (5, 'отменен'))
     unique_identificator = models.CharField(max_length=8, default=create_num_identificator(8), blank=False, null=False)
-    order_price = models.IntegerField(default=0.0, blank=True, null=True)
+    order_price = models.IntegerField(default=0, blank=True, null=True)
     status = models.SmallIntegerField(default=0, blank=True, null=True, choices=status)
     session_key = models.CharField(max_length=256, blank=False, null=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
@@ -19,8 +19,8 @@ class ProductInOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     count = models.SmallIntegerField(default=0, blank=False, null=True)
-    price_per_one = models.IntegerField(default=0.0, blank=True, null=True)
-    price = models.IntegerField(default=0.0, blank=False, null=True)
+    price_per_one = models.IntegerField(default=0, blank=True, null=True)
+    price = models.IntegerField(default=0, blank=False, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(default=timezone.now(), editable=False)
 
