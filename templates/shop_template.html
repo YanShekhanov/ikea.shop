@@ -174,7 +174,9 @@
     //изменение ширины экрана
     $(window).resize(function () {
        if ($(window).width() <= 540){
+           console.log('<= 540');
            $('body').on('click', '.nav-link', function () {
+               console.log('скрыть меню');
                $('#navbarNav').hide();
            })
        }
