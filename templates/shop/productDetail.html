@@ -171,7 +171,7 @@
     {% if complementaryProducts %}
   <section id="content4">
           {% for complementary_product in complementaryProducts %}
-              <div class="card">
+              <div class="card" data-article_number="">
 				<div class="card-open">
                 <!--Product Images Open-->
                     <i class="fa fa-search-plus get-all-images" data-unique_identificator={{ complementary_product.unique_identificator }} aria-hidden="true"></i>
@@ -188,7 +188,7 @@
                     <p class="card-text">{{ complementary_product.dimensions }}</p>
 					<p class="card-price">{{ complementary_product.price }} грн.</p>
                 	<div class="button-item">
-     					<a href="" class="btn-1">Добавить в корзину</a>
+     					<a href="" class="btn-1 add_to_basket">Добавить в корзину</a>
     				</div>
             	</div>
                 <!--Product Images-->
@@ -260,6 +260,16 @@
                 //добавляем изменения в бд ajax
                 ajax_add_to_basket(token, product_article_number, product_count, function (data) {generate_added_message(data)});
             };
+        });
+
+        //ajax добавление в корзину дополняющих товаров
+        $('.content').on('click', '.add_to_basket', function (e) {
+            e.preventDefault();
+            var token = $('input[name="csrfmiddlewaretoken"]').val(),
+                product_article_number = $(this).parents('.card').data('article_number'),
+                count = 1;
+            console.log(token, product_article_number, count);
+            ajax_add_to_basket(token, product_article_number, count, function (data){generate_added_message(data)});
         });
 
         //генерация блока о добавленнии продукта в корзину
