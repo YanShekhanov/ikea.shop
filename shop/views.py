@@ -298,24 +298,6 @@ def get_sort_query(request):
                 return Http404
         return JsonResponse(response_json_dict)
 
-def product_to_json(queryset):
-    objects_list = []
-    for product in queryset:
-        one_product_dict = {}
-        try:
-            image = ProductImage.objects.filter(product=product, size=250).first()
-            one_product_dict['image'] = image.image.url
-        except ProductImage.DoesNotExist:
-            one_product_dict['image'] = 'Image does not exist'
-        one_product_dict['article_number_with_dot'] = product.with_dot()
-        one_product_dict['article_number'] = product.article_number
-        one_product_dict['title'] = product.title
-        one_product_dict['price'] = product.price
-        one_product_dict['unique_identificator'] = product.unique_identificator
-        one_product_dict['dimensions'] = product.dimensions
-        objects_list.append(one_product_dict)
-    return objects_list
-
 
 #ajax поиск
 from django.db.models import Q
