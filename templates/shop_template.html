@@ -69,14 +69,14 @@
 <div class="grid nav-cat" id="dropdown-products">
 	<!--Product List-->
 	<ul id="product-list">
-    <span id="to_menu">Назад в меню</span>
+    <span id="to_menu" class="btn-prev-menu">Назад в меню</span>
             {% for category in Categories %}
                 <li class="category_el" data-category_id="{{ category.id }}" onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
     <ul id="product-categories">
-        <span id="to_categories">Назад к категориям</span>
+        <span id="to_categories" class="btn-prev-menu">Назад к категориям</span>
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
