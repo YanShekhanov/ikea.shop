@@ -5,8 +5,8 @@
 <!--Room-->
     <div id="room">
         <img src="{{ image.image.url }}" alt="{{ image.title }}">
-        {{ room.title }}
     </div>
+		<p class="room-name"> {{ room.title }}</p>
         {% for product in products %}
             {% for image in products_images %}
                 {% for image_rel in image.product.all %}
