@@ -1011,6 +1011,55 @@ h1:before {
 		display: none;
 	}
 }
+@media screen and (max-width: 540px){
+	#product-cards .card{
+		height: 68vw;
+		width: 48.3%;
+		margin-top: 0.5vw;
+		margin-right: 0.5vw;
+		margin-left: 1vw;
+	}
+	#product-cards .card:nth-child(4n){
+    	margin-right: 0.5vw;
+	}
+	#product-cards .card:nth-child(2n){
+    	margin-right: 0;
+	}
+	#product-cards .card-open{
+		min-height: 68vw;
+		width: 49.5vw;
+	}
+	#product-cards img{
+		height: 44vw;
+	}
+	#product-cards .card-title{
+		height: 6vw;
+		font-size: 4vw;
+		margin-left: 2%;
+		margin-right: 2%;
+		width: 96%;
+	}
+	#product-cards .ind-code{
+		width: 100%;
+		font-size: 3.6vw;
+	}
+	#product-cards .card-text{
+		font-size: 3.6vw;
+		margin-top: 0.3vw;
+		margin-left: 3%;
+		margin-right: 3%;
+		width: 94%;
+	}
+	#product-cards .card-price{
+		font-size: 5vw;
+	}
+	#product-cards .fa-search-plus{
+		display: none;
+	}
+	#product-cards a {
+	  font-size: 2.8vw;
+	}
+}
 
 /*Big Images*/
 .img-block{
