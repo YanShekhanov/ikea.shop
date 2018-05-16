@@ -167,7 +167,7 @@
                 },
                 success:function (data) {
                     $('.amount-circle').html(data.order.product_count);
-                    $('#price').text(data.order.order_price + 'грн.');
+                    $('#price').text(data.order.order_price + ' грн.');
                 },
                 error:function (data) {
                     console.log(data);
