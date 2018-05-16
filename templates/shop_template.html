@@ -174,7 +174,7 @@
     //изменение ширины экрана
     $(window).resize(function () {
        if ($(window).width() <= 540){
-           $('body').on('click', '#navbarNav a', function () {
+           $('body').on('click', '.nav-link', function () {
                $('#navbarNav').hide();
            })
        }
