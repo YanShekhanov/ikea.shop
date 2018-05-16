@@ -96,6 +96,10 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
+    for product in Product.objects.filter(is_parsed=True):
+        product.price = int(product.price)
+        product.save()
+        type(product.price)
     '''
     room_places = RoomPlace.objects.all()
     for place in room_places:
