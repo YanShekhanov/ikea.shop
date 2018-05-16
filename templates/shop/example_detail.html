@@ -1,6 +1,18 @@
 {% extends 'shop_template.html' %}
 {% block title %}{% endblock %}
 ﻿
+{% block templates %}
+    <script type="text/basket-message" id="basketMessage">
+        <div class="added-block" style="display: none;" id="added_product_message">
+            <div class="added-to-cart-icon">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+                <div class="added-to-cart">Продукт <span><%product_title%></span> <span>(<%product_article%>)</span> в количестве <span><%count%></span> добавлен в корзину </div>
+            <div class="go-to-cart" onclick="document.location.href='{% url 'show_basket' %}'">Перейти в корзину</div>
+        </div>
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--Room-->
     <div id="room">
@@ -40,4 +52,34 @@
                 {% endfor %}
             {% endfor %}
         {% endfor %}
+{% endblock %}
+
+{% block onload_js %}
+    <script>
+        /ajax добавление в корзину
+        $('.content').on('click', '.add_to_basket', function (e) {
+            e.preventDefault();
+            var token = $('input[name="csrfmiddlewaretoken"]').val(),
+                product_article_number = $(this).parents('.card').data('article_number'),
+                count = 1;
+            console.log(token, product_article_number, count);
+            ajax_add_to_basket(token, product_article_number, count, function (data){generate_added_message(data)});
+        });
+
+        //генерация блока о добавленнии продукта в корзину
+        function generate_added_message(data){
+            Mustache.tags = ['<%', '%>'];
+            var template = document.getElementById('basketMessage').innerHTML,
+                rendered_template = Mustache.render(template, data);
+            $('.content').prepend(rendered_template);
+            $block = $('#added_product_message');
+            $block.show();
+            function reset_added_product() {
+                $block.hide();
+                $('#added_product_message').remove();
+            }
+            setTimeout(reset_added_product, 3000);
+
+        }
+    </script>
 {% endblock %}
