@@ -97,6 +97,7 @@ from bs4 import BeautifulSoup
 import requests
 def test(request):
     for product in Product.objects.filter(is_parsed=True):
+        print(product.article_number)
         print(type(product.price), product.price)
         product.price = int(product.price)
         product.save()
