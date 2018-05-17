@@ -1713,7 +1713,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 	/*Info Block*/
 	.info-block{
 		width: 100%;
-		height: auto;
+		height: 140vw;
 		background-color: #FFFFFF;
 	}
 	.prod-name{
