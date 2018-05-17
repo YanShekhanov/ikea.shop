@@ -4,7 +4,7 @@
 {% block content %}
     <div class="grid" id="admin">
     {% for order in orders %}
-        <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}">
+        <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
 			<p class="adm-title">
                 <form class="change_order_status" method="POST">{% csrf_token %}
                 <label for="status">Статус заказа:</label>
@@ -90,7 +90,7 @@
 {% block onload_js %}
     <script>
         //изменения статуса заказа
-        $('#order-info').on('change', 'select[name="status"]', function () {
+        $('.one_order').on('change', 'select[name="status"]', function () {
             $form = $(this).parents('form');
             $form.find('input[type="submit"]').show();
             $form.submit(function (e) {
