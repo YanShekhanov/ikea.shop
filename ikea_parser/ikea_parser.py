@@ -668,7 +668,8 @@ def parseComplementaryProducts(parent_product, *complementary_products_list):
                                                      url_ikea=product_url,
                                                      color=product_color,
                                                      is_parsed=False,
-                                                     parse_later=True)
+                                                     parse_later=True,
+                                                     unique_identificator=create_identificator(8))
             #print('Артикул %s был успешно сохранен в БД под id = %i' % (created_product.article_number, created_product.id))
 
             #закрываем старую вкладку и открываем новую

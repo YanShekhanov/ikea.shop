@@ -96,6 +96,14 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
+    itter=0
+    for product in Product.objects.all():
+        if product.unique_identificator is None:
+            product.unique_identificator = create_identificator(8)
+            product.save()
+            print('for article %s created identificator %s' % (product.with_dot(), product.unique_identificator))
+            itter += 1
+    print('changed = %i' % itter)
     '''
     room_places = RoomPlace.objects.all()
     for place in room_places:
