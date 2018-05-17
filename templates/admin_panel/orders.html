@@ -11,6 +11,7 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
+            <script>get_select_value({{ order.status }}, $(this).parents('.one_order').find('.change_order_status'))</script>
             </p>
 
 			<p>Дата заказа: <b>{{ order.updated|date:'Y-m-d H:i' }}</b></p>
@@ -155,7 +156,7 @@
 
             //кнопка меняет содержимое
             button.parents('#open-info').hide();
-            button.parents('#open-info').siblings('#close-info').show();
+            button.parents('#open-info').siblings('#close-info').css('display', 'flex');
             button.parents('#order-info').find('.open-info').show();
         }
 
