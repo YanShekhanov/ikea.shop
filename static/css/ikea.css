@@ -1687,6 +1687,135 @@ input[type="checkbox"]:checked ~ #color-select-open {
 		display: none;
 	}
 }
+@media screen and (max-width: 540px){
+		/*Small Images*/
+	.one-prod-imgs{
+		width: 20%;
+		height: 80vw;
+		max-height: 80vw;
+	}
+	.small-img{	
+		height: 20vw;
+		width: 100%;
+	}
+	
+	/*Large Image*/
+	.one-prod-img{
+		width: 80%;
+		height: 80vw;
+	}
+
+	/*Info Block*/
+	.info-block{
+		width: 100%;
+		height: auto;
+		background-color: #FFFFFF;
+	}
+	.prod-name{
+		height: 7vw;
+		font-size: 5vw;
+		margin-top: 1vw;
+	}
+	.prod-info{
+		height: 40vw;
+		font-size: 4vw;
+	}
+	.prod-price{
+		height: 9vw;
+		padding-top: 2vw;
+		font-size: 6vw;
+	}
+	#info-block a {
+	  font-size: 4vw;
+	}
+	
+	#model-select-open{
+		width:  90vw;
+		max-height: 50vw;
+		top: 14vw;
+		overflow-x: scroll;
+		overflow-y: scroll;
+		font-size: 3.5vw;
+	}
+	#model-select-open img{
+		width: 90px;
+		height: 90px;
+		margin-right: 1vw;
+	}
+	#model-select{
+		width: 90vw;
+		height: 14vw;
+		padding-left: 5vw;
+		font: normal 5vw/normal Arial, Helvetica, sans-serif;
+	}
+	#model-select .fa-cog{
+		margin-left: 2vw;
+	}
+	
+	#size-select-open{
+		width:  90vw;
+		max-height: 50vw;
+		top: 14vw;
+		overflow-x: scroll;
+		overflow-y: scroll;
+		font-size: 3.5vw;
+	}
+	#size-select-open img{
+		width: 90px;
+		height: 90px;
+		margin-right: 1vw;
+	}
+	#size-select{
+		width: 90vw;
+		height: 14vw;
+		padding-left: 5vw;
+		font: normal 5vw/normal Arial, Helvetica, sans-serif;
+	}
+	#size-select .fa-arrows{
+		margin-left: 2vw;
+	}
+	
+	#color-select-open{
+		width:  90vw;
+		max-height: 50vw;
+		top: 14vw;
+		overflow-x: scroll;
+		overflow-y: scroll;
+		font-size: 3.5vw;
+	}
+	#color-select-open img{
+		width: 90px;
+		height: 90px;
+		margin-right: 1vw;
+	}
+	#color-select{
+		width: 90vw;
+		height: 14vw;
+		padding-left: 5vw;
+		font: normal 5vw/normal Arial, Helvetica, sans-serif;
+	}
+	.square-1{
+		margin-left: 2vw;
+	}
+	.square-2{
+		margin-left: 2vw;
+	}
+	.square-3{
+		margin-left: 2vw;
+	}
+	
+	#amount-select{
+		width: 90vw;
+		height: 14vw;
+		padding-left: 5vw;
+		font: normal 5vw/normal Arial, Helvetica, sans-serif;
+	}
+
+	/*In Stock*/
+	#info-block .button-item:hover .amount{
+		display: none;
+	}
+}
 
 
 /*Cards On Pages Block*/
