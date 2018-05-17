@@ -161,6 +161,7 @@
                         $(this).remove()
                     });
                     refresh_basket();
+                    refresh_basket_price(token);
                 },
                 error: function () {
                     alert('Ошибка сервера, попробуйте еще раз')
