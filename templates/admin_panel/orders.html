@@ -96,7 +96,7 @@
             $form.find('input[type="submit"]').show();
             $form.submit(function (e) {
                 e.preventDefault();
-                var status = $(this).val(),
+                var status = $(this).find('option :selected').val(),
                     unique_identificator = $(this).parents('#order-info').data('order_unique_identificator'),
                     token = $('input[name="csrfmiddlewaretoken"]').val(),
                     data = {'status':status, 'unique_identificator':unique_identificator, 'csrfmiddlewaretoken':token};
