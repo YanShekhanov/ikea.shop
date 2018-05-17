@@ -160,9 +160,10 @@
 
         //зыкрытие дополнительных товаров
         $('body').on('click', '.close_product_in_order', function () {
-            $(this).parents();
+            $(this).parents('#close-info').hide();
+            $(this).parents('#close-info').siblings('#open-info').show();
+            $(this).parents('#order-info').find('.open-info').hide();
             $('._cart-item').remove();
-            $(this).parents('#order-info').find('.show_product_in_order').show();
         })
     </script>
 {% endblock %}
