@@ -71,7 +71,7 @@
     <script type="text/productTemplate" id="product_template">
         <div id="cart-item" class="_cart-item">
             <img src="<%image_url%>" alt="#">
-			<a><%title%><br><%article_number_with_dot%></a>
+			<a href="/product_detail/product=<%article_number%>"><%title%><br><%article_number_with_dot%></a>
 			<div class="amount-cart"><%count%><h6>шт.</h6></div>
 			<div class="cart-price"><h6><%price_per_one%> грн.</h6></div>
 			<div class="cart-total"><h6><%price%> грн.</h6></div>
@@ -147,6 +147,7 @@
                     image_url: query.image,
                     title: query.title,
                     article_number:query.article_number,
+                    article_number_with_dot:query.article_number_with_dot,
                     price_per_one:query.price_per_one,
                     price:query.price,
                     count:query.count,
