@@ -1979,7 +1979,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 	display: block;
 }
 @media screen and (max-width: 750px){
-	#product-cards .card{
+	#content4 .card{
 		height: 34vw;
 		width: 24.4%;
 		margin-top: 0.5vw;
@@ -1987,91 +1987,91 @@ input[type="checkbox"]:checked ~ #color-select-open {
 		padding: 0;
 		border: 0.15vw solid #e3e3e3;
 	}
-	#product-cards .card-open{
+	#content4 .card-open{
 		min-height: 34vw;
 		width: 25vw;
 	}
-	#product-cards img{
+	#content4 img{
 		height: 22vw;
 	}
-	#product-cards .card-title{
+	#content4 .card-title{
 		height: 3vw;
 		font-size: 2vw;
 		margin-left: 2%;
 		margin-right: 2%;
 		width: 96%;
 	}
-	#product-cards .ind-code{
+	#content4 .ind-code{
 		width: 100%;
 		font-size: 1.8vw;
 	}
-	#product-cards .card-text{
+	#content4 .card-text{
 		font-size: 1.8vw;
 		margin-top: 0.3vw;
 		margin-left: 3%;
 		margin-right: 3%;
 		width: 94%;
 	}
-	#product-cards .card-price{
+	#content4 .card-price{
 		font-size: 2.5vw;
 	}
-	#product-cards .fa-search-plus{
+	#content4 .fa-search-plus{
 		font-size: 4vw;
 	}
-	#product-cards a {
+	#content4 a {
 	  font-size: 1.4vw;
 	}
 	/*In Stock*/
-	#product-cards .button-item:hover .amount{
+	#content4 .button-item:hover .amount{
 		display: none;
 	}
 }
 @media screen and (max-width: 540px){
-	#product-cards .card{
+	#content4 .card{
 		height: 68vw;
 		width: 48.3%;
 		margin-top: 0.5vw;
 		margin-right: 0.5vw;
 		margin-left: 1vw;
 	}
-	#product-cards .card:nth-child(4n){
+	#content4 .card:nth-child(4n){
     	margin-right: 0.5vw;
 	}
-	#product-cards .card:nth-child(2n){
+	#content4 .card:nth-child(2n){
     	margin-right: 0;
 	}
-	#product-cards .card-open{
+	#content4 .card-open{
 		min-height: 68vw;
 		width: 49.5vw;
 	}
-	#product-cards img{
+	#content4 img{
 		height: 44vw;
 	}
-	#product-cards .card-title{
+	#content4 .card-title{
 		height: 6vw;
 		font-size: 5vw;
 		margin-left: 2%;
 		margin-right: 2%;
 		width: 96%;
 	}
-	#product-cards .ind-code{
+	#content4 .ind-code{
 		width: 100%;
 		font-size: 3.6vw;
 	}
-	#product-cards .card-text{
+	#content4 .card-text{
 		font-size: 3.6vw;
 		margin-top: 0.3vw;
 		margin-left: 3%;
 		margin-right: 3%;
 		width: 94%;
 	}
-	#product-cards .card-price{
+	#content4 .card-price{
 		font-size: 5vw;
 	}
-	#product-cards .fa-search-plus{
+	#content4 .fa-search-plus{
 		display: none;
 	}
-	#product-cards a {
+	#content4 a {
 	  font-size: 2.8vw;
 	}
 }
