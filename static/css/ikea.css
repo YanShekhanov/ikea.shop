@@ -2000,6 +2000,58 @@ main {
 	color: white;
 	background-color: #FF9344;
 }
+@media screen and (max-width: 750px){
+	.added-to-cart-icon{
+		top: 3vw;
+		right: 1vw;
+		font-size: 18vw;
+		height: 20vw;
+		width: 20vw;
+	}
+	.added-to-cart{
+		top: 4vw;
+		right: 6.5vw;
+		height: 16vw;
+		width: 56vw;
+		padding-right: 14vw;
+		padding-left: 1vw;
+		padding-top: 1vw;
+		font-size: 2.2vw;
+	}
+	.go-to-cart{
+		font-size: 2.4vw;
+		top: 15vw;
+		right: 36.5vw;
+		width: 26vw;
+		height: 8vw;
+	}
+}
+@media screen and (max-width: 540px){
+	.added-to-cart-icon{
+		top: 3vw;
+		right: 5vw;
+		font-size: 28vw;
+		height: 30vw;
+		width: 30vw;
+	}
+	.added-to-cart{
+		top: 4vw;
+		right: 23vw;
+		height: 26vw;
+		width: 70vw;
+		padding-right: 20vw;
+		padding-left: 1vw;
+		padding-top: 1.5vw;
+		font-size: 3.5vw;
+	}
+	.go-to-cart{
+		font-size: 3.5vw;
+		top: 23vw;
+		right: 57vw;
+		width: 36vw;
+		height: 12vw;
+	}
+}
 
 /*Rooms Page*/
 #room-menu{
