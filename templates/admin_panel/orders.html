@@ -4,8 +4,9 @@
 {% block content %}
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}">
-			<p class="adm-title">Статус заказа:
+			<p class="adm-title">
                 <form class="change_order_status" method="POST">{% csrf_token %}
+                <label for="status">Статус заказа:</label>
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
@@ -52,7 +53,7 @@
                             <!-- товары -->
 
                         <div id="cart-offer">
-                            <h6>{{ order.price }}</h6>
+                            <h6>{{ order.order_price }}</h6>
                         </div>
                     </div>
 		        </div>
