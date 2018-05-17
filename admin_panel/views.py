@@ -49,6 +49,7 @@ def order_detail(request):
             one_product_dict = {
                 'title':product.product.title,
                 'article_number':product.product.article_number,
+                'article_number_with_dot':product.product.with_dot(),
                 'price_per_one':product.product.price,
                 'price':product.price,
                 'count':product.count,
