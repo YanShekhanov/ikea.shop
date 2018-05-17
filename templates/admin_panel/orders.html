@@ -21,7 +21,7 @@
      			<a href="#" class="btn-1">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
 
-            <div class="open-info">
+            <div class="open-info" style="display:none;">
                 {% for order_info in orders_info %}
                     {% if order_info.order == order %}
                         <p class="adm-title">Данные клиента:</p>
