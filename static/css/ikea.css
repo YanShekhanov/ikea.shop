@@ -2409,6 +2409,22 @@ main {
 	.room-drop{
 		top: 33vw;
 	}
+	#room-page{
+		width: 100%;
+		height: auto;
+	}
+	#room-page img{
+		width: 100%;
+		max-width: 100%;
+		max-height: none;
+		min-height: none;
+	}
+	#room-page a{
+		display: block;
+		float: none;
+		margin-right: 0vw;
+		margin-top: 0vw;
+	}
 }
 
 /*Room*/
