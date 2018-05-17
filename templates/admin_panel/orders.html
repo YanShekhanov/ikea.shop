@@ -98,6 +98,7 @@
                 e.preventDefault();
                 var status = $form.find('select option:selected').val(),
                     token = $('input[name="csrfmiddlewaretoken"]').val(),
+                    unique_identificator = $form.parents('.one_order').data('order_unique_identificator'),
                     data = {'status':status, 'unique_identificator':unique_identificator, 'csrfmiddlewaretoken':token};
                 console.log(data);
                 $.ajax({
