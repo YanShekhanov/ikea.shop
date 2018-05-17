@@ -11,7 +11,7 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
-            <script>get_select_value({{ order.status }}, $(this).parents('.one_order').find('.change_order_status'))</script>
+            <script>get_select_value({{ order.status }}, $('.one_order').last())</script>
             </p>
 
 			<p>Дата заказа: <b>{{ order.updated|date:'Y-m-d H:i' }}</b></p>
