@@ -69,13 +69,8 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
-				<select id="order-stat">
-            		<option>Оплачено</option>
-            		<option value="increase">Не оплачено</option>
-            		<option value="decline">Заказано</option>
-            		<option value="from_A_to_Z">Готово</option>
-            		<option value="from_Z_to_A">дпдклдлдппдтд</option>
-        		</select></p>
+            </p>
+
 			<p>Дата заказа: <b>{{ order.updated|date:'Y-m-d H:i' }}</b></p>
 			<p>Уникальный индетификатор: <b>{{ order.unique_identificator }}</b></p>
 			<div class="button-item" id="open-info">
@@ -84,15 +79,29 @@
 			<div class="button-item" id="close-info">
      			<a href="#" class="btn-1">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
-			<div class="open-info">
-				<p class="adm-title">Данные клиента:</p>
-				<p>ФИО: <b>Головня Артем Андреевич</b> Телефон: <b>+380-123-45-67</b> E-mail: <b>golovnya.artem@gmail.com</b></p>
-				<p class="adm-title">Способ отправки:</p>
-				<p>Тип: <b>Новая Почта</b> Отделения: <b>№1</b> Адрес: <b>ул.Петровского 68</b></p>
-				<p class="adm-title">Способ оплаты:</p>
-				<p>Оплата: <b>Наложенный платеж</b></p>
-				<div id="cart">
-		        <div id="cart-price-total">
+            {% for order_info in orders_info %}
+                {% if order_info.order == order %}
+                    <p class="adm-title">Данные клиента:</p>
+				    <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.mail }}</b></p>
+                {% endif %}
+            {% endfor %}
+
+            {% for order_delivery in orders_delivery %}
+                {% if order_delivery.order == order %}
+                    <p class="adm-title">Способ отправки:</p>
+				    <p><b>{{ order_delivery.method_readable }}</b></p>
+                {% endif %}
+            {% endfor %}
+
+            {% for order_payment in orders_payment %}
+                {% if order_payment.order == order %}
+                    <p class="adm-title">Способ оплаты:</p>
+				    <p>Оплата: <b>{{ order_payment.method_readable }}</b></p>
+                {% endif %}
+            {% endfor %}
+
+            <div id="cart">
+            <div id="cart-price-total">
 			<div class="cart-name"><h6>Название</h6></div>
 			<div class="amount-cart"><h6>Количество</h6></div>
 			<div class="cart-price"><h6>Цена за 1шт</h6></div>
@@ -106,42 +115,11 @@
 			<i class="fa fa-times-circle" aria-hidden="true"></i>
 		</div>
 		<div id="cart-offer">
-			<h6>Сумма: 100000грн.</h6>
+			<h6>{{ order.price }}</h6>
 		</div>
 	</div>
 			</div>
 		</div>
-
-
-        <div class="order" id="{{ order.unique_identificator }}">
-            <h4>Уникальный идентификатор : {{ order.unique_identificator }}, date: {{ order.updated|date:"Y-m-d H:i" }}</h4>
-            <h5>Общая стоимость: {{ order.order_price }},
-                status: <form class="change_order_status" method="POST">{% csrf_token %}
-                {{ change_order_status_form.status }}
-                    <input type="submit" value="Сохранить" style="display: none;">
-                </form>
-                <script>get_select_value(status={{ order.status }},$('.order').last().find('select[name="status"]'))</script>
-
-            {% for order_info in orders_info %}
-                {% if order_info.order == order %}
-                    <h6>ФИО: {{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}<br>
-                        Телефон: {{ order_info.phone }}, Email: {{ order_info.email }}
-                    </h6>
-                {% endif %}
-            {% endfor %}
-
-            {% for order_delivery in orders_delivery %}
-                {% if order_delivery.order == order %}
-                    Данные для отправки: {{ order_delivery.method_readable }}
-                {% endif %}
-            {% endfor %}
-
-            {% for order_payment in orders_payment %}
-                {% if order_payment.order == order %}
-                    Способ оплаты: {{ order_payment.method_readable }}
-                {% endif %}
-            {% endfor %}
-            <div class="products" style="display: none"></div>
 
             <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
             <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>
@@ -152,9 +130,13 @@
 
 {% block templates %}
     <script type="text/productTemplate" id="product_template">
-        <div class="product" id="<%article_number%>">
-            <img src="<%image_url%>"><%title%>, <%article_number%>, count: <%count%>, per one: <%price_per_one%>, summ: <%price%>
-        </div>
+        <div id="cart-item" id="<%article_number%>">
+			<a><%title%><br><%article_number_with_dot%></a>
+			<div class="amount-cart"><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
+			<div class="cart-price"><h6><%price_per_one%> грн.</h6></div>
+			<div class="cart-total"><h6><%price%> грн.</h6></div>
+			<i class="fa fa-times-circle" aria-hidden="true"></i>
+		</div>
     </script>
 {% endblock %}
 
