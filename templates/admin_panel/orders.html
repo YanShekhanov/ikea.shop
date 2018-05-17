@@ -148,7 +148,7 @@
                     count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
-                $('#order-info[data-order_unique_identificator="' + unique_identificator + '"]').find('.cart').append(rendered_template);
+                $('#order-info[data-order_unique_identificator="' + unique_identificator + '"]').find('#cart').append(rendered_template);
             }
 
             //кнопка меняет содержимое
