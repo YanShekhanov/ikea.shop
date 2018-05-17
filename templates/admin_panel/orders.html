@@ -54,7 +54,7 @@
                     </div>
 
                     <div id="cart-offer">
-                        <h6>{{ order.order_price }}</h6>
+                        <h6>Сумма: {{ order.order_price }}</h6>
                     </div>
             </div>
 
@@ -154,6 +154,7 @@
 
             //кнопка меняет содержимое
             button.hide();
+            button.parents('#order-inf0').find('.close_product_in_order').show();
             button.siblings('.close_product_in_order').show();
             button.parents('#order-info').find('.open-info').show();
 
