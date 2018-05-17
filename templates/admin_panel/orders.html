@@ -2,6 +2,7 @@
 {% block title %}Заказы{% endblock %}
 
 {% block content %}
+    <div class="grid" id="admin">
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}">
 			<p class="adm-title">
@@ -62,6 +63,7 @@
             <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>-->
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
 
 {% block templates %}
