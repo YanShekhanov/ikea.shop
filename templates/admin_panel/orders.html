@@ -43,20 +43,19 @@
                     {% endif %}
                 {% endfor %}
 
-                <div id="cart">
-                    <div id="cart-price-total">
-                        <div class="cart-name"><h6>Название</h6></div>
-                        <div class="amount-cart"><h6>Количество</h6></div>
-                        <div class="cart-price"><h6>Цена за 1шт</h6></div>
-                        <div class="cart-total"><h6>Сумма</h6></div>
-
-                            <!-- товары -->
-
-                        <div id="cart-offer">
-                            <h6>{{ order.order_price }}</h6>
+                    <div id="cart">
+                        <div id="cart-price-total">
+                            <div class="cart-name"><h6>Название</h6></div>
+                            <div class="amount-cart"><h6>Количество</h6></div>
+                            <div class="cart-price"><h6>Цена за 1шт</h6></div>
+                            <div class="cart-total"><h6>Сумма</h6></div>
                         </div>
+                                <!-- товары -->
                     </div>
-		        </div>
+
+                    <div id="cart-offer">
+                        <h6>{{ order.order_price }}</h6>
+                    </div>
             </div>
 
             <!--<button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
