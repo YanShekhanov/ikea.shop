@@ -15,7 +15,7 @@
 			<p>Дата заказа: <b>{{ order.updated|date:'Y-m-d H:i' }}</b></p>
 			<p>Уникальный индетификатор: <b>{{ order.unique_identificator }}</b></p>
 			<div class="button-item" id="open-info">
-     			<a href="#" class="btn-1">Открыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+     			<a href="#" class="btn-1 show_product_in_order" data-order_unique_identificator="{{ order.unique_identificator }}">Открыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
 			<div class="button-item" id="close-info">
      			<a href="#" class="btn-1">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -148,7 +148,7 @@
                     count:query.count,
                 };
                 var rendered_template = Mustache.render(product_template, rendered_data);
-                $('#' + unique_identificator).find('.products').append(rendered_template);
+                $('#order-info[data-order_unique_identificator="' + unique_identificator + '"]').find('.cart').append(rendered_template);
             }
 
             //кнопка меняет содержимое
