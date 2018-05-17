@@ -101,6 +101,7 @@ class GetOneCategoryProducts(MainInfo, DetailView):
             context['subcategory_path'] = self.object.subcategory
             context['sub_subcategory_path'] = self.object
             context['displayProducts'] = True
+            context['is_filtered'] = True
         return context
 
 #страница одного товара
