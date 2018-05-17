@@ -153,16 +153,14 @@
             }
 
             //кнопка меняет содержимое
-            button.hide();
-            button.parents('#order-info').find('.close_product_in_order').show();
-            button.siblings('.close_product_in_order').show();
+            button.parents('#open-info').hide();
+            button.parents('#open-info').siblings('#close-info').show();
             button.parents('#order-info').find('.open-info').show();
-
         }
 
         //зыкрытие дополнительных товаров
         $('body').on('click', '.close_product_in_order', function () {
-            $(this).hide();
+            $(this).parents();
             $('._cart-item').remove();
             $(this).parents('#order-info').find('.show_product_in_order').show();
         })
