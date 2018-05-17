@@ -19,44 +19,47 @@
 			<div class="button-item" id="close-info">
      			<a href="#" class="btn-1">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
-            {% for order_info in orders_info %}
-                {% if order_info.order == order %}
-                    <p class="adm-title">Данные клиента:</p>
-				    <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.email }}</b></p>
-                {% endif %}
-            {% endfor %}
 
-            {% for order_delivery in orders_delivery %}
-                {% if order_delivery.order == order %}
-                    <p class="adm-title">Способ отправки:</p>
-				    <p><b>{{ order_delivery.method_readable }}</b></p>
-                {% endif %}
-            {% endfor %}
+            <div class="open-info">
+                {% for order_info in orders_info %}
+                    {% if order_info.order == order %}
+                        <p class="adm-title">Данные клиента:</p>
+                        <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.email }}</b></p>
+                    {% endif %}
+                {% endfor %}
 
-            {% for order_payment in orders_payment %}
-                {% if order_payment.order == order %}
-                    <p class="adm-title">Способ оплаты:</p>
-				    <p>Оплата: <b>{{ order_payment.method_readable }}</b></p>
-                {% endif %}
-            {% endfor %}
+                {% for order_delivery in orders_delivery %}
+                    {% if order_delivery.order == order %}
+                        <p class="adm-title">Способ отправки:</p>
+                        <p><b>{{ order_delivery.method_readable }}</b></p>
+                    {% endif %}
+                {% endfor %}
 
-            <div id="cart">
-            <div id="cart-price-total">
-			<div class="cart-name"><h6>Название</h6></div>
-			<div class="amount-cart"><h6>Количество</h6></div>
-			<div class="cart-price"><h6>Цена за 1шт</h6></div>
-			<div class="cart-total"><h6>Сумма</h6></div>
-		</div>
-		<div id="cart-offer">
-			<h6>{{ order.price }}</h6>
-		</div>
-	</div>
-			</div>
-		</div>
+                {% for order_payment in orders_payment %}
+                    {% if order_payment.order == order %}
+                        <p class="adm-title">Способ оплаты:</p>
+                        <p>Оплата: <b>{{ order_payment.method_readable }}</b></p>
+                    {% endif %}
+                {% endfor %}
 
-            <button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
-            <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>
+                <div id="cart">
+                    <div id="cart-price-total">
+                        <div class="cart-name"><h6>Название</h6></div>
+                        <div class="amount-cart"><h6>Количество</h6></div>
+                        <div class="cart-price"><h6>Цена за 1шт</h6></div>
+                        <div class="cart-total"><h6>Сумма</h6></div>
 
+                            <!-- товары -->
+
+                        <div id="cart-offer">
+                            <h6>{{ order.price }}</h6>
+                        </div>
+                    </div>
+		        </div>
+            </div>
+
+            <!--<button class="show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Показать детали заказа</button>
+            <button class="close_product_in_order" data-order_identificator="{{ order.unique_identificator }}" style="display: none">Скрыть детали заказа</button>-->
         </div>
     {% endfor %}
 {% endblock %}
