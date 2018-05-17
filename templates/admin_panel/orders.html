@@ -71,10 +71,9 @@
         <div id="cart-item" class="_cart-item">
             <img src="<%image_url%>" alt="#">
 			<a><%title%><br><%article_number_with_dot%></a>
-			<div class="amount-cart"><input type="number" value="<%count%>" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
+			<div class="amount-cart"><%count%><h6>шт.</h6></div>
 			<div class="cart-price"><h6><%price_per_one%> грн.</h6></div>
 			<div class="cart-total"><h6><%price%> грн.</h6></div>
-			<i class="fa fa-times-circle" aria-hidden="true"></i>
 		</div>
     </script>
 {% endblock %}
