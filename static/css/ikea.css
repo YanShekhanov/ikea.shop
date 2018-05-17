@@ -302,10 +302,14 @@ h1:before {
 	width: auto;
 }
 @media screen and (max-width: 750px){
-	margin-top: 9vw;
+	#searched_query{
+		margin-top: 9vw;
+	}
 }
 @media screen and (max-width: 540px){
-	margin-top: 26vw;
+	#searched_query{
+		margin-top: 26vw;
+	}
 }
 
 /*Navigation Menu*/
