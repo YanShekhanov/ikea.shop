@@ -1,66 +1,6 @@
 {% extends 'shop_template.html' %}
 {% block title %}Заказы{% endblock %}
 
-﻿<!--Admin-->
-	<div class="grid" id="admin">
-		<div class="admin-menu">
-			<div class="btn-adm">Обновить товары</div>
-			<div class="btn-adm">Загрузить артикулы</div>
-			<div class="btn-adm">Заказы клиентов</div>
-		</div>
-		<select id="order-sort">
-            <option>Фильтрация по статусу заказа</option>
-            <option value="increase">Пункт сортировки 1</option>
-            <option value="decline">Пункт сортировки 2</option>
-            <option value="from_A_to_Z">Пункт сортировки 3</option>
-            <option value="from_Z_to_A">Пункт сортировки 4</option>
-        </select>
-		<div id="order-info">
-			<p class="adm-title">Статус заказа:
-				<select id="order-stat">
-            		<option>Оплачено</option>
-            		<option value="increase">Не оплачено</option>
-            		<option value="decline">Заказано</option>
-            		<option value="from_A_to_Z">Готово</option>
-            		<option value="from_Z_to_A">дпдклдлдппдтд</option>
-        		</select></p>
-			<p>Дата заказа: <b>12.05.2018</b></p>
-			<p>Уникальный индетификатор: <b>5492924892</b></p>
-			<div class="button-item" id="open-info">
-     			<a href="#" class="btn-1">Открыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-    		</div>
-			<div class="button-item" id="close-info">
-     			<a href="#" class="btn-1">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-    		</div>
-			<div class="open-info">
-				<p class="adm-title">Данные клиента:</p>
-				<p>ФИО: <b>Головня Артем Андреевич</b> Телефон: <b>+380-123-45-67</b> E-mail: <b>golovnya.artem@gmail.com</b></p>
-				<p class="adm-title">Способ отправки:</p>
-				<p>Тип: <b>Новая Почта</b> Отделения: <b>№1</b> Адрес: <b>ул.Петровского 68</b></p>
-				<p class="adm-title">Способ оплаты:</p>
-				<p>Оплата: <b>Наложенный платеж</b></p>
-				<div id="cart">
-		        <div id="cart-price-total">
-			<div class="cart-name"><h6>Название</h6></div>
-			<div class="amount-cart"><h6>Количество</h6></div>
-			<div class="cart-price"><h6>Цена за 1шт</h6></div>
-			<div class="cart-total"><h6>Сумма</h6></div>
-		</div>
-		<div id="cart-item">
-			<a>PERSISK KELIM GASHGAI<br>(12345646)</a>
-			<div class="amount-cart"><input type="number" value="31" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
-			<div class="cart-price"><h6>180332грн.</h6></div>
-			<div class="cart-total"><h6>100000грн.</h6></div>
-			<i class="fa fa-times-circle" aria-hidden="true"></i>
-		</div>
-		<div id="cart-offer">
-			<h6>Сумма: 100000грн.</h6>
-		</div>
-	</div>
-			</div>
-		</div>
-	</div>
-
 {% block content %}
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}">
@@ -82,7 +22,7 @@
             {% for order_info in orders_info %}
                 {% if order_info.order == order %}
                     <p class="adm-title">Данные клиента:</p>
-				    <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.mail }}</b></p>
+				    <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.email }}</b></p>
                 {% endif %}
             {% endfor %}
 
@@ -106,13 +46,6 @@
 			<div class="amount-cart"><h6>Количество</h6></div>
 			<div class="cart-price"><h6>Цена за 1шт</h6></div>
 			<div class="cart-total"><h6>Сумма</h6></div>
-		</div>
-		<div id="cart-item">
-			<a>PERSISK KELIM GASHGAI<br>(12345646)</a>
-			<div class="amount-cart"><input type="number" value="31" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
-			<div class="cart-price"><h6>180332грн.</h6></div>
-			<div class="cart-total"><h6>100000грн.</h6></div>
-			<i class="fa fa-times-circle" aria-hidden="true"></i>
 		</div>
 		<div id="cart-offer">
 			<h6>{{ order.price }}</h6>
