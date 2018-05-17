@@ -2367,6 +2367,7 @@ main {
 }
 @media screen and (max-width: 750px){
 	#room-menu{
+		top: 20.5vw;
 		width: 100%;
 	}
 	.room-item{
@@ -2389,6 +2390,9 @@ main {
 	}
 }
 @media screen and (max-width: 540px){
+	#room-menu{
+		top: 41.5vw;
+	}
 	.room-item{
 		width: 49%;
 		height: 33vw;
