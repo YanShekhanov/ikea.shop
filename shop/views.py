@@ -115,7 +115,6 @@ class ProductDetail(MainInfo, DetailView, TemplateView):
 
     def get_context_data(self, **kwargs):
         self.object = self.get_object()
-        print(type(self.object.price))
         context = super(ProductDetail, self).get_context_data(**kwargs)
         '''#path
         context['category_path'] = self.object.subcategory.all[0].category
