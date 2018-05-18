@@ -145,11 +145,24 @@ def delete_product_from_basket(request):
         }
         return JsonResponse(response_dict)
 
+from shop.views import availability
 #ajax добавление продкта в корзину
 def add_to_basket(request):
+    response_dict = {}
     if request.method == 'POST' and request.is_ajax():
         product_article = request.POST['product_article']
         count = int(request.POST['count'])
+
+        product_availability = availability(product_article)
+        if product_availability['successMessage']:
+            return JsonResponse(response_dict={'successMessage': 'К сожалению данный продукт временно недоступен'})
+        if product_availability['availability']:
+            response_dict['availability'] = product_availability['availability']
+            pass
+
+        if count > product_availability['availability']:
+            response_dict['countError'] = {'message':'Введенное количество привышает доступное', 'availability': product_availability['availability']}
+            return JsonResponse(response_dict)
 
         if not request.session.exists(request.session.session_key):
             request.session.create()
@@ -170,12 +183,16 @@ def add_to_basket(request):
         except Product.DoesNotExist:
             return HttpResponse(status=404)
 
-        response_dict = {
+        response_dict['added'] = True
+        response_dict['product_article'] = created_in_basket.product.with_dot()
+        response_dict['product_title'] = created_in_basket.product.title
+        response_dict['count'] = count
+        '''response_dict = {
             'added':True,
             'product_article':created_in_basket.product.article_number,
             'product_title':created_in_basket.product.title,
             'count':count
-        }
+        }'''
         return JsonResponse(response_dict)
 
 
