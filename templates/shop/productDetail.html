@@ -242,6 +242,8 @@
             window.availability = availability * 1;
         });
 
+        console.log(window.availability);
+
         $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
            $('.large-img .img-item').attr('src', image_url);
