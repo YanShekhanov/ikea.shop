@@ -26,7 +26,7 @@ class MainInfo(TemplateView):
         context['Categories'] = Category.objects.exclude(title='Panele słoneczne').order_by('-created')
         context['SubCategories'] = SubCategory.objects.all().order_by('-created')
         context['SubSubCategories'] = SubSubCategory.objects.all().order_by('-created')
-        print([unicode(_.title) for _ in context['SubSubCategories']])
+        print([_.title.decode('unicode-escape') for _ in context['SubSubCategories']])
 
         #rooms
         rooms = Room.objects.all()
