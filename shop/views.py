@@ -375,7 +375,7 @@ def availability(article_number):
     try:
         availability = product_soup.find('localStore', buCode='311').find('availableStock').text
         if int(availability) == 0:
-            response_dict['successMessage'] = 'К сожалению этот продукт не доступен'
+            response_dict['successMessage'] = 'zero'#'К сожалению этот продукт не доступен'
         else:
             response_dict['availability'] = int(availability)
     except AttributeError:
