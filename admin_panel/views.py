@@ -11,10 +11,11 @@ LOGIN_URL = '/'
 class AdminAuth(TemplateView):
     template_name = 'admin_panel/login.html'
 
-def admin_auth(request):
+def check_auth(request):
     response_dict = {}
     if request.method == "POST" and request.is_ajax():
-        pass
+        print(request.POST['username'])
+        return JsonResponse()
     else:
         response_dict['requestError'] = 'Bad request'
         return JsonResponse(response_dict)
