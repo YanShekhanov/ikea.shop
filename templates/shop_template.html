@@ -83,6 +83,7 @@
                     <li data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
                     <ul id="product-subcategories">
                     {% for sub_subcategory in SubSubCategories %}
+                        1
                         {% if sub_subcategory.subcategory == subcategory %}
                             <li>{{ sub_subcategory.title }}</li>
                         {% endif %}
