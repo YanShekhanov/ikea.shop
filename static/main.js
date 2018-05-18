@@ -149,8 +149,12 @@
                     'count':product_count,
                 },
                 success: function (data) {
-                    callback(data);
-                    refresh_basket_price(token);
+                    if (data.successMessage){alert(data.successMessage)}
+                    else if (data.countError){alert(data.countError.message, data.countError.availability)}
+                    else {
+                        callback(data);
+                        refresh_basket_price(token);
+                    }
                 },
                 error: function () {
                     console.log('error');
