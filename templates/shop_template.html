@@ -279,7 +279,11 @@
         $('.subcategory_el').each(function () {
             var subcategory_id = $(this).data('subcategory_id'),
                 sub_subcategories_length = $('.sub_subcategories[data-rel_subcategory_id="' + subcategory_id + '"]').find('li').length;
-            console.log(sub_subcategories_length);
+            if (sub_subcategories_length > 0){
+                console.log($(this).text(), sub_subcategories_length);
+                $(this).addClass('have_sub_sub');
+                $(this).attr('onclick', '');
+            }
         });
 
     });
