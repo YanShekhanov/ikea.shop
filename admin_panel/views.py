@@ -7,6 +7,19 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 LOGIN_URL = '/'
+
+class AdminAuth(TemplateView):
+    template_name = 'admin_panel/login.html'
+
+def admin_auth(request):
+    response_dict = {}
+    if request.method == "POST" and request.is_ajax():
+        pass
+    else:
+        response_dict['requestError'] = 'Bad request'
+        return JsonResponse(response_dict)
+
+
 @method_decorator(login_required(login_url=LOGIN_URL), name='dispatch')
 class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
