@@ -81,7 +81,7 @@
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
                     <li class="subcategory_el" data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
-                    <ul id="product-subcategories">
+                    <ul id="product-subcategories" data-subcategory_id="{{ subcategory.id }}">
                     {% for sub_subcategory in SubSubCategories %}
                         {% if sub_subcategory.subcategory == subcategory %}
                             <li>{{ sub_subcategory.title }}</li>
