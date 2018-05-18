@@ -176,13 +176,6 @@
 
     }
 
-    //скрипт определяющий наличие подкатегорий
-    var subcategories = $('.subcategory_el');
-    for (subcategory=0; subcategory<subcategories.length; subcategory++){
-        console.log(subcategories[subcategory].text());
-        console.log(subcategories[subcategory].find('li').length);
-    }
-
 
 
 
