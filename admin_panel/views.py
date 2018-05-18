@@ -3,7 +3,11 @@ from basket.models import *
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
 from .forms import ChangeStatusForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
+LOGIN_URL = '/'
+@method_decorator(login_required(login_url=LOGIN_URL), name='dispatch')
 class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
     context_object_name = 'orders'

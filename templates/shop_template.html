@@ -81,6 +81,13 @@
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
                     <li data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
+                    <ul id="product-subcategories">
+                    {% for sub_subcategory in SubSubCatregories %}
+                        {% if sub_subcategory.subcategory == subcategory %}
+                            <li>{{ sub_subcategory.title }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
                 {% endif %}
             {% endfor %}
         {% endfor %}
@@ -226,7 +233,7 @@
             $('#product-categories li').hide();
             var category_id = $(this).data('category_id');
             $('#product-categories li[data-category_id="' + category_id + '"]').show();
-            $('#product-categories').fadeIn(300);
+            $('#product-categories').fadeIn(3001);
         });
 
         /*function open_subcategories(id){
