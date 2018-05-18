@@ -154,6 +154,7 @@ def add_to_basket(request):
         count = int(request.POST['count'])
 
         product_availability = availability(product_article)
+        print(product_availability)
         if product_availability.get('successMessage'):
             print('error')
             response_dict['successMessage'] = 'К сожалению данный продукт временно недоступен'
