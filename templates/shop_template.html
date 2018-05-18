@@ -212,6 +212,18 @@
             $('html, body').animate({scrollTop:0});
         });
 
+        //назад в меню
+        $('body').on('click', '#to_menu', function () {
+            $('#product-list').hide();
+            $('#navbarNav').show();
+        });
+
+        $('body').on('click', '#to_categories', function () {
+            $('.subcategory_el').hide();
+            $('.sub_subcategories').hide();
+            $('#product-categories').hide();
+        })
+
     } else if ($(window).width() > 540){
         //laptop
         $('body').on('click', '#categories_menu', function () {
