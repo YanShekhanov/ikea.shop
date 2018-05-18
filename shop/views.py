@@ -377,7 +377,7 @@ def availability(article_number):
         if int(availability) == 0:
             response_dict['successMessage'] = 'К сожалению этот продукт не доступен'
         else:
-            response_dict['availability'] = availability
+            response_dict['availability'] = int(availability)
     except AttributeError:
         response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
     return response_dict
