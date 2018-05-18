@@ -274,11 +274,12 @@
 
         //скрипт определяющий наличие подкатегорий
         $('.subcategory_el').each(function () {
-            console.log($(this).text);
-            var sub_subcategories_len = $(this).find('li').length;
-            console.log(sub_subcategories_len);
+            var sub_subcategories_len = $(this).find('li[display="none"]').length;
+            if (sub_subcategories_len > 0){
+                console.log(sub_subcategories_len);
+            }
         });
-        
+
     });
 
     tags_list = ['.img-block', '.get-all-images'];
