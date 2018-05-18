@@ -160,7 +160,7 @@ def add_to_basket(request):
             response_dict['availability'] = product_availability['availability']
             pass
 
-        if count > product_availability.get('availability'):
+        if int(count) > int(product_availability.get('availability')):
             response_dict['countError'] = {'message':'Введенное количество привышает доступное', 'availability': product_availability['availability']}
             return JsonResponse(response_dict)
 
