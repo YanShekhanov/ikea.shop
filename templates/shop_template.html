@@ -286,7 +286,7 @@
             }
         });
 
-        $('.sub_subcategories').on('click', '.have_sub_sub', function () {
+        $('body').on('click', '.have_sub_sub', function () {
             var subcategory_id = $(this).data('subcategory_id');
             $('.sub_subcategories[data-rel_subcategory_id="' + subcategory_id + '"]').find('li').show();
         })
