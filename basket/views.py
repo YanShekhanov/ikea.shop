@@ -156,7 +156,6 @@ def add_to_basket(request):
         product_availability = availability(product_article)
         print(product_availability)
         if product_availability.get('successMessage'):
-            print('error')
             response_dict['successMessage'] = 'К сожалению данный продукт временно недоступен'
             return JsonResponse(response_dict)
         if product_availability.get('availability'):
