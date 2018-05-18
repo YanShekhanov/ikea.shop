@@ -7,7 +7,7 @@
 </form>
 
 <script>
-    $('body').on('click', '#next', function (e) {
+    $('body').on('submit', '#next', function (e) {
         e.preventDefault();
         var token = $('input[name="csrfmiddlewaretoken"]'),
             username = $('input[name="username"]').val();
