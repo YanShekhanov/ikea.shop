@@ -2724,12 +2724,13 @@ main {
 	margin-top: 0.5vw;
 	margin-bottom: 1vw;
 	padding-right: 1vw;
-	padding-top: 0.5vw;
+	padding-top: 0vw;
 	width: 100%;
-	height: auto;
+	height: 4vw;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	font-size: 2vw;
 }
 #cart-item{
 	position: relative;
@@ -2743,6 +2744,7 @@ main {
 	align-items: center;
 }
 #cart-item img{
+	display: inline-block;
 	width: 6.11vw;
 	height: 100%;
 	margin-right: 0.5vw;
@@ -2759,9 +2761,10 @@ main {
 	font-size: 1.4vw;
 	margin-right: 0.5vw;
 }
-#cart-item h6{
+#cart-item span{
 	text-align: center;
-	padding-top: 0.5vw;
+	font-size: 2vw;
+	padding-top: 0vw;
 	margin-right: 0.5vw;
 	margin-left: 0.5vw;
 }
@@ -2831,9 +2834,10 @@ main {
 	display: flex;
 	align-items: center;
 }
-#cart-offer h6{
+#cart-offer span{
 	text-align: center;
-	padding-top: 0.5vw;
+	font-size: 2vw;
+	padding-top: 0vw;
 	margin-right: 0.5vw;
 	margin-left: 0.5vw;
 }
@@ -2888,6 +2892,91 @@ main {
   z-index: -1;
   transition: all 300ms ease;
 }
+@media screen and (max-width: 750px){
+	#cart-price-total{
+		padding-left: 4vw;
+		justify-content: flex-start;
+	}
+	#cart-price-total .cart-name{
+		width: 20vw;
+		margin-right: 0vw;
+		margin-left: 4vw;
+	}
+	#cart-price-total .amount-cart{
+		width: 20vw;
+	}
+	#cart-price-total .cart-price{
+		width: 20vw;
+	}
+	#cart-price-total .cart-total{
+		width: 20vw;
+	}
+	#cart-item{
+		height: 10vw;
+	}
+	#cart-item img{
+		width: 10vw;
+	}
+	#cart-item a{
+		font-size: 1.8vw;
+	}
+	#cart-item span{
+		text-align: center;
+		padding-top: 0.5vw;
+		margin-right: 0.5vw;
+		margin-left: 0.5vw;
+	}
+	#cart-item .amount-cart{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 17vw;
+		margin-left: 4vw;
+	}
+	#cart-item .cart-price{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 13vw;
+		margin-left: 5vw;
+	}
+	#cart-item .cart-total{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 13vw;
+		margin-left: 8vw;
+	}
+	#cart-item input{
+		width: 6vw;
+	}
+	#cart-item .fa-times-circle{
+		position: absolute;
+		left: -5vw;
+		font-size: 4vw;
+		color: #FF6C00;
+	}
+	#cart-offer{
+		height: 7vw;
+		padding: 1vw;
+	}
+	#cart-offer span{
+		font-size: 2.5vw; 
+		padding-top: 0.5vw;
+		margin-right: 0.5vw;
+		margin-left: 0.5vw;
+	}
+	#cart-offer .button-item {
+	  right: 0.5vw;
+	}
+	#cart-offer .button-item-2 {
+	  right: 17vw;
+	}
+	#cart-offer .btn-1 {
+	  font-size: 1.5vw;
+	}
+}
+
 /*Ordering*/
 #ordering p {
   margin: 0 0 20px;
