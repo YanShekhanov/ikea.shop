@@ -1,7 +1,25 @@
 <form action="POST">{% csrf_token %}
     <label for="username">Username</label>
     <input type="text" name="username">
-    <button>Подтвердить</button>
+    <button id="next">Подтвердить</button>
     <input type="password" name="password" style="display: none;">
     <input type="submit" style="display: none">
 </form>
+
+<script>
+    $('body').on('click', '#next', function (e) {
+        e.preventDefault();
+        var token = $('input[name="csrfmiddlewaretoken"]'),
+            username = $('input[name="username"]').val();
+        $.ajax({
+            url:'{% url "check_auth" %}',
+            method: 'POST',
+            data:{
+                'csrfmiddlewaretoken':token,
+                'username':username,
+            },
+            success:function () {console.log('ok')},
+            error:function () {console.log('error')},
+        })
+    })
+</script>
