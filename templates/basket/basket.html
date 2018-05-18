@@ -9,10 +9,10 @@
         <div id="order" data-order_unique_identificator="{{ order.unique_identificator }}"></div>
         <div class="grid" id="cart">
             ﻿<div id="cart-price-total">
-                <div class="cart-name"><h6>Название</h6></div>
-                <div class="amount-cart"><h6>Количество</h6></div>
-                <div class="cart-price"><h6>Цена/ 1шт.</h6></div>
-                <div class="cart-total"><h6>Сумма</h6></div>
+                <div class="cart-name"><span>Название</span></div>
+                <div class="amount-cart"><span>Количество</span></div>
+                <div class="cart-price"><span>Цена/ 1шт.</span></div>
+                <div class="cart-total"><span>Сумма</h6></span>
 		    </div>
 
             {% for product in products %}
@@ -24,14 +24,14 @@
                                 {% endif %}
                             {% endfor %}
                     {% endfor %}<a href="{% url 'productDetail' product.product.article_number %}">{{ product.product.title }}<br>{{ product.product.with_dot }}</a>
-                    <div class="amount-cart"><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><h6>шт.</h6></div>
-                    <div class="cart-price"><h6>{{ product.product.price }} грн.</h6></div>
-                    <div class="cart-total"><h6>{{ product.price }}грн.</h6></div>
+                    <div class="amount-cart"><input type="number" value="{{ product.count }}" id="product_count" placeholder="Количество..."><span>шт.</span></div>
+                    <div class="cart-price"><span>{{ product.product.price }} грн.</span></div>
+                    <div class="cart-total"><span>{{ product.price }}грн.</span></div>
                     <i class="fa fa-times-circle" aria-hidden="true" onclick="delete_product_from_basket(event, $(this).parents('.product_card').data('product'))"></i>
                 </div>
             {% endfor %}
             <div id="cart-offer">
-                <h6>Сумма: {{ order.order_price }} грн.</h6>
+                <span>Сумма: {{ order.order_price }} грн.</span>
                     <div class="button-item">
                         <a href="{% url 'order_registration' %}" class="btn-1">Оформить заказ</a>
                     </div>
