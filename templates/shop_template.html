@@ -319,7 +319,7 @@
 
 {% block onload_js %}
     <script>//скрипт определяющий наличие подкатегорий
-    ('.subcategory_el').each(function () {
+    $('.subcategory_el').each(function () {
         console.log($(this).text);
         var sub_subcategories_len = $(this).find('li').length;
         console.log(sub_subcategories_len);
