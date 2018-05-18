@@ -2367,6 +2367,7 @@ main {
 }
 @media screen and (max-width: 750px){
 	#room-menu{
+		top: 20.5vw;
 		width: 100%;
 	}
 	.room-item{
@@ -2389,6 +2390,9 @@ main {
 	}
 }
 @media screen and (max-width: 540px){
+	#room-menu{
+		top: 44vw;
+	}
 	.room-item{
 		width: 49%;
 		height: 33vw;
@@ -2408,6 +2412,22 @@ main {
 	}
 	.room-drop{
 		top: 33vw;
+	}
+	#room-page{
+		width: 100%;
+		height: auto;
+	}
+	#room-page img{
+		width: 100%;
+		max-width: 100%;
+		max-height: none;
+		min-height: none;
+	}
+	#room-page a{
+		display: block;
+		float: none;
+		margin-right: 0vw;
+		margin-top: 0vw;
 	}
 }
 
@@ -2584,6 +2604,112 @@ main {
 }
 #room-card .card:hover .button-item{
 	display: block;
+}
+@media screen and (max-width: 750px){
+	#room img{
+		max-width: 100%;
+	}
+	.room-name{
+		font-size: 3vw;
+	}
+	#room-card .card{
+		height: 34vw;
+		width: 24.4%;
+		margin-top: 0.5vw;
+		margin-right: 0.5vw;
+		padding: 0;
+		border: 0.15vw solid #e3e3e3;
+	}
+	#room-card .card-open{
+		min-height: 34vw;
+		width: 25vw;
+	}
+	#room-card img{
+		height: 22vw;
+	}
+	#room-card .card-title{
+		height: 3vw;
+		font-size: 2vw;
+		margin-left: 2%;
+		margin-right: 2%;
+		width: 96%;
+	}
+	#room-card .ind-code{
+		width: 100%;
+		font-size: 1.8vw;
+	}
+	#room-card .card-text{
+		font-size: 1.8vw;
+		margin-top: 0.3vw;
+		margin-left: 3%;
+		margin-right: 3%;
+		width: 94%;
+	}
+	#room-card .card-price{
+		font-size: 2.5vw;
+	}
+	#room-card .fa-search-plus{
+		font-size: 4vw;
+	}
+	#room-card a {
+	  font-size: 1.4vw;
+	}
+	/*In Stock*/
+	#room-card .button-item:hover .amount{
+		display: none;
+	}
+}
+@media screen and (max-width: 570px){
+	.room-name{
+		font-size: 3.5vw;
+	}
+	#room-card .card{
+		height: 68vw;
+		width: 48.3%;
+		margin-top: 0.5vw;
+		margin-right: 0.5vw;
+		margin-left: 1vw;
+	}
+	#room-card .card:nth-child(4n){
+    	margin-right: 0.5vw;
+	}
+	#room-card .card:nth-child(2n){
+    	margin-right: 0;
+	}
+	#room-card .card-open{
+		min-height: 68vw;
+		width: 49.5vw;
+	}
+	#room-card img{
+		height: 44vw;
+	}
+	#room-card .card-title{
+		height: 6vw;
+		font-size: 5vw;
+		margin-left: 2%;
+		margin-right: 2%;
+		width: 96%;
+	}
+	#room-card .ind-code{
+		width: 100%;
+		font-size: 3.6vw;
+	}
+	#room-card .card-text{
+		font-size: 3.6vw;
+		margin-top: 0.3vw;
+		margin-left: 3%;
+		margin-right: 3%;
+		width: 94%;
+	}
+	#room-card .card-price{
+		font-size: 5vw;
+	}
+	#room-card .fa-search-plus{
+		display: none;
+	}
+	#room-card a {
+	  font-size: 2.8vw;
+	}
 }
 
 
