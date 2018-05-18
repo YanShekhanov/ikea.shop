@@ -80,8 +80,8 @@
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
-                    <li class="subcategory_el" data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
-                    <ul id="product-subcategories" data-subcategory_id="{{ subcategory.id }}">
+                    <li class="subcategory_el" data-subcategory_id="{{ subcategory.id }}" data-category_id="{{ category.id }}" onclick="window.location.href = '{% url 'getOneCategoryProducts' subcategory.unique_identificator %}'">{{ subcategory.title }}</li>
+                    <ul id="product-subcategories" data-rel_subcategory_id="{{ subcategory.id }}">
                     {% for sub_subcategory in SubSubCategories %}
                         {% if sub_subcategory.subcategory == subcategory %}
                             <li>{{ sub_subcategory.title }}</li>
@@ -274,11 +274,9 @@
 
         //скрипт определяющий наличие подкатегорий
         $('.subcategory_el').each(function () {
-            var sub_subcategories_len = $(this).find('li[display="none"]').length;
-            console.log(sub_subcategories_len);
-            if (sub_subcategories_len > 0){
-                console.log(sub_subcategories_len);
-            }
+            var subcategory_id = $(this).data('subcategory_id'),
+                sub_subcategories_length = $('#product-categories[data-rel_subcategory_id="' + subcategory_id + '"]').find('li').length;
+            console.log(sub_subcategories_length);
         });
 
     });
