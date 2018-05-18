@@ -25,7 +25,7 @@ class MainInfo(TemplateView):
         context = super(MainInfo, self).get_context_data(**kwargs)
         context['Categories'] = Category.objects.exclude(title='Panele słoneczne').order_by('-created')
         context['SubCategories'] = SubCategory.objects.all().order_by('-created')
-        context['SubSubCategories'] = SubSubCategory.objects.all().odred_by('-created')
+        context['SubSubCategories'] = SubSubCategory.objects.all().order_by('-created')
 
         #rooms
         rooms = Room.objects.all()
