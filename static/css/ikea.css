@@ -80,7 +80,8 @@ h1:before {
 		padding-left: 1vw;
 		padding-right: 0.5vw;
 		margin: 0;
-		height: 2vw;
+		margin-top: 0.5vw;
+		height: 4vw;
 		width: 100%;
 }
 .mobile_button li:hover{
