@@ -240,9 +240,9 @@
         var availability = check_availability(article_number_, function (availability){
             $('#product_available').text(availability);
             window.availability = availability * 1;
+            console.log(availability);
         });
 
-        console.log(window.availability);
 
         $('.small-img .img-item').click(function () {
            var image_url = $(this).attr('src');
@@ -255,14 +255,6 @@
             var product_count = $('#amount-select').val() * 1,
                 product_article_number = $('#main_product_info').data('product_article');
             ajax_add_to_basket(token, product_article_number, product_count, function (data) {generate_added_message(data)})
-            /*if (product_count > window.availability){
-                alert('Запрашуемое количество привышает допустимое');
-                $('#amount-select').val('');
-            }
-            if (product_count > 0 && product_count <= window.availability){
-                //добавляем изменения в бд ajax
-                ajax_add_to_basket(token, product_article_number, product_count, function (data) {generate_added_message(data)});
-            };*/
         });
 
         //ajax добавление в корзину дополняющих товаров

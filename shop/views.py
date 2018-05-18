@@ -379,7 +379,6 @@ def availability(article_number):
             response_dict['availability'] = int(availability)
     except AttributeError:
         response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
-    print(response_dict)
     return response_dict
 
 

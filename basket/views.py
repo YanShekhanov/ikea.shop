@@ -154,7 +154,6 @@ def add_to_basket(request):
         count = int(request.POST['count'])
 
         product_availability = availability(product_article)
-        print(product_availability)
         if product_availability.get('successMessage'):
             response_dict['successMessage'] = 'К сожалению данный продукт временно недоступен'
             return JsonResponse(response_dict)
@@ -189,12 +188,6 @@ def add_to_basket(request):
         response_dict['product_article'] = created_in_basket.product.with_dot()
         response_dict['product_title'] = created_in_basket.product.title
         response_dict['count'] = count
-        '''response_dict = {
-            'added':True,
-            'product_article':created_in_basket.product.article_number,
-            'product_title':created_in_basket.product.title,
-            'count':count
-        }'''
         return JsonResponse(response_dict)
 
 
