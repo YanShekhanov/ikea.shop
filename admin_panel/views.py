@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 
 LOGIN_URL = '/'
 
-class AdminAuth(TemplateView, FormView):
+class AdminAuth(FormView):
     template_name = 'admin_panel/login.html'
     form_class = AdminAuthForm
     success_url = 'admin_panel/orders'
