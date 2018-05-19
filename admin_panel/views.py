@@ -53,6 +53,12 @@ class DisplayOrders(ListView):
             print(form.cleaned_data['status', ''])
             return redirect(reverse('home'))
 
+    def get(self):
+        if self.request.user.is_superuser:
+            return super(DisplayOrders, self).get()
+        else:
+            raise Http404
+
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
 def order_detail(request):
