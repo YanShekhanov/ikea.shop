@@ -15,7 +15,7 @@
   		<input id="tab3" type="radio" name="tabs" disabled>
   			<label for="tab3">Способ оплаты</label>
               <section id="content1"><br>
-                        <form id="ordering-input">
+                        <form id="ordering-input" class="order_registration">
                             <p><i>*</i>Фамилия:</p>{{ form.sorname }}
                             <p><i>*</i>Имя:</p>{{ form.name }}
                             <p><i>*</i>Отчество:</p>{{ form.second_name }}<br>
@@ -105,20 +105,20 @@
            $(this).siblings('form').slideToggle();
         });
 
-        window.registration_data = {};
-        window.registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
+        registration_data = {};
+        registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
 
-        $('#order_registration').submit(function (event) {
+        $('.order_registration').submit(function (event) {
             event.preventDefault();
-            window.registration_data['name']=$(this).find('#id_name').val();
-            window.registration_data['second_name']=$(this).find('#id_second_name').val();
-            window.registration_data['sorname']=$(this).find('#id_sorname').val();
-            window.registration_data['phone']=$(this).find('#id_phone').val();
-            window.registration_data['email']=$(this).find('#id_email').val();
-            window.registration_data['attentions'] = $(this).find('#id_attentions').val();
+            registration_data['name']=$(this).find('#id_name').val();
+            registration_data['second_name']=$(this).find('#id_second_name').val();
+            registration_data['sorname']=$(this).find('#id_sorname').val();
+            registration_data['phone']=$(this).find('#id_phone').val();
+            registration_data['email']=$(this).find('#id_email').val();
+            registration_data['attentions'] = $(this).find('#id_attentions').val();
             $(this).slideUp();
             $('#registration_delivery').slideDown();
-            console.log(window.registration_data);
+            console.log(registration_data);
         });
 
         $('#delivery_method').submit(function (event) {
