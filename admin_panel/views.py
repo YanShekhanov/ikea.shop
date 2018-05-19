@@ -12,6 +12,7 @@ class AdminAuth(TemplateView, FormView):
     template_name = 'admin_panel/login.html'
     model_class = AdminAuthForm
     success_url = 'admin_panel/orders'
+    context_object_name = 'form'
 
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
