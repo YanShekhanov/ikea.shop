@@ -12,7 +12,7 @@ LOGIN_URL = '/admin_panel/auth'
 class AdminAuth(FormView):
     template_name = 'admin_panel/login.html'
     form_class = AdminAuthForm
-    success_url = reverse('display_orders')
+    success_url = '/admin_panel/orders/'
     context_object_name = 'form'
 
     def get(self, *args, **kwargs):
@@ -31,7 +31,10 @@ class AdminAuth(FormView):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(self.request, user)
-        return super(AdminAuth, self).post(*args, **kwargs)
+            if self.request.user.is_superuser:
+                return super(AdminAuth, self).post(*args, **kwargs)
+            else:
+                return redirect(reverse('catalogue'))
 
 def check_auth(request):
     response_dict = {}
