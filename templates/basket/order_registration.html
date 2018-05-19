@@ -8,7 +8,7 @@
 				<p>- Номер заказа: <b>{{ order.unique_identificator }}</b></p>
 				<p>- Сумма: <b>{{ order.order_price }} грн.</b></p>
 			</div>
-  		<input id="tab1" type="radio" name="tabs" class="order_registration_option"checked>
+  		<input id="tab1" type="radio" name="tabs" class="order_registration_option" checked>
   			<label for="tab1">Данные Заказчика</label>
   		<input id="tab2" type="radio" name="tabs" class="delivery_method_option" disabled>
   			<label for="tab2">Способ Доставки</label>
@@ -113,7 +113,7 @@
             registration_data['name']=$(this).find('#id_name').val();
             registration_data['second_name']=$(this).find('#id_second_name').val();
             registration_data['sorname']=$(this).find('#id_sorname').val();
-            registration_data['phone']=$(this).find('#id_phone').val();
+            registration_data['phone']=$(this).find('#id_ phone').val();
             registration_data['email']=$(this).find('#id_email').val();
             registration_data['attentions'] = $(this).find('#id_attentions').val();
             console.log(registration_data);
