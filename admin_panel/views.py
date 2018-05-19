@@ -17,6 +17,7 @@ class AdminAuth(FormView):
 
     def get(self, *args, **kwargs):
         user = self.request.user
+        print(user)
         if user is not None:
             if user.is_superuser:
                 return redirect(self.success_url)
