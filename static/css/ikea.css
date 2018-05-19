@@ -3022,7 +3022,7 @@ main {
 		height: 50.6vw;
 		display: block;
 		padding: 0;
-		box-shadow: 0;
+		box-shadow: none;
 	}
 	#cart-item img{
 		width: 50vw;
@@ -3038,6 +3038,8 @@ main {
 		font-size: 4vw;
 		display: flex;
 		text-align: center;
+		align-items: center;
+		align-content: center;
 		padding-left: 2vw;
 		width: 49vw;
 		margin-right: 0vw;
