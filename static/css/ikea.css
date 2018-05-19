@@ -3022,7 +3022,7 @@ main {
 		height: 50.6vw;
 		display: block;
 		padding: 0;
-		box-shadow: 0;
+		box-shadow: none;
 	}
 	#cart-item img{
 		width: 50vw;
