@@ -30,7 +30,7 @@
               </section>
 
               <section id="content2">
-                        <form id="ordering-input" class="delivery_method" from="asdasdasdadadad">
+                        <form id="ordering-input" class="delivery_method">
                             <p><i>*</i>Город:</p>{{ DeliveryMethodForm.city }}
                             <p><i>*</i>Почта:</p>{{ DeliveryMethodForm.delivery_method }}<br>
                             <p><i>*</i>Адрес отделения:</p>{{ DeliveryMethodForm.adres }}
@@ -46,7 +46,7 @@
                             <p><i>*</i>Метод оплаты:</p>{{ PaymentMethodForm.payment_method }}
                             <p><i>*</i>Сумма:</p>{{ PaymentMethodForm.amount }}
                             <div class="button-item">
-                            <input class="btn-1" type="submit" value="Перейти к следующему этапу">
+                            <input class="btn-1" type="submit" value="Отправить заявку">
                             </div>
                         </form>
               </section>
@@ -105,7 +105,7 @@
            $(this).siblings('form').slideToggle();
         });
 
-        registration_data = {};
+        var registration_data = {};
         registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
 
         $('.order_registration').submit(function (event) {
@@ -116,28 +116,26 @@
             registration_data['phone']=$(this).find('#id_ phone').val();
             registration_data['email']=$(this).find('#id_email').val();
             registration_data['attentions'] = $(this).find('#id_attentions').val();
-            console.log(registration_data);
             $('.order_registration_option').removeAttr('checked').attr('disabled', 'disabled');
             $('.delivery_method_option').removeAttr('disabled').attr('checked', true);
         });
 
-        $('#delivery_method').submit(function (event) {
+        $('.delivery_method').submit(function (event) {
             event.preventDefault();
-            window.registration_data['delivery_method']=$('#delivery_method select :selected').val();
-            window.registration_data['city']=$('#id_city').val();
-            window.registration_data['adres']=$('#id_adres').val();
-            window.registration_data['department_number']=$('#id_department_number').val();
-            $(this).slideUp();
-            $('#registration_payment').slideDown();
+            registration_data['delivery_method']=$('#delivery_method select :selected').val();
+            registration_data['city']=$('#id_city').val();
+            registration_data['adres']=$('#id_adres').val();
+            registration_data['department_number']=$('#id_department_number').val();
+            $('.delivery_method_option').removeAttr('checked').attr('disabled', 'disabled');
+            $('.payment_method_option').removeAttr('disabled').attr('checked', true);
         });
 
-        $('#payment_method').submit(function (event) {
+        $('.payment_method').submit(function (event) {
             event.preventDefault();
-            window.registration_data['payment_method']=$(this).find('select :selected').val();
-            window.registration_data['amount']=$(this).find('#id_amount').val();
-            $(this).slideUp();
-
-            register_order(window.registration_data);
+            registration_data['payment_method']=$(this).find('select :selected').val();
+            registration_data['amount']=$(this).find('#id_amount').val();
+            console.log(registration_data);
+            register_order(registration_data);
         });
 
         $('#delivery_method').change(function () {
