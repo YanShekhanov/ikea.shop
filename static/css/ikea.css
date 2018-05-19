@@ -3521,6 +3521,155 @@ main {
   z-index: -1;
   transition: all 300ms ease;
 }
+@media screen and (max-width:750px){
+	.admin-menu{
+		width: 100%;
+		height: 8vw;
+	}
+	.btn-adm{
+		font-size: 2.4vw;
+	}
+	#order-info{
+		width: 100%;
+		padding-bottom: 9vw;
+	}
+	#open-info {
+		position: absolute;
+		width: 100%;
+		left: -1vw;
+		display: flex;
+		justify-content: center;
+		bottom: 0.5vw;
+	}
+	#open-info .btn-1 {
+	  font-size: 2vw;
+	}
+	.open-info{
+		padding-bottom: 1vw;
+	}
+	#close-info {
+		width: 100%;
+		padding-bottom: 9vw;
+	}
+	#close-info .btn-1 {
+	  font-size: 2vw;
+	}
+}
+@media screen and (max-width:540px){
+	.admin-menu{
+		width: 100%;
+		height: 8vw;
+	}
+	.btn-adm{
+		font-size: 2.4vw;
+	}
+	#order-info{
+		width: 100%;
+		padding-bottom: 9vw;
+	}
+	#open-info {
+		position: absolute;
+		width: 100%;
+		left: -1vw;
+		display: flex;
+		justify-content: center;
+		bottom: 0.5vw;
+	}
+	#open-info .btn-1 {
+	  font-size: 2vw;
+	}
+	.open-info{
+		padding-bottom: 1vw;
+	}
+	#close-info {
+		width: 100%;
+		padding-bottom: 9vw;
+	}
+	#close-info .btn-1 {
+	  font-size: 2vw;
+	}
+	#cart-price-total{
+		display: none;
+	}
+	#cart-item-adm{
+		position: relative;
+		height: 50.6vw;
+		display: block;
+		padding: 0;
+		box-shadow: none;
+		margin-bottom: 3vw;
+	}
+	#cart-item-adm img{
+		width: 50vw;
+		height: 50vw;
+		display: block;
+		float: left;
+		margin-right: 0vw;
+		margin: 0;
+		padding: 0;
+	}
+	#cart-item-adm a{
+		float: right;
+		font-size: 4vw;
+		display: flex;
+		text-align: center;
+		align-items: center;
+		align-content: center;
+		padding: 0vw;
+		padding-left: 5vw;
+		width: 47vw;
+		margin: 0vw;
+	}
+	#cart-item-adm span{
+		text-align: center;
+		font-size: 5vw;
+		padding-top: 0vw;
+		margin-right: 0vw;
+		margin-left: 0vw;
+	}
+	#cart-item-adm .amount-cart{
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		width: 47vw;
+		height: 25vw;
+		padding: 0;
+		padding-top: 0vw;
+		margin: 0;
+		margin-top: 0vw;
+	}
+	#cart-item-adm input{
+		width: 35vw;
+		height: 10vw;
+		margin: 0;
+		font-size: 6vw;
+	}
+	#cart-item-adm .cart-price{
+		display: none;
+	}
+	#cart-item-adm .cart-total{
+		float: right;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		width: 47vw;
+		height: 5vw;
+		margin-top: 0vw;
+		margin-left: 0vw;
+		padding: 0;
+		padding-top: 0vw;
+		font-weight: bold;
+	}
+	#cart-item-adm .fa-times-circle{
+		position: absolute;
+		left: auto;
+		left: 0vw;
+		top: 0vw;
+		font-size: 15vw;
+		color: #FF6C00;
+	}
+}
 
 
 /*Fonts*/
