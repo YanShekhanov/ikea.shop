@@ -27,6 +27,11 @@ class MainInfo(TemplateView):
         context['SubCategories'] = SubCategory.objects.all().order_by('-created')
         context['SubSubCategories'] = SubSubCategory.objects.all().order_by('-created')
 
+        #user
+        user = self.request.user
+        if user.is_authenticated:
+            context['username'] = user.username
+
         #rooms
         rooms = Room.objects.all()
         rooms_places = []
