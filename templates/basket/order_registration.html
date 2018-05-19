@@ -113,7 +113,7 @@
             registration_data['name']=$(this).find('#id_name').val();
             registration_data['second_name']=$(this).find('#id_second_name').val();
             registration_data['sorname']=$(this).find('#id_sorname').val();
-            registration_data['phone']=$(this).find('#id_ phone').val();
+            registration_data['phone']=$(this).find('#id_phone').val();
             registration_data['email']=$(this).find('#id_email').val();
             registration_data['attentions'] = $(this).find('#id_attentions').val();
             $('.order_registration_option').removeAttr('checked').attr('disabled', 'disabled');
@@ -122,7 +122,7 @@
 
         $('.delivery_method').submit(function (event) {
             event.preventDefault();
-            registration_data['delivery_method']=$('#delivery_method select :selected').val();
+            registration_data['delivery_method']=$(this).find('select :selected').val();
             registration_data['city']=$('#id_city').val();
             registration_data['adres']=$('#id_adres').val();
             registration_data['department_number']=$('#id_department_number').val();
