@@ -11,7 +11,7 @@ LOGIN_URL = '/'
 class AdminAuth(TemplateView, FormView):
     template_name = 'admin_panel/login.html'
     model_class = AdminAuthForm
-    success_url = reverse('display_orders')
+    success_url = 'admin_panel/orders'
 
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
