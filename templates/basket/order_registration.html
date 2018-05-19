@@ -10,9 +10,9 @@
 			</div>
   		<input id="tab1" type="radio" name="tabs" checked>
   			<label for="tab1">Данные Заказчика</label>
-  		<input id="tab2" type="radio" name="tabs">
+  		<input id="tab2" type="radio" name="tabs" disabled>
   			<label for="tab2">Способ Доставки</label>
-  		<input id="tab3" type="radio" name="tabs">
+  		<input id="tab3" type="radio" name="tabs" disabled>
   			<label for="tab3">Способ оплаты</label>
               <section id="content1"><br>
                         <form id="ordering-input">
@@ -25,7 +25,7 @@
                               {{ form.attentions }}
                         </form>
                         <div class="button-item">
-                            <a href="" class="btn-1">Перейти к следующему этапу</a>
+                            <a href="" class="btn-1" type="submit">Перейти к следующему этапу</a>
                         </div>
               </section>
 
