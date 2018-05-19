@@ -30,25 +30,25 @@
               </section>
 
               <section id="content2">
-                        <form id="ordering-input">
+                        <form id="ordering-input" class="delivery_method" from="asdasdasdadadad">
                             <p><i>*</i>Город:</p>{{ DeliveryMethodForm.city }}
                             <p><i>*</i>Почта:</p>{{ DeliveryMethodForm.delivery_method }}<br>
                             <p><i>*</i>Адрес отделения:</p>{{ DeliveryMethodForm.adres }}
                             <p><i>*</i>Номер отделения:</p>{{ DeliveryMethodForm.department_number }}
+                            <div class="button-item">
+                            <input class="btn-1" type="submit" value="Перейти к следующему этапу">
+                            </div>
                         </form>
-                        <div class="button-item">
-                            <a href="" class="btn-1">Перейти к следующему этапу</a>
-                        </div>
               </section>
 
               <section id="content3">
-                        <form id="ordering-input">
+                        <form id="ordering-input" class="payment_method">
                             <p><i>*</i>Метод оплаты:</p>{{ PaymentMethodForm.payment_method }}
                             <p><i>*</i>Сумма:</p>{{ PaymentMethodForm.amount }}
+                            <div class="button-item">
+                            <input class="btn-1" type="submit" value="Перейти к следующему этапу">
+                            </div>
                         </form>
-                        <div class="button-item">
-                            <a href="" class="btn-1">Перейти к следующему этапу</a>
-                        </div>
               </section>
 </main>
 	</div>
