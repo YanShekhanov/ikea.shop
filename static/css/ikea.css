@@ -3037,6 +3037,7 @@ main {
 		float: right;
 		font-size: 4vw;
 		display: flex;
+		text-align: center;
 		padding-left: 2vw;
 		width: 49vw;
 		margin-right: 0vw;
