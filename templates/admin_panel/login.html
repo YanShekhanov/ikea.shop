@@ -1,4 +1,4 @@
-<form method="POST" action="{% url 'admin' %}">{% csrf_token %}
+<form method="POST" action="{% url 'adminAuth' %}">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Ок">
 </form>
