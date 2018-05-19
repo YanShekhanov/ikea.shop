@@ -5,20 +5,22 @@ from django.http import JsonResponse
 from .forms import ChangeStatusForm, AdminAuthForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import authenticate, login
 
 LOGIN_URL = '/'
 
 class AdminAuth(FormView):
     template_name = 'admin_panel/login.html'
     form_class = AdminAuthForm
-    success_url = 'admin_panel/orders'
+    success_url = '/admin_panel/orders'
     context_object_name = 'form'
 
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
         password = self.request.POST.get('password', '')
-        print(username)
-        print(password)
+        user = authenticate(self.request, username, password)
+        if user is not None:
+            login(self.request, user)
         return super(AdminAuth, self).post(*args, **kwargs)
 
 def check_auth(request):
