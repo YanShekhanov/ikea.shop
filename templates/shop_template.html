@@ -66,6 +66,7 @@
 </nav>
 
 <!--Dropdown-->
+<div class="bg">
 <div class="grid nav-cat" id="dropdown-products">
 	<!--Product List-->
 	<ul id="product-list">
@@ -96,8 +97,9 @@
         {% endfor %}
     </ul>
 </div>
-
+	</div>
 ﻿<!--Room Menu-->
+<div class="bg">
 <div class="grid nav-cat" id="room-menu">
     {% for room in Rooms %}
         <div class="room-item">
@@ -113,7 +115,7 @@
 	</div>
     {% endfor %}
 </div>
-
+	</div>
 <!--Kategories And Sort-->
 {% if is_filtered %}
 <div class="grid">
