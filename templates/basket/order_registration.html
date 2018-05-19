@@ -106,7 +106,7 @@
         registration_data = {};
         registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
 
-        $('.order_registration').submit(function (event) {
+        $('#ordering-input').submit(function (event) {
             event.preventDefault();
             registration_data['name']=$(this).find('#id_name').val();
             registration_data['second_name']=$(this).find('#id_second_name').val();
@@ -114,8 +114,6 @@
             registration_data['phone']=$(this).find('#id_phone').val();
             registration_data['email']=$(this).find('#id_email').val();
             registration_data['attentions'] = $(this).find('#id_attentions').val();
-            $(this).slideUp();
-            $('#registration_delivery').slideDown();
             console.log(registration_data);
         });
 
