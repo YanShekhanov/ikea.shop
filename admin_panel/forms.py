@@ -10,5 +10,5 @@ class ChangeStatusForm(ModelForm):
         }
 
 class AdminAuthForm(Form):
-    username = CharField(label='username', max_length=16, blank=False, widget = TextInput)
-    password = CharField(label='password', max_length=32, blank=False, widget = TextInput(attr={'type':'password'}))
+    username = CharField(label='username', max_length=16, widget=TextInput)
+    password = CharField(label='password', max_length=32, widget=TextInput(attr={'type':'password'}))
