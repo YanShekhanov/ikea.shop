@@ -8,11 +8,11 @@
 				<p>- Номер заказа: <b>{{ order.unique_identificator }}</b></p>
 				<p>- Сумма: <b>{{ order.order_price }} грн.</b></p>
 			</div>
-  		<input id="tab1" type="radio" name="tabs" checked>
+  		<input id="tab1" type="radio" name="tabs" class="order_registration_option"checked>
   			<label for="tab1">Данные Заказчика</label>
-  		<input id="tab2" type="radio" name="tabs" disabled>
+  		<input id="tab2" type="radio" name="tabs" class="delivery_method_option" disabled>
   			<label for="tab2">Способ Доставки</label>
-  		<input id="tab3" type="radio" name="tabs" disabled>
+  		<input id="tab3" type="radio" name="tabs" class="payment_method_option" disabled>
   			<label for="tab3">Способ оплаты</label>
               <section id="content1"><br>
                         <form id="ordering-input" class="order_registration">
@@ -117,6 +117,8 @@
             registration_data['email']=$(this).find('#id_email').val();
             registration_data['attentions'] = $(this).find('#id_attentions').val();
             console.log(registration_data);
+            $('.order_registration_option').removeAttr('checked').attr('disabled', 'disabled');
+            $('.delivery_method_option').removeAttr('disabled').attr('checked');
         });
 
         $('#delivery_method').submit(function (event) {
