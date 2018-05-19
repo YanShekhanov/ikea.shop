@@ -15,12 +15,18 @@ class AdminAuth(FormView):
     success_url = '/admin_panel/orders'
     context_object_name = 'form'
 
+    def get(self, *args, **kwargs):
+        if self.user.is_authenticate:
+            return redirect(self.success_url)
+        else:
+            return super(AdminAuth, self).get(*args, **kwargs)
+
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
         password = self.request.POST.get('password', '')
-        user = authenticate(username, password)
+        user = authenticate(username=username, password=password)
         if user is not None:
-            login(user)
+            login(self.request, user)
         return super(AdminAuth, self).post(*args, **kwargs)
 
 def check_auth(request):
