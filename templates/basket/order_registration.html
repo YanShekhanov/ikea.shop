@@ -2,6 +2,59 @@
 {% block title %}Оформление заказа{% endblock %}
 
 {% block content %}
+    ﻿<!--Ordering-->
+	<main class="grid" id="ordering">
+		<div id="number-price">
+				<p>- Номер заказа: <b>{{ order.unique_identificator }}</b></p>
+				<p>- Сумма: <b>{{ order.order_price }} грн.</b></p>
+			</div>
+  		<input id="tab1" type="radio" name="tabs" checked>
+  			<label for="tab1">Данные Заказчика</label>
+  		<input id="tab2" type="radio" name="tabs">
+  			<label for="tab2">Способ Доставки</label>
+  		<input id="tab3" type="radio" name="tabs">
+  			<label for="tab3">Способ оплаты</label>
+              <section id="content1"><br>
+                        <form id="ordering-input">
+                            <p><i>*</i>Фамилия:</p>{{ form.sorname }}
+                            <p><i>*</i>Имя:</p>{{ form.name }}
+                            <p><i>*</i>Отчество:</p>{{ form.second_name }}<br>
+                            <p><i>*</i>Телефон:</p>{{ form.phone }}
+                            <p><i>*</i>E-mail:</p>{{ form.email }}<br>
+                            <p class="comment-input">Дополнительно:</p><br>
+                              {{ form.attentions }}
+                        </form>
+                        <div class="button-item">
+                            <a href="" class="btn-1">Перейти к следующему этапу</a>
+                        </div>
+              </section>
+
+              <section id="content2">
+                        <form id="ordering-input">
+                            <p><i>*</i>Город:</p>{{ DeliveryMethodForm.city }}
+                            <p><i>*</i>Почта:</p>{{ DeliveryMethodForm.delivery_method }}<br>
+                            <p><i>*</i>Адрес отделения:</p>{{ DeliveryMethodForm.adres }}
+                            <p><i>*</i>Номер отделения:</p>{{ DeliveryMethodForm.department_number }}
+                        </form>
+                        <div class="button-item">
+                            <a href="" class="btn-1">Перейти к следующему этапу</a>
+                        </div>
+              </section>
+
+              <section id="content3">
+                        <form id="ordering-input">
+                            <p><i>*</i>Метод оплаты:</p>{{ PaymentMethodForm.payment_method }}
+                            <p><i>*</i>Сумма:</p>{{ PaymentMethodForm.amount }}
+                        </form>
+                        <div class="button-item">
+                            <a href="" class="btn-1">Перейти к следующему этапу</a>
+                        </div>
+              </section>
+</main>
+	</div>
+
+
+    <!-- old
     <div id="order_info">
         <ul>
             <li>Уникальный номер заказа: <b>{{ order.unique_identificator }}</b></li>
@@ -13,7 +66,9 @@
         <button class="open_registration_method">open</button>
         <h3>ДАННЫЕ ЗАКАЗЧИКА</h3>
         <form method="POST" id="order_registration">{% csrf_token %}
-            {{ form.as_p }}
+            {{ form.sorname }}
+            {{ form.name }}
+            {{ form.second_name }}
             <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
     </div>
@@ -38,7 +93,7 @@
             <label for="amount">Сумма</label>{{ PaymentMethodForm.amount }}
             <input type="submit" value="ПЕРЕЙТИ К СЛЕДУЮЩЕМУ ЭТАПУ">
         </form>
-    </div>
+    </div>-->
 {% endblock %}
 
 {% block onload_js %}
