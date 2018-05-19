@@ -16,7 +16,7 @@ class AdminAuth(FormView):
     context_object_name = 'form'
 
     def get(self, *args, **kwargs):
-        if self.user.is_authenticate:
+        if self.request.user.is_authenticated:
             return redirect(self.success_url)
         else:
             return super(AdminAuth, self).get(*args, **kwargs)
