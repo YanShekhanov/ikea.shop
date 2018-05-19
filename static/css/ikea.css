@@ -3038,6 +3038,8 @@ main {
 		font-size: 4vw;
 		display: flex;
 		text-align: center;
+		align-items: center;
+		align-content: center;
 		padding-left: 2vw;
 		width: 49vw;
 		margin-right: 0vw;
