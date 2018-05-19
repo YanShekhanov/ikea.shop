@@ -21,7 +21,7 @@ class AdminAuth(FormView):
             if user.is_superuser:
                 return redirect(self.success_url)
             else:
-                return redirect(reverse('home'))
+                return redirect(reverse('catalogue'))
         else:
             return super(AdminAuth, self).get(*args, **kwargs)
 
@@ -55,7 +55,7 @@ class DisplayOrders(ListView):
             if user.is_superuser:
                 return super(DisplayOrders, self).get(*args, **kwargs)
             else:
-                return redirect(reverse('home'))
+                return redirect(reverse('catalogue'))
         else:
             return redirect(reverse('adminAuth'))
 
