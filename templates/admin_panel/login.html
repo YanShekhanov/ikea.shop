@@ -1,9 +1,8 @@
-<form method="POST">{% csrf_token %}
+<form method="POST" action="{% url 'admin' %}">{% csrf_token %}
     <label for="username">Username</label>
     <input type="text" name="username">
-    <button id="next">Подтвердить</button>
-    <input type="password" name="password" style="display: none;">
-    <input type="submit" style="display: none">
+    <label for="password">Password</label>
+    <input type="text" name="password">
 </form>
 
 <script>

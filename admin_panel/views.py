@@ -2,14 +2,23 @@ from django.views.generic import TemplateView, ListView, FormView
 from basket.models import *
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm
+from .forms import ChangeStatusForm, AdminAuthForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 LOGIN_URL = '/'
 
-class AdminAuth(TemplateView):
+class AdminAuth(TemplateView, FormView):
     template_name = 'admin_panel/login.html'
+    model_class = AdminAuthForm
+    success_url = reverse('display_orders')
+
+    def post(self, *args, **kwargs):
+        username = self.request.POST.get('username', '')
+        password = self.request.POST.get('password', '')
+        print(username)
+        print(password)
+        return super(AdminAuth, self).post(*args, **kwargs)
 
 def check_auth(request):
     response_dict = {}
