@@ -17,8 +17,7 @@ class AdminAuth(FormView):
 
     def get(self, *args, **kwargs):
         user = self.request.user
-        print(user)
-        if user is not None:
+        if user.is_authenticated:
             if user.is_superuser:
                 return redirect(self.success_url)
             else:
@@ -52,7 +51,7 @@ class DisplayOrders(ListView):
 
     def get(self, *args, **kwargs):
         user = self.request.user
-        if user is not None:
+        if user.is_authenticated:
             if user.is_superuser:
                 return super(DisplayOrders, self).get(*args, **kwargs)
             else:
