@@ -10,7 +10,7 @@ LOGIN_URL = '/'
 
 class AdminAuth(TemplateView, FormView):
     template_name = 'admin_panel/login.html'
-    model_class = AdminAuthForm
+    form_class = AdminAuthForm
     success_url = 'admin_panel/orders'
     context_object_name = 'form'
 
