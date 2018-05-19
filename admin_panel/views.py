@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
 
-LOGIN_URL = '/'
+LOGIN_URL = '/admin_panel/auth'
 
 class AdminAuth(FormView):
     template_name = 'admin_panel/login.html'
@@ -16,8 +16,12 @@ class AdminAuth(FormView):
     context_object_name = 'form'
 
     def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect(self.success_url)
+        user = self.request.user
+        if user is not None:
+            if user.is_superuser:
+                return redirect(self.success_url)
+            else:
+                return redirect(reverse('home'))
         else:
             return super(AdminAuth, self).get(*args, **kwargs)
 
@@ -44,6 +48,16 @@ class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
     context_object_name = 'orders'
     model = Order
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        if user is not None:
+            if user.is_superuser:
+                return super(DisplayOrders, self).get(*args, **kwargs)
+            else:
+                return redirect(reverse('home'))
+        else:
+            return redirect(reverse('adminAuth'))
 
     def get_queryset(self):
         self.queryset = self.model._default_manager.exclude(status=0).order_by('-created')
