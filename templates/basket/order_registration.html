@@ -118,7 +118,7 @@
             registration_data['attentions'] = $(this).find('#id_attentions').val();
             console.log(registration_data);
             $('.order_registration_option').removeAttr('checked').attr('disabled', 'disabled');
-            $('.delivery_method_option').removeAttr('disabled').attr('checked');
+            $('.delivery_method_option').removeAttr('disabled').attr('checked', true);
         });
 
         $('#delivery_method').submit(function (event) {
