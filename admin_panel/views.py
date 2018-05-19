@@ -18,9 +18,9 @@ class AdminAuth(FormView):
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
         password = self.request.POST.get('password', '')
-        user = authenticate(self.request, username, password)
+        user = authenticate(username, password)
         if user is not None:
-            login(self.request, user)
+            login(user)
         return super(AdminAuth, self).post(*args, **kwargs)
 
 def check_auth(request):
