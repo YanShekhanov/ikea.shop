@@ -23,7 +23,9 @@
                             <p><i>*</i>E-mail:</p>{{ form.email }}<br>
                             <p class="comment-input">Дополнительно:</p><br>
                               {{ form.attentions }}
-                            <input class="btn-1" type="submit" value="Перейти к следующему этапу">
+                            <div class="button-item">
+                            <a href="" class="btn-1" type="submit">Перейти к следующему этапу</a>
+                            </div>
                         </form>
               </section>
 
@@ -106,7 +108,7 @@
         registration_data = {};
         registration_data['csrfmiddlewaretoken'] = $('input[name="csrfmiddlewaretoken"]').val();
 
-        $('#ordering-input').submit(function (event) {
+        $('.order_registration').submit(function (event) {
             event.preventDefault();
             registration_data['name']=$(this).find('#id_name').val();
             registration_data['second_name']=$(this).find('#id_second_name').val();
