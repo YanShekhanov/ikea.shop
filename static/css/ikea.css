@@ -46,6 +46,7 @@ h1:before {
 
 /*Common*/
 .bg{
+	display: none;
 	position: absolute;
 	z-index: 49;
 	width: 100%;
@@ -3021,6 +3022,7 @@ main {
 		height: 50.6vw;
 		display: block;
 		padding: 0;
+		box-shadow: 0;
 	}
 	#cart-item img{
 		width: 50vw;
