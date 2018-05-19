@@ -194,16 +194,22 @@
         $('body').on('click', '#mobile_menu_open', function () {
             hide_tags(['#product-list', '#product-categories li', '#product-categories', 'room-menu']);
             $('#navbarNav').toggle();
+            $('.bg').toggle();
+            $('.content').toggleClass('blur');
         });
 
         $('body').on('click', '#categories_menu', function () {
             $('#navbarNav').hide();
             $('#product-list').show();
+            $('.bg').show();
+            $('.content').addClass('blur');
         });
 
         $('body').on('click', '#open_room_menu', function () {
             $('#navbarNav').hide();
             $('#room-menu').show();
+            $('.bg').show();
+            $('.content').addClass('blur');
         });
 
         $('body').on('click', '.category_el', function () {
@@ -211,7 +217,10 @@
             var category_id = $(this).data('category_id');
             $('#product-categories li[data-category_id="' + category_id + '"]').show();
             $('#product-categories').show();
+            $('.bg').show();
+            $('.content').addClass('blur');
             $('html, body').animate({scrollTop:0});
+
         });
 
         //назад в меню
@@ -233,21 +242,29 @@
             hide_tags(['.nav-cat']);
             $('#dropdown-products').fadeToggle(300);
             $('#product-list').fadeToggle(300);
+            $('.bg').toggle();
+            $('.content').toggleClass('blur');
         });
         $('#dropdown-products').mouseleave(function () {
            $('#product-list').fadeOut(300);
            $('#product-categories').fadeOut(300);
            $(this).fadeOut(300);
+           $('.bg').hide();
+           $('.content').removeClass('blur');
         });
 
         $('body').on('click', '#open_room_menu', function () {
             console.log('540+');
             hide_tags(['.nav-cat']);
             $('#room-menu').fadeToggle(300);
+            $('.bg').toggle();
+            $('.content').toggleClass('blur');
         });
 
         $('#room-menu').mouseleave(function () {
             $(this).fadeOut(300);
+            $('.bg').hide();
+            $('.content').removeClass('blur');
         });
 
         $('body').on('click', '.category_el', function () {
