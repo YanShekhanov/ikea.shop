@@ -29,7 +29,7 @@
     <div class="row">
         <div class="grid">
             <p style="float: left; text-align: left;"><a href="#">Контакты</a> | <a href="#">Доставка</a></p>
-            {% if username %}<p style="float: right; text-align: right;"><a href="">Выход | {{ username }}</a></p>{% elif %}<p style="float: right; text-align: right;"><a href="{% url 'adminAuth' %}">Вход</a></p>{% endif %}
+            {% if username %}<p style="float: right; text-align: right;"><a href="">Выход | {{ username }}</a></p>{% else %}<p style="float: right; text-align: right;"><a href="{% url 'adminAuth' %}">Вход</a></p>{% endif %}
             <p style="float: right; text-align: right;"><a href="#">Вход</a></p>
         </div>
     </div>
