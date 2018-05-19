@@ -12,7 +12,7 @@ LOGIN_URL = '/admin_panel/auth'
 class AdminAuth(FormView):
     template_name = 'admin_panel/login.html'
     form_class = AdminAuthForm
-    success_url = '/admin_panel/orders'
+    success_url = reverse('display_orders')
     context_object_name = 'form'
 
     def get(self, *args, **kwargs):
