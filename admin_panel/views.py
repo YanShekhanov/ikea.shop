@@ -53,9 +53,9 @@ class DisplayOrders(ListView):
             print(form.cleaned_data['status', ''])
             return redirect(reverse('home'))
 
-    def get(self):
+    def get(self, *args, **kwargs):
         if self.request.user.is_superuser:
-            return super(DisplayOrders, self).get()
+            return super(DisplayOrders, self).get(*args, **kwargs)
         else:
             raise Http404
 
