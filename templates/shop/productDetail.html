@@ -11,7 +11,7 @@
 
 {% block content %}
     <span data-product_article='{{ product.article_number }}' data-product_title="{{ product.title }}" id='main_product_info'></span>
-    {% if is_superuser %}<form onsubmit="delete_product(event, {{ product.article_number }}, {{ csrf_token }}, function(data){after_delete(data)})">
+    {% if is_superuser %}<form id="delete_product" data-article_number="{{ product.article_number }}">
                         <input type="submit" value="Видалити артикул">
                         {% csrf_token %}</form>{% endif %}
     
@@ -284,9 +284,18 @@
         }
 
         function after_delete(data) {
+            console.log(data);
             alert('Продукт з артикулом ' + data.article_number + ' було видалено');
             window.location.href(data.redirect_url);
         }
+
+        $('body').on('submit', '#delete_product', function (e) {
+            e.preventDefault();
+            var token = '{{ csrf_token }}',
+                article_number = $(this).data('article_number');
+                delete_product(article_number, token, function (data) {after_delete(data)})
+        });
+
 
     </script>
 {% endblock %}
