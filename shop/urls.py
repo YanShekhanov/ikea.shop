@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^getSortQuery/$', get_sort_query, name='getSortQuery'),
     url(r'^search/$', search, name='search'),
     url(r'^checkAvailability/$', check_availability, name='checkAvailability'),
+    url(r'^delete_product/$', delete_product, name='delete_product'),
 ]

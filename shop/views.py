@@ -31,6 +31,8 @@ class MainInfo(TemplateView):
         user = self.request.user
         if user.is_authenticated:
             context['username'] = user.username
+            if user.is_superuser:
+                context['is_superuser'] = True
 
         #rooms
         rooms = Room.objects.all()
@@ -385,6 +387,25 @@ def availability(article_number):
     except AttributeError:
         response_dict['errorMessage'] = 'Произошла ошибка, повторите позже'
     return response_dict
+
+#удаление продукта
+def delete_product(request):
+    response_dict = {}
+    if request.method == "POST" and request.is_ajax():
+        article_number = request.POST['article_number']
+        try:
+            product = Product.objects.get(article_number=article_number)
+            product.delete()
+            response_dict['successMessage'] = 'Артикул видалено'
+            response_dict['article_number'] = product.with_dot()
+            response_dict['redirect_url'] = reverse('getOneCategoryProducts', args=[product.subcategory.all.first().unique_identificator])
+            print(response_dict)
+        except Product.DoesNotExist:
+            response_dict['existError'] = 'Артикул не знайдено'
+        return JsonResponse(response_dict)
+    else:
+        response_dict['requestError'] = 'Bad request'
+        return JsonResponse(response_dict)
 
 
 

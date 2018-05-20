@@ -25,6 +25,7 @@ class AdminAuth(FormView):
         else:
             return super(AdminAuth, self).get(*args, **kwargs)
 
+    #login form
     def post(self, *args, **kwargs):
         username = self.request.POST.get('username', '')
         password = self.request.POST.get('password', '')
@@ -135,3 +136,19 @@ def change_order_status(request):
     else:
         response_dict['requestError'] = 'Bad request'
     return JsonResponse(response_dict)
+
+#удаление заказа
+def delete_order(request):
+    response_dict = {}
+    if request.method == 'POST' and request.is_ajax():
+        unique_identificator = request.POST['unique_identificator']
+        try:
+            order = Order.objects.get(unique_identificator=unique_identificator)
+            order.delete()
+            response_dict['successMessage'] = 'Замовлення було видалено'
+        except Order.DoesNotExist:
+            response_dict['existError'] = 'Замовлення не знайдено'
+        return JsonResponse(response_dict)
+    else:
+        response_dict['requestError'] = 'Bad request'
+
