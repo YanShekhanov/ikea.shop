@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic.edit import UpdateView
 from basket.models import *
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
@@ -36,6 +37,14 @@ class AdminAuth(FormView):
                 return super(AdminAuth, self).post(*args, **kwargs)
             else:
                 return redirect(reverse('catalogue'))
+
+class UpdateProduct(UpdateView):
+    model = Product
+    fields = '__all__'
+    template_name = 'admin_panel/edit_product.html'
+    slug_url_kwarg = 'article_number'
+    slug_field = 'article_number'
+    success_url = reverse('catalogue')
 
 def check_auth(request):
     response_dict = {}
