@@ -28,3 +28,5 @@ urlpatterns = [
     url(r'^admin_panel/', include('admin_panel.urls'), name='admin-panel'),
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
   + static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+print(admin.site.urls)
