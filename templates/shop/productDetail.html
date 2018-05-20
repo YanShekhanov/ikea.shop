@@ -11,7 +11,7 @@
 
 {% block content %}
     <span data-product_article='{{ product.article_number }}' data-product_title="{{ product.title }}" id='main_product_info'></span>
-    {% if is_superuser %}<form id="delete_product" data-article_number="{{ product.article_number }}">
+    {% if is_superuser %}<form id="delete_product" data-article_number="123124141">
                         <input type="submit" value="Видалити артикул">
                         {% csrf_token %}</form>{% endif %}
     
