@@ -180,7 +180,7 @@
 
     }
 
-    function delete_product(e, article_number, token, callback){
+    function delete_product(article_number, token, callback){
             console.log(1);
             e.preventDefault();
             console.log(2);
