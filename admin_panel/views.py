@@ -44,7 +44,7 @@ class UpdateProduct(UpdateView):
     template_name = 'admin_panel/edit_product.html'
     slug_url_kwarg = 'article_number'
     slug_field = 'article_number'
-    success_url = reverse('catalogue')
+    success_url = '/'
 
 def check_auth(request):
     response_dict = {}
