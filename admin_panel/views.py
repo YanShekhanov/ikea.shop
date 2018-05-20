@@ -44,7 +44,11 @@ class UpdateProduct(UpdateView):
     template_name = 'admin_panel/edit_product.html'
     slug_url_kwarg = 'article_number'
     slug_field = 'article_number'
-    success_url = '/'
+
+    def get_success_url(self):
+        url = reverse('productDetail', args=[self.kwargs.get('article_number')])
+        print(url)
+        return url
 
 def check_auth(request):
     response_dict = {}
