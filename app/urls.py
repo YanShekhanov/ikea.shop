@@ -29,4 +29,5 @@ urlpatterns = [
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
   + static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-print(admin.site.urls)
+for _ in admin.site.urls:
+    print(_)
