@@ -165,3 +165,21 @@ def delete_order(request):
     else:
         response_dict['requestError'] = 'Bad request'
 
+#удаление продукта
+def delete_product(request):
+    response_dict = {}
+    if request.method == "POST" and request.is_ajax():
+        article_number = request.POST['article_number']
+        try:
+            product = Product.objects.get(article_number=article_number)
+            #product.delete()
+            response_dict['successMessage'] = u'Артикул видалено'
+            response_dict['article_number'] = product.with_dot()
+            response_dict['redirect_url'] = reverse('getOneCategoryProducts', args=[product.subcategory.all()[0].unique_identificator])
+        except Product.DoesNotExist:
+            response_dict['existError'] = u'Артикул не знайдено'
+        return JsonResponse(response_dict)
+    else:
+        response_dict['requestError'] = u'Bad request'
+        return JsonResponse(response_dict)
+
