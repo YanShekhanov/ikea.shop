@@ -182,7 +182,7 @@
 
     function delete_product(article_number, token, callback){
         $.ajax({
-            url: '/delete_product/',
+            url: '/admin_panel/delete_product/',
             method:"POST",
             data:{'csrfmiddlewaretoken':token, 'article_number':article_number},
             success:function (data) {
