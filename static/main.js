@@ -180,6 +180,20 @@
 
     }
 
+    function delete_product(e, article_number, token, callback){
+            e.preventDefault();
+        $.ajax({
+            url: '/delete_product/',
+            method:"POST",
+            data:{'csrfmiddlewaretoken':token, 'article_number':article_number},
+            success:function (data) {
+                if (data.successMessage){callback(data)}
+                else{alert('Виникла помилка, спробуйте пiзнiше')}
+            },
+            error:function (data) {alert('Виникла помилка, спробуйте пiзнiше')},
+        })
+    }
+
 
 
 

@@ -11,6 +11,9 @@
 
 {% block content %}
     <span data-product_article='{{ product.article_number }}' data-product_title="{{ product.title }}" id='main_product_info'></span>
+    {% if is_superuser %}<form><input type="submit" value="Видалити артикул"
+                         onsubmit="delete_product(e, {{ product.article_number }},{% csrf_token %}, function(data){after_delete(data)})">
+                        {% csrf_token %}</form>{% endif %}
     
     <!--One Product-->
 	<!--Images-->
@@ -278,6 +281,11 @@
                 $('#added_product_message').remove();
             }
             setTimeout(reset_added_product, 3000);
+        }
+
+        function after_delete(data) {
+            alert('Продукт з артикулом ' + data.article_number + ' було видалено');
+            window.location.href(data.redirect_url);
         }
 
     </script>
