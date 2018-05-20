@@ -14,7 +14,7 @@
     {% if is_superuser %}<form id="delete_product" data-article_number="123124141">
                         <input type="submit" value="Видалити артикул">
                         {% csrf_token %}</form>
-                        <a href="/admin/ikea_parser/product/{{ product.id }}/change/">{% endif %}
+                        <a href="{% url "edit_product" product.article_number %}">{% endif %}
     
     <!--One Product-->
 	<!--Images-->
