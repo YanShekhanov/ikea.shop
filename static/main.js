@@ -181,9 +181,6 @@
     }
 
     function delete_product(article_number, token, callback){
-            console.log(1);
-            e.preventDefault();
-            console.log(2);
         $.ajax({
             url: '/delete_product/',
             method:"POST",
