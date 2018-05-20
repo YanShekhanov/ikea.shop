@@ -396,12 +396,12 @@ def delete_product(request):
         try:
             product = Product.objects.get(article_number=article_number)
             #product.delete()
-            response_dict['successMessage'] = 'Артикул видалено'
+            response_dict['successMessage'] = u'Артикул видалено'
             response_dict['article_number'] = product.with_dot()
             response_dict['redirect_url'] = reverse('getOneCategoryProducts', args=[product.subcategory.all()[0].unique_identificator])
             print(response_dict)
         except Product.DoesNotExist:
-            response_dict['existError'] = 'Артикул не знайдено'
+            response_dict['existError'] = u'Артикул не знайдено'
         return JsonResponse(response_dict)
     else:
         response_dict['requestError'] = 'Bad request'
