@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView, ListView, FormView
 from django.views.generic.edit import UpdateView
 from basket.models import *
+from ikea_parser.models import Category, SubCategory, SubSubCategory
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
 from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm
@@ -183,7 +184,7 @@ def delete_product(request):
         response_dict['requestError'] = u'Bad request'
         return JsonResponse(response_dict)
 
-class DownloadProduct(FormView):
+class DownloadProduct(FormView, TemplateView):
     form_class = DownloadProductForm
     template_name = 'admin_panel/download_product.html'
 
@@ -206,6 +207,12 @@ class DownloadProduct(FormView):
             function_response = parse_with_article_number(article_number)
             response_dict['function_response'] = function_response
             return JsonResponse(response_dict)
+
+    def get_context_data(self):
+        context = super(DownloadProduct, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['subcategories'] = SubCategory.objects.all()
+        context['sub_subcategories'] = SubSubCategory.objects.all()
 
 
 from ikea_parser.ikea_parser import DOMAIN
@@ -265,7 +272,7 @@ def parse_with_article_number(article_number):
             'price':product_price
         }
 
-        
+
 
 
 
