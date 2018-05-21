@@ -186,7 +186,6 @@ def delete_product(request):
 class DownloadProduct(FormView):
     form_class = DownloadProductForm
     template_name = 'admin_panel/download_product.html'
-    context_object_name = 'download_form'
 
     def get(self, *args, **kwargs):
         user = self.request.user
@@ -202,13 +201,6 @@ class DownloadProduct(FormView):
         if self.request.is_ajax():
             response_dict = {}
 
-def download_product(request):
-    response_dict = {}
-    if request.method == 'POST' and request.is_ajax():
-        pass
-    else:
-        response_dict['requestError'] = 'Bad request'
-        return JsonResponse(response_dict)
 
 from ikea_parser.ikea_parser import DOMAIN
 from googletrans import Translator
