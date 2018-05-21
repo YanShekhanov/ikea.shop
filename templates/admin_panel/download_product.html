@@ -32,7 +32,8 @@
 
 <script>
     hide_tags(['.subcategories_open', '.sub_subcategories_open']);
-    var checked = {};
+    var checked = {},
+        start_download = false;
 
     $('body').on('click', '.category', function () {
         $('.category').not($(this)).hide();
@@ -51,11 +52,12 @@
         $('.sub_subcategory').not($(this)).hide();
         var sub_subcategory_id = $(this).val();
         checked['sub_subcategory_id'] = sub_subcategory_id;
-        console.log(checked);
+        start_download = true;
     });
 
     $('body').on('submit', '#download_product', function (event) {
-        event.preventDefault();
+        if (start_download){
+            event.preventDefault();
         var subcategory_id = $('#id_subcategory option:selected').val(),
             sub_subcategory_id = $('#id_sub_subcategory option:selected').val(),
             article_number = $('#id_article_number').val();
@@ -67,6 +69,8 @@
             success:function (data) {alert('ok'); console.log(data)},
             error:function () {alert('error')}
         })
+        }
+        else {alert('Виберiть категорiю та подкатегорiю')}
     })
 </script>
 </body>
