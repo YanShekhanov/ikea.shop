@@ -3068,6 +3068,7 @@ main {
 		float: left;
 		margin-right: 0vw;
 		margin: 0;
+		margin-top: 0.1vw;
 		padding: 0;
 	}
 	#cart-item a{
