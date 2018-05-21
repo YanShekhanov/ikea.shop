@@ -7,6 +7,7 @@ from .models import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
+from threading import Thread
 from app.settings import MEDIA_ROOT
 # Create your views here.
 
@@ -22,6 +23,37 @@ class HomePage(ListView):
         context['productsImages'] = ProductImage.objects.all()
         return context
 
+class ParserProcess(Thread):
+    def __init__(self, name, request):
+        Thread.__init__(self)
+        self.name = name
+        self.request = request
+
+    def run(self):
+        print('parser start with name %' % self.name)
+        print('Products count = %i' % len(Product.objects.all()))
+        print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
+        print('products to parse = %i' % len(Product.objects.exclude(is_parsed=True)))
+
+        try:
+            products = Product.objects.filter(is_parsed=False)
+        except Product.DoesNotExist:
+            return HttpResponse(status=404)
+
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("window-size=1024,768")
+        options.add_argument("--no-sandbox")
+
+        driver = webdriver.Chrome(chrome_options=options)
+        for product in products:
+            parse_one_product_information_(product, driver)
+            body = driver.find_element_by_tag_name('body')
+            body.send_keys(Keys.CONTROL + 't', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'w')  # закрітие старой вкладки и открытие новой
+        driver.close()
+
+
+
 # парсинг категорий, подкатегорий
 def parse_categories(request):
     parse_categories_()
@@ -34,6 +66,7 @@ def parse_products_articles(request):
 
 #parse full products informations
 def parse_products_information(request):
+    '''
     print('Products count = %i' % len(Product.objects.all()))
     print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
     print('products to parse = %i' % len(Product.objects.exclude(is_parsed=True)))
@@ -53,8 +86,10 @@ def parse_products_information(request):
         parse_one_product_information_(product, driver)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'w') #закрітие старой вкладки и открытие новой
-    driver.close()
-    return redirect(reverse('home'))
+    driver.close()'''
+    parser = ParserProcess('parser', request)
+    parser.start()
+    return redirect(reverse('catalogue'))
 
 #parse rooms
 def parse_rooms_examples(request):
