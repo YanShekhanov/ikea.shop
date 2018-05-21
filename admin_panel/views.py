@@ -219,7 +219,7 @@ def parse_with_article_number(article_number):
         existed_product = Product.objects.get(article_number=article_number, is_parsed=True)
         response_dict['duplicateError'] = 'Вказаний артикул вже наявний в БД'
         response_dict['url'] = reverse('productDetail', args=[article_number])
-        return JsonResponse(response_dict)
+        return response_dict
     except Product.DoesNotExist:
         translator = Translator()
         # available in Lublin
