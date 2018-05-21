@@ -213,6 +213,7 @@ class DownloadProduct(FormView, TemplateView):
         context['categories'] = Category.objects.all()
         context['subcategories'] = SubCategory.objects.all()
         context['sub_subcategories'] = SubSubCategory.objects.all()
+        return context
 
 
 from ikea_parser.ikea_parser import DOMAIN
