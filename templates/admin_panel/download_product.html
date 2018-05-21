@@ -35,8 +35,7 @@
 
     $('body').on('click', '.category', function () {
        var category_id = $(this).val();
-       console.log('ok');
-       $('subcategories_open[data-category_id=' + category_id + ']').slideToggle();
+       $('.subcategories_open[data-category_id=' + category_id + ']').slideToggle();
     });
 
     $('body').on('click', '.subcategory', function () {
