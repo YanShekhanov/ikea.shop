@@ -1188,6 +1188,17 @@ h1:before {
 	right: 1.5vw;
 	top: 0.3vw;
 }
+@media screen and (max-width: 540px){
+	.close-icon{
+	position: absolute;
+	z-index: 101;
+	top: 0.5vw;
+	right: 1vw;
+	font-size: 11vw;
+	color: #ff6c00;
+	opacity: .6;
+	}
+}
 
 
 /*Pagination*/
