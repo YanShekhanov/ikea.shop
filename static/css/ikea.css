@@ -2102,7 +2102,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 		font-size: 5vw;
 	}
 	#content4 .fa-search-plus{
-		display: none;
+		font-size: 12vw;
 	}
 	#content4 a {
 	  font-size: 2.8vw;
@@ -2738,7 +2738,7 @@ main {
 		font-size: 5vw;
 	}
 	#room-card .fa-search-plus{
-		display: none;
+		font-size: 12vw;
 	}
 	#room-card a {
 	  font-size: 2.8vw;
