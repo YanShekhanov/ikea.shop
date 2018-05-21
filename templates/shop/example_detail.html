@@ -31,7 +31,7 @@
                                         <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
                                         <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
                                     <!--Product Info Open-->
-                                        <a class="card-title">{{ product.title }}</a>
+                                        <a href="{% url 'productDetail' product.article_number %}" class="card-title">{{ product.title }}</a>
                                         <p class="ind-code">Артикул: {{ product.with_dot }}</p>
                                         <p class="card-text">{{ product.dimensions }}</p>
                                         <p class="card-price">{{ product.price }} грн.</p>
@@ -43,7 +43,7 @@
                                         <i class="fa fa-search-plus get-all-images" aria-hidden="true" data-unique_identificator="{{ product.unique_identificator }}"></i>
                                         <img src="{{ image.image.url }}" alt="{{ product.article_number }}">
                                     <!--Product Info-->
-                                        <a class="card-title">{{ product.title }}</a>
+                                        <p class="card-title">{{ product.title }}</p>
                                         <p class="ind-code">Артикул: {{ product.with_dot }}</p>
                                         <p class="card-price">{{ product.price }} грн.</p>
                                     </div>
