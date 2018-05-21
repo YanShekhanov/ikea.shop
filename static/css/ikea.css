@@ -3628,6 +3628,76 @@ main {
 #cart-item-adm .fa-times-circle:hover{
 	color: red;
 }
+#cart-offer-adm{
+	position: relative;
+	box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+	border: 0.1vw solid #e3e3e3;
+	margin-top: 0.5vw;
+	margin-bottom: 1vw;
+	width: 100%;
+	height: auto;
+	padding: 1vw;
+	display: flex;
+	align-items: center;
+}
+#cart-offer-adm span{
+	text-align: center;
+	font-size: 2vw;
+	padding-top: 0vw;
+	margin-right: 0.5vw;
+	margin-left: 0.5vw;
+}
+#cart-offer-adm .button-item {
+  display: inline-block;
+  position: absolute;
+  right: 0.5vw;
+}
+#cart-offer-adm .button-item-2 {
+  display: inline-block;
+  position: absolute;
+  right: 11vw;
+}
+#cart-offer-adm .btn-1 {
+  padding: 1em 1em;
+  border: 2px solid #ff6c00;
+  transition: all 300ms ease;
+  color: #ff6c00;
+  z-index: 1;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  font-size: 0.9vw;
+}
+#cart-offer-adm .btn-1:before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transition: all 0ms ease;
+}
+#cart-offer-adm .btn-1:hover {
+  color: white;
+  border: 2px solid #ADA6A6;
+  box-shadow: none;
+}
+#cart-offer-adm .btn-1:hover:before {
+  position: absolute;
+  color: white;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff6c00;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+  transition: all 300ms ease;
+}
 @media screen and (max-width:750px){
 	.admin-menu{
 		width: 100%;
@@ -3706,9 +3776,26 @@ main {
 		font-size: 4vw;
 		color: #FF6C00;
 	}
+	#cart-offer-adm span{
+		font-size: 2.5vw; 
+		padding-top: 0.5vw;
+		margin-right: 0.5vw;
+		margin-left: 0.5vw;
+	}
+	#cart-offer-adm .button-item {
+	  right: 0.5vw;
+	}
+	#cart-offer-adm .button-item-2 {
+	  right: 17vw;
+	}
+	#cart-offer-adm .btn-1 {
+	  font-size: 1.5vw;
+	}
+
 
 }
 @media screen and (max-width:540px){
+
 	.admin-menu{
 		width: 100%;
 		height: 8vw;
@@ -3821,6 +3908,29 @@ main {
 		top: 0vw;
 		font-size: 15vw;
 		color: #FF6C00;
+	}
+	#cart-offer-adm{
+		height: 5vw;
+	}
+	#cart-offer-adm span{
+		font-size: 5vw; 
+		padding-top: 3vw;
+		margin-right: 0vw;
+		margin-left: 0vw;
+		margin-top: 0;
+		display: block;
+		width: 100%;
+	}
+	#cart-offer-adm .button-item {
+	  bottom: 2vw;
+	  right: 15vw;
+	}
+	#cart-offer-adm .button-item-2 {
+	  bottom: 2vw;
+	  left: 15vw;
+	}
+	#cart-offer-adm .btn-1 {
+	  font-size: 4vw;
 	}
 }
 
