@@ -18,6 +18,21 @@
     {% block js %}{% endblock %}
 </head>
 <body>
+<div class="grid" id="admin">
+		<div class="admin-menu">
+			<div class="btn-adm" oncli>Обновить товары</div>
+			<div class="btn-adm">Загрузить артикулы</div>
+			<div class="btn-adm">Заказы клиентов</div>
+		</div>
+		<select id="order-sort">
+            <option>Фильтрация по статусу заказа</option>
+            <option value="increase">Пункт сортировки 1</option>
+            <option value="decline">Пункт сортировки 2</option>
+            <option value="from_A_to_Z">Пункт сортировки 3</option>
+            <option value="from_Z_to_A">Пункт сортировки 4</option>
+        </select>
+</div>
+
 {% block content %}{% endblock %}
 
 {% block templates %}{% endblock %}
