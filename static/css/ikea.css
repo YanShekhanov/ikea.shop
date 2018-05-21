@@ -585,7 +585,7 @@ h1:before {
 		    border-bottom: 0.1vw solid #e3e3e3;
 
 	}
-	#product-list li:nth-child(1n){
+	#product-list li:first-child{
     		color: #FF6A00;
 	}
 	#product-categories{
@@ -600,7 +600,7 @@ h1:before {
 		    border-bottom: 0.1vw solid #e3e3e3;
 
 	}
-	#product-categories li:nth-child(1n){
+	#product-categories li:first-child{
     		color: #FF6A00;
 	}
 	#product-subcategories li{
