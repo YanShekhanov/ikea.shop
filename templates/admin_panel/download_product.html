@@ -35,13 +35,13 @@
     var checked = {};
 
     $('body').on('click', '.category', function () {
-        $('.category').not($(this));
+        $('.category').not($(this)).hide();
        var category_id = $(this).val();
        $('.subcategories_open[data-category_id=' + category_id + ']').slideToggle();
     });
 
     $('body').on('click', '.subcategory', function () {
-       $('.subcategory').not($(this));
+       $('.subcategory').not($(this)).hide();
        var subcategory_id = $(this).val();
        $('.sub_subcategories_open[data-subcategory_id=' + subcategory_id + ']').slideToggle();
        checked['subcategory_id'] = subcategory_id;
