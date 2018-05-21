@@ -47,6 +47,13 @@
        checked['subcategory_id'] = subcategory_id;
     });
 
+    $('body').on('click', '.sub_subcategory', function () {
+        $('.sub_subcategory').not($(this)).hide();
+        var sub_subcategory_id = $(this).val();
+        checked['sub_subcategory_id'] = sub_subcategory_id;
+        console.log(checked);
+    });
+
     $('body').on('submit', '#download_product', function (event) {
         event.preventDefault();
         var subcategory_id = $('#id_subcategory option:selected').val(),
