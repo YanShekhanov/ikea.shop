@@ -3,9 +3,7 @@
 
 {% block content %}
     <div class="grid" id="admin">
-    <input id="date_search_input" type="date">
-    <button id="date_search">Пошук</button>
-    {{ article_number_form.article_number }}
+    <input type="number" id="article_search_input">
     <button id="article_search">Пошук</button>
 
     {% for order in orders %}
@@ -60,7 +58,7 @@
                                 <!-- товары -->
                     </div>
 
-                    <div id="cart-offer">
+                    <div id="cart-offer-adm">
                         <h6>Сумма: {{ order.order_price }}</h6>
                     </div>
             </div>
