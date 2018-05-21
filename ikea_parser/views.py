@@ -47,6 +47,7 @@ class ParserProcess(Thread):
 
         driver = webdriver.Chrome(chrome_options=options)
         for product in products:
+            print(product.with_dot())
             parse_one_product_information_(product, driver)
             body = driver.find_element_by_tag_name('body')
             body.send_keys(Keys.CONTROL + 't', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'w')  # закрітие старой вкладки и открытие новой
