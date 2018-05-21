@@ -3223,7 +3223,7 @@ main {
 	padding-top: 1vw;
 }
 #ordering .btn-1 {
-  padding: 1em 1em;
+  padding: 0;
   border: 2px solid #ff6c00;
   transition: all 300ms ease;
   color: #ff6c00;
@@ -3234,6 +3234,7 @@ main {
   position: relative;
   display: inline-block;
   font-size: 0.9vw;
+  width: 15vw;
 }
 #ordering .btn-1:before {
   position: absolute;
@@ -3309,6 +3310,7 @@ main {
 	}
 	#ordering .btn-1 {
 	  font-size: 1.5vw;
+	  width: 25vw;
 	}
 }
 @media screen and (max-width: 540px) {
@@ -3362,6 +3364,7 @@ main {
 	}
 	#ordering .btn-1 {
 	  font-size: 4vw;
+	  width: 65vw;
 	}
 }
 
