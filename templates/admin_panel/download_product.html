@@ -73,7 +73,10 @@
                 url:'{% url "download_product" %}',
                 method: 'POST',
                 data:checked,
-                success:function (data) {alert('ok'); console.log(data)},
+                success:function (data) {
+                    if (data.duplicateError){alert(data.duplicateError); alert(data.url)}
+                    else {alert('ok'); console.log(data)}
+                    },
                 error:function () {alert('error')}
             })
             }
