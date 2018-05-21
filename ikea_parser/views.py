@@ -112,7 +112,11 @@ def delete_products(request):
 from bs4 import BeautifulSoup
 import requests
 def test(request):
-    itter=0
+    products = Product.objects.filter(article_number=30221043)
+    for product in products:
+        product.delete()
+
+    '''itter=0
     for product in Product.objects.all():
         if product.unique_identificator == '':
             product.unique_identificator = create_identificator(8)
@@ -120,7 +124,7 @@ def test(request):
             print('for article %s created identificator %s' % (product.with_dot(), product.unique_identificator))
             itter += 1
     print('changed = %i' % itter)
-    '''
+    
     room_places = RoomPlace.objects.all()
     for place in room_places:
         parse_examples(place)'''
