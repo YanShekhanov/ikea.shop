@@ -268,6 +268,17 @@ def parse_with_article_number(article_number, **categories_dict):
         else:
             product_unit = ''
 
+        if categories_dict.get('sub_subcategory_id') is not None:
+            created_product = Product.objects.create(subcategory=SubCategory.objects.get(id=categories_dict.get('subcategory_id')),
+                                                     sub_subcategory=SubSubCategory.objects.get(id=categories_dict.get('sub_subcategory_id')),
+                                                     title=product_title, article_number=article_number, description=product_description, price=product_price,
+                                                     url_ikea=detail_page)
+        else:
+            created_product = Product.objects.create(subcategory=SubCategory.objects.get(id=categories_dict.get('subcategory_id')),
+                                                    title=product_title, article_number=article_number, description=product_description,
+                                                    price=product_price,
+                                                    url_ikea=detail_page)
+
         response_dict = {
             'article_number':article_number,
             'title':product_title,
