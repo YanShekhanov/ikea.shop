@@ -79,6 +79,29 @@ h1:before {
     margin-right: 17vw;
     width: 66vw;
 }
+#edit_product {
+    border: 0.15vw solid #FF6A00;
+    color: #ff6a00;
+    padding: 0.5vw;
+    font-size: 1.5vw;
+    margin-left: 0.5vw;
+text-decoration: none;
+}
+#delete_product {
+    border: 0.15vw solid #FF6A00;
+    color: #ff6a00;
+    padding: 0.5vw;
+    font-size: 1.5vw;
+text-decoration: none;
+}
+#delete_product:hover {
+    color: red;
+    background-color: cornsilk;
+}
+#edit_product:hover {
+    color: red;
+    background-color: cornsilk;
+}
 @media screen and (max-width: 750px){
 	.grid{
 		margin: 0;
@@ -88,6 +111,24 @@ h1:before {
     	margin: 0;
     	width: 100%;
 	}
+	#edit_product {
+    	border: 0.4vw solid #FF6A00;
+    	font-size: 3.5vw;
+}
+#delete_product {
+    border: 0.4vw solid #FF6A00;
+    font-size: 3.5vw;
+}
+}
+@media screen and (max-width: 540px){
+	#edit_product {
+    	border: 0.5vw solid #FF6A00;
+    	font-size: 6.5vw;
+}
+#delete_product {
+    border: 0.5vw solid #FF6A00;
+    font-size: 6.5vw;
+}
 }
 
 /*Top Strip*/
@@ -323,6 +364,7 @@ h1:before {
 @media screen and (max-width: 540px){
 	#searched_query{
 		margin-top: 26vw;
+		width: 98%;
 	}
 }
 
@@ -3222,7 +3264,7 @@ main {
 	padding-top: 1vw;
 }
 #ordering .btn-1 {
-  padding: 1em 1em;
+  padding: 0;
   border: 2px solid #ff6c00;
   transition: all 300ms ease;
   color: #ff6c00;
@@ -3233,6 +3275,7 @@ main {
   position: relative;
   display: inline-block;
   font-size: 0.9vw;
+  width: 15vw;
 }
 #ordering .btn-1:before {
   position: absolute;
@@ -3308,6 +3351,7 @@ main {
 	}
 	#ordering .btn-1 {
 	  font-size: 1.5vw;
+	  width: 25vw;
 	}
 }
 @media screen and (max-width: 540px) {
@@ -3361,6 +3405,7 @@ main {
 	}
 	#ordering .btn-1 {
 	  font-size: 4vw;
+	  width: 65vw;
 	}
 }
 

@@ -11,8 +11,10 @@
 
 {% block content %}
     <span data-product_article='{{ product.article_number }}' data-product_title="{{ product.title }}" id='main_product_info'></span>
-    {% if is_superuser %}<a href="#" id="delete_product" data-article_number="{{ product.article_number }}">Видалити</a>
-                        <a href="{% url "edit_product" product.article_number %}">Редагувти</a>
+    {% if is_superuser %}
+<div class="grid">
+<a href="#" id="delete_product" data-article_number="{{ product.article_number }}">Видалити</a>
+                        <a id="edit_product" href="{% url "edit_product" product.article_number %}">Редагувти</a> </div>
     {% endif %}
     
     <!--One Product-->
