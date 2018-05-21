@@ -17,4 +17,4 @@ class AdminAuthForm(Form):
 class DownloadProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['subcategory', 'sub_subcategory', 'article_number']
+        fields = ['article_number']
