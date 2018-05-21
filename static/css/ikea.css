@@ -3096,9 +3096,11 @@ main {
 		color: #FF6C00;
 	}
 	#cart-offer{
-		height: 30vw;
-		padding: 0vw;
-		display: block;
+	    height: 5vw;
+	    padding: 0vw;
+	    padding-top: 0.5vw;
+	    padding-left: 1vw;
+	    display: block;
 	}
 	#cart-offer span{
 		font-size: 5vw; 
@@ -3584,7 +3586,7 @@ main {
 	}
 	#close-info {
 		width: 100%;
-		padding-bottom: 9vw;
+		padding-bottom: 0.5vw;
 	}
 	#close-info .btn-1 {
 	  font-size: 2vw;
