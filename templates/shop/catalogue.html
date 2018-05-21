@@ -59,7 +59,7 @@
                 <i class="fa fa-search-plus get-all-images" aria-hidden="true"></i>
                 <img src="<%image_url%>" alt="<%product_article_number%>">
             <!--Product Info-->
-                <a class="card-title"><%product_title%></a>
+                <p class="card-title"><%product_title%></p>
                 <p class="ind-code">Артикул: <%article_number_with_dot%></p>
                 <p class="card-price"><%product_price%> грн.</p>
         </div>
@@ -93,6 +93,11 @@
             get_sort(sort_by, unique_identificator, token, template); //*получаем список отсортированных и генерируем контент
 
         });
+
+        //убираем ссылки в мобильной версии на карточке продукта
+        if ($(window).width() < 540){
+
+        }
 
         //ajax добавление в корзину
         $('.content').on('click', '.add_to_basket', function (e) {
