@@ -32,8 +32,10 @@
 
 <script>
     hide_tags(['.subcategories_open', '.sub_subcategories_open']);
+
     $('body').on('click', '.category', function () {
        var category_id = $(this).val();
+       console.log('ok');
        $('subcategories_open[data-category_id=' + category_id + ']').slideToggle();
     });
 
