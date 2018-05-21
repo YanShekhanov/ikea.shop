@@ -70,7 +70,10 @@
             error:function () {alert('error')}
         })
         }
-        else {alert('Виберiть категорiю та подкатегорiю')}
+        else {
+            event.preventDefault();
+            alert('Виберiть категорiю та подкатегорiю')
+        }
     })
 </script>
 </body>
