@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^order_detail/$', order_detail, name='order_detail'), #ajax
     url(r'^change_order_status/$', change_order_status, name='change_order_status'), #ajax
     url(r'^delete_product/$', delete_product, name='delete_product'),
+    url(r'^download_product/$', DownloadProduct.as_view(), name='download_product')#ajax
 ]

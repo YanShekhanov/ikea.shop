@@ -3,7 +3,7 @@ from django.views.generic.edit import UpdateView
 from basket.models import *
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
@@ -182,4 +182,108 @@ def delete_product(request):
     else:
         response_dict['requestError'] = u'Bad request'
         return JsonResponse(response_dict)
+
+class DownloadProduct(FormView):
+    form_class = DownloadProductForm
+    template_name = 'admin_panel/download_product.html'
+    context_object_name = 'download_form'
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_superuser:
+                return super(DownloadProduct, self).get(*args, **kwargs)
+            else:
+                return redirect(reverse('catalogue'))
+        else:
+            return redirect(reverse('catalogue'))
+
+    def post(self, *args, **kwargs):
+        if self.request.is_ajax():
+            response_dict = {}
+
+def download_product(request):
+    response_dict = {}
+    if request.method == 'POST' and request.is_ajax():
+        pass
+    else:
+        response_dict['requestError'] = 'Bad request'
+        return JsonResponse(response_dict)
+
+from ikea_parser.ikea_parser import DOMAIN
+from googletrans import Translator
+import requests
+from bs4 import BeautifulSoup
+from shop.models import Coef
+def parse_with_article_number(article_number):
+    translator = Translator()
+    # available in Lublin
+    detail_page = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % article_number
+    product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
+        article_number)
+
+    product_request = requests.get(product_available_url).text
+    product_page = BeautifulSoup(product_request, 'xml')
+    product_detail = BeautifulSoup(requests.get(detail_page).text, 'lxml')
+    try:
+        available = product_page.find('localStore', buCode='311').find('availableStock').get_text()
+    except AttributeError:
+        available = 0
+
+    product_price = product_detail.find('span', class_='packagePrice').text.strip().split()[:2]
+    product_title = product_detail.find('span', class_='productName').text.strip()
+    product_description = product_detail.find('span', class_='productType').text.strip()
+    #product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
+    print(product_price)
+    if product_price[1] == 'PLN':
+        product_price = product_price[0]
+    product_price = ''.join(product_price)
+    for symbol in product_price:
+        if symbol == ' ':
+            product_price = ''.join(product_price.split(' '))
+    for symbol in product_price:
+        if symbol == ',':
+            product_price = '.'.join(product_price.split(','))
+    product_price = int(round(float(product_price) * Coef.objects.all().first().coef))
+    print(product_price)
+
+    product_unit = product_detail.find('span', class_='unit')  # /шт.
+    if product_unit is not None:
+        product_unit = product_unit.text.strip()
+    else:
+        product_unit = ''
+
+    # create Product
+    # если продукт находится в подкатегории
+    '''if subcategory_status:
+        created_product = Product.objects.create(article_number=product_article, title=product_title,
+                                                 description=product_description, price=float(product_price),
+                                                 url_ikea=product_url, available=available,
+                                                 unique_identificator=create_identificator(8))
+        created_product.subcategory.add(foreign_key_query)
+        iter_category_products_number += 1
+    # если продукт находится в под подкатегории
+    elif sub_subcategory_status:
+        subcategory = foreign_key_query.subcategory
+        created_product = Product.objects.create(article_number=product_article, title=product_title,
+                                                 description=product_description, price=float(product_price),
+                                                 url_ikea=product_url, available=available,
+                                                 unique_identificator=create_identificator(8))
+        created_product.subcategory.add(subcategory)
+        created_product.sub_subcategory.add(foreign_key_query)
+        iter_category_products_number += 1
+
+    # создание словаря одного продукта
+    one_product_dict = {
+        'title': str(product_title.encode('utf-8')),
+        'article_number': product_article,
+        'product_availability': available,
+        'product_price': product_price,
+        'product_description': str(product_description.encode('utf-8')),
+        'product_url': product_url,
+        'subcategory': subcategory_status,
+        'sub_subcategory': sub_subcategory_status,
+        'subcategory_title': str(foreign_key_query.title.encode('utf-8')),
+        'subcategory_url': foreign_key_query.url_ikea,
+    }'''
 
