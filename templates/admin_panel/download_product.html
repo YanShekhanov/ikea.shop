@@ -46,6 +46,7 @@
        var subcategory_id = $(this).val();
        $('.sub_subcategories_open[data-subcategory_id=' + subcategory_id + ']').slideToggle();
        checked['subcategory_id'] = subcategory_id;
+       start_download = true;
     });
 
     $('body').on('click', '.sub_subcategory', function () {
