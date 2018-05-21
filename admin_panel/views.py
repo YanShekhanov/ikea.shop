@@ -48,20 +48,8 @@ class UpdateProduct(UpdateView):
 
     def get_success_url(self):
         url = reverse('productDetail', args=[self.kwargs.get('article_number')])
-        print(url)
         return url
 
-def check_auth(request):
-    response_dict = {}
-    if request.method == "POST" and request.is_ajax():
-        print(request.POST['username'])
-        return JsonResponse()
-    else:
-        response_dict['requestError'] = 'Bad request'
-        return JsonResponse(response_dict)
-
-
-@method_decorator(login_required(login_url=LOGIN_URL), name='dispatch')
 class DisplayOrders(ListView):
     template_name = 'admin_panel/orders.html'
     context_object_name = 'orders'
@@ -99,16 +87,7 @@ class DisplayOrders(ListView):
         return context
 
     def post(self, *args, **kwargs):
-        form = self.get_form(self.form_class)
-        if form.is_valid():
-            print(form.cleaned_data['status', ''])
-            return redirect(reverse('home'))
-
-    def get(self, *args, **kwargs):
-        if self.request.user.is_superuser:
-            return super(DisplayOrders, self).get(*args, **kwargs)
-        else:
-            raise Http404
+        pass
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
