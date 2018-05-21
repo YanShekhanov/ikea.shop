@@ -1,1 +1,17 @@
 <form>{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form></form>
+
+<script>
+    $('body').on('click', 'form', function (event) {
+        event.preventDefault();
+        var subcategory_id = $('#id_subcategory option:selected').val(),
+            sub_subcategory_id = $('#id_sub_subcategory option:selected').val(),
+            article_number = $('#id_article_number').val();
+        $.ajax({
+            url:'{% url "download_product" %}',
+            method: 'POST',
+            data:{'token':'{{ csrf_token }}', 'subcategory_id':subcategory_id, 'sub_subcategory_id':sub_subcategory_id, 'article_number': article_number},
+            success:function (data) {alert('ok')},
+            error:function () {alert('error')}
+        })
+    })
+</script>
