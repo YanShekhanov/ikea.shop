@@ -1,7 +1,7 @@
 <form>{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form></form>
 
 <script>
-    $('body').on('click', 'form', function (event) {
+    $('body').on('submit', 'form', function (event) {
         event.preventDefault();
         var subcategory_id = $('#id_subcategory option:selected').val(),
             sub_subcategory_id = $('#id_sub_subcategory option:selected').val(),
