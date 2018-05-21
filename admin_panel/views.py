@@ -208,9 +208,7 @@ class DownloadProduct(FormView, TemplateView):
             article_number = self.request.POST['article_number']
             categories_dict['subcategory_id'] = self.request.POST['subcategory_id']
             function_response = parse_with_article_number(article_number, **categories_dict)
-
-            response_dict['function_response'] = function_response
-            return JsonResponse(response_dict)
+            return JsonResponse(function_response)
 
     def get_context_data(self):
         context = super(DownloadProduct, self).get_context_data()
