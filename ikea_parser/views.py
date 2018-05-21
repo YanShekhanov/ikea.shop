@@ -66,28 +66,8 @@ def parse_products_articles(request):
     return redirect(reverse('home'))
 
 #parse full products informations
+#asinc
 def parse_products_information(request):
-    '''
-    print('Products count = %i' % len(Product.objects.all()))
-    print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
-    print('products to parse = %i' % len(Product.objects.exclude(is_parsed=True)))
-
-    try:
-        products = Product.objects.filter(is_parsed=False)
-    except Product.DoesNotExist:
-        return HttpResponse(status=404)
-
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("window-size=1024,768")
-    options.add_argument("--no-sandbox")
-
-    driver = webdriver.Chrome(chrome_options=options)
-    for product in products:
-        parse_one_product_information_(product, driver)
-        body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.CONTROL + 't', Keys.CONTROL + Keys.TAB, Keys.CONTROL + 'w') #закрітие старой вкладки и открытие новой
-    driver.close()'''
     parser = ParserProcess('parser', request)
     parser.start()
     return redirect(reverse('catalogue'))
