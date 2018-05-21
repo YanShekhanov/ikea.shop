@@ -20,9 +20,9 @@
 <body>
 <div class="grid" id="admin">
 		<div class="admin-menu">
-			<div class="btn-adm" oncli>Обновить товары</div>
-			<div class="btn-adm">Загрузить артикулы</div>
-			<div class="btn-adm">Заказы клиентов</div>
+			<div class="btn-adm" onclick="window.location.href='{% url "catalogue" %}'">В магазин</div>
+			<div class="btn-adm" onclick="window.location.href='{% url "download_product" %}'">Загрузить артикул</div>
+			<div class="btn-adm" onclick="window.location.href='{% url "display_orders" %}'">Заказы клиентов</div>
 		</div>
 		<select id="order-sort">
             <option>Фильтрация по статусу заказа</option>
