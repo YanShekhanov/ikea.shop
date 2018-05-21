@@ -223,6 +223,9 @@ from googletrans import Translator
 import requests
 from bs4 import BeautifulSoup
 from shop.models import Coef
+from ikea_parser.ikea_parser import parse_one_product_information_
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 def parse_with_article_number(article_number, **categories_dict):
     response_dict = {}
     try:
@@ -245,6 +248,7 @@ def parse_with_article_number(article_number, **categories_dict):
         except AttributeError:
             available = 0
 
+        #парсинг основной информации
         product_price = product_detail.find('span', class_='packagePrice').text.strip().split()[:2]
         product_title = product_detail.find('span', class_='productName').text.strip()
         product_description = product_detail.find('span', class_='productType').text.strip()
@@ -278,6 +282,16 @@ def parse_with_article_number(article_number, **categories_dict):
                                                     price=product_price,
                                                     url_ikea=detail_page)
             created_product.subcategory.add(SubCategory.objects.get(id=categories_dict.get('subcategory_id')))
+
+        #парсинг всей информации и картинок
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("window-size=1024,768")
+        options.add_argument("--no-sandbox")
+
+        driver = webdriver.Chrome(chrome_options=options)
+        parse_one_product_information_(created_product, driver)
+        driver.close()
 
         response_dict = {
             'article_number':article_number,
