@@ -252,8 +252,6 @@ def parse_with_article_number(article_number, **categories_dict):
         product_price = product_detail.find('span', class_='packagePrice').text.strip().split()[:2]
         product_title = product_detail.find('span', class_='productName').text.strip()
         product_description = product_detail.find('span', class_='productType').text.strip()
-        #product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
-        print(product_price)
         if product_price[1] == 'PLN':
             product_price = product_price[0]
         product_price = ''.join(product_price)

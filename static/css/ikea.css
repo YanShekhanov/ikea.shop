@@ -585,6 +585,9 @@ h1:before {
 		    border-bottom: 0.1vw solid #e3e3e3;
 
 	}
+	#product-list li:nth-child(1n){
+    		color: #FF6A00;
+	}
 	#product-categories{
 		width: 100%;
 		position: absolute;
@@ -596,6 +599,9 @@ h1:before {
 		height: 13vw;
 		    border-bottom: 0.1vw solid #e3e3e3;
 
+	}
+	#product-categories li:nth-child(1n){
+    		color: #FF6A00;
 	}
 	#product-subcategories li{
 		font-size: 5vw;
