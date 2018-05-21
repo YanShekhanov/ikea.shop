@@ -92,6 +92,14 @@ h1:before {
     padding: 0.5vw;
     font-size: 1.5vw;
 }
+#delete_product:hover {
+    color: red;
+    background-color: cornsilk;
+}
+#edit_product:hover {
+    color: red;
+    background-color: cornsilk;
+}
 @media screen and (max-width: 750px){
 	.grid{
 		margin: 0;
