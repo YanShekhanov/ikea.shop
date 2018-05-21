@@ -59,18 +59,22 @@
     $('body').on('submit', '#download_product', function (event) {
         if (start_download){
             event.preventDefault();
-        var subcategory_id = checked['subcategory_id'],
-            sub_subcategory_id = checked['sub_subcategory_id'],
-            article_number = $('#id_article_number').val();
-        console.log(subcategory_id, sub_subcategory_id, article_number);
-        $.ajax({
-            url:'{% url "download_product" %}',
-            method: 'POST',
-            data:{'csrfmiddlewaretoken':'{{ csrf_token }}', 'subcategory_id':subcategory_id, 'sub_subcategory_id':sub_subcategory_id, 'article_number': article_number},
-            success:function (data) {alert('ok'); console.log(data)},
-            error:function () {alert('error')}
-        })
-        }
+            checked['article_number'] = $('#id_article_number').val();
+            checked['csrfmiddlewaretoken'] = '{{ csrf_token }}';
+            var sub_subcategory_id = checked['sub_subcategory_id'];
+
+            if (sub_subcategory_id == undefined){
+                checked['have_sub_subcategory'] = false;
+            }
+            console.log(checked);
+            $.ajax({
+                url:'{% url "download_product" %}',
+                method: 'POST',
+                data:checked,
+                success:function (data) {alert('ok'); console.log(data)},
+                error:function () {alert('error')}
+            })
+            }
         else {
             event.preventDefault();
             alert('Виберiть категорiю та подкатегорiю')
