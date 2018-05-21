@@ -323,6 +323,7 @@ h1:before {
 @media screen and (max-width: 540px){
 	#searched_query{
 		margin-top: 26vw;
+		width: 98%;
 	}
 }
 
