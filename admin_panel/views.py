@@ -95,6 +95,7 @@ class DisplayOrders(ListView):
         context['orders_delivery'] = orders_delivery
         context['orders_payment'] = orders_payment
         context['change_order_status_form'] = ChangeStatusForm
+        context['article_number_form'] = DownloadProductForm
         return context
 
     def post(self, *args, **kwargs):
