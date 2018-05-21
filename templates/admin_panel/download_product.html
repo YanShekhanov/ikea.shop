@@ -1,11 +1,12 @@
-<form method="POST">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form>
+<form method="POST" id="download_product">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form>
 
 <script>
-    $('body').on('submit', 'form', function (event) {
+    $('body').on('submit', '#download_product', function (event) {
         event.preventDefault();
         var subcategory_id = $('#id_subcategory option:selected').val(),
             sub_subcategory_id = $('#id_sub_subcategory option:selected').val(),
             article_number = $('#id_article_number').val();
+        console.log(article_number);
         $.ajax({
             url:'{% url "download_product" %}',
             method: 'POST',
