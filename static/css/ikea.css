@@ -85,12 +85,14 @@ h1:before {
     padding: 0.5vw;
     font-size: 1.5vw;
     margin-left: 0.5vw;
+text-decoration: none;
 }
 #delete_product {
     border: 0.15vw solid #FF6A00;
     color: #ff6a00;
     padding: 0.5vw;
     font-size: 1.5vw;
+text-decoration: none;
 }
 #delete_product:hover {
     color: red;
@@ -109,6 +111,24 @@ h1:before {
     	margin: 0;
     	width: 100%;
 	}
+	#edit_product {
+    	border: 0.4vw solid #FF6A00;
+    	font-size: 3.5vw;
+}
+#delete_product {
+    border: 0.4vw solid #FF6A00;
+    font-size: 3.5vw;
+}
+}
+@media screen and (max-width: 540px){
+	#edit_product {
+    	border: 0.5vw solid #FF6A00;
+    	font-size: 6.5vw;
+}
+#delete_product {
+    border: 0.5vw solid #FF6A00;
+    font-size: 6.5vw;
+}
 }
 
 /*Top Strip*/
