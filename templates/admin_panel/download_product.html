@@ -59,8 +59,8 @@
     $('body').on('submit', '#download_product', function (event) {
         if (start_download){
             event.preventDefault();
-        var subcategory_id = checked.get('subcategory_id'),
-            sub_subcategory_id = checked.get('sub_subcategory_id'),
+        var subcategory_id = checked['subcategory_id'],
+            sub_subcategory_id = checked['sub_subcategory_id'],
             article_number = $('#id_article_number').val();
         console.log(subcategory_id, sub_subcategory_id, article_number);
         $.ajax({
