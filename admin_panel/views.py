@@ -203,9 +203,8 @@ class DownloadProduct(FormView):
             subcategory_id = self.request.POST['subcategory_id']
             sub_subcategory_id = self.request.POST['sub_subcategory_id']
             article_number = self.request.POST['article_number']
-            response_dict = {'subcategory_id':subcategory_id,
-                             'sub_subcategory_id':sub_subcategory_id,
-                             'article_number':article_number}
+            function_response = parse_with_article_number(article_number)
+            response_dict['function_response'] = function_response
             return JsonResponse(response_dict)
 
 
@@ -216,6 +215,7 @@ from bs4 import BeautifulSoup
 from shop.models import Coef
 def parse_with_article_number(article_number):
     translator = Translator()
+    response_dict = {}
     # available in Lublin
     detail_page = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % article_number
     product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
@@ -251,6 +251,14 @@ def parse_with_article_number(article_number):
         product_unit = product_unit.text.strip()
     else:
         product_unit = ''
+
+    response_dict = {
+        'article_number':article_number,
+        'title':product_title,
+        'description':product_description,
+        'price':product_price
+    }
+    return response_dict
 
     # create Product
     # если продукт находится в подкатегории
