@@ -30,7 +30,7 @@ class ParserProcess(Thread):
         self.request = request
 
     def run(self):
-        print('parser start with name %' % self.name)
+        print('parser start with name %s' % self.name)
         print('Products count = %i' % len(Product.objects.all()))
         print('Ready product = %i' % len(Product.objects.filter(is_parsed=True)))
         print('products to parse = %i' % len(Product.objects.exclude(is_parsed=True)))
