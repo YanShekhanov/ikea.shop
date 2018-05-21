@@ -3096,10 +3096,8 @@ main {
 		color: #FF6C00;
 	}
 	#cart-offer{
-	    height: 5vw;
+	    height: 30vw;
 	    padding: 0vw;
-	    padding-top: 0.5vw;
-	    padding-left: 1vw;
 	    display: block;
 	}
 	#cart-offer span{
