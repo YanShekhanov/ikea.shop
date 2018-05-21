@@ -21,7 +21,7 @@
             url:'{% url "download_product" %}',
             method: 'POST',
             data:{'csrfmiddlewaretoken':'{{ csrf_token }}', 'subcategory_id':subcategory_id, 'sub_subcategory_id':sub_subcategory_id, 'article_number': article_number},
-            success:function (data) {alert('ok')},
+            success:function (data) {alert('ok'); console.log(data)},
             error:function () {alert('error')}
         })
     })
