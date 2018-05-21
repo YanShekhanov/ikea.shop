@@ -59,7 +59,7 @@ class SubSubCategory(models.Model):
 
 class Product(models.Model):
     subcategory = models.ManyToManyField(SubCategory, verbose_name='Подкатегория, id')
-    sub_subcategory = models.ManyToManyField(SubSubCategory, verbose_name='Под подкатегория, id')
+    sub_subcategory = models.ManyToManyField(SubSubCategory, verbose_name='Под подкатегория, id', blank=True, null=True)
     article_number = models.CharField(max_length=9, blank=False, default='', null=False, verbose_name='Артикул')
     title = models.CharField(max_length=64, blank=False, null=False, default='', verbose_name='Название')
     description = models.TextField(blank=False, null=True, default='', verbose_name='Короткое описание')

@@ -265,6 +265,10 @@ def parse_with_article_number(article_number):
             'price':product_price
         }
 
+        
+
+
+
         return response_dict
 
     # create Product
