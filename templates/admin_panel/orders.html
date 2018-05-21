@@ -3,13 +3,10 @@
 
 {% block content %}
     <div class="grid" id="admin">
-    <select id="order-sort">
-            <option>Фильтрация по статусу заказа</option>
-            <option value="increase">Пункт сортировки 1</option>
-            <option value="decline">Пункт сортировки 2</option>
-            <option value="from_A_to_Z">Пункт сортировки 3</option>
-            <option value="from_Z_to_A">Пункт сортировки 4</option>
-    </select>
+    <input id="date_search_input" type="date">
+    <button id="date_search">Пошук</button>
+    {{ article_number_form.article_number }}
+    <button id="article_search">Пошук</button>
 
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
