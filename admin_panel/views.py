@@ -201,10 +201,14 @@ class DownloadProduct(FormView, TemplateView):
     def post(self, *args, **kwargs):
         if self.request.is_ajax():
             response_dict = {}
-            subcategory_id = self.request.POST['subcategory_id']
-            sub_subcategory_id = self.request.POST['sub_subcategory_id']
+            categories_dict = {}
+            have_sub_subcategory = self.request.POST['have_sub_subcategory']
+            if have_sub_subcategory == True:
+                categories_dict['sub_subcategory_id'] = self.request.POST['sub_subcategory_id']
             article_number = self.request.POST['article_number']
-            function_response = parse_with_article_number(article_number)
+            categories_dict['subcategory_id'] = self.request.POST['subcategory_id']
+            function_response = parse_with_article_number(article_number, **categories_dict)
+
             response_dict['function_response'] = function_response
             return JsonResponse(response_dict)
 
@@ -221,7 +225,7 @@ from googletrans import Translator
 import requests
 from bs4 import BeautifulSoup
 from shop.models import Coef
-def parse_with_article_number(article_number):
+def parse_with_article_number(article_number, **categories_dict):
     response_dict = {}
     try:
         existed_product = Product.objects.get(article_number=article_number, is_parsed=True)

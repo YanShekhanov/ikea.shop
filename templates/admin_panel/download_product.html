@@ -65,6 +65,8 @@
 
             if (sub_subcategory_id == undefined){
                 checked['have_sub_subcategory'] = false;
+            } else {
+                checked['have_sub_subcategory'] = true;
             }
             console.log(checked);
             $.ajax({
