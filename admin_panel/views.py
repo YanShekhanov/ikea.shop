@@ -200,6 +200,13 @@ class DownloadProduct(FormView):
     def post(self, *args, **kwargs):
         if self.request.is_ajax():
             response_dict = {}
+            subcategory_id = self.request.POST['subcategory_id']
+            sub_subcategory_id = self.request.POST['sub_subcategory_id']
+            article_number = self.request.POST['article_number']
+            response_dict = {'subcategory_id':subcategory_id,
+                             'sub_subcategory_id':sub_subcategory_id,
+                             'article_number':article_number}
+            return JsonResponse(response_dict)
 
 
 from ikea_parser.ikea_parser import DOMAIN
