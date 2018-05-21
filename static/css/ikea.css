@@ -3612,16 +3612,16 @@ main {
 		padding: 0;
 	}
 	#cart-item-adm a{
-		float: right;
-		font-size: 4vw;
-		display: flex;
-		text-align: center;
-		align-items: center;
-		align-content: center;
-		padding: 0vw;
-		padding-left: 5vw;
-		width: 47vw;
-		margin: 0vw;
+	    float: none;
+	    font-size: 4vw;
+	    display: flex;
+	    text-align: center;
+	    align-items: center;
+	    align-content: center;
+	    padding: 0vw;
+	    padding-left: 10vw;
+	    width: 47vw;
+	    margin: 0vw;
 	}
 	#cart-item-adm span{
 		text-align: center;
