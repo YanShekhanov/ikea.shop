@@ -37,7 +37,7 @@
 
             {% if modelOptions %}
             <div class="model-select">
-                <label for="btn-md-sel-open" id="model-select">Выбор модели <i class="fa fa-cog" aria-hidden="true"></i></label>
+                <label for="btn-md-sel-open" id="model-select">Вибір моделі <i class="fa fa-cog" aria-hidden="true"></i></label>
                 <input type="checkbox" id="btn-md-sel-open">
                 <div class="model-select-open" id="model-select-open">
                     {% for model in modelOptions %}
@@ -55,7 +55,7 @@
 
             {% if sizeOptions %}
                     <div class="size-select">
-                        <label for="btn-sz-sel-open" id="size-select">Выбор размера <i class="fa fa-arrows" aria-hidden="true"></i></label>
+                        <label for="btn-sz-sel-open" id="size-select">Вибір розміру <i class="fa fa-arrows" aria-hidden="true"></i></label>
                         <input type="checkbox" id="btn-sz-sel-open">
                         <div class="size-select-open" id="size-select-open">
                             {% for size in sizeOptions %}
@@ -74,7 +74,7 @@
             {% if colorOptions %}
 			<!--Color Select-->
 			<div class="color-select">
-				<label for="btn-cl-sel-open" id="color-select">Выбор цвета <i class="fa fa-square square-1" aria-hidden="true"></i><i class="fa fa-square square-2" aria-hidden="true"></i><i class="fa fa-square square-3" aria-hidden="true"></i></label>
+				<label for="btn-cl-sel-open" id="color-select">Вибір кольору <i class="fa fa-square square-1" aria-hidden="true"></i><i class="fa fa-square square-2" aria-hidden="true"></i><i class="fa fa-square square-3" aria-hidden="true"></i></label>
 				<input type="checkbox" id="btn-cl-sel-open">
 				<div class="color-select-open" id="color-select-open">
                     {% for color in colorOptions %}
@@ -92,7 +92,7 @@
 
 			<!--Amount Select-->
 			<div class="amount-select">
-				<input type="number" id="amount-select" placeholder="Введите количество..." />
+				<input type="number" id="amount-select" placeholder="Введіть кількість..." />
 			</div>
 			<!--Price-->
 			<div class="prod-price">{{ product.price }} грн.</div>
@@ -109,28 +109,28 @@
 	<main class="grid" id="pages-block">
         {% if product.key_feautures%}
   		    <input id="tab1" type="radio" name="tabs" checked>
-  			<label for="tab1">Описание</label>
+  			<label for="tab1">Опис</label>
         {% endif %}
 
         {% if product.goot_to_know or product.care_instructions or product.materials_info %}
   		    <input id="tab2" type="radio" name="tabs">
-  			<label for="tab2">Информация</label>
+  			<label for="tab2">Інформація</label>
         {% endif %}
 
         {% if product.dimensions %}
   		    <input id="tab3" type="radio" name="tabs">
-  			<label for="tab3">Размеры</label>
+  			<label for="tab3">Розміри</label>
         {% endif %}
 
         {% if complementaryProducts %}
   		<input id="tab4" type="radio" name="tabs">
-        <label for="tab4">Дополняющие товары</label>
+        <label for="tab4">Доповнюючі товари</label>
         {% endif %}
 
   {% if product.key_feautures %}
   <section id="content1">
     <p>
-        <h3>Описание</h3>
+        <h3>Опис</h3>
         <span>{{ product.key_feautures }}</span>
     </p>
   </section>
@@ -147,14 +147,14 @@
 
     {% if product.care_instructions %}
     <p>
-        <h3>Инострукция по уходу</h3>
+        <h3>Інструкція з догляду</h3>
         <span>{{ product.care_instructions }}</span>
     </p>
     {% endif %}
 
     {% if product.materials_info %}
     <p>
-        <h3>Материалы</h3>
+        <h3>Матеріали</h3>
         <span>{{ product.materials_info }}</span>
     </p>
     {% endif %}
@@ -165,7 +165,7 @@
   {% if product.dimensions %}
   <section id="content3">
     <p>
-        <h3>Размеры</h3>
+        <h3>Розміри</h3>
         <span>{{ product.dimensions }}</span>
     </p>
   </section>
@@ -191,7 +191,7 @@
                     <p class="card-text">{{ complementary_product.dimensions }}</p>
 					<p class="card-price">{{ complementary_product.price }} грн.</p>
                 	<div class="button-item">
-     					<a href="" class="btn-1 add_to_basket">Добавить в корзину</a>
+     					<a href="" class="btn-1 add_to_basket">Додати у корзину</a>
     				</div>
             	</div>
                 <!--Product Images-->
@@ -227,8 +227,8 @@
             <div class="added-to-cart-icon">
                 <i class="fa fa-check" aria-hidden="true"></i>
             </div>
-                <div class="added-to-cart">Продукт <span><%product_title%></span> <span>(<%product_article%>)</span> в количестве <span><%count%></span> добавлен в корзину </div>
-            <div class="go-to-cart" onclick="document.location.href='{% url 'show_basket' %}'">Перейти в корзину</div>
+                <div class="added-to-cart">Продукт <span><%product_title%></span> <span>(<%product_article%>)</span> у кількості <span><%count%></span> дадвно до корзини </div>
+            <div class="go-to-cart" onclick="document.location.href='{% url 'show_basket' %}'">Перейти до корзини</div>
         </div>
     </script>
 {% endblock %}
