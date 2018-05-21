@@ -214,51 +214,58 @@ import requests
 from bs4 import BeautifulSoup
 from shop.models import Coef
 def parse_with_article_number(article_number):
-    translator = Translator()
     response_dict = {}
-    # available in Lublin
-    detail_page = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % article_number
-    product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
-        article_number)
-
-    product_request = requests.get(product_available_url).text
-    product_page = BeautifulSoup(product_request, 'xml')
-    product_detail = BeautifulSoup(requests.get(detail_page).text, 'lxml')
     try:
-        available = product_page.find('localStore', buCode='311').find('availableStock').get_text()
-    except AttributeError:
-        available = 0
+        existed_product = Product.objects.get(article_number=article_number, is_parsed=True)
+        response_dict['duplicateError'] = 'Вказаний артикул вже наявний в БД'
+        response_dict['url'] = reverse('productDetail', args=[article_number])
+        return JsonResponse(response_dict)
+    except Product.DoesNotExist:
+        translator = Translator()
+        # available in Lublin
+        detail_page = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % article_number
+        product_available_url = 'http://www.ikea.com/pl/pl/iows/catalog/availability/%s/' % (
+            article_number)
 
-    product_price = product_detail.find('span', class_='packagePrice').text.strip().split()[:2]
-    product_title = product_detail.find('span', class_='productName').text.strip()
-    product_description = product_detail.find('span', class_='productType').text.strip()
-    #product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
-    print(product_price)
-    if product_price[1] == 'PLN':
-        product_price = product_price[0]
-    product_price = ''.join(product_price)
-    for symbol in product_price:
-        if symbol == ' ':
-            product_price = ''.join(product_price.split(' '))
-    for symbol in product_price:
-        if symbol == ',':
-            product_price = '.'.join(product_price.split(','))
-    product_price = int(round(float(product_price) * Coef.objects.all().first().coef))
-    print(product_price)
+        product_request = requests.get(product_available_url).text
+        product_page = BeautifulSoup(product_request, 'xml')
+        product_detail = BeautifulSoup(requests.get(detail_page).text, 'lxml')
+        try:
+            available = product_page.find('localStore', buCode='311').find('availableStock').get_text()
+        except AttributeError:
+            available = 0
 
-    product_unit = product_detail.find('span', class_='unit')  # /шт.
-    if product_unit is not None:
-        product_unit = product_unit.text.strip()
-    else:
-        product_unit = ''
+        product_price = product_detail.find('span', class_='packagePrice').text.strip().split()[:2]
+        product_title = product_detail.find('span', class_='productName').text.strip()
+        product_description = product_detail.find('span', class_='productType').text.strip()
+        #product_price = product_detail.find('span', class_='regularPrice').text.split()[:2]
+        print(product_price)
+        if product_price[1] == 'PLN':
+            product_price = product_price[0]
+        product_price = ''.join(product_price)
+        for symbol in product_price:
+            if symbol == ' ':
+                product_price = ''.join(product_price.split(' '))
+        for symbol in product_price:
+            if symbol == ',':
+                product_price = '.'.join(product_price.split(','))
+        product_price = int(round(float(product_price) * Coef.objects.all().first().coef))
+        print(product_price)
 
-    response_dict = {
-        'article_number':article_number,
-        'title':product_title,
-        'description':product_description,
-        'price':product_price
-    }
-    return response_dict
+        product_unit = product_detail.find('span', class_='unit')  # /шт.
+        if product_unit is not None:
+            product_unit = product_unit.text.strip()
+        else:
+            product_unit = ''
+
+        response_dict = {
+            'article_number':article_number,
+            'title':product_title,
+            'description':product_description,
+            'price':product_price
+        }
+
+        return response_dict
 
     # create Product
     # если продукт находится в подкатегории
