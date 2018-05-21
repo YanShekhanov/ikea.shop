@@ -1,3 +1,13 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка продукту</title>
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+</head>
+
+<body>
 <form method="POST" id="download_product">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form>
 
 <script>
@@ -16,3 +26,4 @@
         })
     })
 </script>
+</body>
