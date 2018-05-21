@@ -28,8 +28,8 @@
 <div class="container-fluid" id="top-strip">
     <div class="row">
         <div class="grid">
-            <p style="float: left; text-align: left;"><a href="#">Контакты</a> | <a href="#">Доставка</a></p>
-            {% if username %}<p style="float: right; text-align: right;"><a href="">Выход | {{ username }}</a></p>{% else %}<p style="float: right; text-align: right;"><a href="{% url 'adminAuth' %}">Вход</a></p>{% endif %}
+            <p style="float: left; text-align: left;"><a href="#">Контакти</a> | <a href="#">Доставка</a></p>
+            {% if username %}<p style="float: right; text-align: right;"><a href="">Вихід | {{ username }}</a></p>{% else %}<p style="float: right; text-align: right;"><a href="{% url 'adminAuth' %}">Вхід</a></p>{% endif %}
         </div>
     </div>
 </div>
@@ -44,7 +44,7 @@
                 <div class="prc-basket">
                     <i class="fa fa-shopping-basket" aria-hidden="true" onclick="document.location.href='{% url "show_basket" %}'"><div class="amount-circle">{{ product_count }}</div><span class="price" id="price">{{ order_price }} грн.</span></i>
 				</div>
-                <input class="search-form" placeholder="Поиск..." />
+                <input class="search-form" placeholder="Пошук..." />
                 <ul id="searched_query"></ul>
 
             </div>
@@ -58,10 +58,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <a class="nav-link" href="{% url 'catalogue' %}">Главная</a>
-        <a class="nav-link" id="categories_menu" href="#">Товары<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link" id="open_room_menu" href="#" >Комнаты<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-        <a class="nav-link" href="#">Акции</a>
+        <a class="nav-link" href="{% url 'catalogue' %}">Головна</a>
+        <a class="nav-link" id="categories_menu" href="#">Товари<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" id="open_room_menu" href="#" >Кімнати<br><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        <a class="nav-link" href="#">Акції</a>
     </div>
 </nav>
 
@@ -69,14 +69,14 @@
 <div class="grid nav-cat" id="dropdown-products">
 	<!--Product List-->
 	<ul id="product-list">
-    <span id="to_menu" class="btn-prev-menu mobile_button">Назад в меню</span>
+    <span id="to_menu" class="btn-prev-menu mobile_button">Назад у меню</span>
             {% for category in Categories %}
                 <li class="category_el" data-category_id="{{ category.id }}" onclick="open_subcategories({{ category.id }})"><btn href="#" id="{{ category.id }}">{{ category.title }}<i class="fa fa-chevron-right" aria-hidden="true"></i></btn></li>
             {% endfor %}
     </ul>
     <!--Kategories-->
     <ul id="product-categories">
-        <span id="to_categories" class="btn-prev-menu mobile_button">Назад к категориям</span>
+        <span id="to_categories" class="btn-prev-menu mobile_button">Назад до категорій</span>
         {% for category in Categories %}
             {% for subcategory in SubCategories %}
                 {% if subcategory.category == category %}
@@ -120,10 +120,10 @@
         <!--Sort-->
         <select id="get_sort">
             <option>Выбор сортировки</option>
-            <option value="increase">От дешевых к дорогим</option>
-            <option value="decline">От дорогих к дешевым</option>
-            <option value="from_A_to_Z">От A до Z</option>
-            <option value="from_Z_to_A">От Z до А</option>
+            <option value="increase">Від дешевих к дорогим</option>
+            <option value="decline">Від дорогих к дешевим</option>
+            <option value="from_A_to_Z">Від A до Z</option>
+            <option value="from_Z_to_A">Від Z до А</option>
         </select>
     </div>
 </div>
@@ -144,7 +144,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4 myCols">
-                <h5>Информация</h5>
+                <h5>Інформація</h5>
                 <ul>
                     <li><a href="#">Policy Privacy</a></li>
                     <li><a href="#">Terms and Conditions</a></li>
@@ -153,12 +153,12 @@
             <div class="col-sm-4 myCols">
                 <h5>О нас</h5>
                 <ul>
-                    <li><a href="#">Информация о компании</a></li>
-                    <li><a href="#">Отзывы</a></li>
+                    <li><a href="#">Інформація о компанії</a></li>
+                    <li><a href="#">Відгуки</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 myCols">
-                <h5>Обслуживание Клиентов</h5>
+                <h5>Обслуговування Кліентів</h5>
                 <ul>
                     <li><a href="#">Тел: +380-93-251-02-13</a></li>
                     <li><a href="#">Email: info@gmail.com</a></li>
