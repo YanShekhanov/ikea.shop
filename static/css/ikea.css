@@ -1454,6 +1454,7 @@ input[type="checkbox"]:checked ~ #model-select-open {
 	height: auto;
 	width: 100%;
 	padding-left: 0;
+	padding-bottom: 1.3vw;
 	line-height: 1;
 }
 #size-select-open img{
