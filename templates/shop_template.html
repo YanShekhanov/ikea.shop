@@ -299,7 +299,6 @@
             var subcategory_id = $(this).data('subcategory_id'),
                 sub_subcategories_length = $('.sub_subcategories[data-rel_subcategory_id="' + subcategory_id + '"]').find('li').length;
             if (sub_subcategories_length > 0){
-                console.log($(this).text(), sub_subcategories_length);
                 $(this).addClass('have_sub_sub');
                 $(this).attr('onclick', '');
             }
@@ -319,7 +318,6 @@
         $('body').on('click', '.get-all-images', function (){
             var token = $('input[name="csrfmiddlewaretoken"]').val();
             var unique_identificator = $(this).data('unique_identificator');
-            console.log(unique_identificator);
 
             $.ajax({
                 url: "{% url 'get_all_product_images' %}",
