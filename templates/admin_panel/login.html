@@ -2,21 +2,3 @@
     {{ form.as_p }}
     <input type="submit" value="Ок">
 </form>
-
-<script>
-    $('body').on('submit', '#next', function (e) {
-        e.preventDefault();
-        var token = $('input[name="csrfmiddlewaretoken"]'),
-            username = $('input[name="username"]').val();
-        $.ajax({
-            url:'{% url "check_auth" %}',
-            method: 'POST',
-            data:{
-                'csrfmiddlewaretoken':token,
-                'username':username,
-            },
-            success:function () {console.log('ok')},
-            error:function () {console.log('error')},
-        })
-    })
-</script>
