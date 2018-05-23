@@ -1,5 +1,7 @@
 {% extends 'shop_template.html' %}
 
+{% block title %}{{ product.title }}{% endblock %}
+
 {% block path %}
     {% if sub_subcategory_path %}
         {% if is_sub_subcategory %}{{ category_path.title }} / <a href="{% url 'getOneCategoryProducts' subcategory_path.unique_identificator %}">{{ subcategory_path.title }}</a>

@@ -1,5 +1,5 @@
 {% extends 'shop_template.html' %}
-{% block title %}room{% endblock %}
+{% block title %}{{ roomPlace.title }}{% endblock %}
 {% block content %}
     {% for room_example in roomExamples %}
         {% for image in examplesImages %}
