@@ -4,7 +4,7 @@ from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
@@ -66,7 +66,7 @@ class DisplayOrders(ListView):
             return redirect(reverse('adminAuth'))
 
     def get_queryset(self):
-        self.queryset = self.model._default_manager.exclude(status=0).order_by('first_registration')
+        self.queryset = self.model._default_manager.exclude(status=0).order_by('-first_registration')
         return self.queryset
 
     def get_context_data(self, **kwargs):
@@ -83,6 +83,7 @@ class DisplayOrders(ListView):
         context['orders_delivery'] = orders_delivery
         context['orders_payment'] = orders_payment
         context['change_order_status_form'] = ChangeStatusForm
+        context['change_payment_method_form'] = ChangePaymentForm
         context['article_number_form'] = DownloadProductForm
         return context
 
