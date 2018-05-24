@@ -16,15 +16,16 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     updated = models.DateTimeField(auto_now=True, blank=False, null=False)
 
+from django.utils.timezone import datetime
 @receiver(pre_save, sender=Order)
 def first_order_registration(sender, instance, **kwargs):
     try:
         status_before_saving = Order.objects.get(id=instance.id).status
         if status_before_saving == 0 and instance.status == 1:
-            instance.first_registration = 0
+            instance.first_registration = datetime.now()
     except Order.DoesNotExist:
         pass
-        
+
 
 
 class ProductInOrder(models.Model):

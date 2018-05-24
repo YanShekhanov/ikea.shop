@@ -66,7 +66,7 @@ class DisplayOrders(ListView):
             return redirect(reverse('adminAuth'))
 
     def get_queryset(self):
-        self.queryset = self.model._default_manager.exclude(status=0).order_by('-created')
+        self.queryset = self.model._default_manager.exclude(status=0).order_by('-first_registration')
         return self.queryset
 
     def get_context_data(self, **kwargs):
