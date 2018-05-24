@@ -12,8 +12,16 @@ class Order(models.Model):
     order_price = models.IntegerField(default=0, blank=True, null=True)
     status = models.SmallIntegerField(default=0, blank=True, null=True, choices=status)
     session_key = models.CharField(max_length=256, blank=False, null=False)
+    first_registration = models.DateTimeField(blank=True, null=True, verbose_name='Дата регистрации заказа')
     created = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     updated = models.DateTimeField(auto_now=True, blank=False, null=False)
+
+@receiver(pre_save, sender=Order)
+def first_order_registration(sender, instance, **kwargs):
+    status_before_saving = Order.objects.get(id=instance.id).status
+    if status_before_saving == 0 and instance.status == 1:
+        instance.first_registration =
+
 
 class ProductInOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
