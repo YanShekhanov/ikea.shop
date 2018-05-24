@@ -43,7 +43,7 @@
                     {% if order_payment.order == order %}
                         <p class="adm-title">Способ оплаты:</p><button class="change_payment">Изменить</button>
                         <p>Оплата: <b>{{ order_payment.method_readable }}</b>,сумма <b>{{ order_payment.amount }}</b></p>
-                        <form style="display: none" class="change_payment_form">{{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}</form>
+                        <form style="display: block" class="change_payment_form">{% csrf_token %}{{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}</form>
                     {% endif %}
                 {% endfor %}
 
