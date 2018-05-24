@@ -20,7 +20,7 @@ class Order(models.Model):
 def first_order_registration(sender, instance, **kwargs):
     status_before_saving = Order.objects.get(id=instance.id).status
     if status_before_saving == 0 and instance.status == 1:
-        instance.first_registration =
+        instance.first_registration = 0
 
 
 class ProductInOrder(models.Model):
