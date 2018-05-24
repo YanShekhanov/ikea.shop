@@ -8,14 +8,12 @@
 
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
-			<p class="adm-title">
                 <form class="change_order_status" method="POST">{% csrf_token %}
                 <label for="status">Статус заказа:</label>
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
             <script>get_select_value({{ order.status }}, $('.one_order').last())</script>
-            </p>
 
 			<p>Дата заказа: <b>{{ order.first_registration|date:'Y-m-d H:i' }}</b></p>
 			<p>Уникальный индетификатор: <b>{{ order.unique_identificator }}</b></p>
@@ -43,8 +41,9 @@
 
                 {% for order_payment in orders_payment %}
                     {% if order_payment.order == order %}
-                        <p class="adm-title">Способ оплаты:</p>
-                        <p>Оплата: <b>{{ order_payment.method_readable }}</b></p>
+                        <p class="adm-title">Способ оплаты:</p><button class="change_payment">Изменить</button>
+                        <p>Оплата: <b>{{ order_payment.method_readable }}</b>,сумма <b>{{ order_payment.amount }}</b></p>
+                        <form style="display: none" class="change_payment_form">{{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}</form>
                     {% endif %}
                 {% endfor %}
 
