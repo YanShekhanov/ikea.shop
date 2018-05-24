@@ -53,6 +53,9 @@ class MainInfo(TemplateView):
             order = Order.objects.create(session_key=self.request.session.session_key, unique_identificator=create_num_identificator(8))
         context['order_price'] = order.order_price
         context['product_count'] = len(list(ProductInOrder.objects.filter(order=order)))
+
+        from django.utils.timezone import datetime
+        print(datetime.today())
         return context
 
 #главная страница
