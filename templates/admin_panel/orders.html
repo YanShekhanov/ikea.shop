@@ -43,7 +43,10 @@
                     {% if order_payment.order == order %}
                         <p class="adm-title">Способ оплаты:</p><button class="change_payment">Изменить</button>
                         <p>Оплата: <b>{{ order_payment.method_readable }}</b>,сумма <b>{{ order_payment.amount }}</b></p>
-                        <form style="display: none" class="change_payment_form">{% csrf_token %}{{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}</form>
+                        <form style="display: none" class="change_payment_form">{% csrf_token %}
+                            {{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}
+                            <input type="submit" value="Сохранить">
+                        </form>
                     {% endif %}
                 {% endfor %}
 
@@ -96,16 +99,18 @@
         $('body').on('click', '.change_payment', function () {
             $form = $(this).parents('.one_order').find('.change_payment_form');
             $form.show();
-            var token = $('input[name="csrfmiddlewaretoken"]').val(),
+            $form.submit(function (event) {
+                event.preventDefault();
+                var token = $('input[name="csrfmiddlewaretoken"]').val(),
                 unique_identificator = $(this).parents('.one_order').data('order_unique_identificator'),
                 payment_method = $form.find('#id_payment_method').val(),
                 amount = $form.find('#id_amount').val();
-            console.log(token, unique_identificator, payment_method, amount);
-            $.ajax({
-                url:'{% url "change_payment_method" %}',
-                method: 'POST',
-                data:{}
-            })
+                console.log(token, unique_identificator, payment_method, amount);
+                $.ajax({
+                    url:'{% url "change_payment_method" %}',
+                    method: 'POST',
+                    data:{}
+                });
         });
 
         //изменения статуса заказа
