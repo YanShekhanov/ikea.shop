@@ -132,6 +132,9 @@ def change_order_status(request):
         response_dict['requestError'] = 'Bad request'
     return JsonResponse(response_dict)
 
+def change_payment_method(request):
+    pass
+
 #удаление заказа
 def delete_order(request):
     response_dict = {}
