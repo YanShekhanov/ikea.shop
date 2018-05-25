@@ -102,7 +102,7 @@ class SearchOrder(ListView):
             self.queryset = self.model._default_manager.exclude(status=0)
             objects_list = []
             for order in self.queryset:
-                print(order.first_registration)
+                print(datetime.strptime(order.first_registration, '%Y-%m-%d'))
                 if order.first_registration.date() == date:
                     objects_list.append(order)
             self.queryset = objects_list
