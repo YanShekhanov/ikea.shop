@@ -6,6 +6,12 @@
     <input type="number" id="article_search_input">
     <button id="article_search">Пошук</button>
 
+    <script>$('body').on('click', '#article_search', function () {
+        var value = $('#article_search_input').val();
+        window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
+    })
+    </script>
+
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
                 <form class="change_order_status" method="POST">{% csrf_token %}
