@@ -3,9 +3,12 @@
 
 {% block content %}
     <div class="grid" id="admin">
-    <input type="number" id="article_search_input">
-    <button id="article_search">Пошук</button>
 
+    <label for="article_search">Пошук по номеру замовлення</label>
+    <input type="number" id="unique_identificator_input">
+    <button id="unique_identificator_search">Пошук</button><br>
+
+    <label for="article_search">Пошук по датi замовлення</label>
     <input type="date" id="date_search_input">
     <button id="date_search">Пошук</button>
 
@@ -98,8 +101,8 @@
 {% block onload_js %}
     <script>
         //поиск по номеру заказа
-        $('body').on('click', '#article_search', function () {
-            var value = $('#article_search_input').val();
+        $('body').on('click', '#unique_identificator_search', function () {
+            var value = $('#unique_identificator_input').val();
             window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
         });
 
