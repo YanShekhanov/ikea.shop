@@ -98,6 +98,7 @@ class SearchOrder(ListView):
 
     def get_queryset(self):
         if self.option == 'date':
+            print(self.value)
             date = datetime.strptime(self.value, '%Y-%d-%m')
             self.queryset = self.model._default_manager.filter(first_order_registration=date)
         elif self.option == 'unique_identificator':
