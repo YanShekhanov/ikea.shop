@@ -47,7 +47,7 @@
                             {{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}
                             <input type="submit" value="Сохранить">
                         </form>
-                        <script>get_select_value({{ order_payment.status }}, $('.one_order').last().find('.change_payment_form'))</script>
+                        <script>get_select_value({{ order_payment.payment_method }}, $('.one_order').last().find('.change_payment_form'))</script>
                     {% endif %}
                 {% endfor %}
 
