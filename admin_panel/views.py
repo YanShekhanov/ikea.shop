@@ -95,7 +95,7 @@ class SearchOrder(ListView):
 
     def __init__(self, **kwargs):
         super(SearchOrder, self).__init__(**kwargs)
-        print(kwargs)
+        print(self.kwargs)
 
     def get_queryset(self):
         self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
