@@ -93,6 +93,10 @@ class SearchOrder(ListView):
     context_object_name = 'orders'
     options = ['date', 'unique_identificator']
 
+    def get_queryset(self, value):
+        self.queryset = self.model._default_manager.filter(unique_identificator=value)
+        return self.queryset
+
     def get(self, *args, **kwargs):
         option = self.kwargs.get('option')
         value = self.kwargs.get('value')
@@ -100,7 +104,7 @@ class SearchOrder(ListView):
             raise Http404('Option not found')
         else:
             if option == 'unique_identificator':
-                self.objects_list = Order.objects.filter(unique_identificator=value)
+                self.objects_list = self.get_queryset(value)
                 print(self.objects_list)
                 return super(SearchOrder, self).get(*args, **kwargs)
 
