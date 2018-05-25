@@ -90,7 +90,7 @@ class DisplayOrders(ListView):
 class SearchOrder(ListView):
     template_name = 'admin_panel/orders.html'
     model = Order
-    context_objects_name = 'orders'
+    context_object_name = 'orders'
     options = ['date', 'unique_identificator']
 
     def get(self, *args, **kwargs):
