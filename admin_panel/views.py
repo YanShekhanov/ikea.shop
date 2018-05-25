@@ -85,7 +85,6 @@ class DisplayOrders(ListView):
         context['orders_payment'] = orders_payment
         context['change_order_status_form'] = ChangeStatusForm
         context['change_payment_method_form'] = ChangePaymentForm
-        context['article_number_form'] = DownloadProductForm
         return context
 
 class SearchOrder(ListView):
@@ -120,6 +119,22 @@ class SearchOrder(ListView):
         else:
             self.objects_list = self.get_queryset()
         return super(SearchOrder, self).get(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        orders_info = []
+        orders_delivery = []
+        orders_payment = []
+        for order in self.objects_list:
+            orders_info.append(OrderRegistration.objects.get(order=order))
+            orders_delivery.append(DeliveryMethod.objects.get(order=order))
+            orders_payment.append(PaymentMethod.objects.get(order=order))
+        context = super(SearchOrder, self).get_context_data(**kwargs)
+        context['orders_info'] = orders_info
+        context['orders_delivery'] = orders_delivery
+        context['orders_payment'] = orders_payment
+        context['change_order_status_form'] = ChangeStatusForm
+        context['change_payment_method_form'] = ChangePaymentForm
+        return context
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
