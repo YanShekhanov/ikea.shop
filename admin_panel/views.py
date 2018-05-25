@@ -95,20 +95,24 @@ class SearchOrder(ListView):
     options = ['date', 'unique_identificator']
     option = None
     value = None
+    existError = False
 
     def get_queryset(self):
-        if self.option == 'date':
-            date = datetime.strptime(self.value, '%Y-%m-%d')
-            self.queryset = self.model._default_manager.exclude(status=0)
-            objects_list = []
-            for order in self.queryset:
-                if order.first_registration.date() == date.date():
-                    objects_list.append(order)
-            self.queryset = objects_list
-            print(self.queryset)
-        elif self.option == 'unique_identificator':
-            self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
-        return self.queryset
+        try:
+            if self.option == 'date':
+                date = datetime.strptime(self.value, '%Y-%m-%d')
+                self.queryset = self.model._default_manager.exclude(status=0)
+                objects_list = []
+                for order in self.queryset:
+                    if order.first_registration.date() == date.date():
+                        objects_list.append(order)
+                self.queryset = objects_list
+                print(self.queryset)
+            elif self.option == 'unique_identificator':
+                self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
+            return self.queryset
+        except self.model.DoesNotExist:
+            raise Http404
 
     def get(self, *args, **kwargs):
         self.option = self.kwargs.get('option')
