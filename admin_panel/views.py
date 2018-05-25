@@ -93,9 +93,9 @@ class SearchOrder(ListView):
     context_object_name = 'orders'
     options = ['date', 'unique_identificator']
 
-    def __init__(self):
-        option = self.kwargs.get('option')
-        value = self.kwargs.get('value')
+    def __init__(self, **kwargs):
+        super(SearchOrder, self).__init__(**kwargs)
+        print(kwargs)
 
     def get_queryset(self):
         self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
