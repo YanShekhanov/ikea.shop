@@ -95,11 +95,13 @@ class SearchOrder(ListView):
 
     def get(self, *args, **kwargs):
         option = self.kwargs.get('option')
+        value = self.kwargs.get('value')
         if option not in self.options:
             raise Http404('Option not found')
-        print(option)
-        value = self.kwargs.get('value')
-        print(value)
+        else:
+            if option == 'unique_identificator':
+                self.objects_list = Order.objects.filter(unique_identificator=value)
+                return super(SearchOrder, self).get(*args, **kwargs)
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
