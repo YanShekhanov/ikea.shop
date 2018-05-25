@@ -98,21 +98,19 @@ class SearchOrder(ListView):
     existError = False
 
     def get_queryset(self):
-        try:
-            if self.option == 'date':
-                date = datetime.strptime(self.value, '%Y-%m-%d')
-                self.queryset = self.model._default_manager.exclude(status=0)
-                objects_list = []
-                for order in self.queryset:
-                    if order.first_registration.date() == date.date():
-                        objects_list.append(order)
-                self.queryset = objects_list
-                print(self.queryset)
-            elif self.option == 'unique_identificator':
-                self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
-            return self.queryset
-        except self.model.DoesNotExist:
+        if self.option == 'date':
+            date = datetime.strptime(self.value, '%Y-%m-%d')
+            self.queryset = self.model._default_manager.exclude(status=0)
+            objects_list = []
+            for order in self.queryset:
+                if order.first_registration.date() == date.date():
+                    objects_list.append(order)
+            self.queryset = objects_list
+        elif self.option == 'unique_identificator':
+            self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
+        if len(list(self.queryset)) == 0:
             raise Http404
+        return self.queryset
 
     def get(self, *args, **kwargs):
         self.option = self.kwargs.get('option')
@@ -133,7 +131,6 @@ def order_detail(request):
         products_in_order = ProductInOrder.objects.filter(order=order).order_by('-created')
         for product in products_in_order:
             image = ProductImage.objects.filter(product=product.product, size=250).first()
-            print(image.image.url)
             one_product_dict = {
                 'title':product.product.title,
                 'article_number':product.product.article_number,
