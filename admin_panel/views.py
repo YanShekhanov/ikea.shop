@@ -91,9 +91,12 @@ class SearchOrder(ListView):
     template_name = 'admin_panel/orders.html'
     model = Order
     context_objects_name = 'orders'
+    options = ['date', 'unique_identificator']
 
     def get(self, *args, **kwargs):
         option = self.kwargs.get('option')
+        if option not in self.options:
+            return Http404('Option not found')
         print(option)
         value = self.kwargs.get('value')
         print(value)
