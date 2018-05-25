@@ -126,6 +126,8 @@ def change_order_status(request):
             existed_order = Order.objects.get(unique_identificator=order_unique_identificator)
             existed_order.status = status
             existed_order.save()
+            response_dict['success'] = {'successMessage': 'Успiшно змiнено деталi замовлення'}
+            return JsonResponse(response_dict)
         except:
             response_dict['existError'] = 'Order does not exist'
     else:
@@ -133,7 +135,21 @@ def change_order_status(request):
     return JsonResponse(response_dict)
 
 def change_payment_method(request):
-    pass
+    response_dict = {}
+    if request.method == 'POST' and request.is_ajax():
+        try:
+            order_registration = OrderRegistration.objects.get(order=Order.objects.get(unique_identificator=request.POST['unique_identificator']))
+            order_registration.payment_method = request.POST['payment_method']
+            order_registration.amount = request.POST['amount']
+            order_registration.save()
+            response_dict['success'] = {'successMessage': 'Успiшно змiнено деталi замовлення'}
+            return JsonResponse(response_dict)
+        except OrderRegistration.DoesNotExist or Order.DoesNotExist:
+            response_dict['existError'] = 'Order does not exist'
+            return JsonResponse(response_dict)
+    else:
+        response_dict['requestError'] = 'Bad request'
+        return JsonResponse(response_dict)
 
 #удаление заказа
 def delete_order(request):
