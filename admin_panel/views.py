@@ -96,7 +96,7 @@ class SearchOrder(ListView):
     def get(self, *args, **kwargs):
         option = self.kwargs.get('option')
         if option not in self.options:
-            return Http404('Option not found')
+            raise Http404('Option not found')
         print(option)
         value = self.kwargs.get('value')
         print(value)
