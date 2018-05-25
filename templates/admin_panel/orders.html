@@ -13,7 +13,7 @@
                 {{ change_order_status_form.status }}
                     <input type="submit" value="Сохранить" style="display: none;">
                 </form>
-            <script>get_select_value({{ order.status }}, $('.one_order').last())</script>
+            <script>get_select_value({{ order.status }}, $('.one_order').last().find('.change_order_status'))</script>
 
 			<p>Дата заказа: <b>{{ order.first_registration|date:'Y-m-d H:i' }}</b></p>
 			<p>Уникальный индетификатор: <b>{{ order.unique_identificator }}</b></p>
@@ -47,6 +47,7 @@
                             {{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}
                             <input type="submit" value="Сохранить">
                         </form>
+                        <script>get_select_value({{ order_payment.status }}, $('.one_order').last().find('.change_payment_form'))</script>
                     {% endif %}
                 {% endfor %}
 
@@ -86,9 +87,7 @@
 
 {% block js %}
     <script>function get_select_value(status, object) {
-        console.log(status, object);
         object.find('option[value="' + status + '"]').attr('selected', 'selected');
-        console.log('status selected');
     }
     </script>
 {% endblock %}
@@ -109,7 +108,19 @@
                 $.ajax({
                     url:'{% url "change_payment_method" %}',
                     method: 'POST',
-                    data:{}
+                    data:{
+                        'csrfmiddlewaretoken':token,
+                        'unique_identificator':unique_identificator,
+                        'payment_method':payment_method,
+                        'amount':amount,
+                    },
+                    success:function (data) {
+                        alert(data.success.successMessage);
+                        console.log(data);
+                    },
+                    error:function () {
+                        alert('error');
+                    },
                 })
             });
         });
@@ -129,8 +140,9 @@
                     url:'{% url "change_order_status" %}',
                     method:'POST',
                     data:data,
-                    success:function () {
-                        alert('ok');
+                    success:function (data) {
+                        alert(data.success.successMessage);
+                        console.log(data);
                     },
                     error:function (){
                         alert('error');
