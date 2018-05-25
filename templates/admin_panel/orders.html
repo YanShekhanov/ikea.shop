@@ -6,11 +6,8 @@
     <input type="number" id="article_search_input">
     <button id="article_search">Пошук</button>
 
-    <script>$('body').on('click', '#article_search', function () {
-        var value = $('#article_search_input').val();
-        window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
-    })
-    </script>
+    <input type="date" id="date_search_input">
+    <button id="date_serach">Пошук</button>
 
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
@@ -100,6 +97,19 @@
 
 {% block onload_js %}
     <script>
+        //поиск по номеру заказа
+        $('body').on('click', '#article_search', function () {
+            var value = $('#article_search_input').val();
+            window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
+        });
+
+        //поиск по дате
+        $('body').on('click', '#date_search', function () {
+            var value = $('#date_search_input').val();
+            console.log(value);
+            window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
+        });
+
         //изменение формы оплаты
         $('body').on('click', '.change_payment', function () {
             $form = $(this).parents('.one_order').find('.change_payment_form');
