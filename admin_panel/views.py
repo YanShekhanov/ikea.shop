@@ -92,24 +92,22 @@ class SearchOrder(ListView):
     model = Order
     context_object_name = 'orders'
     options = ['date', 'unique_identificator']
-
-    def __init__(self, **kwargs):
-        super(SearchOrder, self).__init__(**kwargs)
-        print(self.kwargs)
+    option = None
+    value = None
 
     def get_queryset(self):
         self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
         return self.queryset
 
     def get(self, *args, **kwargs):
-        option = self.kwargs.get('option')
+        self.option = self.kwargs.get('option')
         self.value = self.kwargs.get('value')
-        if option not in self.options:
+        if self.option not in self.options:
             raise Http404('Option not found')
         else:
-            if option == 'unique_identificator':
+            if self.option == 'unique_identificator':
                 self.objects_list = self.get_queryset()
-                print(self.objects_list)
+                print(self.kwargs)
                 return super(SearchOrder, self).get(*args, **kwargs)
 
 from ikea_parser.models import ProductImage
