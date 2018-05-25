@@ -98,8 +98,7 @@ class SearchOrder(ListView):
 
     def get_queryset(self):
         if self.option == 'date':
-            print(self.value)
-            date = datetime.strptime(self.value, '%Y-%d-%m')
+            date = datetime.strptime(self.value, '%Y-%m-%d')
             self.queryset = self.model._default_manager.filter(first_order_registration=date)
         elif self.option == 'unique_identificator':
             self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
@@ -108,7 +107,6 @@ class SearchOrder(ListView):
     def get(self, *args, **kwargs):
         self.option = self.kwargs.get('option')
         self.value = self.kwargs.get('value')
-        print(self.value)
         if self.option not in self.options:
             raise Http404('Option not found')
         else:
