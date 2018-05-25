@@ -8,6 +8,7 @@ from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangeP
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
+from django.utils.timezone import datetime
 
 LOGIN_URL = '/admin_panel/auth'
 
@@ -96,19 +97,22 @@ class SearchOrder(ListView):
     value = None
 
     def get_queryset(self):
-        self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
+        if self.option == 'date':
+            date = datetime.strptime(self.value, '%Y-%d-%m')
+            self.queryset = self.model._default_manager.filter(first_order_registration=date)
+        elif self.option == 'unique_identificator':
+            self.queryset = self.model._default_manager.filter(unique_identificator=self.value)
         return self.queryset
 
     def get(self, *args, **kwargs):
         self.option = self.kwargs.get('option')
         self.value = self.kwargs.get('value')
+        print(self.value)
         if self.option not in self.options:
             raise Http404('Option not found')
         else:
-            if self.option == 'unique_identificator':
-                self.objects_list = self.get_queryset()
-                print(self.kwargs)
-                return super(SearchOrder, self).get(*args, **kwargs)
+            self.objects_list = self.get_queryset()
+        return super(SearchOrder, self).get(*args, **kwargs)
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order

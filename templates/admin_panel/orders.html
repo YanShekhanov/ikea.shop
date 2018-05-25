@@ -106,8 +106,7 @@
         //поиск по дате
         $('body').on('click', '#date_search', function () {
             var value = $('#date_search_input').val();
-            console.log(value);
-            window.location.href='/admin_panel/orders/unique_identificator=' + value + '/'
+            window.location.href='/admin_panel/orders/date=' + value + '/'
         });
 
         //изменение формы оплаты
