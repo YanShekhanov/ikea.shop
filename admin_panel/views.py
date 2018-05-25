@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic import TemplateView, ListView, FormView, DetailView
 from django.views.generic.edit import UpdateView
 from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
@@ -87,8 +87,16 @@ class DisplayOrders(ListView):
         context['article_number_form'] = DownloadProductForm
         return context
 
-    def post(self, *args, **kwargs):
-        pass
+class SearchOrder(ListView):
+    template_name = 'admin_panel/orders.html'
+    model = Order
+    context_objects_name = 'orders'
+
+    def get(self, *args, **kwargs):
+        option = self.kwargs.get('option')
+        print(option)
+        value = self.kwargs.get('value')
+        print(value)
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order

@@ -104,7 +104,6 @@
                 unique_identificator = $(this).parents('.one_order').data('order_unique_identificator'),
                 payment_method = $form.find('#id_payment_method').val(),
                 amount = $form.find('#id_amount').val();
-                console.log(token, unique_identificator, payment_method, amount);
                 $.ajax({
                     url:'{% url "change_payment_method" %}',
                     method: 'POST',
@@ -135,14 +134,12 @@
                     token = $('input[name="csrfmiddlewaretoken"]').val(),
                     unique_identificator = $form.parents('.one_order').data('order_unique_identificator'),
                     data = {'status':status, 'unique_identificator':unique_identificator, 'csrfmiddlewaretoken':token};
-                console.log(data);
                 $.ajax({
                     url:'{% url "change_order_status" %}',
                     method:'POST',
                     data:data,
                     success:function (data) {
                         alert(data.success.successMessage);
-                        console.log(data);
                     },
                     error:function (){
                         alert('error');
