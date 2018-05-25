@@ -101,6 +101,7 @@ class SearchOrder(ListView):
         else:
             if option == 'unique_identificator':
                 self.objects_list = Order.objects.filter(unique_identificator=value)
+                print(self.objects_list)
                 return super(SearchOrder, self).get(*args, **kwargs)
 
 from ikea_parser.models import ProductImage
