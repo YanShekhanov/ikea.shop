@@ -4,7 +4,7 @@
 {% block content %}
     {% if in_process == True %}
         <h2>Зачекайте поки завершиться змiна курсу</h2>
-    {% elif %}
+    {% else %}
         <form id="change_coef">
         {{ form.coef }}
         <input type="submit" value="Зберегти">
