@@ -177,7 +177,7 @@ class ChangeCoef(FormView):
     def get_context_data(self, **kwargs):
         context = super(ChangeCoef, self).get_context_data(**kwargs)
         try:
-            Process.objects.get(process_name='change_prices', executable=True)
+            Process.objects.get(process_name='change_prices', executable=True) #если нашли исполняемый процесс, то запрещаем начинать новый
             context['in_process'] = True
         except Process.DoesNotExist:
             pass
