@@ -12,7 +12,7 @@ import requests
 class Coef(models.Model):
     coef = models.FloatField(default=0.0, blank=False, null=False, verbose_name='Коефициент продажи')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
-    is_process = models.BooleanField(default=False, null=True, blank=True)
+    is_process = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
         return '%f updated in %s' % (self.coef, self.updated)
