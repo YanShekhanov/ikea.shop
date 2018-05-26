@@ -1440,7 +1440,7 @@ text-decoration: none;
 	color: #FF6C00;
 	cursor: pointer;
 }
-#model-select-open input[type="checkbox"] {
+#model-select input[type="checkbox"] {
   display: none;
 }
 input[type="checkbox"]:checked ~ #model-select-open {
