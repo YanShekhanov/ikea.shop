@@ -21,7 +21,10 @@ class Coef(models.Model):
 def change_price(sender, instance, **kwargs):
     created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
     try:
+        print('all: ', Product.objects.all())
+        print('with coef %f: ' % instance.coef, len(Product.objects.filter(price_coef=instance.coef)))
         products = Product.objects.exclude(change_price_process=True, price_coef=instance.coef)
+        print('to change% ', len(products))
         with open('../logs/errors_change_price.log', 'a') as to_write:
             for product in products:
                 url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
