@@ -2,6 +2,7 @@ from django.views.generic import TemplateView, ListView, FormView, DetailView
 from django.views.generic.edit import UpdateView
 from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
+from admin_panel.models import Process
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
 from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoefForm
@@ -162,11 +163,14 @@ class ChangeCoef(FormView):
     def post(self, *args, **kwargs):
         if self.request.is_ajax():
             coef_post = self.request.POST['coef']
-            coef = Coef.objects.all().first()
-            coef.coef = float(coef_post)
-            coef.save()
-            response_dict = {'success': 'ok'}
-            return JsonResponse(response_dict)
+            try:
+                Process.objects.get(process_name='change_prices', executable=True)
+            except Process.DoesNotExist:
+                coef = Coef.objects.all().first()
+                coef.coef = float(coef_post)
+                coef.save()
+                response_dict = {'success': 'ok'}
+                return JsonResponse(response_dict)
 
     def get_context_data(self, *args, **kwargs):
         context = super(ChangeCoef, self).get_context_data(**kwargs)
