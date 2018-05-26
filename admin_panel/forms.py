@@ -1,7 +1,8 @@
 from django.forms import ModelForm, Select, Form, CharField, TextInput, NumberInput
 from basket.models import Order, PaymentMethod
 from ikea_parser.models import Product
-from shop.models import Coef
+#from shop.models import Coef
+from shop.models import *
 
 class ChangeStatusForm(ModelForm):
     class Meta:
