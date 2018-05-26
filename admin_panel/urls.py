@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^change_payment_method/$', change_payment_method, name='change_payment_method'), #ajax
     url(r'^delete_product/$', delete_product, name='delete_product'),
     url(r'^download_product/$', DownloadProduct.as_view(), name='download_product'),#ajax
-    url(r'^change_coef/$', ChangeCoef.as_view(), name='change_coef')#ajax
+    #url(r'^change_coef/$', ChangeCoef.as_view(), name='change_coef')#ajax
 ]
