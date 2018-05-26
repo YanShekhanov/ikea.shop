@@ -14,6 +14,6 @@ class Coef(models.Model):
     def __str__(self):
         return '%f updated in %s' % (self.coef, self.updated)
 
-@receiver(post_save, sender=Coef)
+'''@receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
-    change_products_price(instance.coef)
+    change_products_price(instance.coef)'''
