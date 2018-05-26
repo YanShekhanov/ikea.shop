@@ -2,6 +2,7 @@ from django.views.generic import TemplateView, ListView, FormView, DetailView
 from django.views.generic.edit import UpdateView
 from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
+from shop.models import Coef
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
 from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoef
