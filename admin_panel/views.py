@@ -163,7 +163,7 @@ class ChangeCoef(FormView):
         if self.request.is_ajax():
             coef_post = self.request.POST['coef']
             coef = Coef.objects.all().first()
-            coef.coef = coef_post
+            coef.coef = float(coef_post)
             coef.save()
             response_dict = {'success': 'ok'}
             return JsonResponse(response_dict)
