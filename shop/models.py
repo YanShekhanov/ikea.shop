@@ -33,6 +33,7 @@ def change_price(sender, instance, **kwargs):
             for symbol in product_price:
                 if symbol == ',':
                     product_price = '.'.join(product_price.split(','))
+            print(product_price, type(product_price))
             product_price = int(round(float(product_price) * instance.coef))
             print(product.with_dot(), product.price, product_price)
         except AttributeError:
