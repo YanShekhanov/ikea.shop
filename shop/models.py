@@ -19,7 +19,7 @@ class Coef(models.Model):
 
 @receiver(pre_save, sender=Coef)
 def before_process(sender, instance, **kwargs):
-    instance.in_process = True
+    #instance.in_process = True
 
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
