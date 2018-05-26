@@ -34,7 +34,7 @@ class SearchOrderForm(ModelForm):
             'unique_identificator': NumberInput(attrs={'type':'number'})
         }
 
-class ChangeCoef(ModelForm):
+class ChangeCoefForm(ModelForm):
     class Meta:
         model = Coef
         fields = ['coef']
