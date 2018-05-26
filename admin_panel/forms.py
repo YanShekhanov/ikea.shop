@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Select, Form, CharField, TextInput, NumberInput
 from basket.models import Order, PaymentMethod
 from ikea_parser.models import Product
-from shop.models import *
+from shop.models import Coef
 
 class ChangeStatusForm(ModelForm):
     class Meta:
@@ -33,7 +33,7 @@ class SearchOrderForm(ModelForm):
             'unique_identificator': NumberInput(attrs={'type':'number'})
         }
 
-'''class ChangeCoefForm(ModelForm):
+class ChangeCoefForm(ModelForm):
     class Meta:
         model = Coef
-        fields = ['coef']'''
+        fields = ['coef']

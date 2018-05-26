@@ -4,7 +4,7 @@ from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoefForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
@@ -153,7 +153,7 @@ class SearchOrder(ListView):
         context['change_payment_method_form'] = ChangePaymentForm
         return context
 
-'''class ChangeCoef(FormView):
+class ChangeCoef(FormView):
     template_name = 'admin_panel/change_coef.html'
     form_class = ChangeCoefForm
     context_object_name = 'form'
@@ -166,7 +166,7 @@ class SearchOrder(ListView):
             coef.coef = coef_post
             coef.save()
             response_dict = {'success': 'ok'}
-            return JsonResponse(response_dict)'''
+            return JsonResponse(response_dict)
 
 
 from ikea_parser.models import ProductImage
@@ -377,21 +377,4 @@ def parse_with_article_number(article_number, **categories_dict):
         }
         return response_dict
 
-def change_products_price():
-    products = Product.objects.all()
-    for product in products:
-        url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
-        product_detail = BeautifulSoup(requests.get(url).text, 'lxml')
-        product_price = product_detail.find('span', class_='packagePrice').text.split()[:2]
-        if product_price[1] == 'PLN':
-            product_price = product_price[0]
-        product_price = ''.join(product_price)
-        for symbol in product_price:
-            if symbol == ' ':
-                product_price = ''.join(product_price.split(' '))
-        for symbol in product_price:
-            if symbol == ',':
-                product_price = '.'.join(product_price.split(','))
-        product_price = int(round(float(product_price) * Coef.objects.all().first().coef))
-        print(product.with_dot(), product.price, product_price)
 
