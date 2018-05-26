@@ -17,8 +17,8 @@ class Coef(models.Model):
     def __str__(self):
         return '%f updated in %s' % (self.coef, self.updated)
 
-@receiver(pre_save, sender=Coef)
-def before_process(sender, instance, **kwargs):
+#@receiver(pre_save, sender=Coef)
+#def before_process(sender, instance, **kwargs):
     #instance.in_process = True
 
 @receiver(post_save, sender=Coef)
