@@ -22,15 +22,18 @@ def change_price(sender, instance, **kwargs):
     for product in products:
         url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
         product_detail = BeautifulSoup(requests.get(url).text, 'lxml')
-        product_price = product_detail.find('span', class_='packagePrice').text.split()[:2]
-        if product_price[1] == 'PLN':
-            product_price = product_price[0]
-        product_price = ''.join(product_price)
-        for symbol in product_price:
-            if symbol == ' ':
-                product_price = ''.join(product_price.split(' '))
-        for symbol in product_price:
-            if symbol == ',':
-                product_price = '.'.join(product_price.split(','))
-        product_price = int(round(float(product_price) * instance.coef))
-        print(product.with_dot(), product.price, product_price)
+        try:
+            product_price = product_detail.find('span', class_='packagePrice').text.split()[:2]
+            if product_price[1] == 'PLN':
+                product_price = product_price[0]
+            product_price = ''.join(product_price)
+            for symbol in product_price:
+                if symbol == ' ':
+                    product_price = ''.join(product_price.split(' '))
+            for symbol in product_price:
+                if symbol == ',':
+                    product_price = '.'.join(product_price.split(','))
+            product_price = int(round(float(product_price) * instance.coef))
+            print(product.with_dot(), product.price, product_price)
+        except AttributeError:
+            print('%s error' % product.with_dot())
