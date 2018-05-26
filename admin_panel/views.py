@@ -165,17 +165,14 @@ class ChangeCoef(FormView):
             coef_post = self.request.POST['coef']
             try:
                 Process.objects.get(process_name='change_prices', executable=True)
+                response_dict = {'executable':True}
+                return JsonResponse(response_dict)
             except Process.DoesNotExist:
                 coef = Coef.objects.all().first()
                 coef.coef = float(coef_post)
                 coef.save()
                 response_dict = {'success': 'ok'}
                 return JsonResponse(response_dict)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(ChangeCoef, self).get_context_data(**kwargs)
-        context['in_process'] = Coef.objects.all().first().in_process
-        return context
 
 
 from ikea_parser.models import ProductImage
