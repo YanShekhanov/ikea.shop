@@ -157,7 +157,7 @@ class ChangeCoef(FormView):
     template_name = 'admin_panel/change_coef.html'
     form_class = ChangeCoef
     context_object_name = 'form'
-    success_url = reverse('catalogue')
+    success_url = ''
 
     def post(self, *args, **kwargs):
         if self.request.is_ajax():
