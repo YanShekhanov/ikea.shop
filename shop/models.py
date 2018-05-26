@@ -3,7 +3,7 @@ from django.utils.timezone import datetime
 from ikea_parser.create_identificator import create_identificator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from admin_panel.views import change_products_price
+#from admin_panel.views import change_products_price
 
 # Create your models here.
 
