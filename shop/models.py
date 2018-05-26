@@ -23,7 +23,7 @@ def before_process(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
-    '''try:
+    try:
         products = Product.objects.all()
         with open('../logs/errors_change_price.log', 'a') as to_write:
             for product in products:
@@ -48,4 +48,4 @@ def change_price(sender, instance, **kwargs):
             instance.in_process = False
             to_write.close()
     except:
-        instance.in_process = False'''
+        instance.in_process = False
