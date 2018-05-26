@@ -134,8 +134,8 @@ def test(request):
     products = Product.objects.exclude(is_parsed=False)
     nmb = len(products)
 
-    parse1 = Parse(products[:(nmb/2)], 'first')
-    parse2 = Parse(products[(nmb/2):], 'second')
+    parse1 = Parse(products[:int(nmb/2)], 'first')
+    parse2 = Parse(products[int(nmb/2):], 'second')
 
     parse1.start()
     parse2.start()
