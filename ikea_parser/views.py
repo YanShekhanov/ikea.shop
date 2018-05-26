@@ -111,10 +111,34 @@ def delete_products(request):
 
 from bs4 import BeautifulSoup
 import requests
+from threading import Thread
+from googletrans import Translator
+
+class Parse(Thread):
+    def __init__(self, queryset, thread_name):
+        Thread.__init__(self)
+        self.queryset = queryset
+        self.name = thread_name
+        self.translator = Translator()
+
+    def run(self):
+        print('queryset len %i, name "%s"' % (len(self.queryset), self.name))
+        for product in self.queryset:
+            url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
+            product_page = BeautifulSoup(requests.get(url).text, 'lxml')
+            description = self.translator.translate(product_page.find('span', class_='productType').text.split(), dest='uk').text
+            print('article number: %s ;old len: %i; new len: %i' % (product.with_dot(), len(product.description), len(description)))
+
+
 def test(request):
-    products = Product.objects.filter(article_number=30221043)
-    for product in products:
-        product.delete()
+    products = Product.objects.exclude(is_parsed=False)
+    nmb = len(products)
+
+    parse1 = Parse(products[:nmb/2], 'first')
+    parse2 = Parse(products[nmb/2:], 'second')
+
+    parse1.start()
+    parse2.start()
 
     '''itter=0
     for product in Product.objects.all():
