@@ -85,6 +85,8 @@ class Product(models.Model):
     created = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name='Создано')
     updated = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name='Обновлено')
 
+    change_price_process = models.BooleanField(blank=True, default=False, verbose_name='Процесс изменения цены')
+
     def __str__(self):
         return self.article_number
 
