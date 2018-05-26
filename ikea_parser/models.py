@@ -86,6 +86,7 @@ class Product(models.Model):
     updated = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name='Обновлено')
 
     change_price_process = models.BooleanField(blank=True, default=False, verbose_name='Процесс изменения цены')
+    price_coef = models.FloatField(blank=True, null=False, default=0.0, verbose_name='Коефициент цены')
 
     def __str__(self):
         return self.article_number
