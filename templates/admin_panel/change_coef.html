@@ -2,6 +2,7 @@
 {% block title %}Змiнити курс{% endblock %}
 
 {% block content %}
+    <div class="grid">
     {% if in_process == True %}
         <h2>Зачекайте поки завершиться змiна курсу</h2>
     {% else %}
@@ -10,6 +11,7 @@
         <input type="submit" value="Зберегти">
         </form>
     {% endif %}
+    </div>
 {% endblock %}
 
 {% block onload_js %}
@@ -17,16 +19,18 @@
         $('body').on('submit', '#change_coef', function (e) {
             e.preventDefault();
             var coef = $(this).find('#id_coef').val();
-            console.log(coef);
+            $(this).hide();
+            $('.grid').append('<h2>Зачекайте поки завершиться змiна курсу</h2>');
             $.ajax({
                 url:'{% url "change_coef" %}',
                 method:'POST',
                 data:{'csrfmiddlewaretoken':'{{ csrf_token }}', 'coef':coef},
                 success:function (data) {
-                    console.log(data)
+                    if(data.executable){alert('Зачекайте поки завершиться змiна курсу')}
+                    if(data.success){alert('Курс успiшно змiнено')}
                 },
                 error:function (data) {
-                    console.log('error')
+                    alert('Посмлка');
                 },
             })
         })
