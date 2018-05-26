@@ -21,7 +21,10 @@ class Coef(models.Model):
 def change_price(sender, instance, **kwargs):
     created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
     try:
-        products = Product.objects.exclude(change_price_process=True)
+        print('all: ', Product.objects.all())
+        print('with coef %f: ' % instance.coef, len(Product.objects.filter(price_coef=instance.coef)))
+        products = Product.objects.exclude(change_price_process=True, price_coef=instance.coef)
+        print('to change% ', len(products))
         with open('../logs/errors_change_price.log', 'a') as to_write:
             for product in products:
                 url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
@@ -39,6 +42,7 @@ def change_price(sender, instance, **kwargs):
                             product_price = '.'.join(product_price.split(','))
                     product_price = int(round(float(product_price) * instance.coef))
                     product.price = product_price
+                    product.price_coef = instance.coef
                     product.change_price_process = True
                     product.save()
                 except AttributeError:
