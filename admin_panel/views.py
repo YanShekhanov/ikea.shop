@@ -162,7 +162,11 @@ class ChangeCoef(FormView):
     def post(self, *args, **kwargs):
         if self.request.is_ajax():
             coef = self.request.POST['coef']
-            print(coef)
+            coef = Coef.objects.all().first()
+            coef.coef = coef
+            coef.save()
+            response_dict = {'success': 'ok'}
+            return JsonResponse(response_dict)
 
 
 from ikea_parser.models import ProductImage
@@ -372,4 +376,22 @@ def parse_with_article_number(article_number, **categories_dict):
             'price':product_price
         }
         return response_dict
+
+def change_products_price(coef):
+    products = Product.objects.all()
+    for product in products:
+        url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
+        product_detail = BeautifulSoup(requests.get(url).text, 'lxml')
+        product_price = product_detail.find('span', class_='packagePrice').text.split()[:2]
+        if product_price[1] == 'PLN':
+            product_price = product_price[0]
+        product_price = ''.join(product_price)
+        for symbol in product_price:
+            if symbol == ' ':
+                product_price = ''.join(product_price.split(' '))
+        for symbol in product_price:
+            if symbol == ',':
+                product_price = '.'.join(product_price.split(','))
+        product_price = int(round(float(product_price) * Coef.objects.all().first().coef))
+        print(product.with_dot(), product.price, product_price)
 
