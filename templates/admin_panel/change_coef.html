@@ -13,6 +13,7 @@
         $('body').on('submit', '#change_coef', function (e) {
             e.preventDefault();
             var coef = $(this).find('#id_coef').val();
+            console.log(coef);
             $.ajax({
                 url:'{% url "change_coef" %}',
                 method:'POST',
