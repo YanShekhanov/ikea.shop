@@ -174,6 +174,16 @@ class ChangeCoef(FormView):
                 response_dict = {'success': 'ok'}
                 return JsonResponse(response_dict)
 
+    def get_context_data(self, **kwargs):
+        context = super(ChangeCoef, self).get_context_data(**kwargs)
+        try:
+            Process.objects.get(process_name='change_prices', executable=True)
+            context['in_process'] = True
+        except Process.DoesNotExist:
+            pass
+        return context
+
+
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
