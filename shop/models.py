@@ -6,23 +6,20 @@ from django.dispatch import receiver
 from ikea_parser.models import Product
 from bs4 import BeautifulSoup
 import requests
+from admin_panel.models import Process
 
 # Create your models here.
 
 class Coef(models.Model):
     coef = models.FloatField(default=0.0, blank=False, null=False, verbose_name='Коефициент продажи')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
-    in_process = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
         return '%f updated in %s' % (self.coef, self.updated)
 
-@receiver(pre_save, sender=Coef)
-def before_process(sender, instance, **kwargs):
-    instance.in_process = True
-
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
+    created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
     try:
         products = Product.objects.exclude(change_price_process=True)
         with open('../logs/errors_change_price.log', 'a') as to_write:
@@ -46,9 +43,12 @@ def change_price(sender, instance, **kwargs):
                     product.save()
                 except AttributeError:
                     to_write.write('%s error \n' % product.with_dot())
-            instance.in_process = False
+            created_process.time_end = datetime.now()
+            created_process.executable = False
+            created_process.save()
             to_write.close()
     except:
-        instance.in_process = False
+        created_process.time_end = datetime.now()
+        created_process.executable = False
+        created_process.save()
 
-  
