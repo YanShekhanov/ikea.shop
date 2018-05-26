@@ -1,35 +1,32 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Загрузка продукту</title>
-    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'main.js' %}"></script>
-</head>
+{% extends 'admin_panel/admin_template.html' %}
+{% block title %}Заказы{% endblock %}
 
-<body>
-<ul>
-{% for category in categories %}
-    <li><input type="checkbox" class="category" value="{{ category.id }}">{{ category.title }}</li>
-    <ul class="subcategories_open" data-category_id="{{ category.id }}">
-    {% for subcategory in subcategories %}
-        {% if subcategory.category == category %}
-            <li><input class="subcategory" type="checkbox" value="{{ subcategory.id }}">{{ subcategory.title }}</li>
-            <ul class="sub_subcategories_open" data-subcategory_id="{{ subcategory.id }}" data-category_id="{{ category.id }}">
-            {% for sub_subcategory in sub_subcategories %}
-                {% if sub_subcategory.subcategory == subcategory%}
-                    <li><input class="sub_subcategory" type="checkbox" value="{{ sub_subcategory.id }}">{{ sub_subcategory.title }}</li>
-                {% endif %}
-            {% endfor %}
-            </ul>
-        {% endif %}
+{% block content %}
+<div class="grid" id="admin">
+    <ul>
+    {% for category in categories %}
+        <li><input type="checkbox" class="category" value="{{ category.id }}">{{ category.title }}</li>
+        <ul class="subcategories_open" data-category_id="{{ category.id }}">
+        {% for subcategory in subcategories %}
+            {% if subcategory.category == category %}
+                <li><input class="subcategory" type="checkbox" value="{{ subcategory.id }}">{{ subcategory.title }}</li>
+                <ul class="sub_subcategories_open" data-subcategory_id="{{ subcategory.id }}" data-category_id="{{ category.id }}">
+                {% for sub_subcategory in sub_subcategories %}
+                    {% if sub_subcategory.subcategory == subcategory%}
+                        <li><input class="sub_subcategory" type="checkbox" value="{{ sub_subcategory.id }}">{{ sub_subcategory.title }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+        </ul>
     {% endfor %}
     </ul>
-{% endfor %}
-</ul>
 <form method="POST" id="download_product">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Почати загрузку"></form>
+</div>
+{% endblock %}
 
+{% block onload_js %}
 <script>
     hide_tags(['.subcategories_open', '.sub_subcategories_open']);
     var checked = {},
@@ -86,4 +83,4 @@
         }
     })
 </script>
-</body>
+{% endblock %}
