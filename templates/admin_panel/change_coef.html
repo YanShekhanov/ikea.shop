@@ -2,10 +2,14 @@
 {% block title %}Змiнити курс{% endblock %}
 
 {% block content %}
-<form id="change_coef">
-    {{ form.coef }}
-    <input type="submit" value="Зберегти">
-</form>
+    {% if in_process == True %}
+        <h2>Зачекайте поки завершиться змiна курсу</h2>
+    {% elif %}
+        <form id="change_coef">
+        {{ form.coef }}
+        <input type="submit" value="Зберегти">
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block onload_js %}
