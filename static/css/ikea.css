@@ -1564,8 +1564,7 @@ input[type="checkbox"]:checked ~ #size-select-open {
 	color: #FF6C00;
 	cursor: pointer;
 }
-#color-select-open,
-input[type="checkbox"] {
+#color-select-open input[type="checkbox"] {
   display: none;
 }
 input[type="checkbox"]:checked ~ #color-select-open {
