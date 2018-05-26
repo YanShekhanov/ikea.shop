@@ -153,7 +153,7 @@ class SearchOrder(ListView):
         context['change_payment_method_form'] = ChangePaymentForm
         return context
 
-class ChangeCoef(FormView):
+'''class ChangeCoef(FormView):
     template_name = 'admin_panel/change_coef.html'
     form_class = ChangeCoefForm
     context_object_name = 'form'
@@ -166,7 +166,7 @@ class ChangeCoef(FormView):
             coef.coef = coef_post
             coef.save()
             response_dict = {'success': 'ok'}
-            return JsonResponse(response_dict)
+            return JsonResponse(response_dict)'''
 
 
 from ikea_parser.models import ProductImage
