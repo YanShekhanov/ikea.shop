@@ -16,4 +16,4 @@ class Coef(models.Model):
 
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
-    change_products_price(instance.coef)
+    change_products_price()

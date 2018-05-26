@@ -377,7 +377,7 @@ def parse_with_article_number(article_number, **categories_dict):
         }
         return response_dict
 
-def change_products_price(coef):
+def change_products_price():
     products = Product.objects.all()
     for product in products:
         url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
