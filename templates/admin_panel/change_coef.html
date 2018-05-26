@@ -17,7 +17,7 @@
             $.ajax({
                 url:'{% url "change_coef" %}',
                 method:'POST',
-                data:{'csrfmiddlewaretoken':{{ csrf_token }}, 'coef':coef}
+                data:{'csrfmiddlewaretoken':{{ csrf_token }}, 'coef':coef},
                 success:function (data) {
                     console.log(data)
                 },
