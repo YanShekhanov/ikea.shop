@@ -17,14 +17,14 @@ class Coef(models.Model):
     def __str__(self):
         return '%f updated in %s' % (self.coef, self.updated)
 
-'''@receiver(pre_save, sender=Coef)
+@receiver(pre_save, sender=Coef)
 def before_process(sender, instance, **kwargs):
     instance.in_process = True
 
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
     try:
-        products = Product.objects.all()
+        products = Product.objects.exclude(change_price_process=True)
         with open('../logs/errors_change_price.log', 'a') as to_write:
             for product in products:
                 url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
@@ -42,10 +42,13 @@ def change_price(sender, instance, **kwargs):
                             product_price = '.'.join(product_price.split(','))
                     product_price = int(round(float(product_price) * instance.coef))
                     product.price = product_price
+                    product.change_price_process = True
                     product.save()
                 except AttributeError:
                     to_write.write('%s error \n' % product.with_dot())
             instance.in_process = False
             to_write.close()
     except:
-        instance.in_process = False'''
+        instance.in_process = False
+
+  
