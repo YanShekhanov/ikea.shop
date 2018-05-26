@@ -2,9 +2,10 @@ from django.views.generic import TemplateView, ListView, FormView, DetailView
 from django.views.generic.edit import UpdateView
 from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
+from shop.models import Coef
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoef
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoefForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
@@ -155,7 +156,7 @@ class SearchOrder(ListView):
 
 class ChangeCoef(FormView):
     template_name = 'admin_panel/change_coef.html'
-    form_class = ChangeCoef
+    form_class = ChangeCoefForm
     context_object_name = 'form'
     success_url = ''
 
