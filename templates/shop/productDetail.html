@@ -42,7 +42,7 @@
             {% if modelOptions %}
             <div class="model-select">
                 <label for="btn-md-sel-open" id="model-select">Вибір моделі <i class="fa fa-cog" aria-hidden="true"></i></label>
-                <input type="checkbox" id="btn-md-sel-open">
+                <input type="checkbox" id="btn-md-sel-open" style="display: none;">
                 <div class="model-select-open" id="model-select-open">
                     {% for model in modelOptions %}
                         {% for image in complementaryImages %}
@@ -60,7 +60,7 @@
             {% if sizeOptions %}
                     <div class="size-select">
                         <label for="btn-sz-sel-open" id="size-select">Вибір розміру <i class="fa fa-arrows" aria-hidden="true"></i></label>
-                        <input type="checkbox" id="btn-sz-sel-open">
+                        <input type="checkbox" id="btn-sz-sel-open" style="display: none;">
                         <div class="size-select-open" id="size-select-open">
                             {% for size in sizeOptions %}
                                 {% for image in complementaryImages %}
@@ -79,7 +79,7 @@
 			<!--Color Select-->
 			<div class="color-select">
 				<label for="btn-cl-sel-open" id="color-select">Вибір кольору <i class="fa fa-square square-1" aria-hidden="true"></i><i class="fa fa-square square-2" aria-hidden="true"></i><i class="fa fa-square square-3" aria-hidden="true"></i></label>
-				<input type="checkbox" id="btn-cl-sel-open">
+				<input type="checkbox" id="btn-cl-sel-open" style="display: none;">
 				<div class="color-select-open" id="color-select-open">
                     {% for color in colorOptions %}
                         {% for image in complementaryImages %}
