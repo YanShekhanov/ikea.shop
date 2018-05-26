@@ -1,0 +1,29 @@
+{% extends 'admin_panel/admin_template.html' %}
+{% block title %}Змiнити курс{% endblock %}
+
+{% block content %}
+<form id="change_coef">
+    {{ form.coef }}
+    <input type="submit" value="Зберегти">
+</form>
+{% endblock %}
+
+{% block onload_js %}
+    <script>
+        $('body').on('submit', '#change_coef', function (e) {
+            e.preventDefault();
+            var coef = $(this).find('#id_coef').val();
+            $.ajax({
+                url:'{% url "change_coef" %}',
+                method:'POST',
+                data:{'csrfmiddlewaretoken':{{ csrf_token }}, 'coef':coef}
+                success:function (data) {
+                    console.log(data)
+                },
+                error:function (data) {
+                    console.log('error')
+                },
+            })
+        })
+    </script>
+{% endblock %}

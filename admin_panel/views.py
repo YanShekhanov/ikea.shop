@@ -4,7 +4,7 @@ from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoef
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
@@ -46,6 +46,16 @@ class UpdateProduct(UpdateView):
     template_name = 'admin_panel/edit_product.html'
     slug_url_kwarg = 'article_number'
     slug_field = 'article_number'
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_superuser:
+                return super(UpdateProduct, self).get(*args, **kwargs)
+            else:
+                return redirect(reverse('catalogue'))
+        else:
+            return super(UpdateProduct, self).get(*args, **kwargs)
 
     def get_success_url(self):
         url = reverse('productDetail', args=[self.kwargs.get('article_number')])
@@ -112,13 +122,20 @@ class SearchOrder(ListView):
         return self.queryset
 
     def get(self, *args, **kwargs):
-        self.option = self.kwargs.get('option')
-        self.value = self.kwargs.get('value')
-        if self.option not in self.options:
-            raise Http404('Option not found')
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_superuser:
+                self.option = self.kwargs.get('option')
+                self.value = self.kwargs.get('value')
+                if self.option not in self.options:
+                    raise Http404('Option not found')
+                else:
+                    self.objects_list = self.get_queryset()
+                return super(SearchOrder, self).get(*args, **kwargs)
+            else:
+                return redirect(reverse('catalogue'))
         else:
-            self.objects_list = self.get_queryset()
-        return super(SearchOrder, self).get(*args, **kwargs)
+            return redirect(reverse('adminAuth'))
 
     def get_context_data(self, **kwargs):
         orders_info = []
@@ -135,6 +152,18 @@ class SearchOrder(ListView):
         context['change_order_status_form'] = ChangeStatusForm
         context['change_payment_method_form'] = ChangePaymentForm
         return context
+
+class ChangeCoef(FormView):
+    template_name = 'admin_panel/change_coef.html'
+    form_class = ChangeCoef
+    context_object_name = 'form'
+    success_url = reverse('catalogue')
+
+    def post(self, *args, **kwargs):
+        if self.request.is_ajax():
+            coef = self.request.POST['coef']
+            print(coef)
+
 
 from ikea_parser.models import ProductImage
 from basket.models import ProductInOrder, Order
@@ -343,38 +372,4 @@ def parse_with_article_number(article_number, **categories_dict):
             'price':product_price
         }
         return response_dict
-
-    # create Product
-    # если продукт находится в подкатегории
-    '''if subcategory_status:
-        created_product = Product.objects.create(article_number=product_article, title=product_title,
-                                                 description=product_description, price=float(product_price),
-                                                 url_ikea=product_url, available=available,
-                                                 unique_identificator=create_identificator(8))
-        created_product.subcategory.add(foreign_key_query)
-        iter_category_products_number += 1
-    # если продукт находится в под подкатегории
-    elif sub_subcategory_status:
-        subcategory = foreign_key_query.subcategory
-        created_product = Product.objects.create(article_number=product_article, title=product_title,
-                                                 description=product_description, price=float(product_price),
-                                                 url_ikea=product_url, available=available,
-                                                 unique_identificator=create_identificator(8))
-        created_product.subcategory.add(subcategory)
-        created_product.sub_subcategory.add(foreign_key_query)
-        iter_category_products_number += 1
-
-    # создание словаря одного продукта
-    one_product_dict = {
-        'title': str(product_title.encode('utf-8')),
-        'article_number': product_article,
-        'product_availability': available,
-        'product_price': product_price,
-        'product_description': str(product_description.encode('utf-8')),
-        'product_url': product_url,
-        'subcategory': subcategory_status,
-        'sub_subcategory': sub_subcategory_status,
-        'subcategory_title': str(foreign_key_query.title.encode('utf-8')),
-        'subcategory_url': foreign_key_query.url_ikea,
-    }'''
 
