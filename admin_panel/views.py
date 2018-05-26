@@ -4,7 +4,7 @@ from basket.models import *
 from ikea_parser.models import Category, SubCategory, SubSubCategory
 from django.shortcuts import render, redirect, reverse, Http404
 from django.http import JsonResponse
-from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm, ChangeCoefForm
+from .forms import ChangeStatusForm, AdminAuthForm, DownloadProductForm, ChangePaymentForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
