@@ -126,7 +126,7 @@ class Parse(Thread):
         for product in self.queryset:
             url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
             product_page = BeautifulSoup(requests.get(url).text, 'lxml')
-            description = self.translator.translate(product_page.find('span', class_='productType').text.split(), dest='uk').text
+            description = product_page.find('span', class_='productType').text.split()
             print('article number: %s ;old len: %i; new len: %i' % (product.with_dot(), len(product.description), len(description)))
 
 
