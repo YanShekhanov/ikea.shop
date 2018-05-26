@@ -16,7 +16,6 @@ class ChangePaymentForm(ModelForm):
         model = PaymentMethod
         fields = ['payment_method', 'amount']
 
-
 class AdminAuthForm(Form):
     username = CharField(label='username', max_length=16, widget=TextInput)
     password = CharField(label='password', max_length=32, widget=TextInput(attrs={'type':'password'}))
@@ -34,7 +33,7 @@ class SearchOrderForm(ModelForm):
             'unique_identificator': NumberInput(attrs={'type':'number'})
         }
 
-class ChangeCoefForm(ModelForm):
+'''class ChangeCoefForm(ModelForm):
     class Meta:
         model = Coef
-        fields = ['coef']
+        fields = ['coef']'''
