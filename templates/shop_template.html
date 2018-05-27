@@ -28,7 +28,6 @@
 <div class="container-fluid" id="top-strip">
     <div class="row">
         <div class="grid">
-            <p style="float: left; text-align: left;"><a href="#">Контакти</a> | <a href="#">Доставка</a></p>
             {% if username %}<p style="float: right; text-align: right;"><a href="">Вихід | {{ username }}</a> <a href="{% url 'display_orders' %}">Админка</a></p>
             {% else %}<p style="float: right; text-align: right;"><a href="{% url 'adminAuth' %}">Вхід</a></p>{% endif %}
         </div>
@@ -47,7 +46,7 @@
 				</div>
                 <input class="search-form" placeholder="Пошук..." />
                 <ul id="searched_query">
-			<li>Знайдено товарів:<span> </span></li>
+			    <li id="found_nmb">Знайдено товарів:<span> </span></li>
 		</ul>
 
             </div>
@@ -147,24 +146,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4 myCols">
-                <h5>Інформація</h5>
-                <ul>
-                    <li><a href="#">Policy Privacy</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-4 myCols">
-                <h5>О нас</h5>
-                <ul>
-                    <li><a href="#">Інформація о компанії</a></li>
-                    <li><a href="#">Відгуки</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-4 myCols">
                 <h5>Обслуговування Кліентів</h5>
                 <ul>
                     <li><a href="#">Тел: +380-93-251-02-13</a></li>
-                    <li><a href="#">Email: info@gmail.com</a></li>
+                    <li><a href="#">Email: service@ikeastyle.com.ua</a></li>
                 </ul>
             </div>
         </div>
@@ -175,7 +160,7 @@
         <a href="#" class="vk"><i class="fa fa-vk"></i></a>
     </div>
     <div class="footer-copyright">
-        <p>© Inter IKEA Systems B.V. 1999 — 2017 | Юридическая информация | Положение об обработке и защите персональных данных | Информация для потребителей о мебельной продукции</p>
+        <p>©<a href="https://www.linkedin.com/in/artem-holovnia-716706156/">Artem Holovnia</a>, 2018</p>
     </div>
 </footer>
 
