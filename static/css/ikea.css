@@ -3068,6 +3068,10 @@ main {
 		margin-top: 0.1vw;
 		padding: 0;
 	}
+	#cart-item img:hover{
+	z-index: 30;
+	transform: scale(3);
+}
 	#cart-item a{
 		float: right;
 		font-size: 4vw;
