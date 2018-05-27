@@ -15,39 +15,39 @@
     {% for order in orders %}
         <div id="order-info" data-order_unique_identificator="{{ order.unique_identificator }}" class="one_order">
                 <form class="change_order_status" method="POST">{% csrf_token %}
-                <label for="status">Статус заказа:</label>
+                <label for="status">Статус замовлення:</label>
                 {{ change_order_status_form.status }}
-                    <input type="submit" value="Сохранить" style="display: none;">
+                    <input type="submit" value="Зберегти" style="display: none;">
                 </form>
             <script>get_select_value({{ order.status }}, $('.one_order').last().find('.change_order_status'))</script>
 
-			<p>Дата заказа: <b>{{ order.first_registration|date:'Y-m-d H:i' }}</b></p>
-			<p>Уникальный индетификатор: <b>{{ order.unique_identificator }}</b></p>
+			<p>Дата замовлення: <b>{{ order.first_registration|date:'Y-m-d H:i' }}</b></p>
+			<p>Унікальний індетифікатор: <b>{{ order.unique_identificator }}</b></p>
 			<div class="button-item" id="open-info">
-     			<a href="#" class="btn-1 show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Открыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+     			<a href="#" class="btn-1 show_product_in_order" data-order_identificator="{{ order.unique_identificator }}">Відкрити інформацію о замовленні<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
 			<div class="button-item" id="close-info">
-     			<a href="#" class="btn-1 close_product_in_order">Скрыть информацию о заказе<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+     			<a href="#" class="btn-1 close_product_in_order">Сховати інформацію о замовленні<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     		</div>
 
             <div class="open-info" style="display:none;">
                 {% for order_info in orders_info %}
                     {% if order_info.order == order %}
-                        <p class="adm-title">Данные клиента:</p>
-                        <p>ФИО: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.email }}</b></p>
+                        <p class="adm-title">Данні клієнта:</p>
+                        <p>ПІБ: <b>{{ order_info.sorname }} {{ order_info.name }} {{ order_info.second_name }}</b> Телефон: <b>{{ order_info.phone }}</b> E-mail: <b>{{ order_info.email }}</b></p>
                     {% endif %}
                 {% endfor %}
 
                 {% for order_delivery in orders_delivery %}
                     {% if order_delivery.order == order %}
-                        <p class="adm-title">Способ отправки:</p>
+                        <p class="adm-title">Спосіб відправлення:</p>
                         <p><b>{{ order_delivery.method_readable }}</b></p>
                     {% endif %}
                 {% endfor %}
 
                 {% for order_payment in orders_payment %}
                     {% if order_payment.order == order %}
-                        <p class="adm-title">Способ оплаты:</p><button class="change_payment">Изменить</button>
+                        <p class="adm-title">Спосіб оплати:</p><button class="change_payment">Змінити</button>
                         <p>Оплата: <b>{{ order_payment.method_readable }}</b></p>
                         <form style="display: none" class="change_payment_form">{% csrf_token %}
                             {{ change_payment_method_form.payment_method }}, Оплачено {{ change_payment_method_form.amount }}
@@ -59,10 +59,10 @@
 
                     <div id="cart">
                         <div id="cart-price-total">
-                            <div class="cart-name"><h6>Название</h6></div>
-                            <div class="amount-cart"><h6>Количество</h6></div>
-                            <div class="cart-price"><h6>Цена за 1шт</h6></div>
-                            <div class="cart-total"><h6>Сумма</h6></div>
+                            <div class="cart-name"><h6>Назва</h6></div>
+                            <div class="amount-cart"><h6>Кількість</h6></div>
+                            <div class="cart-price"><h6>Ціна за 1шт</h6></div>
+                            <div class="cart-total"><h6>Сума</h6></div>
                         </div>
                                 <!-- товары -->
                     </div>
