@@ -2812,7 +2812,7 @@ main {
 	margin-top: 0.5vw;
 	margin-bottom: 1vw;
 	width: 100%;
-	height: auto;
+	height: 6vw;
 	display: flex;
 	align-items: center;
 }
@@ -3566,7 +3566,7 @@ main {
 	margin-top: 0.5vw;
 	margin-bottom: 1vw;
 	width: 100%;
-	height: auto;
+	height: 6vw;
 	display: flex;
 	align-items: center;
 }
