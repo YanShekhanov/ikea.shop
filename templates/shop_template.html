@@ -45,9 +45,7 @@
                     <i class="fa fa-shopping-basket" aria-hidden="true" onclick="document.location.href='{% url "show_basket" %}'"><div class="amount-circle">{{ product_count }}</div><span class="price" id="price">{{ order_price }} грн.</span></i>
 				</div>
                 <input class="search-form" placeholder="Пошук..." />
-                <ul id="searched_query">
-			    <li id="found_nmb">Знайдено товарів:<span> </span></li>
-		</ul>
+                <ul id="searched_query"></ul>
 
             </div>
         </div>
@@ -275,6 +273,9 @@
                var token = $('input[name="csrfmiddlewaretoken"]').val(),
                    template = document.getElementById('searchTemplate').innerHTML;
                search($(this).val(), token, template);
+           } else if ($(this).val().length<3){
+               $('#searched_query li').remove();
+               $('#searched_query').hide();
            }
         });
 
