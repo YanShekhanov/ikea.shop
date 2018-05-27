@@ -46,9 +46,8 @@
                 'searched_text': searched_text,
             },
             success:function (data) {
-                console.log(data.products.length);
                 to_paste = $('#searched_query');
-                to_paste.find('li').remove();
+                to_paste.find('li').not('#found_nmb').remove();
                 to_paste.hide();
                 Mustache.tags = ['<%', '%>'];
                 for (product=0; product<data.products.length; product++){
