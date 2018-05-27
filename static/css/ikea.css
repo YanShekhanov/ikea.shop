@@ -1151,7 +1151,7 @@ text-decoration: none;
 		height: 44vw;
 	}
 	#product-cards .card-title{
-		height: 6vw;
+		height: 9vw;
 		font-size: 5vw;
 		margin-left: 2%;
 		margin-right: 2%;
@@ -2121,7 +2121,7 @@ input[type="checkbox"]:checked ~ #color-select-open {
 		height: 44vw;
 	}
 	#content4 .card-title{
-		height: 6vw;
+		height: 9vw;
 		font-size: 5vw;
 		margin-left: 2%;
 		margin-right: 2%;
@@ -2757,7 +2757,7 @@ main {
 		height: 44vw;
 	}
 	#room-card .card-title{
-		height: 6vw;
+		height: 9vw;
 		font-size: 5vw;
 		margin-left: 2%;
 		margin-right: 2%;
