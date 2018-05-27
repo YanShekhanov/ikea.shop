@@ -2824,7 +2824,6 @@ main {
 }
 #cart-item img:hover{
 	z-index: 30;
-	transform: scale(3);
 }
 #cart-item a{
 	display: inline-block;
