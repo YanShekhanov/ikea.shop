@@ -19,7 +19,9 @@ class Coef(models.Model):
 
 @receiver(post_save, sender=Coef)
 def change_price(sender, instance, **kwargs):
-    created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
+    change = ChangePrice(Product.objects.exclude(change_price_process=True, price_coef=instance.coef), instance.coef)
+    change.start()
+    '''created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
     try:
         print('all: ', Product.objects.all())
         print('with coef %f: ' % instance.coef, len(Product.objects.filter(price_coef=instance.coef)))
@@ -54,5 +56,50 @@ def change_price(sender, instance, **kwargs):
     except:
         created_process.time_end = datetime.now()
         created_process.executable = False
-        created_process.save()
+        created_process.save()'''
+
+from threading import Thread
+class ChangePrice(Thread):
+    def __init__(self, queryset, coef):
+        super(ChangePrice, self).__init__()
+        self.queryset = queryset
+        self.coef = coef
+
+    def run(self):
+        created_process = Process.objects.create(process_name='change_prices', time_start=datetime.now())
+        try:
+            print('all: ', len(Product.objects.all()))
+            print('with coef %f: ' % self.coef, len(Product.objects.filter(price_coef=self.coef)))
+            products = Product.objects.exclude(change_price_process=True, price_coef=self.coef)
+            print('to change ', len(products))
+            with open('../logs/errors_change_price.log', 'a') as to_write:
+                for product in products:
+                    url = 'https://www.ikea.com/pl/pl/catalog/products/%s/' % product.article_number
+                    product_detail = BeautifulSoup(requests.get(url).text, 'lxml')
+                    try:
+                        product_price = product_detail.find('span', class_='packagePrice').text.split()[:2]
+                        if product_price[1] == 'PLN':
+                            product_price = product_price[0]
+                        product_price = ''.join(product_price)
+                        for symbol in product_price:
+                            if symbol == ' ':
+                                product_price = ''.join(product_price.split(' '))
+                        for symbol in product_price:
+                            if symbol == ',':
+                                product_price = '.'.join(product_price.split(','))
+                        product_price = int(round(float(product_price) * instance.coef))
+                        product.price = product_price
+                        product.price_coef = self.coef
+                        product.change_price_process = True
+                        product.save()
+                    except AttributeError:
+                        to_write.write('%s error \n' % product.with_dot())
+                created_process.time_end = datetime.now()
+                created_process.executable = False
+                created_process.save()
+                to_write.close()
+        except:
+            created_process.time_end = datetime.now()
+            created_process.executable = False
+            created_process.save()
 
