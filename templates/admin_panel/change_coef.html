@@ -20,14 +20,13 @@
             e.preventDefault();
             var coef = $(this).find('#id_coef').val();
             $(this).hide();
-            $('.grid').append('<h2>Зачекайте поки завершиться змiна курсу</h2>');
             $.ajax({
                 url:'{% url "change_coef" %}',
                 method:'POST',
                 data:{'csrfmiddlewaretoken':'{{ csrf_token }}', 'coef':coef},
                 success:function (data) {
                     if(data.executable){alert('Зачекайте поки завершиться змiна курсу')}
-                    if(data.success){alert('Курс успiшно змiнено')}
+                    if(data.success){alert('Процес змiни курсу почато, зачекайте поки завершиться')}
                 },
                 error:function (data) {
                     alert('Посмлка');
