@@ -47,7 +47,7 @@
             },
             success:function (data) {
                 to_paste = $('#searched_query');
-                to_paste.find('li').not('#found_nmb').remove();
+                to_paste.find('li').remove();
                 to_paste.hide();
                 Mustache.tags = ['<%', '%>'];
                 for (product=0; product<data.products.length; product++){
@@ -58,7 +58,6 @@
                                  product_price:data.products[product].product_price,
                                 };
                     var rend_html = Mustache.render(template, rend_data);
-                    console.log(rend_data);
                     to_paste.prepend(rend_html);
                 }
                 to_paste.show();
