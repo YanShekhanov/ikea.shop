@@ -154,10 +154,10 @@
                 method:'POST',
                 data:data,
                 success:function (data) {
-                    alert('На вашу почту ' + data.order_info.email + ' было выслано сообщение с данными для оплаты')
+                    alert('На вашу пошту' + data.order_info.email + ' було надiслано повiдомлення з данними для оплати.');
                 },
                 error:function (data) {
-                    console.log('error');
+                    alert('Виникла помилка, звернiться до адмiнicтратора');
                 }
             })
         }

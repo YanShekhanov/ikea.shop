@@ -58,6 +58,12 @@ class MainInfo(TemplateView):
         print(datetime.today())
         return context
 
+class Home(TemplateView):
+    template_name = 'shop/home_page.html'
+
+    def get_context_data(self, **kwargs):
+        pass
+
 #главная страница
 class Catalogue(MainInfo, ListView):
     template_name = 'shop/catalogue.html'
