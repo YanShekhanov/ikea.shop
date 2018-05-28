@@ -88,7 +88,7 @@ class Home(MainInfo, ListView):
     def get_context_data(self, **kwargs):
         self.object_list = self.get_queryset()
         image_list = []
-        for room_example in self.objects_list:
+        for room_example in self.object_list:
             image = ExampleImage.objects.get(example=room_example, is_presentation=False)
             image_list.append(image)
         context = super(Home, self).get_context_data(**kwargs)
