@@ -24,8 +24,8 @@ class MainInfo(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(MainInfo, self).get_context_data(**kwargs)
         context['Categories'] = Category.objects.exclude(not_display=True).order_by('-created')
-        context['SubCategories'] = SubCategory.objects.all(not_display=True).order_by('-created')
-        context['SubSubCategories'] = SubSubCategory.objects.all(not_display=True).order_by('-created')
+        context['SubCategories'] = SubCategory.objects.exclude(not_display=True).order_by('-created')
+        context['SubSubCategories'] = SubSubCategory.objects.exclude(not_display=True).order_by('-created')
 
         #user
         user = self.request.user
