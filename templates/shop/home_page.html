@@ -15,8 +15,12 @@
                         <div class="carousel-item">
                               <img class="d-block w-100" src="{{ image.image.url }}" alt="{{ image.title }}">
                               <div class="carousel-caption d-none d-md-block">
-                                <h5>...</h5>
-                                <p>...</p>
+                                {% for example in examples %}
+                                    {% if image.example == example %}
+                                        <h5>{{ example.room_place.room.title }}, {{ example.room_place.title }}</h5>
+                                        <p>{{ example.title }}</p>
+                                    {% endif %}
+                                {% endfor %}
                               </div>
                         </div>
                     {% endfor %}
