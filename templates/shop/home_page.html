@@ -32,3 +32,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% block onload_js %}
+    <script>
+        $('.carousel-item').firstChild().addClass('active');
+    </script>
+{% endblock %}
