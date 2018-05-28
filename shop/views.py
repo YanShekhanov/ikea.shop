@@ -66,7 +66,7 @@ class Home(MainInfo, ListView):
         random_room_nmb = 3
         room_length = len(Room.objects.all())
         room_list = []  # рандомные комнаты
-        for _ in random_room_nmb:
+        for _ in range(random_room_nmb):
             random_room = Room.objects.all()[random.randint(0, (len(Room.objects.all()) - 1))]
             room_list.append(random_room)
 
