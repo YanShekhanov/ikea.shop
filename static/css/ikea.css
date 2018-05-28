@@ -4006,3 +4006,9 @@ main {
     position: absolute;
 	display: block;
 }
+
+.example-button{
+	background-color: #0e53a1 ;
+    border-radius: 0;
+    color: white;
+}
