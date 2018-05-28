@@ -4,7 +4,7 @@
 {% block content %}
     <div class="grid">
         <div class="examples">
-            <h2>IKEA. Готові пропозиції інтер'єру</h2>
+            <h2><span style="color: #0e53a1;">IKEA</span> Готові пропозиції інтер'єру</h2>
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -38,14 +38,17 @@
             </div>
         </div>
 
-        {% for room in rooms %}
-            <span style="display: inline-block; color: #ff6a00"><b>{{ room.title }}</b></span>
-            {% for room_place in rooms_places %}
-                {% if room_place.room == room %}
-                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}" style="display: inline-block; text-decoration: none; color: #4B4A4A">{{ room_place.title }}</a>
-                {% endif %}
+        <div class="all_prop">
+        <h4>Бiльше пропозицiй</h4>
+            {% for room in rooms %}
+                <span style="display: inline-block; color: #ff6a00"><b>{{ room.title }}</b></span>
+                {% for room_place in rooms_places %}
+                    {% if room_place.room == room %}
+                        <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}" style="display: inline-block; text-decoration: none; color: #4B4A4A">{{ room_place.title }}</a>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
