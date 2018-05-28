@@ -39,10 +39,10 @@
         </div>
 
         {% for room in rooms %}
-            <span style="display: inline-block"><b>{{ room.title }}</b></span>
+            <span style="display: inline-block; color: #ff6a00"><b>{{ room.title }}</b></span>
             {% for room_place in rooms_places %}
                 {% if room_place.room == room %}
-                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}" style="display: inline-block">{{ room_place.title }}</a>
+                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}" style="display: inline-block; text-decoration: none; color: #4B4A4A">{{ room_place.title }}</a>
                 {% endif %}
             {% endfor %}
         {% endfor %}
