@@ -35,7 +35,7 @@ class MainInfo(TemplateView):
                 context['is_superuser'] = True
 
         #rooms
-        rooms = Room.objects.all()
+        rooms = Room.objects.exclude(not_display=True)
         rooms_places = []
         for room in rooms:
             room_places = RoomPlace.objects.filter(room=room)
@@ -64,7 +64,7 @@ class Home(MainInfo, ListView):
 
     def get_queryset(self):
         random_room_nmb = 3
-        room_length = len(Room.objects.all())
+        room_length = len(Room.objects.exclude(not_display=True))
         room_list = []  # рандомные комнаты
         for _ in range(random_room_nmb):
             random_room = Room.objects.all()[random.randint(0, (len(Room.objects.all()) - 1))]
