@@ -21,7 +21,7 @@
                                         {% if image.example == example %}
                                             <h5>{{ example.room_place.room.title }}, {{ example.title }}</h5>
                                             <p style="display: inline-block"><button class="btn-1" onclick="window.location.href='{% url "roomPlaceDetail" example.room_place.unique_identificator %}'">Вiдкрий бiльше пропозицiй</button>
-                                            <button class="btn-1" onclick="window.location.href='{% url "exampleDetail" example.unique_identificator %}'">Деталi кiмнати</button>
+                                            <button class="btn-1 example-button" onclick="window.location.href='{% url "exampleDetail" example.unique_identificator %}'">Деталi кiмнати</button>
                                             </p>
                                         {% endif %}
                                     {% endfor %}
