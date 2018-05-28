@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
 import os
@@ -12,12 +12,21 @@ class Category(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     is_translated = models.BooleanField(default=False, blank=True, null=False, verbose_name='Перевод')
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['-created']
+
+@receiver(post_save, sender=Category)
+def not_display_releted_sub(sender, instance, **kwargs):
+    if instance.not_display:
+        releted_subcategories = SubCategory.objects.filter(category=instance)
+        for releted_subcategory in releted_subcategories:
+            releted_subcategory.not_display = True
+            releted_subcategory.save()
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория, id', editable=False)
@@ -30,13 +39,22 @@ class SubCategory(models.Model):
     have_sub_subcategory = models.BooleanField(default=False, blank=False, null=False, verbose_name='Под под категория')
     unique_identificator = models.CharField(max_length=8, blank=False, null=False, verbose_name='Идентификатор')
     priority = models.BooleanField(default=False, blank=True, null=False, verbose_name='Приоритет')
-
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['-created']
+
+@receiver(post_save, sender=SubCategory)
+def not_display_releted_subsub(sender, instance, **kwargs):
+    if instance.not_display:
+        releted_sub_subcategories = SubSubCategory.objects.filter(subcategory=instance)
+        for releted_sub_subcategory in releted_sub_subcategories:
+            releted_sub_subcategory.not_display = True
+            releted_sub_subcategory.save()
+
 
 class SubSubCategory(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, verbose_name='Подкатегория, id')
@@ -48,8 +66,7 @@ class SubSubCategory(models.Model):
     is_translated = models.BooleanField(default=False, blank=True, null=False, verbose_name='Перевод')
     unique_identificator = models.CharField(max_length=8, blank=False, null=False, verbose_name='Идентификатор')
     priority = models.BooleanField(default=False, blank=True, null=False, verbose_name='Приоритет')
-
-
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
     def __str__(self):
         return self.title
@@ -135,6 +152,7 @@ class Room(models.Model):
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
     image = models.ImageField(upload_to='rooms/', default='', verbose_name='Изображение')
     unique_identificator = models.CharField(max_length=4, default=None, null=True, blank=True, verbose_name='identificator')
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
     def __str__(self):
         return self.title
@@ -145,6 +163,7 @@ class RoomPlace(models.Model):
     ikea_url = models.CharField(max_length=256, null=True, default=None, blank=False, verbose_name='ссылка')
     image = models.ImageField(upload_to='room_places/', default=None, null=True, blank=True)
     unique_identificator = models.CharField(max_length=8, default=None, null=True, blank=True, verbose_name='identificator')
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
     def __str__(self):
         return ('%s, %s' %(self.room.title, self.title))
@@ -154,6 +173,7 @@ class RoomExample(models.Model):
     title = models.CharField(max_length=512, null=True, default=None, blank=False, verbose_name='название')
     products = models.CharField(max_length=1024, null=True, default=None, blank=True, verbose_name='продукты')
     unique_identificator = models.CharField(max_length=8, null=True, default=None, blank=True, verbose_name='идентификатор')
+    not_display = models.BooleanField(default=False, blank=True, null=False, verbose_name='Не отображать')
 
 class ExampleImage(models.Model):
     example = models.ForeignKey(RoomExample, on_delete=models.CASCADE, verbose_name='комната')
