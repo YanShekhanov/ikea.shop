@@ -421,7 +421,9 @@ def parse_one_product_information_(product_query, browser_driver):
             if isinstance(material, str):
                 materials_list.append(material)
         materials_to_save = translator.translate('. '.join(materials_list), dest='uk').text
-    except NoSuchElementException or ElementNotVisibleException:
+    except NoSuchElementException:
+        pass
+    except ElementNotVisibleException:
         pass
 
     # -----------------------------------------------------#
