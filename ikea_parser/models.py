@@ -157,7 +157,7 @@ class Room(models.Model):
     def __str__(self):
         return self.title
 
-@receiver(post_save, Room)
+@receiver(post_save, sender=Room)
 def releted_room_place(sender, instance, **kwargs):
     if instance.not_display:
         releted_room_places = RoomPlace.objecta.filter(room=instance)
@@ -176,7 +176,7 @@ class RoomPlace(models.Model):
     def __str__(self):
         return ('%s, %s' %(self.room.title, self.title))
 
-@receiver(post_save, RoomPlace)
+@receiver(post_save, sender=RoomPlace)
 def releted_room_place(sender, instance, **kwargs):
     if instance.not_display:
         releted_room_examples = RoomExample.objecta.filter(room_place=instance)
