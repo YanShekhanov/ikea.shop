@@ -92,7 +92,7 @@ class Home(MainInfo, ListView):
             image = ExampleImage.objects.get(example=room_example, is_presentation=False)
             image_list.append(image)
         context = super(Home, self).get_context_data(**kwargs)
-        context['exapmleImages'] = image_list
+        context['exampleImages'] = image_list
         return context
 
 import random
