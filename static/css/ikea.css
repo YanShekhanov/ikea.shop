@@ -3999,3 +3999,9 @@ main {
     height: 40px;
     width: 40px;
 }
+
+.d-none{
+	padding: 0;
+    bottom: 0;
+    position: absolute;
+}
