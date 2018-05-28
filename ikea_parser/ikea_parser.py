@@ -10,7 +10,7 @@ from django.utils.timezone import datetime
 
 #selenium
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import StaleElementReferenceException, WebDriverException, NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException, WebDriverException, NoSuchElementException, ElementNotVisibleException
 from .create_identificator import create_identificator
 import re
 from app.settings import MEDIA_ROOT, BASE_DIR
@@ -421,7 +421,7 @@ def parse_one_product_information_(product_query, browser_driver):
             if isinstance(material, str):
                 materials_list.append(material)
         materials_to_save = translator.translate('. '.join(materials_list), dest='uk').text
-    except NoSuchElementException:
+    except NoSuchElementException or ElementNotVisibleException:
         pass
 
     # -----------------------------------------------------#
