@@ -94,8 +94,8 @@ class Home(MainInfo, ListView):
             image_list.append(image)
         context = super(Home, self).get_context_data(**kwargs)
         context['exampleImages'] = image_list
-        context['rooms'] = Room.objects.all()
-        context['rooms_places'] = RoomPlace.objects.all()
+        context['rooms'] = Room.objects.exclude(not_display=True)
+        context['rooms_places'] = RoomPlace.objects.exclude(not_display=True)
         return context
 
 import random
