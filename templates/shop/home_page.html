@@ -20,7 +20,7 @@
                                     {% for example in examples %}
                                         {% if image.example == example %}
                                             <h5>{{ example.room_place.room.title }}, {{ example.title }}</h5>
-                                            <p><button onclick="window.location.href='{% url "roomPlaceDetail" example.room_place.unique_identificator %}'">Вiдкрий бiльше пропозицiй</button></p>
+                                            <p><button class="btn-1" onclick="window.location.href='{% url "roomPlaceDetail" example.room_place.unique_identificator %}'">Вiдкрий бiльше пропозицiй</button></p>
                                         {% endif %}
                                     {% endfor %}
                                   </div>
@@ -37,6 +37,15 @@
                   </a>
             </div>
         </div>
+
+        {% for room in rooms %}
+            <span style="display: inline-block"><b>{{ room.title }}</b></span>
+            {% for room_place in rooms_places %}
+                {% if room_place.room == room %}
+                    <a href="{% url 'roomPlaceDetail' room_place.unique_identificator %}" style="display: inline-block">{{ room_place.title }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
     </div>
 {% endblock %}
 
