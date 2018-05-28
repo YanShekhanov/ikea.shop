@@ -78,7 +78,7 @@ class Home(MainInfo, ListView):
 
         room_example_list = []
         for room_place in room_place_list:
-            room_example = RoomExample.objetcs.filter(room_place=room_place)[
+            room_example = RoomExample.objects.filter(room_place=room_place)[
                 random.randint(0, (len(RoomExample.objects.filter(room_place=room_place)) - 1))]
             room_example_list.append(room_example)
 
