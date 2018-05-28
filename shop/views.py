@@ -58,10 +58,44 @@ class MainInfo(TemplateView):
         print(datetime.today())
         return context
 
-class Home(MainInfo, TemplateView):
+class Home(MainInfo, ListView):
     template_name = 'shop/home_page.html'
+    context_object_name = 'examples'
 
+    def get_queryset(self):
+        random_room_nmb = 3
+        room_length = len(Room.objects.all())
+        room_list = []  # рандомные комнаты
+        for _ in random_room_nmb:
+            random_room = Room.objects.all()[random.randint(0, (len(Room.objects.all()) - 1))]
+            room_list.append(random_room)
 
+        room_place_list = []
+        for room in room_list:
+            room_place = RoomPlace.objects.filter(room=room)[
+                random.randint(0, (len(RoomPlace.objects.filter(room=room)) - 1))]
+            room_place_list.append(room_place)
+
+        room_example_list = []
+        for room_place in room_place_list:
+            room_example = RoomExample.objetcs.filter(room_place=room_place)[
+                random.randint(0, (len(RoomExample.objects.filter(room_place=room_place)) - 1))]
+            room_example_list.append(room_example)
+
+        self.queryset = room_example_list
+        return self.queryset
+
+    def get_context_data(self, **kwargs):
+        self.object_list = self.get_queryset()
+        image_list = []
+        for room_example in self.objects_list:
+            image = ExampleImage.objects.get(example=room_example, is_presentation=False)
+            image_list.append(image)
+        context = super(Home, self).get_context_data(**kwargs)
+        context['exapmleImages'] = image_list
+        return context
+
+import random
 #главная страница
 class Catalogue(MainInfo, ListView):
     template_name = 'shop/catalogue.html'
