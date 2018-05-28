@@ -157,6 +157,14 @@ class Room(models.Model):
     def __str__(self):
         return self.title
 
+@receiver(post_save, Room)
+def releted_room_place(sender, instance, **kwargs):
+    if instance.not_display:
+        releted_room_places = RoomPlace.objecta.filter(room=instance)
+        for room_place in releted_room_places:
+            room_place.not_display = True
+            room_place.save()
+
 class RoomPlace(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name='комната')
     title = models.CharField(max_length=32, null=True, default=None, blank=True, verbose_name='Название части')
@@ -167,6 +175,14 @@ class RoomPlace(models.Model):
 
     def __str__(self):
         return ('%s, %s' %(self.room.title, self.title))
+
+@receiver(post_save, RoomPlace)
+def releted_room_place(sender, instance, **kwargs):
+    if instance.not_display:
+        releted_room_examples = RoomExample.objecta.filter(room_place=instance)
+        for room_example in releted_room_examples:
+            room_example.not_display = True
+            room_example.save()
 
 class RoomExample(models.Model):
     room_place = models.ForeignKey(RoomPlace, on_delete=models.CASCADE, verbose_name='часть комнаты')
