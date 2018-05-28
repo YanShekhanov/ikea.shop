@@ -64,10 +64,11 @@ class Home(MainInfo, ListView):
 
     def get_queryset(self):
         random_room_nmb = 3
-        room_length = len(Room.objects.exclude(not_display=True))
+        rooms = Room.objects.exclude(not_display=True)
+        room_length = len(rooms)
         room_list = []  # рандомные комнаты
         for _ in range(random_room_nmb):
-            random_room = Room.objects.all()[random.randint(0, (len(Room.objects.all()) - 1))]
+            random_room = Room.objects.exclude(not_display=True)[random.randint(0, (len(Room.objects.exclude(not_display=True)) - 1))]
             room_list.append(random_room)
 
         room_place_list = []
