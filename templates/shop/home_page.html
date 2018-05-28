@@ -17,8 +17,8 @@
                               <div class="carousel-caption d-none d-md-block">
                                 {% for example in examples %}
                                     {% if image.example == example %}
-                                        <h5>{{ example.room_place.room.title }}, {{ example.room_place.title }}</h5>
-                                        <p>{{ example.title }}</p>
+                                        <h5>{{ example.room_place.room.title }}, {{ example.title }}</h5>
+                                        <p><button onclick="window.location.href='{% url "roomPlaceDetail" example.room_place.unique_identificator %}'">Вiдкрий бiльше пропозицiй</button></p>
                                     {% endif %}
                                 {% endfor %}
                               </div>
