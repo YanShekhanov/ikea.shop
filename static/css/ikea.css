@@ -4012,3 +4012,6 @@ main {
     border-radius: 0;
     color: white;
 }
+.carousel-item{
+	height: 40vw;
+}
