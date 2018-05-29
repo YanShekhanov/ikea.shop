@@ -4019,5 +4019,8 @@ main {
     color: white;
 }
 .carousel-item{
-	height: 40vw;
+	height: 49vw;
+}
+.home-carusel {
+    height: 49vw;
 }
