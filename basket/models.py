@@ -7,7 +7,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Order(models.Model):
-    status = ((0, 'в процессе'), (1, 'не оплачен'), (2, 'задаток'), (3, 'оплачен'), (4, 'выполнен'), (5, 'отменен'))
+    status = ((0, 'в процессе'), (1, 'не оплачено'), (2, 'завдаток'), (3, 'оплачено'), (4, 'выконано'), (5, 'вiдмiнено'))
     unique_identificator = models.CharField(max_length=8, default=create_num_identificator(8), blank=False, null=False)
     order_price = models.IntegerField(default=0, blank=True, null=True)
     status = models.SmallIntegerField(default=0, blank=True, null=True, choices=status)
@@ -64,8 +64,8 @@ class OrderRegistration(models.Model):
     updated = models.DateTimeField(default=timezone.now(), editable=False)
 
 class DeliveryMethod(models.Model):
-    methods = ((0, 'Новая почта'), (1, 'Новая почта (курьер)'), (2, 'Delivery'), (3, 'Delivery (курьер)'),
-               (4, 'УкрПочта'), (5, 'УкрПочта (курьер)'), (6, 'Интайм'), (7, 'Интайм (курьер)'))
+    methods = ((0, 'Нова пошта'), (1, 'Нова пошта (кур\'єр)'), (2, 'Delivery'), (3, 'Delivery (кур\'єр)'),
+               (4, 'УкрПошта'), (5, 'УкрПошта (кур\'єр)'), (6, 'Інтайм'), (7, 'Інтайм (кур\'єр)'))
     order = models.OneToOneField(Order, on_delete=models.CASCADE, verbose_name='order')
     delivery_method = models.SmallIntegerField(choices=methods, default=None, blank=False, null=True)
     city = models.CharField(max_length=32, default=None, blank=False, null=True)
@@ -73,22 +73,23 @@ class DeliveryMethod(models.Model):
     department_number = models.SmallIntegerField(default=0, blank=True, null=True)
 
     def method_readable(self):
-        if self.delivery_method == 1 or self.delivery_method == 3 or self.delivery_method == 5 or self.delivery_method ==7:
+        if self.delivery_method == 1 or self.delivery_method == 3 or self.delivery_method == 5 or self.delivery_method == 7:
             return '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, self.adres )
         else:
             return '%s, адрес: %s, %s ' % (dict(DeliveryMethod.methods)[self.delivery_method], self.city, str(self.department_number))
 
 class PaymentMethod(models.Model):
-    methods = ((0, 'Полная оплата'), (1, 'Частичная оплата'), (2, 'Наложенный платеж'))
+    methods = ((0, 'Повна оплата'), (1, 'Часткова оплата'), (2, 'накладений платіж'))
     order = models.OneToOneField(Order, on_delete=models.CASCADE, verbose_name='order')
     payment_method = models.SmallIntegerField(choices=methods, blank=False, null=True, default=None)
     amount = models.IntegerField(blank=True, null=True, default=0)
 
     def method_readable(self):
-        if self.payment_method == 0 or self.payment_method == 2:
-            return dict(PaymentMethod.methods)[self.payment_method]
-        elif self.payment_method == 1:
-            return '%s, сумма: %i' % (dict(PaymentMethod.methods)[self.payment_method], self.amount)
+        return '%s, сума: %i' % (dict(PaymentMethod.methods)[self.payment_method], self.amount)
+        #if self.payment_method == 0 or self.payment_method == 2:
+        #    return dict(PaymentMethod.methods)[self.payment_method]
+        #elif self.payment_method == 1:
+        #    return '%s, сумма: %i' % (dict(PaymentMethod.methods)[self.payment_method], self.amount)
 
 
 
