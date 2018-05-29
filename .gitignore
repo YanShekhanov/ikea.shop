@@ -10,10 +10,12 @@ ikea_parser/parsed_data
 2000px/
 icons/
 rooms/
+rooms_places/
+rooms_examples/
 room_places/
 rooms_examples/
 test.py
 *.json
-
 */migrations/*
-settings.py 
+app/settings.py 
+app/dev_settings.py

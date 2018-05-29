@@ -285,6 +285,12 @@ JavaScript error: https://www.ikea.com/ms/js/js_main.js, line 38: TypeError: doc
 [Child 6119, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 [Child 6078, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+<<<<<<< HEAD
+1522408552729	geckodriver	INFO	geckodriver 0.20.0
+1522408552736	geckodriver	INFO	Listening on 127.0.0.1:42531
+1522408553738	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.Ke3khDRsU7mH"
+Error: no DISPLAY environment variable specified
+=======
 1522422487388	geckodriver	INFO	geckodriver 0.20.0
 1522422487401	geckodriver	INFO	Listening on 127.0.0.1:40135
 1522422488397	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.8F4fVabE7QM2"
@@ -394,3 +400,4 @@ JavaScript warning: https://www.googletagmanager.com/gtag/js?id=DC-8336375, line
 [Child 11194, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 [Child 11147, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-CQifnS/firefox-59.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+>>>>>>> 5ffa0e183db2617433e18423c07ac951ba5f4525

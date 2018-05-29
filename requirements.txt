@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> fd18dcd5937e8ba256d34fe014f5ecbcb2ed3064
 beautifulsoup4==4.6.0
 certifi==2018.1.18
 chardet==3.0.4
