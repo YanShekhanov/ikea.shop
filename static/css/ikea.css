@@ -43,6 +43,12 @@ h1:before {
 	color: white;
 	animation: loading 1s linear;
 }
+@media screen and (max-width: 750px){
+	h1 {
+	   width: 270px;
+    	   font: 900 600% Baskerville, 'Palatino Linotype', Palatino, serif;
+	}
+}
 
 /*Common*/
 .bg{
@@ -4011,4 +4017,7 @@ main {
 	background-color: #0e53a1 ;
     border-radius: 0;
     color: white;
+}
+.carousel-item{
+	height: 40vw;
 }
